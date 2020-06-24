@@ -37,21 +37,21 @@ Remember to replace the <profile-name> which can be found with ls /etc/netctl
 
 ### Wallpapers
 #### city.jpg
-![city.jpg](https://github.com/dev-math/dotfiles/tree/master/Wallpapers/city.jpg)
+![city.jpg](https://github.com/dev-math/dotfiles/master/Wallpapers/city.jpg)
 #### nebula.jpg
-![nebula.jpg](https://github.com/dev-math/dotfiles/tree/master/Wallpapers/nebula.jpg)
+![nebula.jpg](https://github.com/dev-math/dotfiles/master/Wallpapers/nebula.jpg)
 #### onepiece-ace.jpg
-![onepiece-ace.jpg](https://github.com/dev-math/dotfiles/tree/master/Wallpapers/onepiece-ace.jpg)
+![onepiece-ace.jpg](https://github.com/dev-math/dotfiles/master/Wallpapers/onepiece-ace.jpg)
 #### purple.jpg
-![purple.jpg](https://github.com/dev-math/dotfiles/tree/master/Wallpapers/purple.jpg)
+![purple.jpg](https://github.com/dev-math/dotfiles/master/Wallpapers/purple.jpg)
 #### redgiant.jpg
-![redgiant.jpg](https://github.com/dev-math/dotfiles/tree/master/Wallpapers/redgiant.jpg)
+![redgiant.jpg](https://github.com/dev-math/dotfiles/master/Wallpapers/redgiant.jpg)
 #### serenegreen.jpg
-![serenegreen.jpg](https://github.com/dev-math/dotfiles/tree/master/Wallpapers/serenegreen.jpg)
+![serenegreen.jpg](https://github.com/dev-math/dotfiles/master/Wallpapers/serenegreen.jpg)
 #### spaceingout.jpg
-![spaceingout.jpg](https://github.com/dev-math/dotfiles/tree/master/Wallpapers/spaceingout.jpg)
+![spaceingout.jpg](https://github.com/dev-math/dotfiles/master/Wallpapers/spaceingout.jpg)
 #### yasuo.jpg
-![yasuo.jpg](https://github.com/dev-math/dotfiles/tree/master/Wallpapers/yasuo.jpg)
+![yasuo.jpg](https://github.com/dev-math/dotfiles/master/Wallpapers/yasuo.jpg)
 
    [gotop]: <https://aur.archlinux.org/packages/gotop/>
    [i3lock-color-git]: <https://aur.archlinux.org/packages/i3lock-color-git/>
