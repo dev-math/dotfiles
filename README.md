@@ -49,7 +49,7 @@ Remember to replace the <profile-name> which can be found with ls `/etc/netctl`
 #### serenegreen.jpg
 ![serenegreen.jpg](https://github.com/dev-math/dotfiles/blob/master/Wallpapers/serenegreen.jpg)
 #### spaceingout.jpg
-![spaceingout.jpg](https://github.com/dev-math/dotfiles/blob/master/Wallpapers/spaceingout.jpg)
+![spacingout.jpg](https://github.com/dev-math/dotfiles/blob/master/Wallpapers/spacingout.jpg)
 #### yasuo.jpg
 ![yasuo.jpg](https://github.com/dev-math/dotfiles/blob/master/Wallpapers/yasuo.jpg)
 
