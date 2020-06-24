@@ -1,0 +1,4 @@
+configuration {
+ theme: "~/.cache/wal/colors-rofi-light";
+ font: "Fira Code 10";
+}
