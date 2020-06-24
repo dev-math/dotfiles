@@ -17,13 +17,11 @@ ffmpegthumbnailer
 flex
 gcc
 git
-gotop
 groff
 grub
 gucharmap
 highlight
 i3-gaps
-i3lock-color-git
 intel-ucode
 jq
 konsole
@@ -52,7 +50,6 @@ pavucontrol
 picom
 pkgconf
 playerctl
-polybar
 pulseaudio
 pulseaudio-alsa
 python-pywal
@@ -66,7 +63,6 @@ texinfo
 ttf-dejavu
 ttf-font-awesome
 ttf-roboto
-ttf-spacemono
 unzip
 vlc
 w3m
@@ -79,12 +75,10 @@ xdg-user-dirs
 xf86-video-vesa
 xorg-server
 xorg-xinit
-yay
 zathura
 zathura-cb
 zathura-djvu
 zathura-pdf-mupdf
 zathura-ps
-zscroll-git
 zsh
 zsh-completions
