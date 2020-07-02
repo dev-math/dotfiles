@@ -218,4 +218,3 @@ for_window [class   = "rofi"] floating enable sticky enable
 
 ###--- MOVE TO WS ---###
 #for_window [class       = "Atom"] move window to workspace $ws2
-
