@@ -45,6 +45,7 @@ networkmanager
 noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
+ntfs-3g
 patch
 pavucontrol
 picom
@@ -63,6 +64,7 @@ texinfo
 ttf-dejavu
 ttf-font-awesome
 ttf-roboto
+udiskie
 unzip
 vlc
 w3m
@@ -73,6 +75,7 @@ wpa_supplicant
 xclip
 xdg-user-dirs
 xf86-video-vesa
+xfce4-notifyd
 xorg-server
 xorg-xinit
 zathura
