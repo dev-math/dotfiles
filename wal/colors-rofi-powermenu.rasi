@@ -13,7 +13,7 @@ configuration{{
 
 #window {{
   children: [ horibox ];
-  padding: 30% 0 0 4%;  
+  padding: 30% 2% 0 2%;  
   fullscreen: true;
   background-color: @background;
 }}
@@ -23,12 +23,12 @@ configuration{{
 }}
 #listview {{
   layout: horizontal;
-  spacing: 100px;
+  spacing: 250px;
   lines: 5;
 }}
 
 #element {{
-  padding: 100px 20px 100px 0px;
+  padding: 100px 20px 100px 20px;
   background-color: #0c051f00;
   border-radius: 8;
 }}

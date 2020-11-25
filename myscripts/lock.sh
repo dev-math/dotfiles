@@ -1,52 +1,35 @@
 #!/bin/bash
 
-background=000000AA
-insidecolor=00000000
-ringcolor=ffffffff
-keyhlcolor=d23c3dff
-bshlcolor=d23c3dff
-separatorcolor=00000000
-insidevercolor=00000000
-insidewrongcolor=d23c3dff
-ringvercolor=#4C566AFF
-ringwrongcolor=ffffffff
-verifcolor=fff28aff
-wrongcolor=d23c3dff
-timecolor=ffffffff
-datecolor=ffffffff
-loginbox=000000ff
-font="Roboto:style=Bold"
-locktext='This computer is locked.'
-wrongsize=25
-datesize=30
+maim /tmp/screen.png
+convert /tmp/screen.png -scale 10% -scale 1000% /tmp/screen.png
 
-i3lock -e \
-	--timepos='x+100:y+h-70' \
-	--datepos='x+100:y+h-45' \
-	--indpos='x+55:y+h-69' \
-	--modifpos='x+100:y+h-25' \
-	--clock --force-clock \
-	--time-align 1 --modif-align 1 \
-	--datestr "$locktext" --datesize=$datesize --date-align 1 \
-	--color="$background" \
-	--insidecolor="$insidecolor" \
-	--ringcolor="$ringcolor" \
-	--line-uses-inside \
-	--wrongcolor="$wrongcolor" \
-	--keyhlcolor="$keyhlcolor" \
-	--bshlcolor="$bshlcolor" \
-	--separatorcolor="$separatorcolor" \
-	--insidevercolor="$insidevercolor" \
-	--insidewrongcolor="$insidewrongcolor" \
-	--ringvercolor="$ringvercolor" \
-	--ringwrongcolor="$ringwrongcolor" \
-	--verifcolor="$verifcolor" \
-	--wrongcolor="$wrongcolor" \
-	--timecolor="$timecolor" \
-	--datecolor="$datecolor" \
-	--radius=20 --ring-width=8 \
-	--veriftext='' --wrongtext='' --noinputtext='' \
-	--time-font="$font" --date-font="$font" \
-	--layout-font="$font" --verif-font="$font" --wrong-font="$font" \
-	--wrongsize=$wrongsize \
-	--pass-media-keys --redraw-thread  "$@"
+if [[ -f $HOME/.config/screen-lock.png ]] 
+then
+    # placement x/y
+    PX=0
+    PY=0
+    # lockscreen image info
+    R=$(file ~/.config/screen-lock.png | grep -o '[0-9]* x [0-9]*')
+    RX=$(echo $R | cut -d' ' -f 1)
+    RY=$(echo $R | cut -d' ' -f 3)
+
+    SR=$(xrandr --query | grep ' connected' | cut -f3 -d' ')
+    for RES in $SR
+    do
+        # monitor position/offset
+        SRX=$(echo $RES | cut -d'x' -f 1)                   # x pos
+        SRY=$(echo $RES | cut -d'x' -f 2 | cut -d'+' -f 1)  # y pos
+        SROX=$(echo $RES | cut -d'x' -f 2 | cut -d'+' -f 2) # x offset
+        SROY=$(echo $RES | cut -d'x' -f 2 | cut -d'+' -f 3) # y offset
+        PX=$(($SROX + $SRX/2 - $RX/2))
+        PY=$(($SROY + $SRY/2 - $RY/2))
+
+        convert /tmp/screen.png $HOME/.config/screen-lock.png -gravity center -composite -matte /tmp/screen.png
+        echo "done"
+    done
+fi 
+# dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop
+# i3lock  -I 10 -d -e -u -n -i /tmp/screen.png
+i3lock -e -u -n -i /tmp/screen.png
+
+rm /tmp/screen.png

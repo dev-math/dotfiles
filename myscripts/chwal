@@ -1,0 +1,5 @@
+#!/bin/bash
+
+wal -i $1
+spicetify update
+pywal-discord

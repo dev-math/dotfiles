@@ -1,10 +1,11 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="/home/matheus/.local/bin:$PATH"
+export PATH="/home/math/.local/bin:$PATH"
+export PATH="/home/math/.dotfiles/myscripts:$PATH"
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/matheus/.oh-my-zsh"
+export ZSH="/home/math/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -115,7 +116,7 @@ SPACESHIP_PROMPT_ORDER=(
 )
 SPACESHIP_USER_SHOW=always
 SPACESHIP_PROMPT_ADD_NEWLINE=false
-SPACESHIP_CHAR_SYMBOL="❯"
+SPACESHIP_CHAR_SYMBOL="❱"
 SPACESHIP_CHAR_SUFFIX=" "
 
 ### Added by Zinit's installer

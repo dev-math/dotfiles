@@ -39,7 +39,7 @@ shade15 = ${xrdb:color15:#222}
 enable-ipc = true
 ; monitor =
 width = 100%
-height = 35
+height = 45
 offset-x = 0
 offset-y = 0 
 fixed-center = true
@@ -64,14 +64,14 @@ module-margin-right = 0
 modules-center = i3
 ; add backlight mpd
 modules-left = music
-modules-right = pulseaudio lan wlan battery date powermenu
+modules-right = pulseaudio lan wlan battery battery2 date powermenu
 
-font-0 = Fira Code:style=Regular:size=10
-font-1 = Noto Sans:style=Regular:size=10
-font-2 = DejaVu Sans:style=Book:size=10
-font-3 = Font Awesome 5 Free,Font Awesome 5 Free Regular:style=Regular:size=12
-font-4 = Font Awesome 5 Brands,Font Awesome 5 Brands Regular:style=Regular:size=12
-font-5 = Font Awesome 5 Free,Font Awesome 5 Free Solid:style=Solid:size=12
+font-0 = Fira Code:style=Regular:size=15
+font-1 = Noto Sans:style=Regular:size=15
+font-2 = DejaVu Sans:style=Book:size=15
+font-3 = Font Awesome 5 Free,Font Awesome 5 Free Regular:style=Regular:size=17
+font-4 = Font Awesome 5 Brands,Font Awesome 5 Brands Regular:style=Regular:size=17
+font-5 = Font Awesome 5 Free,Font Awesome 5 Free Solid:style=Solid:size=17
 
 ; Workspaces i3
 
@@ -166,7 +166,7 @@ ramp-volume-2 =  
 ; lan need testing
 [module/lan]
 type = internal/network
-interface = eno1
+interface = enp0s31f6
 
 format-connected-foreground = ${colors.foreground}
 format-connected-background = ${colors.shade4}
@@ -178,7 +178,7 @@ label-connected = Connected
 
 [module/wlan]
 type = internal/network
-interface = wlo1
+interface = wlp4s0
 
 format-connected-foreground = ${colors.foreground}
 format-connected-background = ${colors.shade4}
@@ -196,6 +196,47 @@ full-at = 99
 ; Use the following command to list batteries and adapters:
 ; ls -1 /sys/class/power_supply/
 battery = BAT0
+adapter = AC
+poll-interval = 5
+
+format-charging-background = ${colors.shade4}
+format-charging-foreground = ${colors.foreground}
+format-discharging-background = ${colors.shade4}
+format-discharging-foreground = ${colors.foreground}
+format-full-background = ${colors.shade4}
+format-full-foreground = ${colors.foreground}
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+
+label-discharging = %percentage%%
+label-full = %{T3} %{T-}  %percentage%%
+
+label-charging-padding = 1
+label-discharging-padding = 1
+label-full-padding = 1
+
+; Only applies if <ramp-capacity> is used
+ramp-capacity-0 = %{T3} %{T-}
+ramp-capacity-1 = %{T3} %{T-}
+ramp-capacity-2 = %{T3} %{T-}
+ramp-capacity-3 = %{T3} %{T-}
+ramp-capacity-4 = %{T3} %{T-}
+
+; Only applies if <animation-charging> is used
+animation-charging-0 =  
+animation-charging-1 =  
+animation-charging-2 =  
+animation-charging-3 =  
+animation-charging-4 =  
+; Framerate in milliseconds
+animation-charging-framerate = 500
+
+; Battery 2
+
+[module/battery2]
+type = internal/battery
+full-at = 99
+battery = BAT1
 adapter = AC
 poll-interval = 5
 
@@ -236,7 +277,7 @@ animation-charging-framerate = 500
 [module/powermenu]
 type = custom/text
 content = 
-content-background = ${colors.shade3}
+content-background = ${colors.shade6}
 content-foreground = ${colors.shade0}
 click-left = ~/.myscripts/powermenu.sh
 content-padding = 1

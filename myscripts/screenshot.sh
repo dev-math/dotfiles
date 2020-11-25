@@ -1,4 +1,3 @@
-mkdir -p ~/Pictures/screenshots
 NAME=~/Pictures/screenshots/$(date '+%d-%m-%Y-%T').png
 if maim -s $NAME; then
     xclip -selection clipboard -t image/png -filter $NAME
