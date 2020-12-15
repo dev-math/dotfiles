@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cd /home/math/Pictures/Wallpapers
+#image=("%s\n" "${files[RANDOM % ${#files[@]}]}")
+#echo $image
+printf "${files[RANDOM % ${#files[@]}]}"
+

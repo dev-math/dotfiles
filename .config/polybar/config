@@ -1,0 +1,322 @@
+;==========================================================
+;                   !!=====POLYBAR====!!
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+; list monitor
+; polybar -m | cut -d ':' -f 1 
+
+[colors]
+background = ${xrdb:color0:#222}
+background-alt = ${xrdb:color0:#222}
+
+foreground = ${xrdb:color0:#222}
+foreground-alt = ${xrdb:color5:#222}
+ 
+shade0 = ${xrdb:color0:#222}
+shade1 = ${xrdb:color1:#222}
+shade2 = ${xrdb:color2:#222}
+shade3 = ${xrdb:color3:#222}
+shade4 = ${xrdb:color4:#222}
+shade5 = ${xrdb:color5:#222}
+shade6 = ${xrdb:color6:#222}
+shade7 = ${xrdb:color7:#222}
+shade8 = ${xrdb:color8:#222}
+shade9 = ${xrdb:color9:#222}
+shade10 = ${xrdb:color10:#222}
+shade11 = ${xrdb:color11:#222}
+shade12 = ${xrdb:color12:#222}
+shade13 = ${xrdb:color13:#222}
+shade14 = ${xrdb:color14:#222}
+shade15 = ${xrdb:color15:#222}
+
+[bar/invisible]
+width = 100%
+height = 45
+background = #00000000
+wm-restack = i3
+override-redirect = false
+modules-left = blank
+
+[bar/main]
+enable-ipc = true
+; monitor =
+width = 100%
+height = 45
+offset-x = 0
+offset-y = 0 
+fixed-center = true
+cursor-click = pointer
+cursor-scroll = ns-resize
+radius = 0
+background = ${colors.background}
+foreground = ${colors.foreground}
+line-size = 0
+line-color = #f00
+border-bottom-size = 3
+border-color = #2f2f2f20
+border-transparent = true
+padding-left = 0
+padding-right = 0
+module-margin-left = 0
+module-margin-right = 0
+
+; to make the bar appear below windows set override to true
+;wm-restack = i3
+;override-redirect = true
+
+; tray
+tray-position = right
+tray-maxsize = 25
+tray-background = ${colors.shade4}
+tray-reparent = true
+
+modules-left = music
+modules-center = i3
+modules-right = pulseaudio lan wlan battery battery2 date powermenu
+
+font-0 = Fira Code:style=Regular:size=15
+font-1 = Noto Sans:style=Regular:size=15
+font-2 = DejaVu Sans:style=Book:size=15
+font-3 = Font Awesome 5 Free,Font Awesome 5 Free Regular:style=Regular:size=17
+font-4 = Font Awesome 5 Brands,Font Awesome 5 Brands Regular:style=Regular:size=17
+font-5 = Font Awesome 5 Free,Font Awesome 5 Free Solid:style=Solid:size=17
+
+; Workspaces i3
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+wrapping-scroll = false
+enable-click = true
+strip-wsnumbers = true
+;index-sort = true
+;reverse-scroll = true (default)
+
+;Only show workspaces on the same output as the bar
+;pin-workspaces = true
+
+; workspace name
+ws-icon-0 = "1;"
+ws-icon-1 = "2;"
+ws-icon-2 = "3;"
+ws-icon-3 = "4;"
+ws-icon-4 = "5;"
+ws-icon-5 = "6; 6"
+ws-icon-6 = "7; 7"
+ws-icon-7 = "8; 8"
+ws-icon-8 = "9; 9"
+ws-icon-9 = "10;"
+ws-icon-default = 
+
+label-focused = %icon%
+label-focused-padding = 1
+label-focused-background = ${colors.shade3}
+label-focused-foreground = ${colors.shade0}
+
+label-unfocused = %icon%
+label-unfocused-padding = 1
+label-unfocused-foreground = ${colors.shade7}
+
+label-visible = %icon%
+label-visible-padding = 1
+label-visible-foreground = ${colors.shade7}
+
+label-urgent = %icon%
+label-urgent-padding = 1
+label-urgent-foreground = ${colors.shade7}
+
+; DATE
+
+[module/date]
+type = internal/date
+; Seconds to sleep between updates
+; interval = 1.0
+
+date = %D
+time = %a %m/%d  %I:%M
+time-alt = %d/%m/%Y %I:%M %p
+
+format = <label>
+format-background = ${colors.shade4}
+
+label = %{A6:time-admin:} %time% %{A}
+label-foreground = ${colors.shade0}
+
+; Volume
+
+[module/pulseaudio]
+type = internal/pulseaudio
+; sink to be used, find using pacmd list-sinks
+sink = alsa_output.pci-0000_00_1f.3.analog-stereo
+use-ui-max = false
+interval = 5
+label-volume-padding = 1
+label-muted-padding = 1
+
+format-volume = <ramp-volume> <label-volume>
+format-volume-foreground = ${colors.foreground}
+format-volume-background = ${colors.shade4}
+label-volume = %percentage%%
+
+format-muted = <label-muted>
+label-muted = muted
+format-muted-foreground = ${colors.foreground}
+format-muted-background = ${colors.shade4}
+
+ramp-volume-0 =  
+ramp-volume-1 =  
+ramp-volume-2 =  
+
+; network
+
+; interface = name of the network interface
+; get the names with 'ip link'
+
+; lan need testing
+[module/lan]
+type = internal/network
+interface = enp0s31f6
+
+format-connected-foreground = ${colors.foreground}
+format-connected-background = ${colors.shade4}
+format-connected =  <label-connected>
+
+label-connected-padding = 1
+label-connected = Connected
+;label-connected = %linkspeed% %downspeed:8:8% %{F#83a7b4}%{F-} %upspeed:8:8% %{F#83a7b4}%{F-}
+
+[module/wlan]
+type = internal/network
+interface = wlp4s0
+
+format-connected-foreground = ${colors.foreground}
+format-connected-background = ${colors.shade4}
+format-connected = <label-connected>
+
+label-connected-padding = 1
+label-connected = "%{A1:nm-connection-editor:} %essid%%{A}"
+;label-connected = %essid%
+;label-connected = %signal%% %downspeed:8:8% %{F#83a7b4}%{F-} %upspeed:8:8% %{F#83a7b4}%{F-}
+
+; Battery
+
+[module/battery]
+type = internal/battery
+full-at = 99
+; Use the following command to list batteries and adapters:
+; ls -1 /sys/class/power_supply/
+battery = BAT0
+adapter = AC
+poll-interval = 5
+
+format-charging-background = ${colors.shade4}
+format-charging-foreground = ${colors.foreground}
+format-discharging-background = ${colors.shade4}
+format-discharging-foreground = ${colors.foreground}
+format-full-background = ${colors.shade4}
+format-full-foreground = ${colors.foreground}
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+
+label-discharging = %percentage%%
+label-full = %{T3} %{T-}  %percentage%%
+
+label-charging-padding = 1
+label-discharging-padding = 1
+label-full-padding = 1
+
+; Only applies if <ramp-capacity> is used
+ramp-capacity-0 = %{T3} %{T-}
+ramp-capacity-1 = %{T3} %{T-}
+ramp-capacity-2 = %{T3} %{T-}
+ramp-capacity-3 = %{T3} %{T-}
+ramp-capacity-4 = %{T3} %{T-}
+
+; Only applies if <animation-charging> is used
+animation-charging-0 =  
+animation-charging-1 =  
+animation-charging-2 =  
+animation-charging-3 =  
+animation-charging-4 =  
+; Framerate in milliseconds
+animation-charging-framerate = 500
+
+; Battery 2
+
+[module/battery2]
+type = internal/battery
+full-at = 99
+battery = BAT1
+adapter = AC
+poll-interval = 5
+
+format-charging-background = ${colors.shade4}
+format-charging-foreground = ${colors.foreground}
+format-discharging-background = ${colors.shade4}
+format-discharging-foreground = ${colors.foreground}
+format-full-background = ${colors.shade4}
+format-full-foreground = ${colors.foreground}
+
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+
+label-discharging = %percentage%%
+label-full = %{T3} %{T-}  %percentage%%
+
+label-charging-padding = 1
+label-discharging-padding = 1
+label-full-padding = 1
+
+; Only applies if <ramp-capacity> is used
+ramp-capacity-0 = %{T3} %{T-}
+ramp-capacity-1 = %{T3} %{T-}
+ramp-capacity-2 = %{T3} %{T-}
+ramp-capacity-3 = %{T3} %{T-}
+ramp-capacity-4 = %{T3} %{T-}
+
+; Only applies if <animation-charging> is used
+animation-charging-0 =  
+animation-charging-1 =  
+animation-charging-2 =  
+animation-charging-3 =  
+animation-charging-4 =  
+; Framerate in milliseconds
+animation-charging-framerate = 500
+
+[module/powermenu]
+type = custom/text
+content = 
+content-padding = 1
+content-background = ${colors.shade4}
+content-foreground = ${colors.shade0}
+click-left = ~/.dotfiles/.scripts/powermenu.sh
+
+[module/music]
+type = custom/script
+tail = true
+format-prefix = "   %{A1:playerctl previous:}%{A} "
+format-suffix = " %{A1:playerctl next:}%{A} "
+format-background = ${colors.shade4}
+click-left = playerctl play-pause &
+exec = ~/.dotfiles/.scripts/scroll-musicbar.sh
+
+; if you don't use zscroll, it might be useful:
+; label = %output:0:20: ...%
+; format = <label>
+
+[module/music-btn]
+type = custom/text
+content =  %{A1:playerctl previous:}%{A} %{A1:playerctl pause:}%{A} %{A1:playerctl play:}%{A} %{A1:playerctl next:}%{A}
+content-background = ${colors.shade4}
+
+[module/blank]
+type                = custom/script
+exec                = printf "" 
+interval            = 60
+width = 0

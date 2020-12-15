@@ -1,0 +1,41 @@
+configuration{{
+   show-icons: true;
+}}
+
+* {{
+    background-color: #00000000;
+    background: #{background.strip}CC;
+    foreground: {foreground};
+    border-color: @background;
+    font:"Fira Code 30";
+    text-color: {foreground};
+}}
+
+#window {{
+  children: [ horibox ];
+  padding: 30% 0 0 0;  
+  fullscreen: true;
+  background-color: @background;
+}}
+
+#horibox {{
+  children: [ listview ];
+}}
+
+#listview {{
+  layout: horizontal;
+  spacing: 10%;
+  lines: 6;
+  margin: 0 0 0 40px;
+}}
+
+#element {{
+  padding: 100px 50px 100px 20px;
+  background-color: #0c051f00;
+  border-radius: 25;
+}}
+
+#element.selected {{
+  background-color: {color3};
+  text-color: {color0};
+}}

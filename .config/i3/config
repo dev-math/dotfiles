@@ -1,0 +1,200 @@
+# see https://i3wm.org/docs/userguide.html for a complete reference!
+
+###--- Variables ---###
+
+set $mod Mod4
+set $term urxvt
+set $sup Mod1
+
+set $innergap 10
+set $outergap 0
+
+# Define names for default workspaces for which we configure key bindings later on.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+###--- COLORS ---###
+# colors from xresources or red in case of errors
+set_from_resource $bg           i3wm.color0 #ff0000
+set_from_resource $bg-alt       i3wm.color14 #ff0000
+set_from_resource $fg           i3wm.color15 #ff0000
+set_from_resource $fg-alt       i3wm.color2 #ff0000
+set_from_resource $hl           i3wm.color13 #ff0000
+
+# class                 border      backgr. text indicator      child_border
+client.focused          $fg-alt     $bg     $hl  $fg-alt        $hl
+client.focused_inactive $fg-alt     $bg     $fg  $fg-alt        $fg-alt
+client.unfocused        $fg-alt     $bg     $fg  $fg-alt        $fg-alt
+client.urgent           $fg-alt     $bg     $fg  $fg-alt        $fg-alt
+client.placeholder      $fg-alt     $bg     $fg  $fg-alt        $fg-alt
+
+client.background       $bg
+
+###--- SETTINGS ---###
+
+gaps inner 0
+gaps outer 0
+#gaps top 45
+
+focus_follows_mouse no
+
+# floating_minimum_size -1 x -1
+# floating_maximum_size 1000 x 700
+floating_maximum_size 1920 x 1080
+
+# Font for window titles
+font xft:Fira Code:style=Regular,Noto Sans:style=Regular,Font Awesome 5 Free Regular:style=Regular 14
+
+for_window [class=".*"] title_format "%title  ⋯  %class"
+title_align center
+
+for_window [class=".*"] border normal
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+###--- BINDS ---###
+
+# start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Left move left
+bindsym $mod+Down move down
+bindsym $mod+Up move up
+bindsym $mod+Right move right
+
+# split in horizontal orientation
+bindsym $mod+Shift+h split h
+
+# split in vertical orientation
+bindsym $mod++Shift+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $sup+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# toggle gaps
+bindsym $mod+Shift+g gaps inner all set 0; gaps outer all set 0; [class=".*"] border normal
+bindsym $mod+g gaps inner all set $innergap; gaps outer all set $outergap; [class=".*"] border pixel 0
+
+# switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+bindsym $mod+r mode "resize"
+
+# Use pactl to adjust volume in PulseAudio.
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% 
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+###--- PERSONAL CONFIG ---###
+
+
+###===BINDS===###
+bindsym $mod+e exec $term -name ranger -e ranger
+bindsym Control+$sup+Delete exec $term -name gotop -r 10s -e gotop
+bindsym Print exec --no-startup-id sh ~/.dotfiles/.scripts/screenshot.sh
+#bindsym Control+space exec "rofi -show drun"
+bindsym Control+space exec "rofi -no-lazy-grab -show drun -modi drun -theme $HOME/.cache/wal/colors-rofi-launch12.rasi"
+bindsym $mod+$sup+l exec ~/.myscripts/lock.sh
+
+###===STARTUP===###
+exec --no-startup-id setxkbmap br
+exec --no-startup-id wal -R
+exec --no-startup-id picom -C
+exec_always --no-startup-id $HOME/.dotfiles/.scripts/polybar-launch.sh
+
+###===FLOATING MODE (+ sticky)===###
+for_window [class   = "rofi"] floating enable sticky enable
+
+###===MOVE TO WS===-###
+#for_window [class       = "Spotify"] move window to workspace $ws2
+
