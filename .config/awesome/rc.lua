@@ -351,7 +351,7 @@ awful.rules.rules = {
                 "Chromium",
             }
         },
-        properties = { floating = true }
+        properties = { floating = false }
     },
 
     -- Fullscreen clients

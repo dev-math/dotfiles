@@ -21,7 +21,6 @@ local gen_button_shape = gears.shape.circle
 client.connect_signal("request::titlebars", function(c)
     awful.titlebar(c, {font = beautiful.titlebar_font, position = beautiful.titlebar_position, size = beautiful.titlebar_size}) : setup {
         {
-        {
             -- AwesomeWM native buttons (images loaded from theme)
             -- awful.titlebar.widget.minimizebutton(c),
             -- awful.titlebar.widget.maximizedbutton(c),
@@ -37,24 +36,17 @@ client.connect_signal("request::titlebars", function(c)
             helpers.horizontal_pad(gen_button_margin / 2),
             layout = wibox.layout.fixed.horizontal
         },
-        buttons = keys.titlebar_buttons,
-        layout = wibox.layout.fixed.horizontal,
-        },
         {
             {
                 -- Generated text title
                 align = beautiful.titlebar_title_align or "center",
                 decorations.text_title(c, beautiful.titlebar_font, x.foreground, "1"),
-                layout = wibox.layout.fixed.horizontal,
+                layout = wibox.layout.flex.horizontal,
             },
             buttons = keys.titlebar_buttons,
             layout = wibox.layout.flex.horizontal,
         },
-        {
-        buttons = keys.titlebar_buttons,
-        layout = wibox.layout.fixed.horizontal,
-        },
         --nill,
-        layout = wibox.layout.flex.horizontal,
+        layout = wibox.layout.align.horizontal,
     }
 end)
