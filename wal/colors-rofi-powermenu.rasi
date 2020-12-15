@@ -6,7 +6,7 @@ configuration{{
     background-color: #00000000;
     background: #{background.strip}CC;
     foreground: {foreground};
-    border-color: @background;
+    border-color: {background};
     font:"Fira Code 30";
     text-color: {foreground};
 }}
@@ -15,7 +15,7 @@ configuration{{
   children: [ horibox ];
   padding: 30% 2% 0 2%;  
   fullscreen: true;
-  background-color: @background;
+  background-color: {background};
 }}
 
 #horibox {{

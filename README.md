@@ -10,7 +10,7 @@ These files configure my archlinux environment packages.
 * [spicetify-cli] - Command-line tool to customize Spotify client
 Read the wiki [Installation spicetify-cli]
 * [thunar-extended] - Thunar with split view, cursor audio preview and extra options for trash, desktop files and user actions
-
+* [zscroll-git] - A text scroller for use with panels
 
 ### Others
 * [zathura-pywal] - A script that dynamically generates a zathura colorscheme based on the current wal colors.
@@ -76,3 +76,4 @@ Remember to replace the <profile-name> which can be found with ls `/etc/netctl`
    [thunar-extended]: <https://aur.archlinux.org/packages/thunar-extended/>
    [betterdiscord]: <https://gist.github.com/ObserverOfTime/d7e60eb9aa7fe837545c8cb77cf31172>
    [Installation spicetify-cli]: <https://github.com/khanhas/spicetify-cli/wiki/Installation#with-aur>
+   [zscroll-git]: <https://aur.archlinux.org/packages/zscroll-git/>
