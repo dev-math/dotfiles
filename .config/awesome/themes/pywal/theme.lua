@@ -51,8 +51,7 @@ theme.titlebar_font = "SF UI Display bold 12"
 theme.titlebar_title_align = "center"
 -- Titlebar position: top, bottom, left, right
 theme.titlebar_position = "top"
-theme.titlebar_bg = x.color0.."F0"
--- theme.titlebar_bg = x.background
+theme.titlebar_bg = x.background
 -- theme.titlebar_bg_focus = x.color12
 -- theme.titlebar_bg_normal = x.color8
 theme.titlebar_fg_focus = x.color7
@@ -60,7 +59,7 @@ theme.titlebar_fg_normal = x.color7
 --theme.titlebar_fg = x.color7
 
 -- Gaps
-theme.useless_gap   = dpi(0)
+theme.useless_gap   = dpi(5)
 -- This could be used to manually determine how far away from the
 -- screen edge the bars / notifications should be.
 theme.screen_margin = dpi(5)
@@ -113,7 +112,7 @@ theme.taglist_text_urgent   = {"","",""," 4"," 5"," 6"," 7"
 theme.taglist_text_color_empty    = x.color4
 theme.taglist_text_color_occupied  = x.color7
 theme.taglist_text_color_focused  = x.color3
-theme.taglist_text_color_urgent   = x.color1
+theme.taglist_text_color_urgent   = x.color3.."A0"
 
 -- Prompt
 theme.prompt_fg = x.color12

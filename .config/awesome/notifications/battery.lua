@@ -11,7 +11,7 @@ local battery_low_already_notified = false
 local battery_critical_already_notified = false
 local notif
 local battery_current = 100
-local battery_full_threshold = 96
+local battery_full_threshold = 99
 
 -- Full / Low / Critical notifications
 awesome.connect_signal("evil::battery", function(battery)

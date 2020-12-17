@@ -28,6 +28,22 @@ function helpers.tag_back_and_forth(tag_index)
     end
 end
 
+local direction_translate = {
+    ['up'] = 'top',
+    ['down'] = 'bottom',
+    ['left'] = 'left',
+    ['right'] = 'right'
+}
+function helpers.move_to_edge(c, direction)
+    local old = c:geometry()
+    local new = awful.placement[direction_translate[direction]](c, {honor_padding = true, honor_workarea = true, margins = beautiful.useless_gap * 2, pretend = true})
+    if direction == "up" or direction == "down" then
+        c:geometry({ x = old.x, y = new.y })
+    else
+        c:geometry({ x = new.x, y = old.y })
+    end
+end
+
 -- Move client DWIM (Do What I Mean)
 -- Move to edge if the client / layout is floating
 -- Swap by index if maximized
@@ -212,19 +228,27 @@ function helpers.single_double_tap(single_tap_function, double_tap_function)
         double_tap_timer:stop()
         double_tap_timer = nil
         double_tap_function()
-        -- naughty.notify({text = "We got a double tap"})
         return
     end
 
     double_tap_timer =
         gears.timer.start_new(0.20, function()
             double_tap_timer = nil
-            -- naughty.notify({text = "We got a single tap"})
             if single_tap_function then
                 single_tap_function()
             end
             return false
         end)
+end
+
+function helpers.float_and_resize(c, width, height)
+    c.maximized = false
+    c.width = width
+    c.height = height
+    awful.placement.centered(c,{honor_workarea=true, honor_padding = true})
+    awful.client.property.set(c, 'floating_geometry', c:geometry())
+    c.floating = true
+    c:raise()
 end
 
 return helpers

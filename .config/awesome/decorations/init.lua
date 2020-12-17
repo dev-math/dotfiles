@@ -196,7 +196,7 @@ end
 
 
 -- Returns a titlebar widget for the given client
-decorations.text_title = function (c, font, text_color, title_unfocused_opacity)
+decorations.text_title = function (c, font, color, title_unfocused_opacity)
     local client_color = c._nice_base_color
 
     local title_widget = wibox.widget {
@@ -205,9 +205,14 @@ decorations.text_title = function (c, font, text_color, title_unfocused_opacity)
         opacity = c.active and 1 or title_unfocused_opacity,
         valign = "center",
         font = font,
-        markup = ("<span foreground='%s'>%s  ⋯  %s</span>"):format(text_color, c.name, c.class),
         widget = wibox.widget.textbox,
     }
+
+    if c == client.focus then
+        text_color = "#ff0000"
+    else
+        text_color = "#ffffff"
+    end
 
     local function update()
         title_widget.markup =

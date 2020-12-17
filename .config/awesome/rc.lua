@@ -231,16 +231,16 @@ awful.screen.connect_for_each_screen(function(s)
     local l = awful.layout.suit -- Alias to save time :)
     -- Tag layouts
     local layouts = {
-        l.max,
-        l.max,
-        l.max,
-        l.max,
         l.tile,
-        l.max,
-        l.max,
-        l.max,
         l.tile,
-        l.max
+        l.tile,
+        l.floating,
+        l.floating,
+        l.floating,
+        l.floating,
+        l.floating,
+        l.floating,
+        l.floating
     }
 
     -- Tag names
@@ -260,14 +260,7 @@ end)
 
 -- Determines how floating clients should be placed
 local floating_client_placement = function(c)
-    -- If the layout is floating or there are no other visible
-    -- clients, center client
-    if awful.layout.get(mouse.screen) ~= awful.layout.suit.floating or #mouse.screen.clients == 1 then
-        return awful.placement.centered(c,{honor_padding = true, honor_workarea=true})
-    end
-
-    -- Else use this placement
-    local p = awful.placement.no_overlap + awful.placement.no_offscreen
+    local p = awful.placement.centered+awful.placement.no_overlap+awful.placement.no_offscreen
     return p(c, {honor_padding = true, honor_workarea=true, margins = beautiful.useless_gap * 2})
 end
 
@@ -300,7 +293,7 @@ awful.rules.rules = {
             titlebars_enabled = beautiful.titlebars_enabled,
             maximized_horizontal = false,
             maximized_vertical = false,
-            placement = floating_client_placement
+            placement = floating_client_placement,
         },
     },
 
@@ -310,7 +303,6 @@ awful.rules.rules = {
             instance = {
                 "DTA",  -- Firefox addon DownThemAll.
                 "copyq",  -- Includes session name in class.
-                "floating_terminal",
                 "riotclientux.exe",
                 "leagueclientux.exe",
                 "Devtools", -- Firefox devtools
@@ -351,7 +343,25 @@ awful.rules.rules = {
                 "Chromium",
             }
         },
-        properties = { floating = false }
+        properties = { }
+    },
+    
+    -- Plank 
+    {
+	rule_any = {
+	    class = {
+	        "Plank",    
+	    }
+	},
+	properties = {
+	    -- floating = true,
+	    border_width = 0,
+	    ontop = "false",
+	    sticky = true,
+	    focusable = false,
+	    -- below = true,
+	    above = true,
+	}
     },
 
     -- Fullscreen clients
@@ -428,6 +438,7 @@ awful.rules.rules = {
             },
             class = {
                 "qutebrowser",
+		"Plank",
                 "Sublime_text",
                 "Subl3",
                 --"discord",
@@ -503,7 +514,7 @@ awful.rules.rules = {
                 "kitty",
                 "st-256color",
                 "st",
-                "URxvt",
+                -- "URxvt",
             },
         },
         properties = { width = screen_width * 0.45, height = screen_height * 0.5 }
@@ -552,8 +563,8 @@ awful.rules.rules = {
     {
         rule_any = {
             class = {
-                "Nemo",
-                "Thunar"
+               -- "Nemo",
+               -- "Thunar"
             },
         },
         except_any = {

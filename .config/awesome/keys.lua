@@ -1,11 +1,13 @@
 local awful = require("awful")
-local naughty = require("naughty")
 local gears = require("gears")
 local beautiful = require("beautiful")
 local apps = require("apps")
--- local decorations = require("decorations")
 
 local helpers = require("helpers")
+
+-- Math
+local math = math
+local abs = math.abs
 
 local keys = {}
 
@@ -14,6 +16,12 @@ superkey = "Mod4"
 altkey = "Mod1"
 ctrlkey = "Control"
 shiftkey = "Shift"
+
+-- settings
+local titlebar_win_shade_enabled = true
+
+local double_click_jitter_tolerance = 4
+local double_click_time_window_ms = 250
 
 -- {{{ Mouse bindings on desktop
 keys.desktopbuttons = gears.table.join(
@@ -31,6 +39,18 @@ keys.globalkeys = gears.table.join(
     -- start a terminal
     awful.key({ superkey }, "Return", function () awful.spawn(user.terminal) end,
         {description = "open a terminal", group = "launcher"}),
+
+    awful.key({ superkey,           }, "u",
+        function ()
+            uc = awful.client.urgent.get()
+            -- If there is no urgent client, go back to last tag
+            if uc == nil then
+                return
+            else
+                awful.client.urgent.jumpto()
+            end
+        end,
+        {description = "jump to urgent client", group = "client"}),
 
     -- change focus 
     awful.key({ superkey }, "j",
@@ -86,7 +106,7 @@ keys.globalkeys = gears.table.join(
         {description = "quit awesome", group = "awesome"}),
 
     -- lock screen
-    awful.key({ superkey }, "l",
+    awful.key({ superkey, shiftkey }, "l",
         function ()
             awful.spawn.with_shell("~/.dotfiles/.scripts/lock")
         end,
@@ -142,6 +162,23 @@ keys.globalkeys = gears.table.join(
     awful.key( { }, "Print", function() apps.screenshot("selection") end,
         {description = "take full screenshot", group = "screenshots"}),
 
+    -- Max layout
+    -- Single tap: Set max layout
+    -- Double tap: Also disable floating for ALL visible clients in the tag
+    awful.key({ superkey }, "w",
+        function()
+            awful.layout.set(awful.layout.suit.max)
+            helpers.single_double_tap(
+                nil,
+                function()
+                    local clients = awful.screen.focused().clients
+                    for _, c in pairs(clients) do
+                        c.floating = false
+                    end
+                end)
+        end,
+        {description = "set max layout", group = "tag"}),
+
     -- Tiling
     -- Single tap: Set tiled layout
     -- Double tap: Also disable floating for ALL visible clients in the tag
@@ -171,6 +208,17 @@ keys.clientkeys = gears.table.join(
         {description = "close", group = "client"}),
     awful.key({ altkey }, "F4",      function (c) c:kill() end,
         {description = "close", group = "client"}),    
+
+    -- Single tap: Center client 
+    -- Double tap: Center client + Floating + Resize
+    awful.key({ superkey }, "c", function (c)
+        awful.placement.centered(c, {honor_workarea = true, honor_padding = true})
+        helpers.single_double_tap(
+            nil,
+            function ()
+                helpers.float_and_resize(c, screen_width * 0.65, screen_height * 0.9)
+            end)
+    end),
 
     -- move focused window
     awful.key({ superkey }, "Down", function (c)
@@ -278,6 +326,39 @@ for i = 1, ntags do
     )
 end
 
+-- Mouse buttons on the client (whole window, not just titlebar)
+keys.clientbuttons = gears.table.join(
+    awful.button({ }, 1, function (c)
+        client.focus = c
+        c:raise()
+
+        -- Only use bottom left/right corner, because dragging titlebar is already mapped to move
+        local corners = {
+            { c.x + c.width, c.y + c.height },
+            { c.x, c.y + c.height },
+        }
+
+        local m = mouse.coords()
+        local distance = 20
+
+        for _, pos in ipairs(corners) do
+            if math.sqrt((m.x - pos[1]) ^ 2 + (m.y - pos[2]) ^ 2) <= distance then
+                awful.mouse.client.resize(c)
+                break
+            end
+        end
+
+
+    end),
+    awful.button({ superkey }, 1, awful.mouse.client.move),
+    -- awful.button({ superkey }, 2, function (c) c:kill() end),
+    awful.button({ superkey }, 3, function(c)
+        client.focus = c
+        awful.mouse.client.resize(c)
+        -- awful.mouse.resize(c, nil, {jump_to_corner=true})
+    end)
+)
+
 -- Mouse buttons on a tag of the taglist widget
 keys.taglist_buttons = gears.table.join(
     awful.button({ }, 1, function(t)
@@ -304,41 +385,40 @@ keys.taglist_buttons = gears.table.join(
     awful.button({ }, 5, function(t) awful.tag.viewnext(t.screen) end)
 )
 
--- Mouse buttons on the primary titlebar of the window
-keys.titlebar_buttons = gears.table.join(
-    -- Left button - move
-    -- (Double tap - Toggle maximize) -- A little BUGGY
-    awful.button({ }, 1, function()
-        local c = mouse.object_under_pointer()
-        client.focus = c
-        awful.mouse.client.move(c)
-        -- local function single_tap()
-        --   awful.mouse.client.move(c)
-        -- end
-        -- local function double_tap()
-        --   gears.timer.delayed_call(function()
-        --       c.maximized = not c.maximized
-        --   end)
-        -- end
-        -- helpers.single_double_tap(single_tap, double_tap)
-        -- helpers.single_double_tap(nil, double_tap)
-    end),
-    -- Middle button - close
-    awful.button({ }, 2, function ()
-        local c = mouse.object_under_pointer()
-        c:kill()
-    end),
-    -- Right button - resize
-    awful.button({ }, 3, function()
-        local c = mouse.object_under_pointer()
-        client.focus = c
-        awful.mouse.client.resize(c)
-        -- awful.mouse.resize(c, nil, {jump_to_corner=true})
-    end)
-)
+-- TITLEBAR BUTTONS
+function get_titlebar_mouse_bindings(c)
+    local shade_enabled = titlebar_win_shade_enabled
+    -- Add functionality for double click to (un)maximize, and single click and hold to move
+    local clicks = 0
+    local tolerance = double_click_jitter_tolerance
+    local buttons = {
+        awful.button(
+            {}, 1, function()
+                local cx, cy = _G.mouse.coords().x, _G.mouse.coords().y
+                local delta = double_click_time_window_ms / 1000
+                clicks = clicks + 1
+                if clicks == 2 then
+                    local nx, ny = _G.mouse.coords().x, _G.mouse.coords().y
+                    -- The second click is only counted as a double click if it is within the neighborhood of the first click's position, and occurs within the set time window
+                    if abs(cx - nx) <= tolerance and abs(cy - ny) <= tolerance then
+                        c.maximized = not c.maximized
+                    end
+                else
+                    c:activate{context = "titlebar", action = "mouse_move"}
+                end
+                -- Start a timer to clear the click count
+                gears.timer.weak_start_new(
+                    delta, function() clicks = 0 end)
+            end),
+        awful.button(
+            {}, 3, function()
+                c:activate{context = "mouse_click", action = "mouse_resize"}
+            end),
+    }
+    return buttons
+end
+
 -- }}}
-
-
 -- Set root (desktop) keys
 root.keys(keys.globalkeys)
 root.buttons(keys.desktopbuttons)
