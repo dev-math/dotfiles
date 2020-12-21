@@ -84,11 +84,8 @@ URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
 
 ! Font and Size
-! Font to Fira Code Retina, 16px
-URxvt.font: xft:Fira Code:style=Regular:size=18
-
-! Set Bold Font to Fira Code Bold, 16px
-URxvt.boldFont: xft:Fira Code:style=Bold:pixelsize:16
+URxvt.font: xft:Hack:style=Regular:size=18
+URxvt.boldFont: xft:Hack:style=Bold:pixelsize:16
 
 ! Some configs
 URxvt*saveLines: 2000
