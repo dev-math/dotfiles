@@ -364,7 +364,7 @@ awful.rules.rules = {
         },
         properties = { }
     },
-    
+
     -- Plank 
     {
 	rule_any = {
@@ -374,12 +374,8 @@ awful.rules.rules = {
 	    }
 	},
 	properties = {
-	    -- floating = true,
 	    border_width = 0,
-	    ontop = "false",
-	    sticky = true,
-	    focusable = false,
-	    -- below = true,
+	    ontop = true,
 	    above = true,
 	}
     },
@@ -404,17 +400,19 @@ awful.rules.rules = {
         properties = { fullscreen = true }
     },
 
-    -- -- Unfocusable clients (unless clicked with the mouse)
-    -- -- If you want to prevent focusing even when clicking them, you need to
-    -- -- modify the left click client mouse bind in keys.lua
-    -- {
-    --     rule_any = {
-    --         class = {
-    --             "scratchpad"
-    --         },
-    --     },
-    --     properties = { focusable = false }
-    -- },
+    -- Unfocusable clients (unless clicked with the mouse)
+    -- If you want to prevent focusing even when clicking them, you need to
+    -- modify the left click client mouse bind in keys.lua
+    {
+        rule_any = {
+            class = {
+                "scratchpad",
+                "Plank",
+                "plank",
+            },
+        },
+        properties = { focusable = false }
+    },
 
     -- Centered clients
     {
