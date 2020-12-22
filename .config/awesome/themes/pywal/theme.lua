@@ -75,7 +75,7 @@ theme.border_radius = dpi(6)
 -- Wibar(s)
 -- Keep in mind that these settings could be ignored by the bar theme
 theme.wibar_position = "top"
-theme.wibar_height = dpi(45)
+theme.wibar_height = dpi(35)
 theme.wibar_fg = x.background
 theme.wibar_bg = x.foreground
 --theme.wibar_opacity = 0.7

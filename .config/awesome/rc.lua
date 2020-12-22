@@ -188,6 +188,7 @@ screen_height = awful.screen.focused().geometry.height
 -- ===================================================================
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
+    --awful.layout.suit.fair,
     awful.layout.suit.tile,
     awful.layout.suit.floating,
     awful.layout.suit.max,
@@ -231,9 +232,9 @@ awful.screen.connect_for_each_screen(function(s)
     local l = awful.layout.suit -- Alias to save time :)
     -- Tag layouts
     local layouts = {
-        l.tile,
-        l.tile,
-        l.tile,
+        l.floating,
+        l.floating,
+        l.floating,
         l.floating,
         l.floating,
         l.floating,
@@ -280,6 +281,8 @@ awful.rules.rules = {
 	except = {
 	    class = {
 	        "plasmashell",
+	        "Plank",
+	        "plank",
 	        "Plasma",
 	        "krunner",
 	        "Kmix",
@@ -366,7 +369,8 @@ awful.rules.rules = {
     {
 	rule_any = {
 	    class = {
-	        "plank",    
+	        "plank",
+	        "Plank",
 	    }
 	},
 	properties = {
@@ -462,6 +466,7 @@ awful.rules.rules = {
                 "Klipper",
                 "Plasmoidviewer",
 		"plank",
+	        "Plank",
                 "Sublime_text",
                 "Subl3",
                 --"discord",

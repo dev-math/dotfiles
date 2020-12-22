@@ -21,7 +21,7 @@ local create_button = function (symbol, color, bg_color, hover_color)
 
     local section = wibox.widget {
         widget,
-        forced_width = dpi(70),
+        forced_width = dpi(40),
         bg = bg_color,
         widget = wibox.container.background
     }
@@ -107,8 +107,8 @@ awesome.connect_signal("evil::microphone", function(muted)
     end
 end)
 
-beautiful.bg_systray = x.color4
-beautiful.systray_icon_spacing = 5
+beautiful.bg_systray = x.color0
+beautiful.systray_icon_spacing = 10
 
 local systray = wibox.widget {
     {
@@ -119,9 +119,12 @@ local systray = wibox.widget {
         widget = wibox.widget.systray()
     },
     widget,
-    bg = x.color4,
+    bg = x.color0,
     widget = wibox.container.background
 }
+
+local systrayc = systray:get_all_children()[1]
+systrayc:set_base_size(30)
 
 local music = wibox.widget {
     {
@@ -458,7 +461,8 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytaglist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            systray,
+            wibox.container.place(systray),
+            wibox.widget.textbox("   "),
             volume,
             -- microphone,
             battery1,
