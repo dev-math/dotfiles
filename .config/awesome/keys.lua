@@ -165,7 +165,7 @@ keys.globalkeys = gears.table.join(
     -- Max layout
     -- Single tap: Set max layout
     -- Double tap: Also disable floating for ALL visible clients in the tag
-    awful.key({ superkey }, "w",
+    awful.key({ superkey }, "seta p cima",
         function()
             awful.layout.set(awful.layout.suit.max)
             helpers.single_double_tap(
@@ -199,7 +199,51 @@ keys.globalkeys = gears.table.join(
     awful.key({ superkey, shiftkey }, "s", function()
         awful.layout.set(awful.layout.suit.floating)
                                            end,
-        {description = "set floating layout", group = "tag"})
+        {description = "set floating layout", group = "tag"}),
+
+    -- Number of master clients
+    awful.key({ superkey, altkey }, "h",   
+        function () 
+            awful.tag.incnmaster( 1, nil, true) 
+        end,
+        {description = "increase the number of master clients", group = "layout"}),
+    awful.key({ superkey, altkey }, "l",   
+        function () 
+            awful.tag.incnmaster(-1, nil, true) 
+        end,
+        {description = "decrease the number of master clients", group = "layout"}),
+    awful.key({ superkey, altkey }, "Left",   
+        function () 
+            awful.tag.incnmaster( 1, nil, true) 
+        end,
+        {description = "increase the number of master clients", group = "layout"}),
+    awful.key({ superkey, altkey }, "Right",   
+        function () 
+            awful.tag.incnmaster(-1, nil, true) 
+        end,
+        {description = "decrease the number of master clients", group = "layout"}),
+
+    -- Number of columns
+    awful.key({ superkey, altkey }, "k",   
+        function () 
+            awful.tag.incncol( 1, nil, true)
+        end,
+        {description = "increase the number of columns", group = "layout"}),
+    awful.key({ superkey, altkey }, "j",   
+        function () 
+            awful.tag.incncol( -1, nil, true)
+        end,
+        {description = "decrease the number of columns", group = "layout"}),
+    awful.key({ superkey, altkey }, "Up",   
+        function () 
+            awful.tag.incncol( 1, nil, true)
+        end,
+        {description = "increase the number of columns", group = "layout"}),
+    awful.key({ superkey, altkey }, "Down",   
+        function () 
+            awful.tag.incncol( -1, nil, true)
+        end,
+        {description = "decrease the number of columns", group = "layout"})
 )
 
 keys.clientkeys = gears.table.join(
