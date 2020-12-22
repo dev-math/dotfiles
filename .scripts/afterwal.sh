@@ -19,5 +19,5 @@ pywal-discord
 rm $HOME/.config/zathura/zathurarc
 cp $HOME/.cache/wal/zathurarc $HOME/.config/zathura/zathurarc
 
-# /opt/oomox/plugins/icons_papirus/change_color.sh /opt/oomox/scripted_colors/xresources/xresources-reverse
+/opt/oomox/plugins/icons_papirus/change_color.sh /opt/oomox/scripted_colors/xresources/xresources-reverse
 oomox-cli /opt/oomox/scripted_colors/xresources/xresources-reverse
