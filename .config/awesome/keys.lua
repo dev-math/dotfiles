@@ -165,7 +165,7 @@ keys.globalkeys = gears.table.join(
     -- Max layout
     -- Single tap: Set max layout
     -- Double tap: Also disable floating for ALL visible clients in the tag
-    awful.key({ superkey }, "seta p cima",
+    awful.key({ superkey }, "w",
         function()
             awful.layout.set(awful.layout.suit.max)
             helpers.single_double_tap(
