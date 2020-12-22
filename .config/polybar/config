@@ -80,7 +80,7 @@ modules-left = music
 modules-center = i3
 modules-right = pulseaudio lan wlan battery battery2 date powermenu
 
-font-0 = Fira Code:style=Regular:size=15
+font-0 = SF UI Display:style=Regular:size=15
 font-1 = Noto Sans:style=Regular:size=15
 font-2 = DejaVu Sans:style=Book:size=15
 font-3 = Font Awesome 5 Free,Font Awesome 5 Free Regular:style=Regular:size=17
