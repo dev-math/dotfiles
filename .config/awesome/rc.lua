@@ -44,7 +44,7 @@ user = {
     floating_terminal = "urxvt",
     browser = "chromium",
     -- file_manager = "urxvt --class files -e ranger",
-    file_manager = "nemo",
+    file_manager = "nautilus",
     editor = "urxvt --class editor -e nano",
 
     -- >> Web Search <<
@@ -277,6 +277,21 @@ awful.rules.rules = {
     {
         -- All clients will match this rule.
         rule = { },
+	except = {
+	    class = {
+	        "plasmashell",
+	        "Plasma",
+	        "krunner",
+	        "Kmix",
+	        "Klipper",
+	        "Plasmoidviewer",
+	    },
+	    title = {
+		"Desktop — Plasma",   
+		"plasma-desktop",
+		"win7",
+	    }
+	},
         properties = {
             border_width = beautiful.border_width,
             border_color = beautiful.border_normal,
@@ -309,6 +324,7 @@ awful.rules.rules = {
             },
             class = {
                 "Gpick",
+                "plasmashell",
                 "Lxappearance",
                 "Nm-connection-editor",
                 "File-roller",
@@ -350,7 +366,7 @@ awful.rules.rules = {
     {
 	rule_any = {
 	    class = {
-	        "Plank",    
+	        "plank",    
 	    }
 	},
 	properties = {
@@ -438,7 +454,14 @@ awful.rules.rules = {
             },
             class = {
                 "qutebrowser",
-		"Plank",
+                "plasmashell",
+                "Plasma",
+                "plasma-desktop",
+                "krunner",
+                "Kmix",
+                "Klipper",
+                "Plasmoidviewer",
+		"plank",
                 "Sublime_text",
                 "Subl3",
                 --"discord",
@@ -459,6 +482,7 @@ awful.rules.rules = {
                 "^discord.com is sharing your screen.$", -- Discord (running in browser) screen sharing popup
                 "Picture in picture",
                 "Picture-in-picture",
+                "win7",
             }
         },
         callback = function(c)
@@ -563,7 +587,7 @@ awful.rules.rules = {
     {
         rule_any = {
             class = {
-               -- "Nemo",
+               -- "Nautilus",
                -- "Thunar"
             },
         },
