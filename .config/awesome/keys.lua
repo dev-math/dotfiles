@@ -429,6 +429,46 @@ keys.taglist_buttons = gears.table.join(
     awful.button({ }, 5, function(t) awful.tag.viewnext(t.screen) end)
 )
 
+-- Mouse buttons on the tasklist
+-- Use 'Any' modifier so that the same buttons can be used in the floating
+-- tasklist displayed by the window switcher while the superkey is pressed
+keys.tasklist_buttons = gears.table.join(
+    awful.button({ 'Any' }, 1,
+        function (c)
+            if c == client.focus then
+                c.minimized = true
+            else
+                -- Without this, the following
+                -- :isvisible() makes no sense
+                c.minimized = false
+                if not c:isvisible() and c.first_tag then
+                    c.first_tag:view_only()
+                end
+                -- This will also un-minimize
+                -- the client, if needed
+                client.focus = c
+            end
+    end),
+    -- Middle mouse button closes the window (on release)
+    awful.button({ 'Any' }, 2, nil, function (c) c:kill() end),
+    awful.button({ 'Any' }, 3, function (c) c.minimized = true end),
+    awful.button({ 'Any' }, 4, function ()
+        awful.client.focus.byidx(-1)
+    end),
+    awful.button({ 'Any' }, 5, function ()
+        awful.client.focus.byidx(1)
+    end),
+
+    -- Side button up - toggle floating
+    awful.button({ 'Any' }, 9, function(c)
+        c.floating = not c.floating
+    end),
+    -- Side button down - toggle ontop
+    awful.button({ 'Any' }, 8, function(c)
+        c.ontop = not c.ontop
+    end)
+)
+
 -- TITLEBAR BUTTONS
 function get_titlebar_mouse_bindings(c)
     local shade_enabled = titlebar_win_shade_enabled

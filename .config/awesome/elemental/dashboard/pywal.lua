@@ -300,7 +300,7 @@ local fortune_widget = wibox.widget {
 }
 
 
-local fortune_box = create_boxed_widget(fortune_widget, dpi(300), dpi(140), x.background)
+local fortune_box = create_boxed_widget(fortune_widget, dpi(400), dpi(140), x.background)
 fortune_box:buttons(gears.table.join(
     -- Left click - New fortune
     awful.button({ }, 1, function ()

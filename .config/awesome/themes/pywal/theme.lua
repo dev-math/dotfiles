@@ -51,7 +51,7 @@ theme.titlebar_font = "SF UI Display bold 12"
 theme.titlebar_title_align = "center"
 -- Titlebar position: top, bottom, left, right
 theme.titlebar_position = "top"
-theme.titlebar_bg = x.background
+theme.titlebar_bg = x.background.."CC"
 -- theme.titlebar_bg_focus = x.color12
 -- theme.titlebar_bg_normal = x.color8
 theme.titlebar_fg_focus = x.color7
@@ -59,7 +59,7 @@ theme.titlebar_fg_normal = x.color7
 --theme.titlebar_fg = x.color7
 
 -- Gaps
-theme.useless_gap   = dpi(5)
+theme.useless_gap   = dpi(0)
 -- This could be used to manually determine how far away from the
 -- screen edge the bars / notifications should be.
 theme.screen_margin = dpi(5)
@@ -214,6 +214,21 @@ theme.notification_font = "SF UI Display 13"
 theme.notification_padding = theme.screen_margin * 2
 theme.notification_spacing = theme.screen_margin * 4
 
+--Tasklist
+theme.tasklist_font = "SF UI Display medium 12"
+theme.tasklist_disable_icon = true
+theme.tasklist_plain_task_name = true
+theme.tasklist_bg_focus = x.color0
+theme.tasklist_fg_focus = x.color4
+theme.tasklist_bg_normal = "#00000000"
+theme.tasklist_fg_normal = x.foreground
+theme.tasklist_bg_minimize = "#00000000"
+theme.tasklist_fg_minimize = x.foreground
+theme.tasklist_font_minimized = "SF UI Display italic 12"
+theme.tasklist_bg_urgent = x.background
+theme.tasklist_fg_urgent = x.color3
+theme.tasklist_spacing = dpi(0)
+theme.tasklist_align = "center"
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.

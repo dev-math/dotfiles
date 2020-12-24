@@ -383,7 +383,6 @@ awful.screen.connect_for_each_screen(function(s)
         buttons  = keys.tasklist_buttons,
         style    = {
             font = beautiful.tasklist_font,
-            bg = x.color0,
         },
         layout   = {
             -- spacing = dpi(10),
@@ -397,7 +396,7 @@ awful.screen.connect_for_each_screen(function(s)
                     align  = "center",
                     widget = wibox.widget.textbox,
                 },
-                forced_width = dpi(220),
+                --forced_width = dpi(220),
                 left = dpi(15),
                 right = dpi(15),
                 -- Add margins to top and bottom in order to force the
@@ -407,10 +406,10 @@ awful.screen.connect_for_each_screen(function(s)
                 bottom = dpi(4),
                 widget = wibox.container.margin
             },
-            -- shape = helpers.rrect(dpi(8)),
-            -- border_width = dpi(2),
-            id = "bg_role",
-            -- id = "background_role",
+            --shape = helpers.rrect(dpi(8)),
+            --border_width = dpi(2),
+            --id = "bg_role",
+            id = "background_role",
             -- shape = gears.shape.rounded_bar,
             widget = wibox.container.background,
         },
@@ -441,7 +440,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- s.mywibox.bg = x.foreground
     -- s.mywibox.bg = x.background.."88"
     -- s.mywibox.bg = x.background
-    s.mywibox.bg = x.color0
+    s.mywibox.bg = x.background
 
     -- Bar placement
     awful.placement.maximize_horizontally(s.mywibox)
@@ -453,7 +452,9 @@ awful.screen.connect_for_each_screen(function(s)
         expand = "none",
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            sandwich,
+            --sandwich,
+            --s.mytaglist,
+	    s.mytasklist,
             --musicprev,
             --music,
             --musicnext,

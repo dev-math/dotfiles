@@ -67,7 +67,7 @@ user = {
     -- >> Sidebar <<
     sidebar = {
         hide_on_mouse_leave = true,
-        show_on_mouse_screen_edge = true,
+        show_on_mouse_screen_edge = false,
     },
 
     -- >> Lock screen <<
@@ -232,7 +232,7 @@ awful.screen.connect_for_each_screen(function(s)
     local l = awful.layout.suit -- Alias to save time :)
     -- Tag layouts
     local layouts = {
-        l.floating,
+	l.floating,
         l.floating,
         l.floating,
         l.floating,
@@ -271,6 +271,32 @@ local centered_client_placement = function(c)
     end)
 end
 
+-- Window snapping
+-- ===================================================================
+awful.mouse.snap.edge_enabled = false
+
+awful.mouse.resize.add_leave_callback(function(c, _, args)
+      if (not c.floating)
+         and awful.layout.get(c.screen) ~= awful.layout.suit.floating
+      then
+         return
+      end
+      
+      local coords = mouse.coords()
+      local sg = c.screen.geometry
+      local snap = awful.mouse.snap.default_distance
+
+      -- Drag to the top to maximize
+      if coords.x > snap + sg.x
+         and coords.x < sg.x + sg.width - snap
+         and coords.y <= snap + sg.y
+         and coords.y >= sg.y
+      then
+         awful.placement.maximize(c, {honor_workarea=true})
+      end
+
+end, "mouse.move")
+
 -- Rules
 -- ===================================================================
 -- Rules to apply to new clients (through the "manage" signal).
@@ -302,7 +328,7 @@ awful.rules.rules = {
             raise = true,
             keys = keys.clientkeys,
             buttons = keys.clientbuttons,
-            -- screen = awful.screen.preferred,
+            --screen = awful.screen.preferred,
             screen = awful.screen.focused,
             size_hints_honor = false,
             honor_workarea = true,
@@ -375,8 +401,11 @@ awful.rules.rules = {
 	},
 	properties = {
 	    border_width = 0,
-	    ontop = true,
-	    above = true,
+            floating = true,
+            sticky = true,
+            ontop = true,
+            focusable = false,
+	    below = false,
 	}
     },
 
@@ -407,8 +436,6 @@ awful.rules.rules = {
         rule_any = {
             class = {
                 "scratchpad",
-                "Plank",
-                "plank",
             },
         },
         properties = { focusable = false }
@@ -459,12 +486,12 @@ awful.rules.rules = {
                 "plasmashell",
                 "Plasma",
                 "plasma-desktop",
+		"Plank",
+		"plank",
                 "krunner",
                 "Kmix",
                 "Klipper",
                 "Plasmoidviewer",
-		"plank",
-	        "Plank",
                 "Sublime_text",
                 "Subl3",
                 --"discord",
@@ -541,7 +568,7 @@ awful.rules.rules = {
                 "kitty",
                 "st-256color",
                 "st",
-                -- "URxvt",
+                --"URxvt",
             },
         },
         properties = { width = screen_width * 0.45, height = screen_height * 0.5 }
@@ -815,17 +842,9 @@ awful.rules.rules = {
     {
         rule_any = {
             class = {
-                "firefox",
-                "Chromium",
-                "Chromium-browser",
-                "Nightly",
-                -- "qutebrowser",
             },
         },
         except_any = {
-            role = { "GtkFileChooserDialog" },
-            instance = { "Toolkit" },
-            type = { "dialog" }
         },
         properties = { screen = 1, tag = awful.screen.focused().tags[1] },
     },
@@ -833,16 +852,20 @@ awful.rules.rules = {
     -- Editing
     {
         rule_any = {
-            class = {
-                "^editor$",
-                "code-oss",
-                -- "Emacs",
-                -- "Subl3",
-            },
         },
         properties = { screen = 1, tag = awful.screen.focused().tags[2] }
     },
 
+    -- Music
+    {                    
+        rule_any = {
+	    class = {
+	        "spotify",
+		"Spotify",
+	    },
+        },
+        properties = { screen = 1, tag = awful.screen.focused().tags[9] }
+    },
 
     -- Chatting
     {
