@@ -3,7 +3,7 @@
 B='#00000000'   # blank
 C='#00000000'   # clear ish
 D='#00000000'     # default
-T='#a4bcab'     # text
+T='#ede5d8'     # text
 W='#00000000'   # wrong
 V='#00000000'   # verifying
 S='30'          # text size

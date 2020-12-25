@@ -59,7 +59,7 @@ theme.titlebar_fg_normal = x.color7
 --theme.titlebar_fg = x.color7
 
 -- Gaps
-theme.useless_gap   = dpi(0)
+theme.useless_gap   = dpi(5)
 -- This could be used to manually determine how far away from the
 -- screen edge the bars / notifications should be.
 theme.screen_margin = dpi(5)
