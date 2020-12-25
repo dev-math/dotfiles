@@ -486,6 +486,7 @@ function get_titlebar_mouse_bindings(c)
                     -- The second click is only counted as a double click if it is within the neighborhood of the first click's position, and occurs within the set time window
                     if abs(cx - nx) <= tolerance and abs(cy - ny) <= tolerance then
                         c.maximized = not c.maximized
+			c:raise()
                     end
                 else
                     c:activate{context = "titlebar", action = "mouse_move"}
