@@ -292,7 +292,8 @@ awful.mouse.resize.add_leave_callback(function(c, _, args)
          and coords.y <= snap + sg.y
          and coords.y >= sg.y
       then
-         awful.placement.maximize(c, {honor_workarea=true})
+	 c.maximized = not c.maximized
+	 c:raise()
       end
 
 end, "mouse.move")
@@ -331,13 +332,10 @@ awful.rules.rules = {
             --screen = awful.screen.preferred,
             screen = awful.screen.focused,
             size_hints_honor = false,
-            honor_workarea = true,
-            honor_padding = true,
-            maximized = false,
             titlebars_enabled = beautiful.titlebars_enabled,
             maximized_horizontal = false,
             maximized_vertical = false,
-            placement = floating_client_placement,
+            placement = floating_client_placement
         },
     },
 
