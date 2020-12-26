@@ -2,14 +2,14 @@
 These files configure my environment
 
 ### Setup
-**OS** [Arch Linux](https://archlinux.org/)
-**WM** [i3-gaps](https://github.com/Airblader/i3) (old)
-**WM** [AwesomeWM](https://github.com/awesomeWM/awesome/) (current)
-**Shell** [Zsh (Z shell)](http://zsh.sourceforge.net/)
-**Terminal** [rxvt-unicode](http://software.schmorp.de/pkg/rxvt-unicode.html)
-**Terminal font** [Hack](https://github.com/source-foundry/Hack)
+- **OS** [Arch Linux](https://archlinux.org/)
+- **WM** [i3-gaps](https://github.com/Airblader/i3) (old)
+- **WM** [AwesomeWM](https://github.com/awesomeWM/awesome/) (current)
+- **Shell** [Zsh (Z shell)](http://zsh.sourceforge.net/)
+- **Terminal** [rxvt-unicode](http://software.schmorp.de/pkg/rxvt-unicode.html)
+- **Terminal font** [Hack](https://github.com/source-foundry/Hack)
 
-### AUR packages
+### AUR packages (install before proceeding)
 * [awesome-git](https://aur.archlinux.org/packages/awesome-git) - Highly configurable framework window manager
 * [betterdiscord](https://aur.archlinux.org/packages/betterdiscord) - Discord extension that introduces new features like BTTV emotes and plugin support.
 * [gotop-bin](https://aur.archlinux.org/packages/gotop-bin) - A terminal based graphical activity monitor inspired by gtop and vtop
