@@ -124,7 +124,7 @@ local systray = wibox.widget {
 }
 
 local systrayc = systray:get_all_children()[1]
-systrayc:set_base_size(30)
+systrayc:set_base_size(25)
 
 local music = wibox.widget {
     {
@@ -205,9 +205,9 @@ local clock = wibox.widget {
     widget = wibox.container.background
 }
 
--- Hover animation
-clock:connect_signal("mouse::enter", function ()
-    clock.bg = x.color4.."E0"
+-- Hover animation                             
+clock:connect_signal("mouse::enter", function ()   
+    clock.bg = x.color4.."E0"              
 end)
 clock:connect_signal("mouse::leave", function ()
     clock.bg = x.color4
@@ -216,7 +216,41 @@ end)
 clock:buttons(gears.table.join(
     -- Left click - Open calendar
     awful.button({ }, 1, function ()
-        -- todo
+        if dashboard_show then
+            dashboard_show()
+        end
+    end)
+))
+
+local clock2 = wibox.widget {
+    {
+        font = "SF UI Display bold 14",
+	align = "center",
+	id = "text_role",
+	valign = "center",
+	widget = wibox.widget.textclock(" %a, %H:%M ")
+    },
+    widget,
+    bg = x.background,
+    fg = x.foreground,
+    widget = wibox.container.background
+}
+
+
+-- Hover animation
+clock2:connect_signal("mouse::enter", function ()
+    clock2.bg = x.color3.."21"
+end)
+clock2:connect_signal("mouse::leave", function ()
+    clock2.bg = x.background
+end)
+
+clock2:buttons(gears.table.join(
+    -- Left click - Open calendar
+    awful.button({ }, 1, function ()
+        if dashboard_show then
+            dashboard_show()
+        end
     end)
 ))
 
@@ -419,14 +453,16 @@ awful.screen.connect_for_each_screen(function(s)
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
     s.mylayoutbox.resize = true
-    s.mylayoutbox.forced_width  = beautiful.wibar_height - dpi(5)
-    s.mylayoutbox.forced_height = beautiful.wibar_height - dpi(5)
+    s.mylayoutbox.forced_width  = beautiful.wibar_height - dpi(10)
+    s.mylayoutbox.forced_height = beautiful.wibar_height - dpi(10)
     s.mylayoutbox:buttons(gears.table.join(
-    awful.button({ }, 1, function () awful.layout.inc( 1) end),
-    awful.button({ }, 3, function () awful.layout.inc(-1) end),
-    awful.button({ }, 4, function () awful.layout.inc( 1) end),
-    awful.button({ }, 5, function () awful.layout.inc(-1) end)))
+        awful.button({ }, 1, function () helpers.toggle_float_tile(c) end),
+        awful.button({ }, 2, function () awful.layout.set(awful.layout.suit.floating) end)
+    ))
 
+    --s.mylayoutbox.tooltip:remove_from_object(s.mylayoutbox)
+    s.mylayoutbox.enable_tooltip = false
+    
     -- Create the wibox
     s.mywibox = awful.wibar({screen = s, visible = true, ontop = true, type = "dock", position = "top"})
     s.mywibox.height = beautiful.wibar_height
@@ -454,12 +490,13 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             --sandwich,
             --s.mytaglist,
+	    s.mytaglist,
 	    s.mytasklist,
             --musicprev,
             --music,
             --musicnext,
         },
-        s.mytaglist, -- Middle widget
+        clock2, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.container.place(systray),
@@ -468,8 +505,10 @@ awful.screen.connect_for_each_screen(function(s)
             -- microphone,
             battery1,
             battery2,
-            clock,
+	    --clock,
             exit,
+	    wibox.container.background(wibox.container.place(s.mylayoutbox), x.color4),
+	    wibox.container.background(wibox.widget.textbox(" "), x.color4)
         },
     }
 

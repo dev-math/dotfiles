@@ -67,7 +67,7 @@ end
 
 local button_commands = {
     ['close'] = { fun = function(c) c:kill() end, track_property = nil } ,
-    ['maximize'] = { fun = function(c) c.maximized = not c.maximized; c:raise() end, track_property = "maximized" },
+    ['maximize'] = { fun = function(c) helpers.maximize_client(c); c:raise() end, track_property = "maximized" },
     ['minimize'] = { fun = function(c) c.minimized = true end },
     ['sticky'] = { fun = function(c) c.sticky = not c.sticky; c:raise() end, track_property = "sticky" },
     ['ontop'] = { fun = function(c) c.ontop = not c.ontop; c:raise() end, track_property = "ontop" },
