@@ -1,144 +1,74 @@
-acpid 2.0.32-2
-alsa-plugins 1:1.2.2-2
-alsa-utils 1.2.4-2
-arandr 0.1.10-5
-autoconf 2.69-7
-automake 1.16.2-3
-baobab 3.38.0-1
-base 2-2
-binutils 2.35.1-1
-bison 3.7.2-1
-bluez 5.55-1
-cheese 3.38.0-1
-chromium 87.0.4280.88-2
-code 1.52.1-1
-dhcpcd 9.3.4-1
-dialog 1:1.3_20201126-1
-discord 0.0.13-1
-dmenu 5.0-1
-dunst 1.5.0-1
-efibootmgr 17-2
-eog 3.38.1-1
-fakeroot 1.25.3-1
-feh 3.6.1-1
-ffmpegthumbnailer 2.2.2-2
-file 5.39-1
-findutils 4.7.0-2
-flex 2.6.4-3
-fortune-mod 2.12.0-1
-gawk 5.1.0-1
-gcc 10.2.0-4
-geogebra 6.0.620.0-1
-gettext 0.21-1
-gimp 2.10.22-1
-git 2.29.2-1
-gnome-themes-extra 3.28-2
-gparted 1.1.0-1
-grep 3.6-1
-groff 1.22.4-3
-grub 2:2.04-8
-gtk-engine-murrine 0.98.2-4
-gtk-engines 2.21.0-5
-gucharmap 13.0.0-1
-gzip 1.10-3
-highlight 3.59-1
-i3-gaps 4.19-1
-inotify-tools 3.20.11.0-1
-intel-ucode 20201118-1
-jq 1.6-4
-lib32-mesa 20.3.1-1
-lib32-vulkan-icd-loader 1.2.162-1
-lib32-vulkan-intel 20.3.1-1
-libtool 2.4.6+42+gb88cebd5-14
-lightdm 1:1.30.0-4
-lightdm-webkit-theme-litarvan 3.1.0-1
-lightdm-webkit2-greeter 2.2.5-4
-linux 5.9.14.arch1-1
-linux-firmware 20201218.646f159-1
-lxtask 0.1.10-1
-m4 1.4.18-3
-maim 5.6.3-2
-make 4.3-3
-man-db 2.9.3-1
-man-pages 5.09-2
-mesa 20.3.1-1
-nano 5.4-1
-neofetch 7.1.0-2
-neovim 0.4.4-1
-network-manager-applet 1.18.0-1
-networkmanager 1.26.4-1
-noto-fonts 20201206-1
-noto-fonts-cjk 20201206-1
-noto-fonts-emoji 20200916-1
-ntfs-3g 2017.3.23-5
-ntp 4.2.8.p15-1
-obs-studio 26.0.2-3
-otf-fira-mono 2:3.206-4
-pacman 5.2.2-1
-papirus-icon-theme 20201201-1
-patch 2.7.6-8
-pavucontrol 1:4.0-2
-picom 8.2-1
-pkgconf 1.7.3-1
-plank 0.11.89-2
-playerctl 2.3.1-1
-powertop 2.13-1
-pulseaudio 14.0-1
-pulseaudio-alsa 1:1.2.2-2
-pulseaudio-bluetooth 14.0-1
-python-pip 20.2.2-1
-python-pywal 3.3.0-3
-python2 2.7.18-2
-ranger 1.9.3-3
-redshift 1.12-4
-rofi 1.6.1-1
-sed 4.8-1
-steam 1.0.0.68-1
-streamlink 1.7.0-2
-sudo 1.9.4.p1-2
-texinfo 6.7-3
-thunar 1.8.16-1
-thunar-archive-plugin 0.4.0-3
-thunar-media-tags-plugin 0.3.0-2
-thunar-volman 0.9.5-3
-tlp 1.3.1-2
-translate-shell 0.9.6.11-2
-ttf-dejavu 2.37+18+g9b5d1b2f-2
-ttf-droid 20121017-8
-ttf-fira-code 5.2-1
-ttf-font-awesome 5.15.1-1
-ttf-hack 3.003-3
-ttf-roboto 2.138-4
-tumbler 0.2.9-3
-udiskie 2.2.0-3
-unrar 1:6.0.3-1
-unzip 6.0-14
-urxvt-perls 2.3-1
-usbutils 013-1
-vim 8.2.1989-3
-vlc 3.0.11.1-6
-vulkan-intel 20.3.1-1
-w3m 0.5.3.git20200507-2
-wget 1.20.3-3
-which 2.21-5
-wpa_supplicant 2:2.9-7
-xclip 0.13-3
-xdg-user-dirs 0.17-3
-xdo 0.5.7-2
-xdotool 3.20160805.1-3
-xf86-video-intel 1:2.99.917+913+g9236c582-1
-xf86-video-vesa 2.5.0-1
-xfce4-notifyd 0.6.2-2
-xorg-server 1.20.10-3
-xorg-xbacklight 1.2.3-2
-xorg-xinit 1.4.1-3
-xorg-xinput 1.6.3-2
-xorg-xrandr 1.5.1-2
-xsettingsd 1.0.0-3
-zathura 0.4.7-1
-zathura-cb 0.1.8-2
-zathura-djvu 0.2.9-1
-zathura-pdf-mupdf 0.3.6-3
-zathura-ps 0.2.6-2
-zsh 5.8-1
-zsh-completions 0.32.0-1
+acpid
+alsa-utils
+arandr
+autoconf
+automake
+baobab
+base
+bison
+cheese
+chromium
+code
+dhcpcd
+dialog
+dunst
+eog
+fakeroot
+flex
+fortune-mod
+geogebra
+gimp
+gparted
+grub
+gucharmap
+gumbo-parser
+inotify-tools
+intel-ucode
+jq
+lightdm-webkit-theme-litarvan
+lxtask
+maim
+make
+man-db
+man-pages
+nano
+neofetch
+neovim
+network-manager-applet
+ntp
+obs-studio
+otf-fira-mono
+papirus-icon-theme
+patch
+pavucontrol
+picom
+pkgconf
+plank
+playerctl
+powertop
+ranger
+redshift
+rofi
+steam
+streamlink
+tlp
+translate-shell
+ttf-fira-code
+ttf-font-awesome
+ttf-hack
+ttf-roboto
+udiskie
+unrar
+unzip
+urxvt-perls
+vim
+wget
+xdg-user-dirs
+xdo
+xf86-video-intel
+xf86-video-vesa
+xfce4-notifyd
+xorg-server
+xorg-xbacklight
+xorg-xinit
+xorg-xinput

@@ -1,17 +1,15 @@
-awesome-git 4.3.897.g66b1780d8-1
-betterdiscord 0.3.0i.r0.g4114a6e-1
-gotop-bin 4.0.0-1
-hardcode-tray-git 4.3.r137.g1934157-1
-i3lock-color-git r752.1127e2a-1
-kdeconnect-git 20.08.0.r140.b5ac96ce-1
-light-git 1.2.2.r2.g33f2316-1
-multilockscreen-git r153.8a8c204-1
-polybar 3.4.3-2
-resvg 0.11.0-2
-rxvt-unicode-patched 9.22-11
-spicetify-cli 1.1.0-1
-spotify-dev 1.1.42.622-3
-themix-gui-git 1.13.3.r77.g97d42be8-1
-themix-full-git 1.13.3-2
-yay 10.1.1-1
-zscroll-git 1.0.r27.g011269a-1
+awesome-git
+betterdiscord
+gotop-bin
+hardcode-tray-git
+kdeconnect-git
+light-git
+multilockscreen-git
+polybar
+resvg
+spicetify-cli
+spotify-dev
+themix-full-git
+wpgtk-git
+yay
+zscroll-git
