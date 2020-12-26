@@ -1,13 +1,24 @@
 # dotfiles
 These files configure my environment
 
-### Setup
-- **OS** [Arch Linux](https://archlinux.org/)
-- **WM** [i3-gaps](https://github.com/Airblader/i3) (old)
-- **WM** [AwesomeWM](https://github.com/awesomeWM/awesome/) (current)
-- **Shell** [Zsh (Z shell)](http://zsh.sourceforge.net/)
-- **Terminal** [rxvt-unicode](http://software.schmorp.de/pkg/rxvt-unicode.html)
-- **Terminal font** [Hack](https://github.com/source-foundry/Hack)
+---
+## Workflow
+- **OS:** [Arch Linux](https://archlinux.org/)
+- **WM:** [i3-gaps](https://github.com/Airblader/i3) (old)
+- **WM:** [AwesomeWM](https://github.com/awesomeWM/awesome/) (current)
+- **Shell:** [Zsh (Z shell)](http://zsh.sourceforge.net/)
+- **Terminal:** [rxvt-unicode](http://software.schmorp.de/pkg/rxvt-unicode.html)
+- **Terminal font:** [Hack](https://github.com/source-foundry/Hack)
+
+### Screenshots
+![](https://i.imgur.com/nRrzgOW.png)
+![](https://i.imgur.com/Ra1yhRt.png)
+![](https://i.imgur.com/m4qmUsJ.png)
+![](https://i.imgur.com/CnyBWcU.jpg)
+
+---
+
+## Setup
 
 ### AUR packages (install before proceeding)
 * [awesome-git](https://aur.archlinux.org/packages/awesome-git) - Highly configurable framework window manager
@@ -26,10 +37,18 @@ Read the wiki [Installation spicetify-cli]
 * [themix-gui-git](https://aur.archlinux.org/packages/themix-gui-git/) - Plugin-based theme designer GUI for environments (like GTK2, GTK3, Cinnamon, GNOME, MATE, Openbox, Xfwm), icons and terminal palettes.
 * [themix-full-git](https://aur.archlinux.org/packages/themix-full-git/) - Themix: GUI for generating different color variations of Materia, Oomox themes (GTK2, GTK3, Cinnamon, GNOME, MATE, Openbox, Xfwm), ArchDroid, Gnome-Colors, Numix, Papirus, Suru++ icons, and terminal palettes. Have a hack for HiDPI in GTK2.
 * [thunar-extended](https://aur.archlinux.org/packages/thunar-extended) - Thunar with split view, cursor audio preview and extra options for trash, desktop files and user actions
-* [yay](https://aur.archlinux.org/packages/yay) - Yet another yogurt. Pacman wrapper and AUR helper written in go.
 * [zscroll-git](https://aur.archlinux.org/packages/zscroll-git) - A text scroller for use with panels
 
-### Installation prerequisites
+You can easily install it by typing: 
+
+```
+yay -S awesome-git betterdiscord gotop-bin i3lock-color-git kdeconnect-git light-git multilockscreen-git polybar resvg rxvt-unicode-patched spicetify-cli spotify-dev themix-gui-git themix-full-git thunar-extended zscroll-git
+```
+in your terminal (Yay required)
+
+* [yay](https://aur.archlinux.org/packages/yay) - Yet another yogurt. Pacman wrapper and AUR helper written in go.
+
+### Take your terminal to the next level
 Install oh-my-zsh:
 
 ```
@@ -67,6 +86,10 @@ systemctl enable lightdm
 
 ---
 
-### Screenshots
-#### city.jpg
-![city.jpg](https://github.com/dev-math/dotfiles/blob/master/Wallpapers/city.jpg)
+## Credits
+- [NoSleep](https://github.com/morpheusthewhite/spicetify-themes/tree/master/NoSleep)
+- [Elementary](https://github.com/morpheusthewhite/spicetify-themes/tree/master/Elementary)
+- [Awesome Playerctl Widget](https://github.com/AlterationBrick/awesome-playerctl-widget)
+- [Elenapan dotfiles](https://github.com/elenapan/dotfiles)
+- [Shining Plum](https://github.com/jazz-g/shining-plum)
+- [GideonWolfe Chamaleon](https://github.com/GideonWolfe/Chameleon)
