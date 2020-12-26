@@ -35,7 +35,7 @@ theme.fg_urgent                          = x.color9
 theme.fg_minimize                        = x.color8
 
 -- Tooltip
-theme.tooltip_fon                        = "SF UI Display 12"
+theme.tooltip_font                       = "SF UI Display 12"
 theme.tooltip_bg                         = x.foreground
 theme.tooltip_fg                         = x.background
 
@@ -74,7 +74,7 @@ theme.titlebar_bg                        = x.background.."CC"
 -- theme.titlebar_bg_normal                 = x.color8
 theme.titlebar_fg_focus                  = x.color7
 theme.titlebar_fg_normal                 = x.color7
---theme.titlebar_fg                        = x.color7
+-- theme.titlebar_fg                        = x.color7
 
 -- Gaps
 theme.useless_gap                        = dpi(5)
@@ -101,7 +101,7 @@ theme.wibar_border_width                 = dpi(0)
 theme.wibar_border_radius                = dpi(0)
 theme.wibar_width                        = dpi(380)
 
-theme.prefix_fg = x.color8
+theme.prefix_fg                          = x.color8
 
 -- Tag names
 theme.tagnames = {
@@ -126,7 +126,7 @@ theme.taglist_text_urgent                = {"","",""," 4"," 5","�
 
 theme.taglist_text_color_empty           = x.color4
 theme.taglist_text_color_occupied        = x.color7
-theme.taglist_text_color_focused         = x.color3
+theme.taglist_text_color_focused         = x.color4
 theme.taglist_text_color_urgent          = x.color3.."A0"
 
 -- Prompt
