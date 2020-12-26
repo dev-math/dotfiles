@@ -8,9 +8,15 @@ feh --bg-fill "$wallpaper"
 
 echo 'awesome.restart()' | awesome-client &> /dev/null
 
-rm $HOME/.dotfiles/.scripts/lock
-cp $HOME/.cache/wal/lock-alpha.sh $HOME/.dotfiles/.scripts/lock
-chmod +x $HOME/.dotfiles/.scripts/lock 
+FILE=$HOME/.local/bin/lock
+if [[ ! -e "$FILE" ]]; then
+    chmod +x $HOME/.cache/wal/lock-alpha.sh
+    chmod +x $HOME/.cache/wal/lockwal-bar.sh
+    chmod +x $HOME/.cache/wal/lockwal.sh
+else
+    rm $HOME/.local/bin/lock
+    ln -s $HOME/.cache/wal/lock-alpha.sh $HOME/.local/bin/lock
+fi
 
 spicetify update
 

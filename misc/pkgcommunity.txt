@@ -11,7 +11,7 @@ resvg 0.11.0-2
 rxvt-unicode-patched 9.22-11
 spicetify-cli 1.1.0-1
 spotify-dev 1.1.42.622-3
-themix-full-git 1.13.3-2
 themix-gui-git 1.13.3.r77.g97d42be8-1
+themix-full-git 1.13.3-2
 yay 10.1.1-1
 zscroll-git 1.0.r27.g011269a-1

@@ -1,0 +1,5 @@
+gtk-icon-theme-name = "oomox-xresources-reverse"
+gtk-theme-name = "oomox-xresources-reverse"
+gtk-font-name="SF UI Display 12"
+gtk-decoration-layout = ""
+gtk-enable-primary-paste = false
