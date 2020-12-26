@@ -34,6 +34,7 @@ local direction_translate = {
     ['left'] = 'left',
     ['right'] = 'right'
 }
+
 function helpers.move_to_edge(c, direction)
     local old = c:geometry()
     local new = awful.placement[direction_translate[direction]](c, {honor_padding = true, honor_workarea = true, margins = beautiful.useless_gap * 2, pretend = true})
@@ -249,6 +250,21 @@ function helpers.float_and_resize(c, width, height)
     awful.client.property.set(c, 'floating_geometry', c:geometry())
     c.floating = true
     c:raise()
+end
+
+function helpers.toggle_float_tile(c)
+    local clients = awful.screen.focused().clients
+    if (awful.layout.get(mouse.screen) == awful.layout.suit.floating) or (awful.layout.get(mouse.screen) == awful.layout.suit.max) then
+        -- TILE
+	for _, c in pairs(clients) do
+	    c.maximized = false
+	    c.floating = false
+        end
+	awful.layout.set(awful.layout.suit.tile)
+    elseif awful.layout.get(mouse.screen) == awful.layout.suit.tile then
+	-- FLOAT
+	awful.layout.set(awful.layout.suit.floating)
+    end
 end
 
 return helpers
