@@ -44,7 +44,7 @@ user = {
     floating_terminal = "urxvt",
     browser = "chromium",
     -- file_manager = "urxvt --class files -e ranger",
-    file_manager = "nautilus",
+    file_manager = "thunar",
     editor = "urxvt --class editor -e nano",
 
     -- >> Web Search <<
