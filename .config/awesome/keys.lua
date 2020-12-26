@@ -30,6 +30,9 @@ keys.desktopbuttons = gears.table.join(
         if dashboard_show then
             dashboard_show()
         end
+    end),
+    awful.button({ }, 3, function ()
+        awful.spawn.with_shell("rofi -no-lazy-grab -show themes:~/.dotfiles/.config/rofi/themeswitch.sh -theme $HOME/.cache/wal/colors-rofi-dark.rasi")
     end)
 )
 -- }}}
@@ -144,7 +147,7 @@ keys.globalkeys = gears.table.join(
     -- exec rofi
     awful.key({ ctrlkey }, "space",
         function()
-            awful.spawn.with_shell("rofi -no-lazy-grab -show drun -modi drun -theme $HOME/.cache/wal/colors-rofi-launch12.rasi")
+            awful.spawn.with_shell("rofi -no-lazy-grab -show drun -modi drun -theme $HOME/.cache/wal/colors-rofi-launch2.rasi")
         end,
         {description = "rofi launcher", group = "launcher"}),
 
