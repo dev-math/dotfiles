@@ -23,22 +23,40 @@ set $ws10 "10"
 
 ###--- COLORS ---###
 # colors from xresources or red in case of errors
-set_from_resource $fg i3wm.color7 #f0f0f0
-set_from_resource $bg i3wm.color0 #f0f0f0
+set_from_resource $bg          i3wm.color3  #ff0000
+set_from_resource $bg-alt      i3wm.color0  #ff0000
+set_from_resource $fg          i3wm.color15 #ff0000
+set_from_resource $fg-alt      i3wm.color2  #ff0000
+set_from_resource $hl          i3wm.color4  #ff0000
 
-# class                 border  backgr. text indicator child_border
-client.focused          $bg     $bg     $fg  $bg       $bg
-client.focused_inactive $bg     $bg     $fg  $bg       $bg
-client.unfocused        $bg     $bg     $fg  $bg       $bg
-client.urgent           $bg     $bg     $fg  $bg       $bg
-client.placeholder      $bg     $bg     $fg  $bg       $bg
+set_from_resource $color1      i3wm.color1  #ff0000
+set_from_resource $color2      i3wm.color2  #ff0000
+set_from_resource $color3      i3wm.color3  #ff0000
+set_from_resource $color4      i3wm.color4  #ff0000
+set_from_resource $color5      i3wm.color5  #ff0000
+set_from_resource $color6      i3wm.color6  #ff0000
+set_from_resource $color7      i3wm.color7  #ff0000
+set_from_resource $color8      i3wm.color8  #ff0000
+set_from_resource $color9      i3wm.color9  #ff0000
+set_from_resource $color10     i3wm.color10 #ff0000
+set_from_resource $color11     i3wm.color11 #ff0000
+set_from_resource $color12     i3wm.color12 #ff0000
+set_from_resource $color13     i3wm.color13 #ff0000
 
+
+# class                 border    backgr.    text      indicator    child_border
 client.background       $bg
+client.focused          $fg-alt   $bg-alt    $color6   $fg-alt      $hl
+client.focused_inactive $bg       $bg-alt    $fg       $bg          $bg
+client.unfocused        $bg       $bg-alt    $fg       $bg          $bg
+client.urgent           $bg       $bg-alt    $fg       $bg          $bg
+client.placeholder      $bg       $bg-alt    $fg       $bg          $bg
 
 ###--- SETTINGS ---###
-
-gaps inner 0
-gaps outer 0
+new_window pixel 2
+for_window [class="^.*"] border pixel 2
+gaps inner 5
+gaps outer 5
 #gaps top 45
 
 focus_follows_mouse no
@@ -53,7 +71,7 @@ font xft:SF UI Display:style=Regular,Fira Code:style=Regular,Noto Sans:style=Reg
 for_window [class=".*"] title_format "%title  ⋯  %class"
 title_align center
 
-for_window [class=".*"] border normal
+# for_window [class=".*"] border normal
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod

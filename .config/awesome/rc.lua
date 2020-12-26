@@ -388,7 +388,7 @@ awful.rules.rules = {
                 "Chromium",
             }
         },
-        properties = { }
+        properties = { floating = false }
     },
 
     -- Plank 

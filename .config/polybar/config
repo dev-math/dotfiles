@@ -1,322 +1,286 @@
-;==========================================================
-;                   !!=====POLYBAR====!!
-;
-;   To learn more about how to configure Polybar
-;   go to https://github.com/polybar/polybar
-;
-;   The README contains a lot of information
-;
-;==========================================================
+;     ____        __      __                  ______            _____      
+;    / __ \____  / /_  __/ /_  ____ ______   / ____/___  ____  / __(_)___ _
+;   / /_/ / __ \/ / / / / __ \/ __ `/ ___/  / /   / __ \/ __ \/ /_/ / __ `/
+;  / ____/ /_/ / / /_/ / // / /_/ / /     / /___/ /_/ / / / / __/ / /_/ / 
+; /_/    \____/_/\__, /_.___/\__,_/_/      \____/\____/_/ /_/_/ /_/\__, /  
+;               /____/                                            /____/   
 
-; list monitor
-; polybar -m | cut -d ':' -f 1 
 
 [colors]
 background = ${xrdb:color0:#222}
-background-alt = ${xrdb:color0:#222}
+background-alt = ${xrdb:color3:#222}
+foreground = ${xrdb:color7:#222}
+foreground-alt = ${xrdb:color2:#555}
+highlight = ${xrdb:color2:#f00}
+urgent = #f00
+color0 = ${xrdb:color0:#222}
+color1 = ${xrdb:color1:#222}
+color3 = ${xrdb:color3:#222}
+color4 = ${xrdb:color4:#222}
+color5 = ${xrdb:color5:#222}
+color6 = ${xrdb:color6:#222}
+color7 = ${xrdb:color7:#222}
+color8 = ${xrdb:color8:#222}
+color9 = ${xrdb:color9:#222}
+color10 = ${xrdb:color10:#222}
+color11 = ${xrdb:color11:#222}
+color12 = ${xrdb:color12:#222}
 
-foreground = ${xrdb:color0:#222}
-foreground-alt = ${xrdb:color5:#222}
- 
-shade0 = ${xrdb:color0:#222}
-shade1 = ${xrdb:color1:#222}
-shade2 = ${xrdb:color2:#222}
-shade3 = ${xrdb:color3:#222}
-shade4 = ${xrdb:color4:#222}
-shade5 = ${xrdb:color5:#222}
-shade6 = ${xrdb:color6:#222}
-shade7 = ${xrdb:color7:#222}
-shade8 = ${xrdb:color8:#222}
-shade9 = ${xrdb:color9:#222}
-shade10 = ${xrdb:color10:#222}
-shade11 = ${xrdb:color11:#222}
-shade12 = ${xrdb:color12:#222}
-shade13 = ${xrdb:color13:#222}
-shade14 = ${xrdb:color14:#222}
-shade15 = ${xrdb:color15:#222}
+[settings]
+screenchange-reload = true
 
-[bar/invisible]
-width = 100%
-height = 45
-background = #00000000
-wm-restack = i3
-override-redirect = false
-modules-left = blank
 
-[bar/main]
-enable-ipc = true
-; monitor =
-width = 100%
-height = 45
-offset-x = 0
-offset-y = 0 
-fixed-center = true
-cursor-click = pointer
-cursor-scroll = ns-resize
-radius = 0
-background = ${colors.background}
-foreground = ${colors.foreground}
-line-size = 0
-line-color = #f00
-border-bottom-size = 3
-border-color = #2f2f2f20
-border-transparent = true
-padding-left = 0
-padding-right = 0
-module-margin-left = 0
-module-margin-right = 0
+[global/wm]
+margin-top = 3
+margin-bottom = 3
 
-; to make the bar appear below windows set override to true
-;wm-restack = i3
-;override-redirect = true
 
-; tray
-tray-position = right
-tray-maxsize = 25
-tray-background = ${colors.shade4}
-tray-reparent = true
+;     __  ___          __      __         
+;    /  |/  /___  ____/ /_  __/ /__  _____
+;   / /|_/ / __ \/ __  / / / / / _ \/ ___/
+;  / /  / / /_/ / /_/ / /_/ / /  __(__  ) 
+; /_/  /_/\____/\__,_/\__,_/_/\___/____/  
 
-modules-left = music
-modules-center = i3
-modules-right = pulseaudio lan wlan battery battery2 date powermenu
 
-font-0 = SF UI Display:style=Regular:size=15
-font-1 = Noto Sans:style=Regular:size=15
-font-2 = DejaVu Sans:style=Book:size=15
-font-3 = Font Awesome 5 Free,Font Awesome 5 Free Regular:style=Regular:size=17
-font-4 = Font Awesome 5 Brands,Font Awesome 5 Brands Regular:style=Regular:size=17
-font-5 = Font Awesome 5 Free,Font Awesome 5 Free Solid:style=Solid:size=17
-
-; Workspaces i3
+[module/dunst]
+type = custom/ipc
+initial = 1
+hook-0 = echo "%{A1:notify-send "DUNST_COMMAND_PAUSE" && polybar-msg hook dunst 2:}%{A}"
+hook-1 = echo "%{A1:notify-send "DUNST_COMMAND_RESUME" && polybar-msg hook dunst 1:}%{A}"
+;format-prefix-foreground = ${colors.foreground-alt}
+;format-prefix-foreground = color2
+format-foreground = ${colors.color4}
 
 [module/i3]
 type = internal/i3
-format = <label-state> <label-mode>
-wrapping-scroll = false
-enable-click = true
+; Only show workspaces defined on the same output as the bar
+;
+; Useful if you want to show monitor specific workspaces
+; on different bars
+;
+; Default: false
+pin-workspaces = false
+
+; This will split the workspace name on ':'
+; Default: false
 strip-wsnumbers = true
-;index-sort = true
-;reverse-scroll = true (default)
 
-;Only show workspaces on the same output as the bar
-;pin-workspaces = true
+; Sort the workspaces by index instead of the default
+; sorting that groups the workspaces by output
+; Default: false
+index-sort = true
 
-; workspace name
-ws-icon-0 = "1;"
-ws-icon-1 = "2;"
-ws-icon-2 = "3;"
-ws-icon-3 = "4;"
-ws-icon-4 = "5;"
-ws-icon-5 = "6; 6"
-ws-icon-6 = "7; 7"
-ws-icon-7 = "8; 8"
-ws-icon-8 = "9; 9"
-ws-icon-9 = "10;"
-ws-icon-default = 
+; Create click handler used to focus workspace
+; Default: true
+enable-click = true
 
-label-focused = %icon%
+; Create scroll handlers used to cycle workspaces
+; Default: true
+enable-scroll = false
+
+; Wrap around when reaching the first/last workspace
+; Default: true
+wrapping-scroll = false
+
+; Set the scroll cycle direction 
+; Default: true
+reverse-scroll = false
+
+; Use fuzzy (partial) matching on labels when assigning 
+; icons to workspaces
+; Example: code;♚ will apply the icon to all workspaces 
+; containing 'code' in the label
+; Default: false
+fuzzy-match = true
+
+label-focused = %name%
+label-focused-foreground = ${colors.foreground}
+label-focused-background = ${colors.background}
 label-focused-padding = 1
-label-focused-background = ${colors.shade3}
-label-focused-foreground = ${colors.shade0}
 
-label-unfocused = %icon%
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %name%
+label-unfocused-foreground = ${colors.highlight}
+label-unfocused-background = ${colors.background}
 label-unfocused-padding = 1
-label-unfocused-foreground = ${colors.shade7}
 
-label-visible = %icon%
-label-visible-padding = 1
-label-visible-foreground = ${colors.shade7}
 
-label-urgent = %icon%
-label-urgent-padding = 1
-label-urgent-foreground = ${colors.shade7}
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format = <label>
+format-foreground = ${colors.foreground}
+label = %percentage%%
 
-; DATE
+[module/mpd]
+type = internal/mpd
+host = 127.0.0.1
+port = 6600
+; Seconds to sleep between progressbar/song timer sync, Default: 1
+interval = 2
+format-online = <label-song>
+format-online-prefix = " "
+format-online-prefix-foreground = ${colors.foreground-alt}
+label-song = %artist% - %title%
+label-offline = mpd is offline
+
+[module/time]
+type = internal/date
+interval = 5
+time = %I:%M
+time-alt = %H:%M:%S
+format-prefix-foreground = ${colors.foreground}
+label = %time%
 
 [module/date]
 type = internal/date
-; Seconds to sleep between updates
-; interval = 1.0
+interval = 1
+format-prefix-foreground = ${colors.foreground-alt}
+format-prefix = ""
+format-foreground = ${colors.foreground}
+date = "%Y/%m/%d | "
+date-alt = "It is day %j, week %V, of year %y of the %Cth century;"
+time = "%I:%M %p"
+time-alt = " %z %Z."
+label = " %date%%time% "
 
-date = %D
-time = %a %m/%d  %I:%M
-time-alt = %d/%m/%Y %I:%M %p
-
-format = <label>
-format-background = ${colors.shade4}
-
-label = %{A6:time-admin:} %time% %{A}
-label-foreground = ${colors.shade0}
-
-; Volume
+[module/volume]
+type = internal/alsa
+format-volume = <label-volume> <bar-volume>
+label-volume = VOL
+label-volume-foreground = ${root.foreground}
+format-muted-prefix = " "
+format-muted-foreground = ${colors.foreground-alt}
+label-muted = sound muted
+bar-volume-width = 10
+bar-volume-foreground-0 = ${colors.foreground}
+bar-volume-foreground-1 = ${colors.foreground}
+bar-volume-foreground-2 = ${colors.foreground}
+bar-volume-foreground-3 = ${colors.foreground}
+bar-volume-foreground-4 = ${colors.foreground}
+bar-volume-foreground-5 = ${colors.foreground}
+bar-volume-foreground-6 = ${colors.foreground-alt}
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/pulseaudio]
 type = internal/pulseaudio
-; sink to be used, find using pacmd list-sinks
-sink = alsa_output.pci-0000_00_1f.3.analog-stereo
-use-ui-max = false
-interval = 5
-label-volume-padding = 1
-label-muted-padding = 1
-
-format-volume = <ramp-volume> <label-volume>
-format-volume-foreground = ${colors.foreground}
-format-volume-background = ${colors.shade4}
-label-volume = %percentage%%
-
-format-muted = <label-muted>
-label-muted = muted
+format-volume-prefix = " "
+format-muted-prefix = " "
+format-volume-prefix-foreground = ${colors.foreground-alt}
+format-muted-prefix-foreground = ${colors.foreground-alt}
+label-muted-foreground = ${colors.urgent}
+label-volume-foreground = ${colors.foreground}
 format-muted-foreground = ${colors.foreground}
-format-muted-background = ${colors.shade4}
+; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
+; If not, uses default sink
+;sink = alsa_output.pci-0000_12_00.3.analog-stereo
+; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
+; Default: true
+use-ui-max = true
+; Interval for volume increase/decrease (in percent points)
+; Default: 5
+interval = 3
 
-ramp-volume-0 =  
-ramp-volume-1 =  
-ramp-volume-2 =  
 
-; network
+; common settings inherited by all bars
+[bar/i3main]
+enable-ipc = true
+width = 100%
+height = 25
+offset-y = 0%
+radius = 0.0
+fixed-center = true
+background = ${colors.background}
+foreground = ${colors.foreground}
+line-size = 2
+line-color = #f00
+border-size = 0
+border-color = #00000000
+padding-left = 1
+padding-right = 2
+padding-top = 4
+padding-bottom = 4
+module-margin-left = 1
+module-margin-right = 1
+font-0 = "Source Code Pro:pixelsize=14;2"
+font-1 = "SF UI Display:style=Regular:pixelsize=12;2"
+font-2 = "FontAwesome:style=Regular:pixelsize=12;2"
+font-3 = "Iosevka:style=Regular:pixelsize=12;2"
+font-4 = "Source Han Sans JP:style=Regular:pixelsize=12;2" ; to get fullwidth chars (aesthetic chillhop song titles)
+; tray-detached = false
+; tray-position = right
+; tray-offset-x = 0
+; tray-offset-y = 0
+; tray-maxsize = 16
+; tray-padding = 0
+; tray-scale = 1
+; tray-background = ${colors.background}
 
-; interface = name of the network interface
-; get the names with 'ip link'
+;     __         ______     ____  _            __           
+;    / /   ___  / __/ /_   / __ \(_)________  / /___ ___  __
+;   / /   / _ \/ /_/ __/  / / / / / ___/ __ \/ / __ `/ / / /
+;  / /___/  __/ __/ /_   / /_/ / (__  ) /_/ / / /_/ / /_/ / 
+; /_____/\___/_/  \__/  /_____/_/____/ .___/_/\__,_/\__, /  
+;                                   /_/            /____/   
 
-; lan need testing
-[module/lan]
-type = internal/network
-interface = enp0s31f6
 
-format-connected-foreground = ${colors.foreground}
-format-connected-background = ${colors.shade4}
-format-connected =  <label-connected>
+[bar/left]
+inherit = bar/i3main
 
-label-connected-padding = 1
-label-connected = Connected
-;label-connected = %linkspeed% %downspeed:8:8% %{F#83a7b4}%{F-} %upspeed:8:8% %{F#83a7b4}%{F-}
+; attempts at getting the REST of the nonfree fontawesome icons to show
+font-4 = "Font Awesome 5 Brands:pixelsize=8;1"
+font-5 = "Font Awesome 5 Free:style=Solid:pixelsize=8;1"
+font-6 = "Font Awesome 5 Free:style=Regular:pixelsize=8;1"
 
-[module/wlan]
-type = internal/network
-interface = wlp4s0
+modules-center = 
+modules-right = pulseaudio dunst 
 
-format-connected-foreground = ${colors.foreground}
-format-connected-background = ${colors.shade4}
-format-connected = <label-connected>
 
-label-connected-padding = 1
-label-connected = "%{A1:nm-connection-editor:} %essid%%{A}"
-;label-connected = %essid%
-;label-connected = %signal%% %downspeed:8:8% %{F#83a7b4}%{F-} %upspeed:8:8% %{F#83a7b4}%{F-}
 
-; Battery
+;    ______           __               ____  _            __           
+;   / ____/__  ____  / /____  _____   / __ \(_)________  / /___ ___  __
+;  / /   / _ \/ __ \/ __/ _ \/ ___/  / / / / / ___/ __ \/ / __ `/ / / /
+; / /___/  __/ / / / /_/  __/ /     / /_/ / (__  ) /_/ / / /_/ / /_/ / 
+; \____/\___/_/ /_/\__/\___/_/     /_____/_/____/ .___/_/\__,_/\__, /  
+;                                              /_/            /____/   
 
-[module/battery]
-type = internal/battery
-full-at = 99
-; Use the following command to list batteries and adapters:
-; ls -1 /sys/class/power_supply/
-battery = BAT0
-adapter = AC
-poll-interval = 5
+[bar/center]
+inherit = bar/i3main
+modules-left = i3
+modules-center = date
+modules-right = spotify pulseaudio cpu 
 
-format-charging-background = ${colors.shade4}
-format-charging-foreground = ${colors.foreground}
-format-discharging-background = ${colors.shade4}
-format-discharging-foreground = ${colors.foreground}
-format-full-background = ${colors.shade4}
-format-full-foreground = ${colors.foreground}
-format-charging = <animation-charging> <label-charging>
-format-discharging = <ramp-capacity> <label-discharging>
 
-label-discharging = %percentage%%
-label-full = %{T3} %{T-}  %percentage%%
 
-label-charging-padding = 1
-label-discharging-padding = 1
-label-full-padding = 1
+;     ____  _       __    __     ____  _            __           
+;    / __ \(_)___ _/ /_  / /_   / __ \(_)________  / /___ ___  __
+;   / /_/ / / __ `/ __ \/ __/  / / / / / ___/ __ \/ / __ `/ / / /
+;  / _, _/ / /_/ / / / / /_   / /_/ / (__  ) /_/ / / /_/ / /_/ / 
+; /_/ |_/_/\__, /_/ /_/\__/  /_____/_/____/ .___/_/\__,_/\__, /  
+;         /____/                         /_/            /____/
 
-; Only applies if <ramp-capacity> is used
-ramp-capacity-0 = %{T3} %{T-}
-ramp-capacity-1 = %{T3} %{T-}
-ramp-capacity-2 = %{T3} %{T-}
-ramp-capacity-3 = %{T3} %{T-}
-ramp-capacity-4 = %{T3} %{T-}
-
-; Only applies if <animation-charging> is used
-animation-charging-0 =  
-animation-charging-1 =  
-animation-charging-2 =  
-animation-charging-3 =  
-animation-charging-4 =  
-; Framerate in milliseconds
-animation-charging-framerate = 500
-
-; Battery 2
-
-[module/battery2]
-type = internal/battery
-full-at = 99
-battery = BAT1
-adapter = AC
-poll-interval = 5
-
-format-charging-background = ${colors.shade4}
-format-charging-foreground = ${colors.foreground}
-format-discharging-background = ${colors.shade4}
-format-discharging-foreground = ${colors.foreground}
-format-full-background = ${colors.shade4}
-format-full-foreground = ${colors.foreground}
-
-format-charging = <animation-charging> <label-charging>
-format-discharging = <ramp-capacity> <label-discharging>
-
-label-discharging = %percentage%%
-label-full = %{T3} %{T-}  %percentage%%
-
-label-charging-padding = 1
-label-discharging-padding = 1
-label-full-padding = 1
-
-; Only applies if <ramp-capacity> is used
-ramp-capacity-0 = %{T3} %{T-}
-ramp-capacity-1 = %{T3} %{T-}
-ramp-capacity-2 = %{T3} %{T-}
-ramp-capacity-3 = %{T3} %{T-}
-ramp-capacity-4 = %{T3} %{T-}
-
-; Only applies if <animation-charging> is used
-animation-charging-0 =  
-animation-charging-1 =  
-animation-charging-2 =  
-animation-charging-3 =  
-animation-charging-4 =  
-; Framerate in milliseconds
-animation-charging-framerate = 500
-
-[module/powermenu]
-type = custom/text
-content = 
-content-padding = 1
-content-background = ${colors.shade4}
-content-foreground = ${colors.shade0}
-click-left = ~/.dotfiles/.scripts/powermenu.sh
-
-[module/music]
-type = custom/script
-tail = true
-format-prefix = "   %{A1:playerctl previous:}%{A} "
-format-suffix = " %{A1:playerctl next:}%{A} "
-format-background = ${colors.shade4}
-click-left = playerctl play-pause &
-exec = ~/.dotfiles/.scripts/scroll-musicbar.sh
-
-; if you don't use zscroll, it might be useful:
-; label = %output:0:20: ...%
-; format = <label>
-
-[module/music-btn]
-type = custom/text
-content =  %{A1:playerctl previous:}%{A} %{A1:playerctl pause:}%{A} %{A1:playerctl play:}%{A} %{A1:playerctl next:}%{A}
-content-background = ${colors.shade4}
-
-[module/blank]
-type                = custom/script
-exec                = printf "" 
-interval            = 60
-width = 0
+[bar/right]
+inherit = bar/i3main
+; font-1 = FontAwesome5Free:style=Solid:size=10;4 this is another font that works
+; font-2 = FontAwesome5Free:style=Regular:size=10;4
+; font-3 = FontAwesome5Brands:style=Regular:size=10;4
+modules-left = i3
+modules-center = 
+modules-right = pulseaudio 
+tray-detached = false
+tray-position = right
+tray-offset-x = 0
+tray-offset-y = 0
+tray-maxsize = 16
+tray-padding = 0
+tray-scale = 1
+tray-background = ${colors.background}_

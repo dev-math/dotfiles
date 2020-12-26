@@ -224,7 +224,7 @@ clock:buttons(gears.table.join(
 
 local clock2 = wibox.widget {
     {
-        font = "SF UI Display bold 14",
+        font = "SF UI Display medium 14",
 	align = "center",
 	id = "text_role",
 	valign = "center",

@@ -1,14 +1,9 @@
 #!/bin/bash
 
-if [ "$(id -u)" -ne 0 ]; then
-        echo 'This script must be run by root' >&2
-        exit 1
-fi
-
 echo -n "Delete existing files (y/n)?"
 read answer
 if [ "$answer" != "${answer#[Yy]}" ] ;then
-	rm -Rf /etc/X11/xorg.conf.d/30-touchpad.conf
+	sudo rm -Rf /etc/X11/xorg.conf.d/30-touchpad.conf
 	rm -Rf ~/.config/awesome
 	rm -Rf ~/.config/i3
 	rm -Rf ~/.config/gtk-3.0
@@ -48,18 +43,15 @@ fc-cache -v
 
 # Install spicetify theme
 spicetify config current_theme wal
-spicetify apply
 
 # Install touchpad custom config
-ln -s ~/.dotfiles/misc/30-touchpad.conf /etc/X11/xorg.conf.d/30-touchpad.conf
+sudo ln -s ~/.dotfiles/misc/30-touchpad.conf /etc/X11/xorg.conf.d/30-touchpad.conf
 
 # Services
 # For charger plug/unplug events (if you have a battery)
 systemctl enable acpid.service
-systemctl start acpid.service
 
 # Network
 systemctl enable NetworkManager.service
-systemctl start NetworkManager.service
 
 echo "Done."
