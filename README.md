@@ -93,3 +93,5 @@ systemctl enable lightdm
 - [Elenapan dotfiles](https://github.com/elenapan/dotfiles)
 - [Shining Plum](https://github.com/jazz-g/shining-plum)
 - [GideonWolfe Chamaleon](https://github.com/GideonWolfe/Chameleon)
+- [Awesome-Switcher fork](https://github.com/michaliskambi/awesome-switcher/)
+- [Lain battery](https://github.com/lcpz/lain/wiki/bat)
