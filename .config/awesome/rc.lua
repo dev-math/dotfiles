@@ -482,6 +482,7 @@ awful.rules.rules = {
         rule_any = {
             instance = {
                 "install league of legends (riot client live).exe",
+                "League of Legends Installer",
                 "gw2-64.exe",
                 "battle.net.exe",
                 "riotclientservices.exe",
@@ -509,7 +510,7 @@ awful.rules.rules = {
                 "firefox",
                 "Nightly",
                 "Steam",
-                "Lutris",
+                --"Lutris",
                 --"Chromium",
                 "^editor$",
                 "markdown_input"
