@@ -55,7 +55,7 @@ local function factory(args)
 
     bat_notification_critical_preset = {
         title    = "Battery",
-        message     = "Critical! Shutdown imminent! Plug the cable!!!",
+        message  = "Critical!\n Shutdown imminent! Plug the cable!!!",
         timeout  = 0,
 	app_name = "battery",
 	icon     = icons.image.battery
@@ -63,7 +63,7 @@ local function factory(args)
 
     bat_notification_low_preset = {
         title    = "Battery",
-        message  = "Battery low. Plug the cable!",
+        message  = "Battery low\n Plug the cable!",
         timeout  = 6,
 	app_name = "battery",
 	icon     = icons.image.battery
@@ -71,7 +71,7 @@ local function factory(args)
 
     bat_notification_charged_preset = {
         title    = "Battery",
-        message  = "Battery full. Unplug the cable!",
+        message  = "Battery full\n Unplug the cable!",
         timeout  = 6,
 	app_name = "battery",
 	icon     = icons.image.battery_charging
