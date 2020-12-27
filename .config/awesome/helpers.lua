@@ -267,4 +267,47 @@ function helpers.toggle_float_tile(c)
     end
 end
 
+-- Lain Helpers
+
+-- run a command and execute a function on its output line by line
+function helpers.line_callback(cmd, callback)
+    return spawn.with_line_callback(cmd, {
+        stdout = function (line)
+            callback(line)
+        end,
+    })
+end
+
+-- get first line of a file
+function helpers.first_line(path)
+    local file, first = io.open(path, "rb"), nil
+    if file then
+        first = file:read("*l")
+        file:close()
+    end
+    return first
+end
+
+-- {{{ Timer maker
+
+helpers.timer_table = {}
+
+function helpers.newtimer(name, timeout, fun, nostart, stoppable)
+    if not name or #name == 0 then return end
+    name = (stoppable and name) or timeout
+    if not helpers.timer_table[name] then
+        helpers.timer_table[name] = timer({ timeout = timeout })
+        helpers.timer_table[name]:start()
+    end
+    helpers.timer_table[name]:connect_signal("timeout", fun)
+    if not nostart then
+        helpers.timer_table[name]:emit_signal("timeout")
+    end
+    return stoppable and helpers.timer_table[name]
+end
+
+-- }}}
+
+-- End Lain Helpers
+
 return helpers

@@ -125,6 +125,7 @@ local systray = wibox.widget {
 
 local systrayc = systray:get_all_children()[1]
 systrayc:set_base_size(25)
+systrayc:set_reverse (true)
 
 local music = wibox.widget {
     {
@@ -322,19 +323,6 @@ awesome.connect_signal("evil::battery", function(value)
 
 end)
 
-awesome.connect_signal("evil::charger", function(value)
-    local t = battery1:get_all_children()[1]
-    battery1_status = value
-
-    if (battery1_status == true) then
-        battery1_icon = ""
-    else
-        battery1_icon = setbattery_icon(battery1_capacity)
-    end
-        t.markup = "<span foreground='" .. x.color0 .."'> " .. battery1_icon .. " " .. battery1_capacity .. "%</span>"
-end)
-
-
 awesome.connect_signal("evil::battery2", function(value)
     local t = battery2:get_all_children()[1]
     battery2_capacity = value
@@ -351,17 +339,23 @@ awesome.connect_signal("evil::battery2", function(value)
 
 end)
 
-awesome.connect_signal("evil::charger2", function(value)
-    local t = battery2:get_all_children()[1]
+awesome.connect_signal("evil::charger", function(value)
+    local t1 = battery1:get_all_children()[1]
+    local t2 = battery2:get_all_children()[1]
+    battery1_status = value
     battery2_status = value
 
-    if (battery2_status == true) then
+    if (battery1_status == true and battery2_status == true) then
+        battery1_icon = ""
         battery2_icon = ""
     else
+        battery1_icon = setbattery_icon(battery1_capacity)
         battery2_icon = setbattery_icon(battery2_capacity)
     end
-        t.markup = "<span foreground='" .. x.color0 .."'>  " .. battery2_icon .. " " .. battery2_capacity .. "% </span>"
+        t1.markup = "<span foreground='" .. x.color0 .."'> " .. battery1_icon .. " " .. battery1_capacity .. "%</span>"
+        t2.markup = "<span foreground='" .. x.color0 .."'>  " .. battery2_icon .. " " .. battery2_capacity .. "% </span>"
 end)
+
 
 local sandwich = create_button("", x.color3, x.color8.."30", x.color8.."50")
 local sandwichc = sandwich:get_all_children()[1]
@@ -453,8 +447,8 @@ awful.screen.connect_for_each_screen(function(s)
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
     s.mylayoutbox.resize = true
-    s.mylayoutbox.forced_width  = beautiful.wibar_height - dpi(10)
-    s.mylayoutbox.forced_height = beautiful.wibar_height - dpi(10)
+    s.mylayoutbox.forced_width  = beautiful.wibar_height - dpi(15)
+    s.mylayoutbox.forced_height = beautiful.wibar_height - dpi(15)
     s.mylayoutbox:buttons(gears.table.join(
         awful.button({ }, 1, function () helpers.toggle_float_tile(c) end),
         awful.button({ }, 2, function () awful.layout.set(awful.layout.suit.floating) end)

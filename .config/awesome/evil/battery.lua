@@ -1,12 +1,34 @@
 -- Provides:
 -- evil::battery
 --      percentage (integer)
+-- evil::battery2
+--      percentage (integer)
 -- evil::charger
 --      plugged (boolean)
 
 local awful = require("awful")
+local lainbattery = require("noodle.lainbattery")
 
-local update_interval = 30
+local battery1 = lainbattery({
+    battery = "BAT0",
+    --timeout = 2,
+    
+    settings = function()
+        local perc = bat_now.perc ~= "N/A" and bat_now.perc or bat_now.perc
+	awesome.emit_signal("evil::battery", perc)
+    end
+})
+
+local battery2 = lainbattery({
+    battery = "BAT1",
+    settings = function()
+        local perc = bat_now.perc ~= "N/A" and bat_now.perc or bat_now.perc       
+        --if bat_now.ac_status == 1 then
+        --    perc = perc .. " plug"
+        --end
+        awesome.emit_signal("evil::battery2", perc)             
+    end
+}) 
 
 -- Subscribe to power supply status changes with acpi_listen
 local charger_script = [[
@@ -14,18 +36,6 @@ local charger_script = [[
     acpi_listen | grep --line-buffered ac_adapter
     '
 ]]
-
--- First get battery file path
-awful.spawn.easy_async_with_shell("sh -c 'out=\"$(find /sys/class/power_supply/BAT0/capacity)\" && (echo \"$out\" | head -1) || false' ", function (battery_file, _, __, exit_code)
-    -- No battery file found
-    if not (exit_code == 0) then
-        return
-    end
-    -- Periodically get battery info
-    awful.widget.watch("cat "..battery_file, update_interval, function(_, stdout)
-        awesome.emit_signal("evil::battery", tonumber(stdout))
-    end)
-end)
 
 -- First get charger file path
 awful.spawn.easy_async_with_shell("sh -c 'out=\"$(find /sys/class/power_supply/*/online)\" && (echo \"$out\" | head -1) || false' ", function (charger_file, _, __, exit_code)
