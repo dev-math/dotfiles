@@ -39,11 +39,10 @@ function notifications.init(theme_name)
     -- Initialize various notification daemons
     require("notifications.volume")
     require("notifications.brightness")
---    require("notifications.battery")
---    require("notifications.battery2")
---    require("notifications.mpd")
+    --require("notifications.battery")
     require("notifications.league_of_legends")
     require("notifications.keyboardlayout")
+
     -- Load theme
     require("notifications.themes." .. theme_name)
 end
