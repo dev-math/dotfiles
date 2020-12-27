@@ -2,7 +2,7 @@ local awful = require("awful")
 local gears = require("gears")
 local beautiful = require("beautiful")
 local apps = require("apps")
-
+local switcher = require("elemental.awesome-switcher")
 local helpers = require("helpers")
 
 -- Math
@@ -164,6 +164,10 @@ keys.globalkeys = gears.table.join(
         {description = "select area to capture", group = "screenshots"}),
     awful.key( { }, "Print", function() apps.screenshot("selection") end,
         {description = "take full screenshot", group = "screenshots"}),
+
+    -- exec app switcher (alt-tab)
+    awful.key({ altkey }, "Tab", function() switcher.switch( 1, "Mod1", "Alt_L", "Shift", "Tab") end,
+        {description = "application switcher", group = "launcher"}),
 
     -- Max layout
     -- Single tap: Set max layout

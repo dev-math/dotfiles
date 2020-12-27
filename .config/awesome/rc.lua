@@ -11,6 +11,13 @@ local bar_themes = {
 local bar_theme = bar_themes[1]
 
 -- ===================================================================
+-- Affects which icon theme will be used by widgets that display image icons.
+local icon_themes = {
+    "pywal",          -- 1 --
+}
+local icon_theme = icon_themes[1]
+
+-- ===================================================================
 local notification_themes = {
     "pywal",          -- 1 --
 }
@@ -152,6 +159,9 @@ end)
 
 -- Features
 -- ===================================================================
+-- Initialize icons array and load icon theme
+local icons = require("icons")
+icons.init(icon_theme)
 -- Binds
 local keys = require("keys")
 -- Load notification daemons and notification theme

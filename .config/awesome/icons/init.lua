@@ -71,6 +71,7 @@ icons.text.by_class = {
 -- Available icons
 local image_icon_names = {
     "screenshot",
+    "noicon",
 }
 
 -- Path to icons
