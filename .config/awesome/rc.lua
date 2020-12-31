@@ -1034,20 +1034,7 @@ awful.spawn.easy_async_with_shell("stat "..dashboard_flag_path.." >/dev/null 2>&
 end)
 
 -- Startup applications
-do
-  local cmds =
-  {
-    "nm-applet",
-    "kdeconnect-indicator",
-    "picom",
-    "setxkbmap br",
-    "discord"
-  }
-
-  for _,i in pairs(cmds) do
-    awful.util.spawn(i)
-  end
-end
+awful.spawn.with_shell("$HOME/.dotfiles/.scripts/startup.sh")
 
 collectgarbage("setpause", 110)
 collectgarbage("setstepmul", 1000)
