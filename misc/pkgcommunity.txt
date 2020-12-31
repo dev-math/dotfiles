@@ -1,5 +1,6 @@
 awesome-git
 betterdiscord
+giph
 gotop-bin
 i3lock-color-git
 kdeconnect-git
