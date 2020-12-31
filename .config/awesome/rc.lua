@@ -505,13 +505,9 @@ awful.rules.rules = {
                 "Plasmoidviewer",
                 "Sublime_text",
                 "Subl3",
-                --"discord",
                 --"TelegramDesktop",
-                "firefox",
                 "Nightly",
                 "Steam",
-                --"Lutris",
-                --"Chromium",
                 "^editor$",
                 "markdown_input"
                 -- "Thunderbird",
