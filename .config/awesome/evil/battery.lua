@@ -12,7 +12,8 @@ local lainbattery = require("noodle.lainbattery")
 local battery1 = lainbattery({
     battery = "BAT0",
     --timeout = 2,
-    
+    notify = "off",
+
     settings = function()
         local perc = bat_now.perc ~= "N/A" and bat_now.perc or bat_now.perc
 	awesome.emit_signal("evil::battery", perc)
