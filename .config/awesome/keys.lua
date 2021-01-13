@@ -111,7 +111,7 @@ keys.globalkeys = gears.table.join(
     -- lock screen
     awful.key({ superkey, shiftkey }, "l",
         function ()
-            awful.spawn.with_shell("~/.dotfiles/.scripts/lock")
+            awful.spawn.with_shell("~/.local/bin/lock")
         end,
         {description = "lock screen", group = "awesome"}),
 
