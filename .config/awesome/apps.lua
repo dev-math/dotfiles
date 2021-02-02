@@ -62,7 +62,7 @@ function apps.screenshot(action, delay)
         awful.spawn.easy_async_with_shell(cmd, function()
             naughty.notification({
                 title = "Screenshot ",
-                message = "Screenshot taken ",
+                message = "Screenshot taken",
                 icon = icon,
                 actions = { screenshot_open, screenshot_copy, screenshot_edit, screenshot_delete },
                 app_name = screenshot_notification_app_name,
