@@ -29,7 +29,7 @@ if [ "$answer" != "${answer#[Yy]}" ] ;then
     ln -sf ~/.dotfiles/bin/* ~/.local/bin/
     ln -sf ~/.dotfiles/config/picom.conf ~/.config/
     ln -sf ~/.dotfiles/config/picom.conf ~/.config/
-    sudo ln -sf ~/.dotfiles/config/user_settings.conf /etc/sddm.conf.d/
+    sudo ln -sf ~/.dotfiles/config/sddm_user_settings.conf /etc/sddm.conf.d/
     
 
     # Install fonts
