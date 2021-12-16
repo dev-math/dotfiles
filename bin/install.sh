@@ -20,6 +20,7 @@ if [ "$answer" != "${answer#[Yy]}" ] ;then
     mkdir -p ~/Pictures/screenshots
     #mkdir -p ~/.config/dunst
     mkdir -p ~/.config/zathura
+    sudo mkdir -p /etc/sddm.conf.d
 
     # Install config files
     ln -sf ~/.dotfiles/config/i3 ~/.config/
@@ -27,6 +28,9 @@ if [ "$answer" != "${answer#[Yy]}" ] ;then
     ln -sf ~/.dotfiles/config/wal/templates ~/.config/wal/
     ln -sf ~/.dotfiles/bin/* ~/.local/bin/
     ln -sf ~/.dotfiles/config/picom.conf ~/.config/
+    ln -sf ~/.dotfiles/config/picom.conf ~/.config/
+    sudo ln -sf ~/.dotfiles/config/user_settings.conf /etc/sddm.conf.d/
+    
 
     # Install fonts
     cp -r ~/.dotfiles/misc/fonts/* ~/.local/share/fonts/
@@ -34,6 +38,8 @@ if [ "$answer" != "${answer#[Yy]}" ] ;then
     
     # Wallpapers
     ln -sf ~/.dotfiles/misc/wallpapers ~/Pictures/wallpapers
+
+    # SDDM Theme
 
     # SETUP LIGHTDM
     # pkgs: lightdm lightdm-webkit2-greeter lightdm-webkit2-theme-glorious
@@ -46,6 +52,7 @@ if [ "$answer" != "${answer#[Yy]}" ] ;then
 
     # Services
     #systemctl enable NetworkManager.service
+    #systemctl enable sddm.service
 
     # symlink pywal files
     wal -i ~/Pictures/wallpapers
