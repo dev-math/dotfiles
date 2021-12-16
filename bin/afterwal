@@ -1,0 +1,9 @@
+#!/bin/bash
+. $HOME/.cache/wal/colors.sh
+
+feh --bg-fill "$wallpaper"
+
+xrdb -merge ~/.Xresources
+
+# echo 'awesome.restart()' | awesome-client &> /dev/null
+

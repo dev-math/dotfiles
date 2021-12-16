@@ -1,0 +1,11 @@
+#!/bin/bash
+zscroll -n false \
+        --delay 0.1 \
+        --match-command "/home/math/.dotfiles/bin/musicbar.sh --status" \
+        --match-text "Playing" "--scroll 1" \
+        --match-text "Paused" " --scroll f" \
+        --update-check true '/home/math/.dotfiles/bin/musicbar.sh' &
+
+# zscroll -n f -u t -b "x" -d 0 -M "playerctl status" -m "Playing" "-b 'playing: '" -m "Paused" "-b 'paused: ' -s f" "playerctl metadata --format {{title}}" &
+
+wait

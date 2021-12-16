@@ -1,0 +1,38 @@
+#!/bin/bash
+
+rofi_command="rofi -theme ~/.cache/wal/powermenu.rasi"
+
+### Options ###
+power_off="襤"
+reboot="↺"
+lock=""
+suspend=""
+log_out=""
+hibernate=""
+# Variable passed to rofi
+options="$power_off\n$reboot\n$lock\n$log_out\n$suspend\n$hibernate"
+
+chosen="$(echo -e "$options" | $rofi_command -dmenu -selected-row 2)"
+case $chosen in
+    $hibernate)
+        # turn off the computer but apps stay open. When resuming, the saved state is restored
+        ~/bin/lock && systemctl hibernate
+        ;;
+    $power_off)
+	systemctl poweroff
+        ;;
+    $reboot)
+        systemctl reboot
+        ;;
+    $lock)
+        ~/bin/lock.sh
+        ;;
+    $suspend)
+        # puts the computer on a low power consuption mode
+        ~//bin/lock && systemctl suspend
+        ;;
+    $log_out)
+        i3-msg exit
+        # echo 'awesome.quit()' | awesome-client
+        ;;
+esac
