@@ -12,6 +12,7 @@ if [ "$answer" != "${answer#[Yy]}" ] ;then
     rm -Rf ~/.config/picom.conf
     #rm -Rf ~/.config/dunst
     rm -Rf ~/.config/zathura
+    rm -Rf ~/.zshrc
 
     # create folders
     mkdir -p ~/.local/share/fonts
@@ -40,6 +41,14 @@ if [ "$answer" != "${answer#[Yy]}" ] ;then
     # Wallpapers
     ln -sf ~/.dotfiles/misc/wallpapers ~/Pictures/wallpapers
 
+    # oh-my-zsh
+    #sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    # spaceship theme
+    #git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
+    #ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+    #sh -c "$(curl -fsSL https://git.io/zinit-install)"
+    ln -sf ~/.dotfiles/.zshrc ~/
+
     # SDDM Theme
 
     # SETUP LIGHTDM
@@ -60,6 +69,8 @@ if [ "$answer" != "${answer#[Yy]}" ] ;then
     ln -sf ~/.cache/wal/.Xresources ~/
     #ln -sf ~/.cache/wal/dunstrc ~/.config/dunst/
     ln -sf ~/.cache/wal/zathurarc ~/.config/zathura/
+    chmod +x ~/.cache/wal/lock*
+    ln -sf ~/.cache/wal/lock-alpha.sh ~/.local/bin/lockscreen
 
     echo "Done."
 else
