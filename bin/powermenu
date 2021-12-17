@@ -16,7 +16,7 @@ chosen="$(echo -e "$options" | $rofi_command -dmenu -selected-row 2)"
 case $chosen in
     $hibernate)
         # turn off the computer but apps stay open. When resuming, the saved state is restored
-        ~/bin/lock && systemctl hibernate
+        ~/.local/bin/lockscreen && systemctl hibernate
         ;;
     $power_off)
 	systemctl poweroff
@@ -25,11 +25,11 @@ case $chosen in
         systemctl reboot
         ;;
     $lock)
-        ~/bin/lock.sh
+        ~/.local/bin/lockscreen
         ;;
     $suspend)
         # puts the computer on a low power consuption mode
-        ~//bin/lock && systemctl suspend
+        ~/.local/bin/lockscreen && systemctl suspend
         ;;
     $log_out)
         i3-msg exit

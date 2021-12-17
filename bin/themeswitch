@@ -19,7 +19,7 @@ else
         #wal -i `cat ~/.cache/wal/wal` > /dev/null
     elif [ -n "${THEMES}" ]
     then
-        wal -i "$WALLPAPERDIR${THEMES}" > /dev/null
+        wal -i "$WALLPAPERDIR${THEMES}" -o ~/.local/bin/afterwal > /dev/null
     fi
 fi 
 
