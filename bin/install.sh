@@ -12,7 +12,6 @@ if [ "$answer" != "${answer#[Yy]}" ] ;then
     rm -Rf ~/.config/picom.conf
     #rm -Rf ~/.config/dunst
     rm -Rf ~/.config/zathura
-    rm -Rf ~/.config/kitty
 
     # create folders
     mkdir -p ~/.local/share/fonts
@@ -31,7 +30,7 @@ if [ "$answer" != "${answer#[Yy]}" ] ;then
     ln -sf ~/.dotfiles/bin/* ~/.local/bin/
     ln -sf ~/.dotfiles/config/picom.conf ~/.config/
     sudo ln -sf ~/.dotfiles/config/sddm_user_settings.conf /etc/sddm.conf.d/
-    ln -sf ~/.dotfiles/config/kitty.conf ~/.config/kitty/
+    cp -f ~/.dotfiles/config/kitty/kitty.conf ~/.config/kitty/
     
 
     # Install fonts
