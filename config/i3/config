@@ -9,6 +9,7 @@
 
 ###--- Variables ---###
 set $term kitty
+set $filemanager thunar
 set $innergap 8
 set $outergap 8
 
@@ -83,6 +84,9 @@ bindsym Control+space exec "rofi -show drun -theme ~/.cache/wal/launcher.rasi"
 
 # start a terminal
 bindsym $superkey+Return exec $term
+
+# start file manager
+bindsym $superkey+e exec $filemanager
 
 # enter fullscreen mode for the focused container
 bindsym $superkey+f fullscreen toggle
