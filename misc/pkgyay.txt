@@ -1,0 +1,9 @@
+brave-bin 1:1.32.115-1
+lightdm-webkit2-theme-glorious 2.0.5-3
+mkinitcpio-numlock 1.0.3-1
+papirus-icon-theme-git 1:20211201.r32.gbe8a0e76bd-1
+polybar 3.5.7-1
+thunar-extended 4.16.10-2
+yay 11.0.2-1
+ytmdesktop-git 1.14.1.r0.g47c0fb6-1
+zscroll-git 1.0.r34.g7b769b1-1
