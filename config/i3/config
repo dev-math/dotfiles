@@ -88,6 +88,9 @@ bindsym $superkey+Return exec $term
 # start file manager
 bindsym $superkey+e exec $filemanager
 
+# lock screen
+bindsym $superkey+$altkey+l exec ~/.local/bin/lockscreen
+
 # enter fullscreen mode for the focused container
 bindsym $superkey+f fullscreen toggle
 
@@ -140,7 +143,7 @@ bindsym $superkey+Right move right
 # change container layout (stacked, tabbed, toggle split)
 bindsym $superkey+s layout stacking
 bindsym $superkey+w layout tabbed
-bindsym $superkey+e layout toggle split
+bindsym $superkey+q layout toggle split
 
 # toggle tiling / floating
 bindsym $superkey+Shift+space floating toggle
