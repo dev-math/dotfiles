@@ -5,5 +5,7 @@ feh --bg-fill "$wallpaper"
 
 xrdb -merge ~/.Xresources
 
+touch $HOME/.config/BetterDiscord/themes/pywal.theme.css
+
 # echo 'awesome.restart()' | awesome-client &> /dev/null
 

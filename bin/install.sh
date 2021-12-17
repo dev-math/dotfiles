@@ -71,7 +71,8 @@ if [ "$answer" != "${answer#[Yy]}" ] ;then
     ln -sf ~/.cache/wal/zathurarc ~/.config/zathura/
     chmod +x ~/.cache/wal/lock*
     ln -sf ~/.cache/wal/lock-alpha.sh ~/.local/bin/lockscreen
-
+    
+    ln -sf ~/.cache/wal/betterdiscord.css ~/.config/BetterDiscord/themes/pywal.theme.css
     echo "Done."
 else
 	exit
