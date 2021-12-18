@@ -219,3 +219,6 @@ ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/the
 sh -c "$(curl -fsSL https://git.io/zinit-install)"
 # zsh cfg file
 cp -r ./.zshrc ~/
+# change default shell to zsh
+chsh -s $(which zsh)
+
