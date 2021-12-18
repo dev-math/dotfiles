@@ -1,79 +1,221 @@
-#!/bin/bash
+#!/bin/env bash
+set -e
 
-echo -n "This process will overwrite existing files. Continue (y/n)? "
-read answer
-if [ "$answer" != "${answer#[Yy]}" ] ;then
-    # remove files
-    rm -Rf ~/.config/i3
-    rm -Rf ~/.config/polybar
-    rm -Rf ~/.config/wal/templates
-    rm -Rf ~/.Xresources
-    rm -Rf ~/Pictures/wallpapers
-    rm -Rf ~/.config/picom.conf
-    #rm -Rf ~/.config/dunst
-    rm -Rf ~/.config/zathura
-    rm -Rf ~/.zshrc
+HELPER="yay"
 
-    # create folders
-    mkdir -p ~/.local/share/fonts
-    mkdir -p ~/.local/bin
-    mkdir -p ~/.config/wal
-    mkdir -p ~/Pictures/screenshots
-    #mkdir -p ~/.config/dunst
-    mkdir -p ~/.config/zathura
-    sudo mkdir -p /etc/sddm.conf.d
-    mkdir -p ~/.config/kitty
-    
-    # Install config files
-    ln -sf ~/.dotfiles/config/i3 ~/.config/
-    ln -sf ~/.dotfiles/config/polybar ~/.config/
-    ln -sf ~/.dotfiles/config/wal/templates ~/.config/wal/
-    ln -sf ~/.dotfiles/bin/* ~/.local/bin/
-    ln -sf ~/.dotfiles/config/picom.conf ~/.config/
-    sudo ln -sf ~/.dotfiles/config/sddm_user_settings.conf /etc/sddm.conf.d/
-    cp -f ~/.dotfiles/config/kitty/kitty.conf ~/.config/kitty/
-    
+clear
+echo "Welcome!" && sleep 2
 
-    # Install fonts
-    cp -r ~/.dotfiles/misc/fonts/* ~/.local/share/fonts/
-    fc-cache -v
-    
-    # Wallpapers
-    ln -sf ~/.dotfiles/misc/wallpapers ~/Pictures/wallpapers
+echo "Checking some things, updating others..."
+sudo pacman -Syu --noconfirm --needed base-devel git wget 
+clear
 
-    # oh-my-zsh
-    #sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    # spaceship theme
-    #git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
-    #ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
-    #sh -c "$(curl -fsSL https://git.io/zinit-install)"
-    ln -sf ~/.dotfiles/.zshrc ~/
+read -p "Quer backup? (y/n) (default \"Yes\"): " yn
+case $yn in
+	n*|N*)
+	echo "Backup disabled."
+	BACKUP=no
+	;;
+	y*|Y*|*)
+	echo "Backup enabled."
+	BACKUP=yes
+	;;
+esac
 
-    # SDDM Theme
+# choose video card driver
+echo "1) xf86-video-intel"
+echo "2) xf86-video-amdgpu" 
+echo "3) nvidia"
+echo "4) Skip"
+read -p "Choose your video card driver (default 1): " vid
 
-    # SETUP LIGHTDM
-    # pkgs: lightdm lightdm-webkit2-greeter lightdm-webkit2-theme-glorious
-    # Set default lightdm greeter to lightdm-webkit2-greeter
-    #sudo sed -i 's/^\(#?greeter\)-session\s*=\s*\(.*\)/greeter-session = lightdm-webkit2-greeter #\1/ #\2g' /etc/lightdm/lightdm.conf
-    # Set default lightdm-webkit2-greeter theme to Glorious
-    #sudo sed -i 's/^webkit_theme\s*=\s*\(.*\)/webkit_theme = glorious #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
-    # sudo sed -i 's/^debug_mode\s*=\s*\(.*\)/debug_mode = true #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
-    #systemctl enable lightdm
+case $vid in 
+2)
+	DRI='xf86-video-amdgpu'
+	;;
 
-    # Services
-    #systemctl enable NetworkManager.service
-    #systemctl enable sddm.service
+3)
+	DRI='nvidia nvidia-settings nvidia-utils'
+	;;
 
-    # symlink pywal files
-    wal -i ~/Pictures/wallpapers
-    ln -sf ~/.cache/wal/.Xresources ~/
-    #ln -sf ~/.cache/wal/dunstrc ~/.config/dunst/
-    ln -sf ~/.cache/wal/zathurarc ~/.config/zathura/
-    chmod +x ~/.cache/wal/lock*
-    ln -sf ~/.cache/wal/lock-alpha.sh ~/.local/bin/lockscreen
-    
-    ln -sf ~/.cache/wal/betterdiscord.css ~/.config/BetterDiscord/themes/pywal.theme.css
-    echo "Done."
-else
-	exit
+4)
+	DRI=""
+	;;
+1|*)
+	DRI='xf86-video-intel'
+	;;
+esac
+
+# install AUR helper (yay)
+if ! command -v $HELPER &> /dev/null
+then
+    echo "It seems that you don't have $HELPER installed, I'll install that for you before continuing."
+    git clone https://aur.archlinux.org/$HELPER.git
+    (cd $HELPER && makepkg -si && rm -Rf $(pwd))
 fi
+
+# install dependencies
+yay -S --noconfirm --needed brave-bin \
+	code \
+	feh \
+	i3lock-color-git \
+	kitty \
+	maim \
+	man-db \
+	man-pages \
+	nano \
+	neofetch \
+	networkmanager \
+	papirus-icon-theme-git \
+	pavucontrol \
+	picom \
+	playerctl \
+	pulseaudio \
+	pulseaudio-alsa \
+	python-pip \
+	python-pywal \
+	python-gobject \
+	rofi \
+	sudo \
+	texinfo \
+	thunar-extended \
+	unzip \
+	vi \
+	vim \
+	xdg-user-dirs \
+	xorg-server \
+	xorg-xprop \
+	xorg-xrdb \
+	zip \
+	zsh \
+	zsh-completions \
+	$DRI
+
+# Install fonts
+mkdir -p ~/.local/share/fonts
+cp -r ./misc/fonts/* ~/.local/share/fonts/
+fc-cache
+
+# choose display manager
+echo "1) SDDM"
+echo "2) LightDM"
+echo "3) Slim"
+echo "4) Skip (you will need a .xinitrc)"
+read -p "Choose your display manager(default 1): " dis
+
+case $dis in 
+2)
+    yay -S --noconfirm --needed lightdm lightdm-webkit2-greeter lightdm-webkit2-theme-glorious
+	# Set default lightdm greeter to lightdm-webkit2-greeter
+    sudo sed -i 's/^\(#?greeter\)-session\s*=\s*\(.*\)/greeter-session = lightdm-webkit2-greeter #\1/ #\2g' /etc/lightdm/lightdm.conf
+    # Set default lightdm-webkit2-greeter theme to Glorious
+    sudo sed -i 's/^webkit_theme\s*=\s*\(.*\)/webkit_theme = glorious #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
+    sudo sed -i 's/^debug_mode\s*=\s*\(.*\)/debug_mode = true #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
+
+	systemctl enable lightdm
+	;;
+
+3)
+	pacman -S --noconfirm --needed slim
+	systemctl enable slim.service
+	;;
+
+4)
+	;;
+1|*)
+	pacman -S --noconfirm --needed sddm
+	systemctl enable sddm.service
+
+	# SDDM  config file
+	# se existe arquivos na pasta apagar tudo 
+	[ $BACKUP = yes ] && [ -e /etc/sddm.conf.d/custom ] && sudo mv /etc/sddm.conf.d/custom /etc/sddm.conf.d/custom-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
+	sudo cp -r config/sddm_user_settings /etc/sddm.conf.d/custom
+	;;
+esac
+
+# config
+
+echo "1) i3-gaps + "
+echo "2) i3-gaps"
+echo "3) AwesomeWM [unsupported]"
+read -p "Choose your system(default 1): " systemopt
+
+case $systemopt in
+2)
+	install_i3
+	install_polybar
+	yay -S --noconfirm --needed i3-gaps polybar dunst
+
+	# Install dunst cfg
+	[ "$BACKUP" = Yes ] [ -e ~/.config/dunst/dunstrc ] && mv ~/.config/dunst/dunstrc ~/.config/dunst/dunstrc-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
+	ln -sf ~/.cache/wal/dunstrc ~/.config/dunst/
+	;;
+3)
+	yay -S --noconfirm --needed awesome-git jq fortune-mod redshift xdotool network-manager-applet
+	install_awesome
+	# in notebook isntall acpid
+	# sudo systemctl enable acpid.service
+	;;
+4)
+	;;
+1|*)
+	install_i3
+	;;
+esac
+
+# config files
+
+install_i3() {
+	[ $BACKUP = yes ] && [ -e ~/.config/i3 ] && mv ~/.config/i3 ~/.config/i3-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
+	cp -r config/i3 ~/.config/i3
+}
+
+install_awesome() {
+	[ $BACKUP = yes ] && [ -e ~/.config/awesome ] && mv ~/.config/awesome ~/.config/awesome-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
+	cp -r config/awesome ~/.config/awesome
+}
+
+install_polybar() {
+	[ $BACKUP = yes ] && [ -e ~/.config/polybar ] && mv ~/.config/polybar ~/.config/polybar-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
+	cp -r config/polybar ~/.config/polybar
+}
+
+# Kitty
+[ $BACKUP = yes ] && [ -e ~/.config/kitty ] && mv ~/.config/kitty ~/.config/kitty-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
+cp -r config/kitty ~/.config/kitty
+
+# Picom
+[ $BACKUP = yes ] && [ -e ~/.config/picom.conf ] && mv ~/.config/picom.conf ~/.config/picom-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
+cp -r config/picom.conf ~/.config/picom.conf
+
+# Scripts
+cp -r bin/* ~/.local/bin/
+
+# Pywal
+mkdir -p ~/.config/wal/templates
+cp -r config/wal/templates/* ~/.config/wal/templates/
+# Symlink pywal files
+ln -sf ~/.cache/wal/.Xresources ~/
+mkdir -p ~/.config/zathura
+ln -sf ~/.cache/wal/zathurarc ~/.config/zathura/
+chmod +x ~/.cache/wal/lock*
+ln -sf ~/.cache/wal/lock-alpha.sh ~/.local/bin/lockscreen
+
+# Wallpapers
+ln -sf misc/wallpapers ~/Pictures/
+
+# Services
+systemctl enable NetworkManager.service
+
+# ZSH
+# backup file
+[ $BACKUP = yes ] && [ -e ~/.zshrc ] && mv ~/.zshrc ~/.zshrc-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
+# install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# spaceship theme
+git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
+ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+# install zinit
+sh -c "$(curl -fsSL https://git.io/zinit-install)"
+# zsh cfg file
+cp -r ./.zshrc ~/
