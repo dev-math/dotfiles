@@ -10,14 +10,14 @@ echo "Checking some things, updating others..."
 sudo pacman -Syu --noconfirm --needed base-devel git wget 
 clear
 
-read -p "Quer backup? (y/n) (default \"Yes\"): " yn
+read -p "Backup your files? (y/n) (default \"Yes\"): " yn
 case $yn in
 	n*|N*)
-	echo "Backup disabled."
+	echo "Backup disabled. Continuing..."
 	BACKUP=no
 	;;
 	y*|Y*|*)
-	echo "Backup enabled."
+	echo "Backup enabled. Continuing..."
 	BACKUP=yes
 	;;
 esac
