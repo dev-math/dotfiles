@@ -6,21 +6,34 @@ HELPER="yay"
 clear
 echo "Welcome!" && sleep 2
 
-echo "Checking some things, updating others..."
-sudo pacman -Syu --noconfirm --needed base-devel git wget 
-clear
-
 read -p "Backup your files? (y/n) (default \"Yes\"): " yn
 case $yn in
 	n*|N*)
 	echo "Backup disabled. Continuing..."
-	BACKUP=no
+	BACKUP="no"
 	;;
 	y*|Y*|*)
 	echo "Backup enabled. Continuing..."
-	BACKUP=yes
+	BACKUP="yes"
 	;;
 esac
+
+echo "Checking some things, updating others..."
+sudo pacman -Syu --noconfirm --needed base-devel git wget 
+clear
+
+# install AUR helper (yay)
+if ! command -v $HELPER &> /dev/null
+then
+    echo "It seems that you don't have $HELPER installed, I'll install that for you before continuing."
+    git clone https://aur.archlinux.org/$HELPER.git
+    (cd $HELPER && makepkg -si && rm -Rf $(pwd))
+fi
+
+# Install fonts
+mkdir -p ~/.local/share/fonts
+cp -r ./misc/fonts/* ~/.local/share/fonts/
+fc-cache
 
 # choose video card driver
 echo "1) xf86-video-intel"
@@ -46,14 +59,6 @@ case $vid in
 	;;
 esac
 
-# install AUR helper (yay)
-if ! command -v $HELPER &> /dev/null
-then
-    echo "It seems that you don't have $HELPER installed, I'll install that for you before continuing."
-    git clone https://aur.archlinux.org/$HELPER.git
-    (cd $HELPER && makepkg -si && rm -Rf $(pwd))
-fi
-
 # install dependencies
 yay -S --noconfirm --needed brave-bin \
 	code \
@@ -63,7 +68,6 @@ yay -S --noconfirm --needed brave-bin \
 	maim \
 	man-db \
 	man-pages \
-	nano \
 	neofetch \
 	networkmanager \
 	papirus-icon-theme-git \
@@ -76,6 +80,8 @@ yay -S --noconfirm --needed brave-bin \
 	python-pywal \
 	python-gobject \
 	rofi \
+	spotify \
+	spicetify-cli \
 	sudo \
 	texinfo \
 	thunar-extended \
@@ -90,11 +96,6 @@ yay -S --noconfirm --needed brave-bin \
 	zsh \
 	zsh-completions \
 	$DRI
-
-# Install fonts
-mkdir -p ~/.local/share/fonts
-cp -r ./misc/fonts/* ~/.local/share/fonts/
-fc-cache
 
 # choose display manager
 echo "1) SDDM"
