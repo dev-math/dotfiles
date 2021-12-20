@@ -3,7 +3,6 @@ set -e
 
 HELPER="yay"
 
-clear
 echo "Welcome!"
 
 read -p "Backup your files? (y/n) (default \"Yes\"): " yn
@@ -20,7 +19,6 @@ esac
 
 echo "Checking some things, updating others..."
 sudo pacman -Syu --noconfirm --needed base-devel git wget 
-clear
 
 # install AUR helper (yay)
 if ! command -v $HELPER &> /dev/null
@@ -40,9 +38,12 @@ echo "1) xf86-video-intel"
 echo "2) xf86-video-amdgpu" 
 echo "3) nvidia"
 echo "4) Skip"
-read -p "Choose your video card driver (default 1): " vid
+read -p "Choose your video card driver (default 4): " vid
 
 case $vid in 
+1)
+	DRI='xf86-video-intel'
+	;;
 2)
 	DRI='xf86-video-amdgpu'
 	;;
@@ -51,11 +52,8 @@ case $vid in
 	DRI='nvidia nvidia-settings nvidia-utils'
 	;;
 
-4)
+4|*)
 	DRI=""
-	;;
-1|*)
-	DRI='xf86-video-intel'
 	;;
 esac
 
@@ -108,9 +106,19 @@ echo "1) SDDM"
 echo "2) LightDM"
 echo "3) Slim"
 echo "4) Skip (you will need a .xinitrc)"
-read -p "Choose your display manager(default 1): " dis
+read -p "Choose your display manager(default 4): " dis
 
 case $dis in 
+1)
+	pacman -S --noconfirm --needed sddm
+	systemctl enable sddm.service
+
+	# SDDM  config file
+	# se existe arquivos na pasta apagar tudo 
+	[ $BACKUP = yes ] && [ -e /etc/sddm.conf.d/custom ] && sudo mv /etc/sddm.conf.d/custom /etc/sddm.conf.d/custom-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
+	sudo cp -r config/sddm_user_settings /etc/sddm.conf.d/custom
+	;;
+
 2)
 	yay -S --noconfirm --needed lightdm lightdm-webkit2-greeter lightdm-webkit2-theme-glorious
 	# Set default lightdm greeter to lightdm-webkit2-greeter
@@ -127,16 +135,7 @@ case $dis in
 	systemctl enable slim.service
 	;;
 
-4)
-	;;
-1|*)
-	pacman -S --noconfirm --needed sddm
-	systemctl enable sddm.service
-
-	# SDDM  config file
-	# se existe arquivos na pasta apagar tudo 
-	[ $BACKUP = yes ] && [ -e /etc/sddm.conf.d/custom ] && sudo mv /etc/sddm.conf.d/custom /etc/sddm.conf.d/custom-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
-	sudo cp -r config/sddm_user_settings /etc/sddm.conf.d/custom
+4|*)
 	;;
 esac
 
@@ -214,7 +213,8 @@ case $systemopt in
 	yay -S --noconfirm --needed i3-gaps polybar dunst
 
 	# Install dunst cfg
-	[ "$BACKUP" = Yes ] [ -e ~/.config/dunst/dunstrc ] && mv ~/.config/dunst/dunstrc ~/.config/dunst/dunstrc-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
+	[ $BACKUP = yes ] [ -e ~/.config/dunst/dunstrc ] && mv ~/.config/dunst/dunstrc ~/.config/dunst/dunstrc-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
+	mkdir -p ~/.config/dunst
 	ln -sf ~/.cache/wal/dunstrc ~/.config/dunst/
 	;;
 3)
