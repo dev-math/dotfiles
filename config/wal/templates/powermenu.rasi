@@ -51,7 +51,7 @@ element-text {{
 
 element selected {{
     background-color: {color3};
-    text-color: @foreground;
+    text-color: {background};
     border-radius: 25;
     border-color: @border-color;
 }}
