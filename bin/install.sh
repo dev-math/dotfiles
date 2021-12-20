@@ -169,6 +169,7 @@ cp -r config/kitty ~/.config/kitty
 cp -r config/picom.conf ~/.config/picom.conf
 
 # Scripts
+mkdir -p ~/.local/bin
 cp -r bin/* ~/.local/bin/
 
 # Pywal
