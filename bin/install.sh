@@ -114,7 +114,7 @@ read -p "Choose your display manager(default 4): " dis
 case $dis in 
 1)
 	pacman -S --noconfirm --needed sddm
-	systemctl enable sddm.service
+	sudo systemctl enable sddm.service
 
 	# SDDM  config file
 	# se existe arquivos na pasta apagar tudo 
@@ -130,12 +130,12 @@ case $dis in
 	sudo sed -i 's/^webkit_theme\s*=\s*\(.*\)/webkit_theme = glorious #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
 	sudo sed -i 's/^debug_mode\s*=\s*\(.*\)/debug_mode = true #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
 
-	systemctl enable lightdm
+	sudo systemctl enable lightdm
 	;;
 
 3)
 	pacman -S --noconfirm --needed slim
-	systemctl enable slim.service
+	sudo systemctl enable slim.service
 	;;
 
 4|*)
