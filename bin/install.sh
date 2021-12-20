@@ -213,7 +213,7 @@ case $systemopt in
 	yay -S --noconfirm --needed i3-gaps polybar dunst
 
 	# Install dunst cfg
-	[ $BACKUP = yes ] [ -e ~/.config/dunst/dunstrc ] && mv ~/.config/dunst/dunstrc ~/.config/dunst/dunstrc-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
+	[ $BACKUP = yes ] && [ -e ~/.config/dunst/dunstrc ] && mv ~/.config/dunst/dunstrc ~/.config/dunst/dunstrc-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
 	mkdir -p ~/.config/dunst
 	ln -sf ~/.cache/wal/dunstrc ~/.config/dunst/dunstrc
 	;;
@@ -229,6 +229,3 @@ case $systemopt in
 	install_i3
 	;;
 esac
-
-
-
