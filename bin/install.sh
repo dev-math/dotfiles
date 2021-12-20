@@ -229,3 +229,5 @@ case $systemopt in
 	install_i3
 	;;
 esac
+
+echo "Done."
