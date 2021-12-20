@@ -191,24 +191,6 @@ ln -sf ~/.cache/wal/lock-alpha.sh ~/.local/bin/lockscreen
 # Services
 sudo systemctl enable NetworkManager.service
 
-# ZSH
-# backup file
-[ $BACKUP = yes ] && [ -e ~/.zshrc ] && mv ~/.zshrc ~/.zshrc-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
-# install oh-my-zsh
-! [ -e ~/.oh-my-zsh ] && sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-# install spaceship theme
-! [ -e $ZSH_CUSTOM/themes/spaceship-prompt ] && sudo git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
-sudo rm "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
-sudo ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
-# install zinit
-sh -c "$(curl -fsSL https://git.io/zinit-install)"
-# zsh cfg file
-cp -r ./.zshrc ~/
-# change default shell to zsh
-chsh -s $(which zsh)
-
-# choose config
-
 echo "1) i3-gaps + "
 echo "2) i3-gaps"
 echo "3) AwesomeWM [unsupported]"
@@ -237,5 +219,21 @@ case $systemopt in
 	install_i3
 	;;
 esac
+
+# ZSH
+# backup file
+[ $BACKUP = yes ] && [ -e ~/.zshrc ] && mv ~/.zshrc ~/.zshrc-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
+# install oh-my-zsh
+! [ -e ~/.oh-my-zsh ] && sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# install spaceship theme
+! [ -e $ZSH_CUSTOM/themes/spaceship-prompt ] && sudo git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
+sudo rm "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+sudo ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+# install zinit
+sh -c "$(curl -fsSL https://git.io/zinit-install)"
+# zsh cfg file
+cp -r ./.zshrc ~/
+# change default shell to zsh
+chsh -s $(which zsh)
 
 echo "Done."
