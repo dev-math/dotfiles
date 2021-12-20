@@ -215,7 +215,7 @@ case $systemopt in
 	# Install dunst cfg
 	[ $BACKUP = yes ] [ -e ~/.config/dunst/dunstrc ] && mv ~/.config/dunst/dunstrc ~/.config/dunst/dunstrc-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
 	mkdir -p ~/.config/dunst
-	ln -sf ~/.cache/wal/dunstrc ~/.config/dunst/
+	ln -sf ~/.cache/wal/dunstrc ~/.config/dunst/dunstrc
 	;;
 3)
 	yay -S --noconfirm --needed awesome-git jq fortune-mod redshift xdotool network-manager-applet
