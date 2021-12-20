@@ -63,6 +63,7 @@ yay -S --noconfirm --needed brave-bin \
 	discord \
 	feh \
 	i3lock-color-git \
+	kdeconnect \
 	kitty \
 	maim \
 	man-db \
@@ -78,9 +79,11 @@ yay -S --noconfirm --needed brave-bin \
 	python-pip \
 	python-pywal \
 	python-gobject \
+	qt5-tools \
 	rofi \
 	spotify \
 	spicetify-cli \
+	sshfs \
 	sudo \
 	texinfo \
 	thunar-extended \
