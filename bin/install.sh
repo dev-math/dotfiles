@@ -227,7 +227,7 @@ esac
 ! [ -e ~/.oh-my-zsh ] && sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 # install spaceship theme
 ! [ -e $ZSH_CUSTOM/themes/spaceship-prompt ] && sudo git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
-sudo rm "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+sudo rm -f "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 sudo ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 # install zinit
 sh -c "$(curl -fsSL https://git.io/zinit-install)"
