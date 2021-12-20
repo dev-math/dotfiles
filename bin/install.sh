@@ -173,8 +173,8 @@ mkdir -p ~/.local/bin
 cp -r bin/* ~/.local/bin/
 
 # Wallpapers
-mkdir -p ~/Pictures
-ln -sf misc/wallpapers ~/Pictures/
+mkdir -p ~/Pictures/wallpapers
+cp -r misc/wallpapers/* ~/Pictures/wallpapers
 
 # Pywal
 mkdir -p ~/.config/wal/templates
