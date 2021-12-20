@@ -113,7 +113,7 @@ read -p "Choose your display manager(default 4): " dis
 
 case $dis in 
 1)
-	pacman -S --noconfirm --needed sddm
+	sudo pacman -S --noconfirm --needed sddm
 	sudo systemctl enable sddm.service
 
 	# SDDM  config file
@@ -134,7 +134,7 @@ case $dis in
 	;;
 
 3)
-	pacman -S --noconfirm --needed slim
+	sudo pacman -S --noconfirm --needed slim
 	sudo systemctl enable slim.service
 	;;
 
@@ -184,7 +184,7 @@ ln -sf ~/.cache/wal/lock-alpha.sh ~/.local/bin/lockscreen
 ln -sf misc/wallpapers ~/Pictures/
 
 # Services
-systemctl enable NetworkManager.service
+sudo systemctl enable NetworkManager.service
 
 # ZSH
 # backup file
