@@ -62,6 +62,7 @@ esac
 # install dependencies
 yay -S --noconfirm --needed brave-bin \
 	code \
+	discord \
 	feh \
 	i3lock-color-git \
 	kitty \
