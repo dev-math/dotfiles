@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+case `dunstctl is-paused` in
+    true)
+        dunstctl set-paused false
+	polybar-msg hook notification-toggle 1
+        ;;
+    false)
+	dunstctl set-paused true
+	polybar-msg hook notification-toggle 2
+        ;;
+esac
