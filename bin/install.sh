@@ -4,7 +4,7 @@ set -e
 HELPER="yay"
 
 clear
-echo "Welcome!" && sleep 2
+echo "Welcome!"
 
 read -p "Backup your files? (y/n) (default \"Yes\"): " yn
 case $yn in
@@ -140,36 +140,6 @@ case $dis in
 	;;
 esac
 
-# config
-
-echo "1) i3-gaps + "
-echo "2) i3-gaps"
-echo "3) AwesomeWM [unsupported]"
-read -p "Choose your system(default 1): " systemopt
-
-case $systemopt in
-2)
-	install_i3
-	install_polybar
-	yay -S --noconfirm --needed i3-gaps polybar dunst
-
-	# Install dunst cfg
-	[ "$BACKUP" = Yes ] [ -e ~/.config/dunst/dunstrc ] && mv ~/.config/dunst/dunstrc ~/.config/dunst/dunstrc-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
-	ln -sf ~/.cache/wal/dunstrc ~/.config/dunst/
-	;;
-3)
-	yay -S --noconfirm --needed awesome-git jq fortune-mod redshift xdotool network-manager-applet
-	install_awesome
-	# in notebook isntall acpid
-	# sudo systemctl enable acpid.service
-	;;
-4)
-	;;
-1|*)
-	install_i3
-	;;
-esac
-
 # config files
 
 install_i3() {
@@ -218,14 +188,47 @@ systemctl enable NetworkManager.service
 # backup file
 [ $BACKUP = yes ] && [ -e ~/.zshrc ] && mv ~/.zshrc ~/.zshrc-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
 # install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-# spaceship theme
-git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
-ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+! [ -e ~/.oh-my-zsh ] && sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# install spaceship theme
+! [ -e $ZSH_CUSTOM/themes/spaceship-prompt ] && sudo git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
+sudo rm "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+sudo ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 # install zinit
 sh -c "$(curl -fsSL https://git.io/zinit-install)"
 # zsh cfg file
 cp -r ./.zshrc ~/
 # change default shell to zsh
 chsh -s $(which zsh)
+
+# choose config
+
+echo "1) i3-gaps + "
+echo "2) i3-gaps"
+echo "3) AwesomeWM [unsupported]"
+read -p "Choose your system(default 1): " systemopt
+
+case $systemopt in
+2)
+	install_i3
+	install_polybar
+	yay -S --noconfirm --needed i3-gaps polybar dunst
+
+	# Install dunst cfg
+	[ "$BACKUP" = Yes ] [ -e ~/.config/dunst/dunstrc ] && mv ~/.config/dunst/dunstrc ~/.config/dunst/dunstrc-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
+	ln -sf ~/.cache/wal/dunstrc ~/.config/dunst/
+	;;
+3)
+	yay -S --noconfirm --needed awesome-git jq fortune-mod redshift xdotool network-manager-applet
+	install_awesome
+	# in notebook isntall acpid
+	# sudo systemctl enable acpid.service
+	;;
+4)
+	;;
+1|*)
+	install_i3
+	;;
+esac
+
+
 
