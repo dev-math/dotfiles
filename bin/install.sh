@@ -92,6 +92,11 @@ yay -S --noconfirm --needed brave-bin \
 	xorg-server \
 	xorg-xprop \
 	xorg-xrdb \
+	zathura \
+	zathura-djvu \
+	zathura-pdf-mupdf \
+	zathura-ps \
+	zathura-cb \
 	zip \
 	zsh \
 	zsh-completions \
