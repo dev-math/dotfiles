@@ -143,17 +143,17 @@ esac
 
 install_i3() {
 	[ $BACKUP = yes ] && [ -e ~/.config/i3 ] && mv ~/.config/i3 ~/.config/i3-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
-	cp -r config/i3 ~/.config/i3
+	cp -r config/i3 ~/.config/
 }
 
 install_awesome() {
 	[ $BACKUP = yes ] && [ -e ~/.config/awesome ] && mv ~/.config/awesome ~/.config/awesome-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
-	cp -r config/awesome ~/.config/awesome
+	cp -r config/awesome ~/.config/
 }
 
 install_polybar() {
 	[ $BACKUP = yes ] && [ -e ~/.config/polybar ] && mv ~/.config/polybar ~/.config/polybar-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
-	cp -r config/polybar ~/.config/polybar
+	cp -r config/polybar ~/.config/
 }
 
 # Kitty
