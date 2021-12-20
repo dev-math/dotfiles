@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/env bash
 
 #pkill -9 dunst
 #notify-send "Dunst Restarted"

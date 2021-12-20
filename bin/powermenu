@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/env bash
 
 rofi_command="rofi -theme ~/.cache/wal/powermenu.rasi"
 

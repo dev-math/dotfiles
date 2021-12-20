@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/env bash
 
 SND_STATUS=$(playerctl --player=playerctld status 2>/dev/null)
 

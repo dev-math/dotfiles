@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/env bash
 . $HOME/.cache/wal/colors.sh
 
 feh --bg-fill "$wallpaper"

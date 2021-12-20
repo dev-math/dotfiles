@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/env bash
+
 ### Created by ilsenatorov
 ### Change WALLPAPERDIR to the directory where you store wallpapers
 
