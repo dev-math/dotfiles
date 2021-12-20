@@ -70,6 +70,10 @@ yay -S --noconfirm --needed brave-bin \
 	man-pages \
 	neofetch \
 	networkmanager \
+	noto-fonts \
+	noto-fonts-cjk \
+	noto-fonts-emoji \
+	noto-fonts-extra \
 	papirus-icon-theme-git \
 	pavucontrol \
 	perl-file-mimeinfo \
