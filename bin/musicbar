@@ -4,11 +4,7 @@ SND_STATUS=$(playerctl --player=playerctld status 2>/dev/null)
 
 get_text()
 {
-    if [ "$(playerctl -l | grep 'spotify')" = "spotify" ]; then
-        echo $(playerctl --player=spotify metadata --format "{{ title }} - {{ artist }}")
-    else
-        echo $(playerctl --player=playerctld metadata --format "{{ title }}")
-    fi
+	echo $(playerctl --player=playerctld metadata --format "{{ title }} - {{ artist }}")
 }
 
 if [ "$SND_STATUS" = "Playing" ]; then
