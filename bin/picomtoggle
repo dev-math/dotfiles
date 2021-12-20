@@ -1,0 +1,9 @@
+#!/bin/env bash
+if pgrep -x "picom" > /dev/null
+then
+	killall picom
+	polybar-msg hook beautiful-toggle 1
+else
+	polybar-msg hook beautiful-toggle 2
+	picom
+fi
