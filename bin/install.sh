@@ -119,7 +119,7 @@ case $dis in
 	# SDDM  config file
 	# se existe arquivos na pasta apagar tudo 
 	[ $BACKUP = yes ] && [ -e /etc/sddm.conf.d/custom ] && sudo mv /etc/sddm.conf.d/custom /etc/sddm.conf.d/custom-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
-	! [ -e /etc/sddm.conf.d] && sudo mkdir -p /etc/sddm.conf.d
+	! [ -e /etc/sddm.conf.d ] && sudo mkdir -p /etc/sddm.conf.d
 	sudo cp -r config/sddm_user_settings.conf /etc/sddm.conf.d/custom
 	;;
 
