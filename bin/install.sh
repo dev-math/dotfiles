@@ -72,6 +72,7 @@ yay -S --noconfirm --needed brave-bin \
 	networkmanager \
 	papirus-icon-theme-git \
 	pavucontrol \
+	perl-file-mimeinfo \
 	picom \
 	playerctl \
 	pulseaudio \
@@ -91,6 +92,7 @@ yay -S --noconfirm --needed brave-bin \
 	vi \
 	vim \
 	xdg-user-dirs \
+	xdg-utils \
 	xorg-server \
 	xorg-xprop \
 	xorg-xrdb \
