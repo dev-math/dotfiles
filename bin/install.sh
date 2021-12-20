@@ -172,18 +172,21 @@ cp -r config/picom.conf ~/.config/picom.conf
 mkdir -p ~/.local/bin
 cp -r bin/* ~/.local/bin/
 
+# Wallpapers
+ln -sf misc/wallpapers ~/Pictures/
+
+
 # Pywal
 mkdir -p ~/.config/wal/templates
 cp -r config/wal/templates/* ~/.config/wal/templates/
+# run wal to gen cache files
+wal -i ~/Pictures/wallpapers
 # Symlink pywal files
 ln -sf ~/.cache/wal/.Xresources ~/
 mkdir -p ~/.config/zathura
 ln -sf ~/.cache/wal/zathurarc ~/.config/zathura/
 chmod +x ~/.cache/wal/lock*
 ln -sf ~/.cache/wal/lock-alpha.sh ~/.local/bin/lockscreen
-
-# Wallpapers
-ln -sf misc/wallpapers ~/Pictures/
 
 # Services
 sudo systemctl enable NetworkManager.service
