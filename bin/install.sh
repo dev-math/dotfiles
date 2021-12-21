@@ -101,6 +101,7 @@ yay -S --noconfirm --needed brave-bin \
 	xorg-xprop \
 	xorg-xrdb \
 	xournalpp \
+	xsettingsd \
 	zathura \
 	zathura-djvu \
 	zathura-pdf-mupdf \
