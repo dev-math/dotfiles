@@ -1,0 +1,42 @@
+#!/bin/env bash
+
+case $1 in
+	refreshPicom)
+		if pgrep -x "picom" > /dev/null
+		then
+			echo 
+		else
+			echo 
+		fi
+		;;
+	refreshDunst)
+		if [ "$(dunstctl is-paused)" = "true" ]
+		then
+			echo 
+		elif [ "$(dunstctl is-paused)" = "false" ]
+		then
+			echo 
+		fi
+		;;
+	togglePicom)
+		if pgrep -x "picom" > /dev/null
+		then
+			killall picom
+			polybar-msg hook beautiful-toggle 1
+		else
+			polybar-msg hook beautiful-toggle 2
+			picom
+		fi
+		;;
+	toggleDunst)
+		if [ "$(dunstctl is-paused)" = "true" ]
+		then
+			dunstctl set-paused false
+			polybar-msg hook notification-toggle 1
+		elif [ "$(dunstctl is-paused)" = "false" ]
+		then
+			dunstctl set-paused true
+			polybar-msg hook notification-toggle 2
+		fi
+		;;
+esac

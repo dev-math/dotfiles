@@ -24,4 +24,4 @@ else
     fi
 fi 
 
-# use rofi -show themes:~/.dotfiles/bin/themeswitch -theme ~/.cache/wal/launcher.rasi
+# use rofi -show themes:~/.dotfiles/bin/<thisfile> -theme ~/.cache/wal/launcher.rasi

@@ -11,5 +11,8 @@ wpg --theme ~/.cache/wal/colors.json
 # live reload GTK+ theme with xsettingsd
 timeout 0.5s xsettingsd
 
+# reload AwesomeWM
 # echo 'awesome.restart()' | awesome-client &> /dev/null
 
+# Reload spicetify colors (Reload spotify)
+spicetify update

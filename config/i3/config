@@ -75,8 +75,8 @@ font pango:SF UI Display bold 12
 for_window [class=".*"] title_format "%title  ⋯  %class"
 title_align center
 
-###--- STARTUP ---###
-exec_always --no-startup-id ~/.local/bin/startup
+# Reload Polybar with i3
+exec_always --no-startup-id ~/.local/bin/reloadPolybar
 
 ###--- BINDS ---###
 # start program launcher
