@@ -33,7 +33,7 @@ set render-loading-fg "{foreground}"
 set highlight-color "{foreground}"
 set highlight-active-color "{color4}"
 
-set font "SF UI Display 15"
+set font "SF Pro Display 15"
 
 set window-title-home-tilde true
 set statusbar-basename true
