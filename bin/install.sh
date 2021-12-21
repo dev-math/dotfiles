@@ -100,6 +100,7 @@ yay -S --noconfirm --needed brave-bin \
 	xorg-server \
 	xorg-xprop \
 	xorg-xrdb \
+	xournalpp \
 	zathura \
 	zathura-djvu \
 	zathura-pdf-mupdf \
