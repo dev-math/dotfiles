@@ -5,7 +5,11 @@ feh --bg-fill "$wallpaper"
 
 xrdb -merge ~/.Xresources
 
-touch $HOME/.config/BetterDiscord/themes/pywal.theme.css
+# generate GTK theme and icon theme
+wpg --theme ~/.cache/wal/colors.json
+
+# live reload GTK+ theme with xsettingsd
+timeout 0.5s xsettingsd
 
 # echo 'awesome.restart()' | awesome-client &> /dev/null
 

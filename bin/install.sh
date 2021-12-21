@@ -95,6 +95,7 @@ yay -S --noconfirm --needed brave-bin \
 	unzip \
 	vi \
 	vim \
+	wpgtk \
 	xdg-user-dirs \
 	xdg-utils \
 	xorg-server \
@@ -195,6 +196,15 @@ mkdir -p ~/.config/zathura
 ln -sf ~/.cache/wal/zathurarc ~/.config/zathura/
 chmod +x ~/.cache/wal/lock*
 ln -sf ~/.cache/wal/lock-alpha.sh ~/.local/bin/lockscreen
+
+# Install GTK template on wpgtk
+wpg-install.sh -g
+# Install Icon template on wpgtk
+wpg-install.sh -i
+# wpgtk config file
+[ $BACKUP = yes ] && [ -e ~/.config/wpg/wpg.conf ] && mv ~/.config/wpg.conf ~/.config/wpg-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
+mkdir -p ~/.config/wpg
+cp -r config/wpg/wpg.conf ~/.config/wpg/wpg.conf
 
 # Services
 sudo systemctl enable NetworkManager.service
