@@ -2,15 +2,12 @@
 
 SND_STATUS=$(playerctl --player=playerctld status 2>/dev/null)
 
-get_text()
-{
-	echo $(playerctl --player=playerctld metadata --format "{{ title }} - {{ artist }}")
-}
+TEXT=$(playerctl --player=playerctld metadata --format "{{ title }} - {{ artist }}")
 
-if [ "$SND_STATUS" = "Playing" ]; then
-    get_text
-elif [ "$SND_STATUS" = "Paused" ]; then
-    get_text
+if [ "$SND_STATUS" = "Playing" ] && [ "$TEXT" != " - " ]; then
+    echo $TEXT
+elif [ "$SND_STATUS" = "Paused" ] && [ "$TEXT" != " - " ]; then
+    echo $TEXT
 else
     echo ""
 fi

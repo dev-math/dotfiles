@@ -1,10 +1,11 @@
-#!/bin/bash
+#!/bin/env bash
 
 SND_STATUS=$(playerctl --player=playerctld status 2>/dev/null)
+TEXT=$(playerctl --player=playerctld metadata --format "{{ title }} - {{ artist }}")
 
-if [ "$SND_STATUS" = "Playing" ]; then
+if [ "$SND_STATUS" = "Playing" ] && [ "$TEXT" != " - " ]; then
     echo ""
-elif [ "$SND_STATUS" = "Paused" ]; then
+elif [ "$SND_STATUS" = "Paused" ] && [ "$TEXT" != " - " ]; then
     echo ""
 else
     echo ""
