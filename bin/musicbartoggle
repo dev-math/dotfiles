@@ -1,0 +1,11 @@
+#!/bin/bash
+
+SND_STATUS=$(playerctl --player=playerctld status 2>/dev/null)
+
+if [ "$SND_STATUS" = "Playing" ]; then
+    echo ""
+elif [ "$SND_STATUS" = "Paused" ]; then
+    echo ""
+else
+    echo ""
+fi
