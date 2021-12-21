@@ -1,12 +1,25 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
-case `dunstctl is-paused` in
-    true)
-        dunstctl set-paused false
-	polybar-msg hook notification-toggle 1
-        ;;
-    false)
-	dunstctl set-paused true
-	polybar-msg hook notification-toggle 2
-        ;;
-esac
+if [[ $1 = refresh ]]
+then
+	case `dunstctl is-paused` in
+    	true)
+		echo 
+        	;;
+    	false)
+		echo 
+        	;;
+	esac
+else
+	case `dunstctl is-paused` in
+    	true)
+        	dunstctl set-paused false
+		polybar-msg hook notification-toggle 1
+        	;;
+    	false)
+		dunstctl set-paused true
+		polybar-msg hook notification-toggle 2
+        	;;
+	esac
+fi
+

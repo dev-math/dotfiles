@@ -1,9 +1,19 @@
 #!/bin/env bash
-if pgrep -x "picom" > /dev/null
+if [[ $1 = refresh ]]
 then
-	killall picom
-	polybar-msg hook beautiful-toggle 1
+	if pgrep -x "picom" > /dev/null
+	then
+		echo 
+	else
+		echo 
+	fi
 else
-	polybar-msg hook beautiful-toggle 2
-	picom
+	if pgrep -x "picom" > /dev/null
+	then
+		killall picom
+		polybar-msg hook beautiful-toggle 1
+	else
+		polybar-msg hook beautiful-toggle 2
+		picom
+	fi
 fi
