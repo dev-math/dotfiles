@@ -62,6 +62,7 @@ yay -S --noconfirm --needed brave-bin \
 	code \
 	discord \
 	feh \
+	fontconfig \
 	i3lock-color-git \
 	kdeconnect \
 	kitty \
