@@ -70,6 +70,7 @@ yay -S --noconfirm --needed brave-bin \
 	maim \
 	man-db \
 	man-pages \
+	neovim \
 	neofetch \
 	networkmanager \
 	noto-fonts \
@@ -95,8 +96,6 @@ yay -S --noconfirm --needed brave-bin \
 	texinfo \
 	thunar-extended \
 	unzip \
-	vi \
-	vim \
 	wpgtk \
 	xdg-user-dirs \
 	xdg-utils \
