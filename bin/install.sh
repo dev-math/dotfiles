@@ -58,7 +58,8 @@ case $vid in
 esac
 
 # install dependencies
-yay -S --noconfirm --needed brave-bin \
+yay -S --noconfirm --needed asdf-vm \
+	brave-bin \
 	discord \
 	eog \
 	feh \
@@ -97,6 +98,7 @@ yay -S --noconfirm --needed brave-bin \
 	unzip \
 	visual-studio-code-bin \
 	wpgtk \
+	xclip \
 	xdg-user-dirs \
 	xdg-utils \
 	xorg-server \
