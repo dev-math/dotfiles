@@ -1,0 +1,14 @@
+# Load pywal colors and wallpaper
+wal -R
+
+# Load Xresources
+xrdb -load ~/.Xresources
+
+# Start compositor
+picom &
+
+# Start KDEconnect
+/usr/lib/kdeconnectd &
+
+# Start discord
+discord &
