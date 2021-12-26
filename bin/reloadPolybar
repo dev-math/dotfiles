@@ -1,16 +1,5 @@
 #!/usr/bin/env bash
 
-setxkbmap br &
-
-if (! pgrep picom); then
-    picom &
-fi
-
-if (! pgrep Discord); then
-    discord &
-fi
-
-# Polybar
 # Terminate already running bar instances
 killall -q polybar
 # Wait until the processes have been shut down

@@ -61,6 +61,7 @@ esac
 yay -S --noconfirm --needed brave-bin \
 	code \
 	discord \
+	eog \
 	feh \
 	fontconfig \
 	i3lock-color-git \
@@ -136,7 +137,6 @@ case $dis in
 	sudo sed -i 's/^webkit_theme\s*=\s*\(.*\)/webkit_theme = glorious #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
 	sudo sed -i 's/^debug_mode\s*=\s*\(.*\)/debug_mode = true #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
 
-	sudo systemctl disable display-manager.service
 	sudo systemctl enable lightdm
 	;;
 
