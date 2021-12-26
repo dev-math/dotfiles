@@ -59,7 +59,6 @@ esac
 
 # install dependencies
 yay -S --noconfirm --needed brave-bin \
-	code \
 	discord \
 	eog \
 	feh \
@@ -96,6 +95,7 @@ yay -S --noconfirm --needed brave-bin \
 	texinfo \
 	thunar-extended \
 	unzip \
+	visual-studio-code-bin \
 	wpgtk \
 	xdg-user-dirs \
 	xdg-utils \
