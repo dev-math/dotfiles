@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+if [[ $XDG_CURRENT_DESKTOP = "XFCE" ]]; then
+	exit
+fi
+
 # Terminate already running bar instances
 killall -q polybar
 # Wait until the processes have been shut down
