@@ -18,6 +18,15 @@ case $1 in
 			echo 
 		fi
 		;;
+	refreshXfceNotify)
+		if [ "$(xfconf-query -c xfce4-notifyd -p /do-not-disturb)" = "true" ]
+		then
+			echo 
+		elif [ "$(xfconf-query -c xfce4-notifyd -p /do-not-disturb)" = "false" ]
+		then
+			echo 
+		fi
+		;;
 	togglePicom)
 		if pgrep -x "picom" > /dev/null
 		then
@@ -36,6 +45,17 @@ case $1 in
 		elif [ "$(dunstctl is-paused)" = "false" ]
 		then
 			dunstctl set-paused true
+			polybar-msg hook notification-toggle 2
+		fi
+		;;
+	toggleXfceNotify)
+		if [ "$(xfconf-query -c xfce4-notifyd -p /do-not-disturb)" = "true" ]
+		then
+			xfconf-query -c xfce4-notifyd -p /do-not-disturb -s false
+			polybar-msg hook notification-toggle 1
+		elif [ "$(xfconf-query -c xfce4-notifyd -p /do-not-disturb)" = "false" ]
+		then
+			xfconf-query -c xfce4-notifyd -p /do-not-disturb -s true
 			polybar-msg hook notification-toggle 2
 		fi
 		;;

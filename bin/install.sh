@@ -168,6 +168,16 @@ install_polybar() {
 	cp -r config/polybar ~/.config/
 }
 
+install_dunst() {
+	[ $BACKUP = yes ] && [ -e ~/.config/dunst/dunstrc ] && mv ~/.config/dunst/dunstrc ~/.config/dunst/dunstrc-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
+	mkdir -p ~/.config/dunst
+	ln -sf ~/.cache/wal/dunstrc ~/.config/dunst/dunstrc
+}
+
+install_xfcenotify() {
+	sudo pacman -S xfce4-notifyd --needed
+}
+
 # Kitty
 [ $BACKUP = yes ] && [ -e ~/.config/kitty ] && mv ~/.config/kitty ~/.config/kitty-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
 cp -r config/kitty ~/.config/kitty
@@ -208,32 +218,22 @@ cp -r config/wpg/wpg.conf ~/.config/wpg/wpg.conf
 # Services
 sudo systemctl enable NetworkManager.service
 
-echo "1) i3-gaps + "
-echo "2) i3-gaps"
-echo "3) AwesomeWM [unsupported]"
+echo "1) i3-gaps + polybar"
+echo "2) AwesomeWM [unsupported]"
 read -p "Choose your system(default 1): " systemopt
 
 case $systemopt in
 2)
-	install_i3
-	install_polybar
-	yay -S --noconfirm --needed i3-gaps polybar dunst
-
-	# Install dunst cfg
-	[ $BACKUP = yes ] && [ -e ~/.config/dunst/dunstrc ] && mv ~/.config/dunst/dunstrc ~/.config/dunst/dunstrc-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
-	mkdir -p ~/.config/dunst
-	ln -sf ~/.cache/wal/dunstrc ~/.config/dunst/dunstrc
-	;;
-3)
 	yay -S --noconfirm --needed awesome-git jq fortune-mod redshift xdotool network-manager-applet
 	install_awesome
 	# in notebook isntall acpid
 	# sudo systemctl enable acpid.service
 	;;
-4)
-	;;
 1|*)
 	install_i3
+	install_polybar
+	yay -S --noconfirm --needed i3-gaps polybar
+	install_xfcenotify
 	;;
 esac
 
