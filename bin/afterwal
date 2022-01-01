@@ -6,10 +6,10 @@ feh --bg-fill "$wallpaper"
 xrdb -merge ~/.Xresources
 
 # generate GTK theme and icon theme
-wpg --theme ~/.cache/wal/colors.json
+# wpg --theme ~/.cache/wal/colors.json
 
 # live reload GTK+ theme with xsettingsd
-timeout 0.5s xsettingsd
+# timeout 0.5s xsettingsd
 
 # reload AwesomeWM
 # echo 'awesome.restart()' | awesome-client &> /dev/null
