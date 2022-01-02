@@ -189,6 +189,18 @@ cp -r config/kitty ~/.config/kitty
 [ $BACKUP = yes ] && [ -e ~/.config/picom.conf ] && mv ~/.config/picom.conf ~/.config/picom-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
 cp -r config/picom.conf ~/.config/picom.conf
 
+# GTK config
+[ $BACKUP = yes ] && [ -e ~/.gtkrc-2.0 ] && mv ~/.gtkrc-2.0 ~/.config/.gtkrc-2.0-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
+cp -r .gtkrc-2.0 ~/.gtkrc-2.0
+[ $BACKUP = yes ] && [ -e ~/.config/gtk-3.0 ] && mv ~/.config/gtk-3.0 ~/.config/gtk-3.0-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
+cp -r config/gtk-3.0 ~/.config/gtk-3.0
+
+# GTK themes
+mkdir -p ~/.local/share/icons
+! [ -e ~/.local/share/icons/WhiteSur-dark ] && cp -r misc/themes/WhiteSur-icons-dark ~/.local/share/icons/WhiteSur-dark
+mkdir -p ~/.themes
+! [ -e ~/.themes/WhiteSur-dark ] && cp -r misc/themes/WhiteSur-dark ~/.themes/WhiteSur-dark
+
 # Scripts
 mkdir -p ~/.local/bin
 cp -r bin/* ~/.local/bin/
@@ -239,6 +251,28 @@ case $systemopt in
 	install_xfcenotify
 	;;
 esac
+
+echo "1) Pywal theme (wpgtk) with live reload"
+echo "2) WhiteSur-gtk-theme"
+read -p "Choose your GTK theme (default 2): " themeopt
+case $theme in
+	1)
+		echo 'Net/ThemeName "FlatColor"' > ~/.xsettingsd
+		echo 'gtk-theme-name="FlatColor"' >> ~/.gtkrc-2.0
+		echo 'gtk-icon-theme-name="flattrcolor"' >> ~/.gtkrc-2.0
+		echo 'gtk-theme-name=FlatColor' >> ~/.config/gtk-3.0/settings.ini
+		echo 'gtk-icon-theme-name=flattrcolor' >> ~/.config/gtk-3.0/settings.ini
+		echo "Done."
+	;;
+	2|*)
+		echo 'gtk-theme-name="WhiteSur-dark"' >> ~/.gtkrc-2.0
+		echo 'gtk-icon-theme-name="WhiteSur-dark"' >> ~/.gtkrc-2.0
+		echo 'gtk-theme-name=WhiteSur-dark' >> ~/.config/gtk-3.0/settings.ini
+		echo 'gtk-icon-theme-name=WhiteSur-dark' >> ~/.config/gtk-3.0/settings.ini
+		echo "Done."
+	;;
+esac
+
 
 # ZSH
 # backup file
