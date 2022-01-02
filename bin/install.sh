@@ -189,6 +189,11 @@ install_xfcenotify() {
 [ $BACKUP = yes ] && [ -e ~/.config/kitty ] && mv ~/.config/kitty ~/.config/kitty-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
 cp -r config/kitty ~/.config/kitty
 
+# Neovim
+[ $BACKUP = yes ] && [ -e ~/.config/nvim ] && mv ~/.config/nvim ~/.config/nvim-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
+cp -r config/nvim ~/.config/nvim
+
+
 # Picom
 [ $BACKUP = yes ] && [ -e ~/.config/picom.conf ] && mv ~/.config/picom.conf ~/.config/picom-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
 cp -r config/picom.conf ~/.config/picom.conf
@@ -311,9 +316,9 @@ esac
 # install oh-my-zsh
 ! [ -e ~/.oh-my-zsh ] && sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 # install spaceship theme
-! [ -e $ZSH/custom/themes/spaceship-prompt ] && sudo git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH/custom/themes/spaceship-prompt" --depth=1
-sudo rm -f "$ZSH/custom/themes/spaceship.zsh-theme"
-sudo ln -s "$ZSH/custom/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH/custom/themes/spaceship.zsh-theme"
+! [ -e ~/.oh-my-zsh/custom/themes/spaceship-prompt ] && sudo git clone https://github.com/denysdovhan/spaceship-prompt.git "~/.oh-my-zsh/custom/themes/spaceship-prompt" --depth=1
+sudo rm -f "~/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
+sudo ln -s "~/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh-theme" "~/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
 # install zinit
 sh -c "$(curl -fsSL https://git.io/zinit-install)"
 # zsh cfg file
