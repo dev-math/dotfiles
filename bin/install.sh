@@ -73,6 +73,7 @@ yay -S --noconfirm --needed asdf-vm \
 	neovim \
 	neofetch \
 	networkmanager \
+	notify-send-py \
 	noto-fonts \
 	noto-fonts-cjk \
 	noto-fonts-emoji \
