@@ -208,7 +208,7 @@ cp -r config/gtk-3.0 ~/.config/gtk-3.0
 if [ -e ~/.local/share/icons/WhiteSur-dark ]
 then
     git clone https://github.com/vinceliuice/WhiteSur-icon-theme.git
-    (cd WhiteSur-gtk-theme && ./install.sh && rm -Rf $(pwd))
+    (cd WhiteSur-icon-theme && ./install.sh && rm -Rf $(pwd))
 fi
 
 if [ -e ~/.themes/WhiteSur-dark ]
