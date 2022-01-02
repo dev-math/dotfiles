@@ -217,6 +217,10 @@ spicetify config current_theme DribbblishPywal
 spicetify config current_theme DribbblishPywal color_scheme base
 spicetify config inject_css 1 replace_colors 1 overwrite_assets 1
 
+# Install xinit and xprofile
+cp -r .xprofile ~/.xprofile
+cp -r .xinitrc ~/.xinitrc
+
 # Scripts
 mkdir -p ~/.local/bin
 cp -r bin/* ~/.local/bin/
