@@ -141,6 +141,12 @@ case $dis in
 	sudo sed -i 's/^webkit_theme\s*=\s*\(.*\)/webkit_theme = glorious #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
 	sudo sed -i 's/^debug_mode\s*=\s*\(.*\)/debug_mode = true #\1/g' /etc/lightdm/lightdm-webkit2-greeter.conf
 
+	echo "Set in /etc/lightdm/lightdm.conf: "
+	echo "greeter-session=lightdm-webkit2-greeter"
+	echo "Set in /etc/lightdm/lightdm-webkit2-greeter.conf: "
+	echo "webkit_theme = glorious"
+	echo "debug_mode =  true"
+
 	sudo systemctl enable lightdm
 	;;
 
