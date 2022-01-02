@@ -96,7 +96,7 @@ yay -S --noconfirm --needed asdf-vm \
 	sudo \
 	texinfo \
 	thunar-archive-plugin \
-	thunar-extended \
+	thunar \
 	thunar-media-tags-plugin \
 	unzip \
 	visual-studio-code-bin \
