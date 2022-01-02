@@ -95,7 +95,9 @@ yay -S --noconfirm --needed asdf-vm \
 	sshfs \
 	sudo \
 	texinfo \
+	thunar-archive-plugin \
 	thunar-extended \
+	thunar-media-tags-plugin \
 	unzip \
 	visual-studio-code-bin \
 	wpgtk \
