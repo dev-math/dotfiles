@@ -210,7 +210,7 @@ mkdir -p ~/.themes
 mkdir -p ~/.config/spicetify/Themes/DribbblishPywal
 mkdir -p ~/.config/spicetify/Extensions
 cp -r config/spicetify/Themes/DribbblishPywal/* ~/.config/spicetify/Themes/DribbblishPywal
-mv ~/.config/spicetify/Themes/dribbblish.js ~/.config/spicetify/Extensions/dribbblish.js
+mv ~/.config/spicetify/Themes/DribbblishPywal/dribbblish.js ~/.config/spicetify/Extensions/dribbblish.js
 spicetify config extensions dribbblish.js
 spicetify config current_theme DribbblishPywal
 spicetify config current_theme DribbblishPywal color_scheme base
