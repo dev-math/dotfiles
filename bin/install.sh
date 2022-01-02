@@ -313,17 +313,22 @@ esac
 # ZSH
 # backup file
 [ $BACKUP = yes ] && [ -e ~/.zshrc ] && mv ~/.zshrc ~/.zshrc-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
+echo '
+#!/bin/env bash
 # install oh-my-zsh
 ! [ -e ~/.oh-my-zsh ] && sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 # install spaceship theme
-! [ -e ~/.oh-my-zsh/custom/themes/spaceship-prompt ] && sudo git clone https://github.com/denysdovhan/spaceship-prompt.git "~/.oh-my-zsh/custom/themes/spaceship-prompt" --depth=1
-sudo rm -f "~/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
-sudo ln -s "~/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh-theme" "~/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
+sudo rm -Rf ~/.oh-my-zsh/custom/themes/spaceship-prompt
+sudo git clone https://github.com/denysdovhan/spaceship-prompt.git ~/.oh-my-zsh/custom/themes/spaceship-prompt --depth=1
+sudo ln -sf ~/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh-theme ~/.oh-my-zsh/custom/themes/spaceship.zsh-theme
 # install zinit
 sh -c "$(curl -fsSL https://git.io/zinit-install)"
 # zsh cfg file
-cp -r ./.zshrc ~/
+cp -r ./.zshrc ~/.zshrc
 # change default shell to zsh
-chsh -s $(which zsh)
+chsh -s $(which zsh) 
+# remove this file
+rm -Rf install_oh_my_zsh.sh ' > install_oh_my_zsh.sh
+chmod +x install_oh_my_zsh.sh
 
-echo "Done."
+echo "Run ./install_oh_my_zsh.sh on terminal and then it's over."
