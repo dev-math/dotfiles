@@ -104,6 +104,7 @@ yay -S --noconfirm --needed asdf-vm \
 	xclip \
 	xdg-utils \
 	xorg-server \
+	xorg-xinit \
 	xorg-xprop \
 	xorg-xrdb \
 	xournalpp \
