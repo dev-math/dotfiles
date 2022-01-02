@@ -18,7 +18,8 @@ case $yn in
 esac
 
 echo "Checking some things, updating others..."
-sudo pacman -Syu --noconfirm --needed base-devel git wget fontconfig
+sudo pacman -Syu --noconfirm --needed base-devel git wget fontconfig xdg-user-dirs
+xdg-user-dir
 
 # install AUR helper (yay)
 if ! command -v $HELPER &> /dev/null
@@ -101,7 +102,6 @@ yay -S --noconfirm --needed asdf-vm \
 	visual-studio-code-bin \
 	wpgtk \
 	xclip \
-	xdg-user-dirs \
 	xdg-utils \
 	xorg-server \
 	xorg-xprop \
