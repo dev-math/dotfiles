@@ -249,6 +249,10 @@ cp -r config/wpg/wpg.conf ~/.config/wpg/wpg.conf
 # Services
 sudo systemctl enable NetworkManager.service
 
+# Blacklist pcspkr module
+echo "blacklist pcspkr" > nobeep.conf
+sudo mv nobeep.conf /etc/modprobe.d/nobeep.conf
+
 echo "1) i3-gaps + polybar"
 echo "2) AwesomeWM [unsupported]"
 read -p "Choose your system(default 1): " systemopt
