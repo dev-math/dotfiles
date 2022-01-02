@@ -122,13 +122,12 @@ yay -S --noconfirm --needed asdf-vm \
 echo "1) SDDM"
 echo "2) LightDM"
 echo "3) Slim"
-echo "4) Skip (you will need a .xinitrc)"
+echo "4) Skip"
 read -p "Choose your display manager(default 4): " dis
 
 case $dis in 
 1)
 	sudo pacman -S --noconfirm --needed sddm
-	sudo systemctl disable display-manager.service
 	sudo systemctl enable sddm.service
 	;;
 
@@ -151,7 +150,6 @@ case $dis in
 
 3)
 	sudo pacman -S --noconfirm --needed slim
-	sudo systemctl disable display-manager.service
 	sudo systemctl enable slim.service
 	;;
 
@@ -211,10 +209,11 @@ mkdir -p ~/.config/spicetify/Themes/DribbblishPywal
 mkdir -p ~/.config/spicetify/Extensions
 cp -r config/spicetify/Themes/DribbblishPywal/* ~/.config/spicetify/Themes/DribbblishPywal
 mv ~/.config/spicetify/Themes/DribbblishPywal/dribbblish.js ~/.config/spicetify/Extensions/dribbblish.js
-spicetify config extensions dribbblish.js
-spicetify config current_theme DribbblishPywal
-spicetify config current_theme DribbblishPywal color_scheme base
-spicetify config inject_css 1 replace_colors 1 overwrite_assets 1
+echo "Run:"
+echo "spicetify config extensions dribbblish.js"
+echo "spicetify config current_theme DribbblishPywal"
+echo "spicetify config current_theme DribbblishPywal color_scheme base"
+echo "spicetify config inject_css 1 replace_colors 1 overwrite_assets 1"
 
 # Install xinit and xprofile
 cp -r .xprofile ~/.xprofile
