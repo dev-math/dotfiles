@@ -200,10 +200,18 @@ cp -r .gtkrc-2.0 ~/.gtkrc-2.0
 cp -r config/gtk-3.0 ~/.config/gtk-3.0
 
 # GTK themes
-mkdir -p ~/.local/share/icons
-! [ -e ~/.local/share/icons/WhiteSur-dark ] && cp -r misc/themes/WhiteSur-icons-dark ~/.local/share/icons/WhiteSur-dark
-mkdir -p ~/.themes
-! [ -e ~/.themes/WhiteSur-dark ] && cp -r misc/themes/WhiteSur-dark ~/.themes/WhiteSur-dark
+if [ -e ~/.local/share/icons/WhiteSur-dark ]
+then
+    git clone https://github.com/vinceliuice/WhiteSur-icon-theme.git
+    (cd WhiteSur-gtk-theme && ./install.sh && rm -Rf $(pwd))
+fi
+
+if [ -e ~/.themes/WhiteSur-dark ]
+then
+    git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git
+    (cd WhiteSur-gtk-theme && ./install.sh && rm -Rf $(pwd))
+fi
+
 
 # Spicetify theme
 mkdir -p ~/.config/spicetify/Themes/DribbblishPywal
