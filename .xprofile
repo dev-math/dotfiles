@@ -10,6 +10,9 @@ xrdb -load ~/.Xresources
 # Start compositor
 picom &
 
+# Start notifications
+/usr/lib/xfce4/notifyd/xfce4-notifyd &
+
 # Start KDEconnect
 /usr/lib/kdeconnectd &
 
