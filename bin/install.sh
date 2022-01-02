@@ -207,6 +207,16 @@ mkdir -p ~/.local/share/icons
 mkdir -p ~/.themes
 ! [ -e ~/.themes/WhiteSur-dark ] && cp -r misc/themes/WhiteSur-dark ~/.themes/WhiteSur-dark
 
+# Spicetify theme
+mkdir -p ~/.config/spicetify/Themes/DribbblishPywal
+mkdir -p ~/.config/spicetify/Extensions
+cp -r config/spicetify/Themes/DribbblishPywal/* ~/.config/spicetify/Themes/DribbblishPywal
+mv ~/.config/spicetify/Themes/dribbblish.js ~/.config/spicetify/Extensions/dribbblish.js
+spicetify config extensions dribbblish.js
+spicetify config current_theme DribbblishPywal
+spicetify config current_theme DribbblishPywal color_scheme base
+spicetify config inject_css 1 replace_colors 1 overwrite_assets 1
+
 # Scripts
 mkdir -p ~/.local/bin
 cp -r bin/* ~/.local/bin/
