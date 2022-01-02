@@ -106,8 +106,8 @@ bindsym $superkey+plus gaps inner all plus 1; gaps outer all plus 1
 bindsym $superkey+minus gaps inner all minus 1; gaps outer all minus 1
 
 # Screenshots
-bindsym $superkey+Print exec maim -s ~/Pictures/screenshots/$(date +%d-%m-%Y-%H:%M:%S).png
-bindsym Print exec maim ~/Pictures/screenshots/$(date +%d-%m-%Y-%H:%M:%S).png
+bindsym $superkey+Print exec ~/.local/bin/screenshot selection
+bindsym Print exec ~/.local/bin/screenshot full
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play-pause
