@@ -18,7 +18,7 @@ case $yn in
 esac
 
 echo "Checking some things, updating others..."
-sudo pacman -Syu --noconfirm --needed base-devel git wget 
+sudo pacman -Syu --noconfirm --needed base-devel git wget fontconfig
 
 # install AUR helper (yay)
 if ! command -v $HELPER &> /dev/null
@@ -63,7 +63,6 @@ yay -S --noconfirm --needed asdf-vm \
 	discord \
 	eog \
 	feh \
-	fontconfig \
 	i3lock-color-git \
 	kdeconnect \
 	kitty \
