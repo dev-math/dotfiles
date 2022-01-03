@@ -39,7 +39,7 @@ Table of contents:
 - **Terminal font:** SF Mono
 - **File Manager**: [Thunar](https://git.xfce.org/xfce/thunar/)
 - **Launcher**: [rofi](https://github.com/davatorium/rofi/)
-- **Browser**: [Brave]()
+- **Browser**: [Brave](https://brave.com/)
 
 ## Screenshots
 ![](https://i.imgur.com/bEVQdEy.jpg)
@@ -52,6 +52,9 @@ Table of contents:
 ![](https://i.imgur.com/HFlu5a2.jpeg)
 
 ---
+## Note
+To generate a theme run ```wal -i path/to/image -o afterwal```
+Preferably place the image in the ```~/Pictures/wallpapers``` folder
 
 ## Setup (Script)
 This is the script I use in a clean ArchLinux install to set up my system.
