@@ -18,7 +18,6 @@ cat ~/.cache/wal/sequences
 # To add support for TTYs this line can be optionally added.
 source ~/.cache/wal/colors-tty.sh
 
-
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -84,7 +83,6 @@ ZSH_THEME="spaceship"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
-plugins=(asdf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -149,3 +147,10 @@ autoload -Uz _zinit
 zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
+
+
+# asdf config
+. /opt/asdf-vm/asdf.sh
+
+# initialise completions with ZSH's compinit
+autoload -Uz compinit && compinit
