@@ -407,6 +407,8 @@ Obs.: you might need to use wpgtk to generate a theme from an image, but only th
 - Start NetworkManager on boot
 
   `sudo systemctl enable NetworkManager.service`
+  
+- [Configure asdf](https://asdf-vm.github.io/asdf/guide/getting-started.html) 
 
 ---
 
