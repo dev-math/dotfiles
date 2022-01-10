@@ -1,7 +1,6 @@
 local options = {
 	hidden = true,
 	linebreak = true,
-	smarttab = true,
   backup = false,
   clipboard = "unnamedplus",
   conceallevel = 0,                        -- so that `` is visible in markdown files
@@ -19,6 +18,8 @@ local options = {
   updatetime = 300,                        -- faster completion (4000ms default)
   timeoutlen = 500,
   writebackup = false,
+	smartindent = true,
+	expandtab = true,
   shiftwidth = 2,
   tabstop = 2,
   number = true,
