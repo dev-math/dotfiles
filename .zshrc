@@ -154,3 +154,4 @@ zinit light zsh-users/zsh-completions
 
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
+alias vim=nvim
