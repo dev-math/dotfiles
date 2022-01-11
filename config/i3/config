@@ -80,7 +80,7 @@ exec_always --no-startup-id ~/.local/bin/reloadPolybar
 
 ###--- BINDS ---###
 # start program launcher
-bindsym Control+space exec "rofi -show drun -theme ~/.cache/wal/launcher.rasi"
+bindsym Shift+space exec "rofi -show drun -theme ~/.cache/wal/launcher.rasi"
 
 # start a terminal
 bindsym $superkey+Return exec $term
