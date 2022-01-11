@@ -7,8 +7,8 @@ end
 -- Alternatively, you may also register handlers on specific server instances instead (see example below).
 lsp_installer.on_server_ready(function(server)
   local opts = {
-	  on_attach = require("user.lsp.lspconfig").on_attach,
-    capabilities = require("user.lsp.lspconfig").capabilities,
+	  on_attach = require("lsp.lspconfig").on_attach,
+    capabilities = require("lsp.lspconfig").capabilities,
   }
 
   -- This setup() function is exactly the same as lspconfig's setup function.

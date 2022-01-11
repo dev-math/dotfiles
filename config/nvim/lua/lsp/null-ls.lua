@@ -17,7 +17,7 @@ null_ls.setup {
       filetypes = {
         "css",
         "graphql",
-        "html",
+        -- "html",
         "javascript",
         "javascriptreact",
         "json",

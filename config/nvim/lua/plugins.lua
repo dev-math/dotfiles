@@ -44,9 +44,14 @@ return packer.startup(function(use)
   use "wbthomason/packer.nvim" -- Have packer manage itself
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
-  use "dracula/vim"
+  use {'dracula/vim', as = 'dracula'}
   use "dylanaraps/wal.vim"
-	use "numToStr/Comment.nvim"
+	use {
+    "numToStr/Comment.nvim",
+    config = function()
+      require('Comment').setup()
+    end,
+  }
   use "lukas-reineke/indent-blankline.nvim"
   use "kyazdani42/nvim-web-devicons"
 	use "kyazdani42/nvim-tree.lua"
@@ -56,11 +61,6 @@ return packer.startup(function(use)
 	use "mg979/vim-visual-multi"
 	use "editorconfig/editorconfig-vim"
 	use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
-	use {
-    "iamcco/markdown-preview.nvim",
-    run = "cd app && npm install",
-    ft = "markdown",
-  }
 
 	-- Treesitter
   use {
@@ -70,28 +70,36 @@ return packer.startup(function(use)
 	use "windwp/nvim-ts-autotag"
 
   -- Telescope
-  use "nvim-telescope/telescope.nvim"
-	use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  use { "nvim-telescope/telescope.nvim", cmd = "Telescope", }
+	use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+
+	-- Coc.nvim
+  use { 'neoclide/coc.nvim', branch = 'release', disable = false,
+  config = function()
+    require("coc")
+  end,
+  }
 
 	-- LSP
-	use "neovim/nvim-lspconfig" -- enable LSP
-	use "williamboman/nvim-lsp-installer" -- simple to use language server installer
-	use 'ray-x/lsp_signature.nvim'
-	use "b0o/SchemaStore.nvim"
+	use {
+    "neovim/nvim-lspconfig",
+    disable = true,
+    requires = { "neovim/nvim-lspconfig", "williamboman/nvim-lsp-installer", "ray-x/lsp_signature.nvim", "b0o/SchemaStore.nvim", "filipdutescu/renamer.nvim", "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip", "hrsh7th/cmp-nvim-lsp" },
+    config = function()
+      require("lsp")
+    end,
+  }
 	-- use {
     -- "folke/trouble.nvim",
     -- cmd = "TroubleToggle",
   -- }
-	use "filipdutescu/renamer.nvim"
 
 	-- Snippets
-	use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
-	use 'L3MON4D3/LuaSnip' -- Snippets plugin
+	-- use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+	use "dev-math/friendly-snippets" -- a bunch of snippets to use
 
 	-- Autocompletion
   use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
-  use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
-  use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
   use "hrsh7th/cmp-buffer" -- buffer completions
   use "hrsh7th/cmp-path" -- path completions
   use "hrsh7th/cmp-cmdline" -- cmdline completions
@@ -114,7 +122,7 @@ return packer.startup(function(use)
 
 	use "norcalli/nvim-colorizer.lua"
 	use "andymass/vim-matchup"
-	use "windwp/nvim-autopairs"
+	-- use "windwp/nvim-autopairs"
 	use "moll/vim-bbye"
 	use "goolord/alpha-nvim"
 	use "antoinemadec/FixCursorHold.nvim"

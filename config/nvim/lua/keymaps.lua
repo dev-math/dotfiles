@@ -15,10 +15,9 @@ local keymap = vim.api.nvim_set_keymap
 --   term_mode = "t",
 --   command_mode = "c",
 
--- Renamer
-keymap('n', '<F2>', '<cmd>lua require("renamer").rename()<cr>', opts)
-keymap('i', '<F2>', '<cmd>lua require("renamer").rename()<cr>', opts)
-keymap('v', '<F2>', '<cmd>lua require("renamer").rename()<cr>', opts)
+-- Close popup menu on Esc
+-- vim.cmd[[[ inoremap <expr><Esc> pumvisible() ? "\<C-e>" : "\<Esc>" ]]]
+keymap('i', '<Esc>', 'pumvisible() ? "\\<C-e>" : "\\<Esc>"', { noremap = true, silent = true, expr = true })
 
 -- Window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
@@ -37,9 +36,9 @@ keymap("v", "<C-k>", "<C-w>k", opts)
 keymap("v", "<C-l>", "<C-w>l", opts)
 
 --  Format document
-keymap("n", "<C-S-i>", ":lua vim.lsp.buf.formatting()<CR>", opts)
-keymap("v", "<C-S-i>", "<Esc>:lua vim.lsp.buf.formatting()<CR>", opts)
-keymap("i", "<C-S-i>", "<Esc>:lua vim.lsp.buf.formatting()<CR>", opts)
+keymap("n", "<C-S-i>", ":Format<CR>", opts)
+keymap("v", "<C-S-i>", "<Esc>:Format<CR>", opts)
+keymap("i", "<C-S-i>", "<Esc>:Format<CR>", opts)
 
 -- Add selection to next find match (Ctrl + d)
 vim.cmd [[
@@ -92,6 +91,8 @@ vim.cmd [[
 vnoremap / y/\V<C-R>=escape(@",'/\')<CR><CR>
 ]]
 
+-- Search (Ctrl-f)
+keymap("n", "<C-f>", "/", { silent = false } )
 -- Search in all files (Shift-f)
 keymap("n", "<S-f>", ":Telescope live_grep <CR>", opts)
 
@@ -139,6 +140,10 @@ M.lspconfig = function(bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>so', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
+  -- Renamer
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<F2>', '<cmd>lua require("renamer").rename()<cr>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'i', '<F2>', '<cmd>lua require("renamer").rename()<cr>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'v', '<F2>', '<cmd>lua require("renamer").rename()<cr>', opts)
 end
 
 return M
