@@ -7,7 +7,9 @@ M.on_attach = function(_, bufnr)
 
 	require("keymaps").lspconfig(bufnr)
 
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+  vim.cmd [[
+  command! Format execute 'lua vim.lsp.buf.formatting()'
+  ]]
 end
 
 -- nvim-cmp supports additional completion capabilities

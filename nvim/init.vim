@@ -41,6 +41,10 @@ au BufEnter * set fo-=c fo-=r fo-=o
 " set autoindent                          " Good auto indent
 "}}}
 
+" HTML indent {{{
+" autocmd FileType html command! Format execute 'normal gg=G'
+"}}}
+
 " Need: https://github.com/bash-lsp/bash-language-server
 " https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#html
 

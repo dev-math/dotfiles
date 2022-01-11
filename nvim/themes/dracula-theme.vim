@@ -9,14 +9,10 @@ endif
 " We don't need to see things like -- INSERT -- anymore
 set noshowmode
 
-highlight Normal guibg=#282A36
-
 if system('pgrep -x picom > /dev/null && echo 1 || echo 0') == 1
-	highlight Normal guibg=NONE
-  echo "oi ne"
+	"highlight Normal guibg=NONE
 else
-	highlight Normal guibg=#282A36
-  echo "oi 2"
+	"highlight Normal guibg=#282A36
 endif
 
 lua << EOF

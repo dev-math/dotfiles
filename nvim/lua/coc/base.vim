@@ -1,5 +1,8 @@
+let g:coc_start_at_startup=0
+autocmd FileType html CocStart
 " coc-tabnine
-let g:coc_global_extensions = ['coc-css', 'coc-clangd', 'coc-eslint', 'coc-html', 'coc-htmlhint', 'coc-html-css-support', 'coc-json', 'coc-markdown-preview-enhanced', 'coc-pyright', 'coc-sh', 'coc-snippets', 'coc-tsserver']
+" let g:coc_global_extensions = ['coc-css', 'coc-clangd', 'coc-eslint', 'coc-html', 'coc-htmlhint', 'coc-html-css-support', 'coc-json', 'coc-markdown-preview-enhanced', 'coc-pyright', 'coc-sh', 'coc-snippets', 'coc-tsserver']
+let g:coc_global_extensions = ['coc-html']
 
 " Use tab to trigger completion and navigate.
 inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()

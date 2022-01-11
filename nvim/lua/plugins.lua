@@ -74,7 +74,7 @@ return packer.startup(function(use)
 	use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
 	-- Coc.nvim
-  use { 'neoclide/coc.nvim', branch = 'release', disable = false,
+  use { 'neoclide/coc.nvim', branch = 'release', disable = true,
   config = function()
     require("coc")
   end,
@@ -83,7 +83,7 @@ return packer.startup(function(use)
 	-- LSP
 	use {
     "neovim/nvim-lspconfig",
-    disable = true,
+    disable = false,
     requires = { "neovim/nvim-lspconfig", "williamboman/nvim-lsp-installer", "ray-x/lsp_signature.nvim", "b0o/SchemaStore.nvim", "filipdutescu/renamer.nvim", "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip", "hrsh7th/cmp-nvim-lsp" },
     config = function()
       require("lsp")
