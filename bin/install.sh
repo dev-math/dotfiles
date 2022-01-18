@@ -65,7 +65,7 @@ yay -S --noconfirm --needed asdf-vm \
 	eog \
 	feh \
 	i3lock-color-git \
-	kdeconnect \
+	kdeconnect-git \
 	kitty \
 	maim \
 	man-db \
