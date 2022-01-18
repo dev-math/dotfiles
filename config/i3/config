@@ -80,7 +80,7 @@ exec_always --no-startup-id ~/.local/bin/reloadPolybar
 
 ###--- BINDS ---###
 # start program launcher
-bindsym Shift+space exec "rofi -show drun -theme ~/.cache/wal/launcher.rasi"
+bindsym $superkey+space exec "rofi -show drun -theme ~/.cache/wal/launcher.rasi"
 
 # start a terminal
 bindsym $superkey+Return exec $term
@@ -149,7 +149,7 @@ bindsym $superkey+q layout toggle split
 bindsym $superkey+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $superkey+space focus mode_toggle
+bindsym $superkey+t focus mode_toggle
 
 # focus the parent container
 bindsym $superkey+a focus parent
