@@ -95,8 +95,7 @@ return packer.startup(function(use)
   -- }
 
 	-- Snippets
-	-- use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
-	use "dev-math/friendly-snippets" -- a bunch of snippets to use
+	use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
 	-- Autocompletion
   use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
@@ -122,7 +121,7 @@ return packer.startup(function(use)
 
 	use "norcalli/nvim-colorizer.lua"
 	use "andymass/vim-matchup"
-	-- use "windwp/nvim-autopairs"
+	use "windwp/nvim-autopairs"
 	use "moll/vim-bbye"
 	use "goolord/alpha-nvim"
 	use "antoinemadec/FixCursorHold.nvim"

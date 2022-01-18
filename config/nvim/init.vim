@@ -1,12 +1,3 @@
-" Imports "{{{
-lua << EOF
-require "keymaps"
-require "plugins"
-EOF
-source $HOME/.config/nvim/themes/dracula-theme.vim
-" source $HOME/.config/nvim/themes/pywal-theme.vim
-"}}}
-
 " Base "{{{
 set hidden                              " Required to keep multiple buffers open multiple buffers
 set linebreak
@@ -39,6 +30,15 @@ au BufEnter * set fo-=c fo-=r fo-=o
 " set smarttab                            " Makes tabbing smarter will realize you have 2 vs 4
 " set cursorline                          " Enable highlighting of the current line
 " set autoindent                          " Good auto indent
+"}}}
+
+" Imports "{{{
+lua << EOF
+require "plugins"
+require "keymaps"
+EOF
+source $HOME/.config/nvim/themes/dracula-theme.vim
+" source $HOME/.config/nvim/themes/pywal-theme.vim
 "}}}
 
 " HTML indent {{{
