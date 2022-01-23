@@ -33,12 +33,14 @@ au BufEnter * set fo-=c fo-=r fo-=o
 "}}}
 
 " Imports "{{{
-lua << EOF
-require "plugins"
-require "keymaps"
-EOF
 source $HOME/.config/nvim/themes/dracula-theme.vim
 " source $HOME/.config/nvim/themes/pywal-theme.vim
+
+lua << EOF
+require "plugins"
+require "others"
+require "keymaps"
+EOF
 "}}}
 
 " HTML indent {{{
