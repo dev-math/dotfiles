@@ -14,6 +14,18 @@ function main() {
   # git clone https://github.com/dev-math/dotfiles.git $DOTFILES_DIR
 
   detect_platform
+
+  create_dirs
+  install_wallpapers
+}
+
+function create_dirs() {
+  mkdir -p ~/Projects ~/Downloads ~/Documents ~/Desktop
+  mkdir -p ~/Pictures/wallpapers ~/Pictures/screenshots
+}
+
+function install_wallpapers() {
+  cp -r $DOTFILES_DIR/misc/wallpapers/* ~/Pictures/wallpapers/
 }
 
 function detect_platform() {
@@ -34,8 +46,5 @@ function detect_platform() {
       ;;
   esac
 }
-
-# mkdir -p ~/Projects ~/Downloads ~/Documents ~/Desktop
-# mkdir -p ~/Pictures/wallpapers ~/Pictures/screenshots
 
 main

@@ -9,7 +9,7 @@ backup_dirs=(
 source $DOTFILES_DIR/utils/sharedfuncs.sh
 
 function main() {
-  msg "...Script can be cancelled at any time with CTRL+C"
+  msg "Tip: script can be cancelled at any time with CTRL+C"
 
   msg "Would you like to install the required fonts?"
   read -p "[y]es or [n]o (default: no) : " -r answer
@@ -40,10 +40,12 @@ function system_update() {
   sudo pacman -Syyuu --noconfirm 
 }
 
+# TODO: config udiskie
+
 function check_system_deps() {
   msg "Can I update your system and install some essential packages? 👉👈"
   read -p "[y]es or [n]o (default: no) : " -r answer
-  [ "$answer" != "${answer#[Yy]}" ] && system_update && sudo pacman -S --noconfirm --needed base-devel fontconfig
+  [ "$answer" != "${answer#[Yy]}" ] && system_update && sudo pacman -S --noconfirm --needed base-devel xclip udisks2 udiskie zip unzip unrar lzop cpio ntfs-3g dosfstools exfat-utils f2fs-tools fuse fuse-exfat mtpfs sshfs gvfs man-db man-pages texinfo networkmanager maimA
 
   if ! command -v git &>/dev/null; then
     msg "It seems that you don't have git installed. Would you like to install?"
@@ -62,6 +64,7 @@ function check_system_deps() {
     read -p "[y]es or [n]o (default: no) : " -r answer
     if [[ "$answer" != "${answer#[Yy]}" ]]; then
       install_yay
+      yay -S --noconfirm --needed 7-zip
     else
       print_missing_dep_msg "yay"
       exit 1
@@ -75,28 +78,29 @@ function install_yay() {
 }
 
 function install_fonts() {
+  sudo pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra fontconfig
   mkdir -p ~/.local/share/fonts
   cp -r $DOTFILES_DIR/misc/fonts/* ~/.local/share/fonts/
   fc-cache
 }
 
 function install_i3() {
-  #TODO: add lockscren to bin folder
   mkdir -p ~/.local/bin && cp -r $DOTFILES_DIR/bin/* ~/.local/bin/ # install scripts
 
-  sudo yay -S --needed --noconfirm i3-gaps polybar picom rofi playerctl python-pywal notify-send-py
+  sudo yay -S --needed --noconfirm i3-gaps i3lock-color-git feh polybar picom rofi playerctl python-pywal flameshot
   cp -r $DOTFILES_DIR/config/i3 ~/.config/
   cp -r $DOTFILES_DIR/config/polybar ~/.config/
   cp -r $DOTFILES_DIR/config/picom.conf ~/.config/picom.conf
+  cp -r $DOTFILES_DIR/.xinitrc ~/.xinitrc && cp -r $DOTFILES_DIR/.xprofile ~/.xprofile # install xinit and xprofile
 
   # pywal
   mkdir -p ~/.config/wal/templates/ && cp -r $DOTFILES_DIR/config/wal/templates/* ~/.config/wal/templates/
-  #TODO: add dracula wallpaper here below
   wal -i ~/Pictures/wallpapers/sereneforest.jpg
   # Symlink pywal files
   ln -sf ~/.cache/wal/.Xresources ~/.Xresources
+  sed -i "s/math/$(whoami)/g" ~/.config/wal/templates/flameshot.ini
+  mkdir -p ~/.config/flameshot && ln -sf ~/.cache/wal/flameshot ~/.config/flameshot/flameshot.ini
 
-  cp -r $DOTFILES_DIR/.xinitrc ~/.xinitrc && cp -r $DOTFILES_DIR/.xprofile ~/.xprofile # install xinit and xprofile
   
   pause_function
   msg "i3-gaps) Notifications:"
@@ -113,6 +117,11 @@ function install_i3() {
       ;;
     2)
       sudo pacman -S --needed --noconfirm xfce4-notifyd
+      echo "" >> ~/.xprofile
+      echo "# Start notifications" >> ~/.xprofile
+      echo "/usr/lib/xfce4/notifyd/xfce4-notifyd &" >> ~/.xprofile
+      sed -i "s/refreshDunst/refreshXfceNotify/g" ~/.config/polybar/modules.ini
+      sed -i "s/toggleDunst/toggleXfceNotify/g" ~/.config/polybar/modules.ini
       ;;
     "b")
       break
@@ -134,9 +143,10 @@ function install_lunarvim() {
 }
 
 function install_zsh() {
-  yay -S --noconfirm zsh-theme-powerlevel10k-git
+  yay -S --noconfirm zsh zsh-theme-powerlevel10k-git neofetch bat exa
   cp -r $DOTFILES_DIR/.p10k.zsh ~/.p10k.zsh
   cp -r $DOTFILES_DIR/.zshrc ~/.zshrc
+  chsh -s $(which zsh) # change default shell to zsh
 }
 
 function install_video() {
@@ -168,7 +178,169 @@ function install_video() {
 }
 
 function install_audio() {
-  sudo pacman -S --needed --noconfirm pulseaudio pulseaudio-alsa pavucontrol alsa-utils alsa-plugins
+  sudo pacman -S --needed --noconfirm pulseaudio pulseaudio-alsa alsa-utils alsa-plugins
+
+  msg "Install VLC? 👉👈"
+  read -p "[y]es or [n]o (default: no) : " -r answer
+  [ "$answer" != "${answer#[Yy]}" ] && system_update && sudo pacman -S --noconfirm --needed vlc
+
+  msg "Install Pavucontrol? 👉👈"
+  read -p "[y]es or [n]o (default: no) : " -r answer
+  [ "$answer" != "${answer#[Yy]}" ] && system_update && sudo pacman -S --noconfirm --needed pavucontrol
+}
+
+function install_internet() {
+  while true; do
+    msg "INTERNET APPS"
+    echo " 1) Brave"
+    echo " 2) Chromium"
+    echo " 3) Google Chrome"
+    echo " 4) Firefox"
+    echo " 5) Discord"
+    echo " 6) Telegram"
+    echo " 7) qbittorrent"
+    echo " 8) google-drive-ocamlfuse"
+    echo " 9) Tor browser"
+    echo "10) qutebrowser"
+    echo ""
+    echo " b) BACK"
+    echo ""
+    read_input_options
+    for OPT in "${OPTIONS[@]}"; do
+      case "$OPT" in
+        1)
+          yay -S --noconfirm --needed brave-bin
+          ;;
+        2)
+          sudo pacman -S --noconfirm --needed chromium
+          ;;
+        3)
+          yay -S --noconfirm --needed google-chrome
+          ;;
+        4)
+          sudo pacman -S --noconfirm --needed firefox
+          ;;
+        5)
+          sudo pacman -S --noconfirm --needed discord
+          ;;
+        6)
+          sudo pacman -S --noconfirm --needed telegram-desktop flatpak
+          flatpak install flathub io.github.kotatogram
+          ;;
+        7)
+          sudo pacman -S --noconfirm --needed qbittorrent
+          ;;
+        8)
+          yay -S --noconfirm --needed google-drive-ocamlfuse
+          ;;
+        9)
+          sudo pacman -S --noconfirm --needed torbrowser-launcher
+          ;;
+        10)
+          sudo pacman -S --noconfirm --needed qutebrowser
+          ;;
+        "b")
+          break
+          ;;
+        *)
+          invalid_option
+          ;;
+      esac
+    done
+  done
+}
+
+function install_gtk() {
+  cp -r .gtkrc-2.0 ~/.gtkrc-2.0
+  cp -r config/gtk-3.0 ~/.config/gtk-3.0
+}
+
+function install_other() {
+  while true; do
+    msg "Other tools and apps"
+    echo " 1) 🎮 0ad                         11) Qalculate"
+    echo " 2) 🎮 Wesnoth                     12) Icon theme"
+    echo " 3) Obs Studio                     13) Blacklist pcspkr module"
+    echo " 4) KDE Connect                    14) WhiteSur theme"
+    echo " 5) Thunar                         15) Obsidian"
+    echo " 6) Ranger"
+    echo " 7) Zathura"
+    echo " 8) Xournal++"
+    echo " 9) eog (Image Viewer)"
+    echo "10) Gucharmap"
+    read_input_options
+    for OPT in "${OPTIONS[@]}"; do
+      case "$OPT" in
+        1)
+          sudo pacman -S --needed --noconfirm 0ad
+          ;;
+        2)
+          sudo pacman -S --needed --noconfirm wesnoth
+          ;;
+        3)
+          sudo pacman -S --needed --noconfirm obs-studio
+          ;;
+        4)
+          sudo pacman -S --needed --noconfirm kdeconnect
+          ;;
+        5)
+          sudo pacman -S --needed --noconfirm thunar thunar-archive-plugin thunar-media-tags-plugin
+          ;;
+        6)
+          sudo pacman -S --needed --noconfirm ranger
+          ;;
+        7)
+          sudo pacman -S --needed --noconfirm zathura zathura-djvu zathura-pdf-mupdf zathura-ps zathura-cb
+          if command -v wal &> /dev/null
+            mkdir -p ~/.config/zathura
+            ln -sf ~/.cache/wal/zathurarc ~/.config/zathura/
+          then
+          fi
+          ;;
+        8)
+          sudo pacman -S --needed --noconfirm xournalpp
+          ;;
+        9)
+          sudo pacman -S --needed --noconfirm eog
+          ;;
+        10)
+          sudo pacman -S --needed --noconfirm gucharmap
+          ;;
+        11)
+          sudo pacman -S --needed --noconfirm qalculate-gtk
+          ;;
+        12)
+          yay -S --needed --noconfirm papirus-icon-theme-git
+          ;;
+        13)
+          echo "blacklist pcspkr" > nobeep.conf
+          sudo mv nobeep.conf /etc/modprobe.d/nobeep.conf
+          ;;
+        14)
+          install_gtk
+          git clone https://github.com/vinceliuice/WhiteSur-icon-theme.git
+          (cd WhiteSur-icon-theme && ./install.sh && rm -Rf $(pwd))
+          git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git
+          (cd WhiteSur-gtk-theme && ./install.sh && rm -Rf $(pwd))
+          echo 'gtk-theme-name="WhiteSur-dark"' >> ~/.gtkrc-2.0
+          echo 'gtk-icon-theme-name="WhiteSur-dark"' >> ~/.gtkrc-2.0
+          echo 'gtk-theme-name=WhiteSur-dark' >> ~/.config/gtk-3.0/settings.ini
+          echo 'gtk-icon-theme-name=WhiteSur-dark' >> ~/.config/gtk-3.0/settings.ini
+          echo "Done."
+          ;;
+        15)
+          sudo pacman -S --needed --noconfirm flatpak
+          flatpak install flathub md.obsidian.Obsidian
+          ;;
+        "b")
+          break
+          ;;
+        *)
+          invalid_option
+          ;;
+      esac
+    done
+  done
 }
 
 while true; do
@@ -179,11 +351,8 @@ while true; do
   echo " 4) ZSH + Powerlevel10k"
   echo " 5) Video card"
   echo " 6) Audio apps"
-  # Brave, Firefox, Discord, unzip, zip
-  echo " 7) Development apps"
-  echo " 8) Graphical tools"
-  echo " 9) System apps"
-  echo "10) Graphical apps"
+  echo " 7) Internet apps"
+  echo " 8) Other tools and apps"
   echo ""
   echo " q) Quit"
   echo ""
@@ -209,9 +378,14 @@ while true; do
         install_audio
         ;;
       7)
+        install_internet
         ;;
-      "q") exit 1
-      ;;
+      8)
+        install_other
+        ;;
+      "q")
+        exit 1
+        ;;
       *) echo "default"
       ;;
     esac
