@@ -82,6 +82,9 @@ exec_always --no-startup-id ~/.local/bin/reloadPolybar
 # start program launcher
 bindsym $superkey+space exec "rofi -show drun -theme ~/.cache/wal/launcher.rasi"
 
+# emoji picker
+bindsym $superkey+control+space exec ~/.local/bin/rofi-emoji
+
 # start a terminal
 bindsym $superkey+Return exec $term
 

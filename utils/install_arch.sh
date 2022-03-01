@@ -3,8 +3,18 @@ set -e
 
 DOTFILES_DIR=/home/$(whoami)/.dotfiles
 
-# backup: i3, polybar, dunst, kitty, lvim, picom, .p10k, zshrc, xprofile, xresources, xinitrc
 backup_dirs=(
+  "/home/$(whoami)/.config/i3"
+  "/home/$(whoami)/.config/polybar"
+  "/home/$(whoami)/.config/dunst"
+  "/home/$(whoami)/.config/kitty"
+  "/home/$(whoami)/.config/picom.conf"
+  "/home/$(whoami)/.config/gtk-3.0"
+  "/home/$(whoami)/.gtkrc-2.0"
+  "/home/$(whoami)/.p10k.zsh"
+  "/home/$(whoami)/.zshrc"
+  "/home/$(whoami)/.xinitrc"
+  "/home/$(whoami)/.xprofile"
 )
 source $DOTFILES_DIR/utils/sharedfuncs.sh
 
@@ -27,10 +37,10 @@ function backup_old_config() {
     if [ ! -e "$dir" ]; then
       continue
     fi
-    mkdir -p "$BACKUP_FOLDER"
+    # mkdir -p "$BACKUP_FOLDER"
     current_dir_bak="$BACKUP_FOLDER/$(basename "$dir")-backup"
     msg "Backing up old $dir to $current_dir_bak"
-    mv "$dir" "$current_dir_bak"
+    # mv "$dir" "$current_dir_bak"
   done
   msg "Backup operation complete"
 }
@@ -39,8 +49,6 @@ function system_update() {
   msg "Checking some things, updating others..."
   sudo pacman -Syyuu --noconfirm 
 }
-
-# TODO: config udiskie
 
 function check_system_deps() {
   msg "Can I update your system and install some essential packages? 👉👈"
@@ -140,6 +148,8 @@ function install_kitty() {
 function install_lunarvim() {
   bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
   cp -r $DOTFILES_DIR/config/lunarvim.lua ~/.config/lvim/config.lua
+  #todo: BP shortcut
+  #todo: credits lunarvim, helmuthdu/aui
 }
 
 function install_zsh() {
@@ -259,7 +269,7 @@ function install_other() {
   while true; do
     msg "Other tools and apps"
     echo " 1) 🎮 0ad                         11) Qalculate"
-    echo " 2) 🎮 Wesnoth                     12) Icon theme"
+    echo " 2) 🎮 Wesnoth                     12) Papirus Icon theme"
     echo " 3) Obs Studio                     13) Blacklist pcspkr module"
     echo " 4) KDE Connect                    14) WhiteSur theme"
     echo " 5) Thunar                         15) Obsidian"
@@ -292,9 +302,9 @@ function install_other() {
         7)
           sudo pacman -S --needed --noconfirm zathura zathura-djvu zathura-pdf-mupdf zathura-ps zathura-cb
           if command -v wal &> /dev/null
+          then
             mkdir -p ~/.config/zathura
             ln -sf ~/.cache/wal/zathurarc ~/.config/zathura/
-          then
           fi
           ;;
         8)
@@ -386,7 +396,7 @@ while true; do
       "q")
         exit 1
         ;;
-      *) echo "default"
+      *) echo "Try again" #TODO: fix that
       ;;
     esac
   done
