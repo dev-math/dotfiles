@@ -31,6 +31,7 @@ function main() {
 
 #TODO: Add rsync option to backup if exist
 # rsync --archive -hh --stats --partial --copy-links --cvs-exclude "$dir"/ "$current_dir_bak"
+# TODO: Backup folders
 function backup_old_config() {
   BACKUP_FOLDER="/home/$(whoami)/BACKUP-$(date +%Y.%m.%d-%H.%M.%S)"
   for dir in "${backup_dirs[@]}"; do
@@ -148,14 +149,15 @@ function install_kitty() {
 function install_lunarvim() {
   bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
   cp -r $DOTFILES_DIR/config/lunarvim.lua ~/.config/lvim/config.lua
-  #todo: BP shortcut
-  #todo: credits lunarvim, helmuthdu/aui
+  #TODO: credits lunarvim, helmuthdu/aui, gustavohellwig/gh-zsh, zdharma-continuum/zinit-configs/zinit-configs/brucebentley/
 }
 
 function install_zsh() {
-  yay -S --noconfirm zsh zsh-theme-powerlevel10k-git neofetch bat exa
-  cp -r $DOTFILES_DIR/.p10k.zsh ~/.p10k.zsh
+  yay -S --noconfirm --needed zsh neofetch bat exa
+  cp -r $DOTFILES_DIR/zsh ~/.zsh
+  mv ~/.zsh/.p10k.zsh ~/.p10k.zsh
   cp -r $DOTFILES_DIR/.zshrc ~/.zshrc
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.9.0 # install asdf
   chsh -s $(which zsh) # change default shell to zsh
 }
 
