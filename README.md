@@ -12,10 +12,9 @@ Table of contents:
 
 <img src="https://i.imgur.com/K9PBtBv.png" alt="img" align="right" width="400px">
 
-
 - **OS:** [Arch Linux](https://archlinux.org/)
 - **WM:** [i3-gaps](https://github.com/Airblader/i3)
-- **Shell:** [Zsh (Z shell)](http://zsh.sourceforge.net/) with [powerlevel10k](https://github.com/ohmyzsh/ohmyzsh) framework and [Spaceship](https://github.com/spaceship-prompt/spaceship-prompt/) theme
+- **Shell:** [Zsh (Z shell)](http://zsh.sourceforge.net/) with [powerlevel10k](https://github.com/romkatv/powerlevel10k) framework
 - **Terminal:** [kitty](https://github.com/kovidgoyal/kitty/)
 - **Editor**: [Neovim](https://github.com/neovim/neovim/)
 - **Terminal font:** SF Mono
