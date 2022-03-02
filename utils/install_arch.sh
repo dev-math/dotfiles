@@ -31,17 +31,16 @@ function main() {
 
 #TODO: Add rsync option to backup if exist
 # rsync --archive -hh --stats --partial --copy-links --cvs-exclude "$dir"/ "$current_dir_bak"
-# TODO: Backup folders
 function backup_old_config() {
   BACKUP_FOLDER="/home/$(whoami)/BACKUP-$(date +%Y.%m.%d-%H.%M.%S)"
   for dir in "${backup_dirs[@]}"; do
     if [ ! -e "$dir" ]; then
       continue
     fi
-    # mkdir -p "$BACKUP_FOLDER"
+    mkdir -p "$BACKUP_FOLDER"
     current_dir_bak="$BACKUP_FOLDER/$(basename "$dir")-backup"
     msg "Backing up old $dir to $current_dir_bak"
-    # mv "$dir" "$current_dir_bak"
+    mv "$dir" "$current_dir_bak"
   done
   msg "Backup operation complete"
 }
@@ -149,7 +148,6 @@ function install_kitty() {
 function install_lunarvim() {
   bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
   cp -r $DOTFILES_DIR/config/lunarvim.lua ~/.config/lvim/config.lua
-  #TODO: credits lunarvim, helmuthdu/aui, gustavohellwig/gh-zsh, zdharma-continuum/zinit-configs/zinit-configs/brucebentley/
 }
 
 function install_zsh() {
