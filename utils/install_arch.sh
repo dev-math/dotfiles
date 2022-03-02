@@ -98,10 +98,10 @@ function install_i3() {
   mkdir -p ~/.local/bin && cp -r $DOTFILES_DIR/bin/* ~/.local/bin/ # install scripts
 
   yay -S --needed --noconfirm i3-gaps i3lock-color-git feh polybar picom rofi playerctl python-pywal flameshot
-  cp -r $DOTFILES_DIR/config/i3 ~/.config/
-  cp -r $DOTFILES_DIR/config/polybar ~/.config/
+  mkdir -p ~/.config/i3 && cp -r $DOTFILES_DIR/config/i3/* ~/.config/i3/
+  mkdir -p ~/.config/polybar && cp -r $DOTFILES_DIR/config/polybar/* ~/.config/polybar/
   cp -r $DOTFILES_DIR/config/picom.conf ~/.config/picom.conf
-  cp -r $DOTFILES_DIR/.xinitrc ~/.xinitrc && cp -r $DOTFILES_DIR/.xprofile ~/.xprofile # install xinit and xprofile
+  cp -r $DOTFILES_DIR/xinitrc ~/.xinitrc && cp -r $DOTFILES_DIR/xprofile ~/.xprofile # install xinit and xprofile
 
   # pywal
   mkdir -p ~/.config/wal/templates/ && cp -r $DOTFILES_DIR/config/wal/templates/* ~/.config/wal/templates/
