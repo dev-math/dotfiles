@@ -57,7 +57,7 @@ function check_system_deps() {
     msg "It seems that you don't have git installed. Would you like to install?"
     read -p "[y]es or [n]o (default: no) : " -r answer
     if [[ "$answer" != "${answer#[Yy]}" ]]; then
-      sudo pacman -S --needed git
+      sudo pacman -S --needed --noconfirm git
     else
       print_missing_dep_msg "git"
       exit 1
@@ -88,7 +88,7 @@ function install_yay() {
 }
 
 function install_fonts() {
-  sudo pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra fontconfig
+  sudo pacman -S --needed --noconfirm noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra fontconfig
   mkdir -p ~/.local/share/fonts
   cp -r $DOTFILES_DIR/misc/fonts/* ~/.local/share/fonts/
   fc-cache
