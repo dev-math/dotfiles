@@ -13,8 +13,7 @@ picom &
 # Start KDEconnect
 /usr/lib/kdeconnectd &
 
-# Start discord
-discord
+# discord # Start discord
 
 # Mount helper
 udiskie &
