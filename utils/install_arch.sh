@@ -51,9 +51,7 @@ function system_update() {
 }
 
 function check_system_deps() {
-  msg "Can I update your system and install some essential packages? 👉👈"
-  read -p "[y]es or [n]o (default: no) : " -r answer
-  [ "$answer" != "${answer#[Yy]}" ] && system_update && sudo pacman -S --noconfirm --needed base-devel xclip udisks2 udiskie zip unzip unrar lzop cpio ntfs-3g dosfstools exfat-utils f2fs-tools fuse fuse-exfat mtpfs sshfs gvfs man-db man-pages texinfo networkmanager maimA
+  system_update
 
   if ! command -v git &>/dev/null; then
     msg "It seems that you don't have git installed. Would you like to install?"
@@ -78,6 +76,10 @@ function check_system_deps() {
       exit 1
     fi
   fi
+
+  msg "I will install some essential packages. Ok? 👉👈"
+  read -p "[y]es or [n]o (default: no) : " -r answer
+  [ "$answer" != "${answer#[Yy]}" ] && system_update && sudo pacman -S --noconfirm --needed base-devel xclip udisks2 udiskie zip unzip unrar lzop cpio ntfs-3g dosfstools exfat-utils f2fs-tools fuse fuse-exfat mtpfs sshfs gvfs man-db man-pages texinfo networkmanager maim
 }
 
 function install_yay() {
@@ -95,7 +97,7 @@ function install_fonts() {
 function install_i3() {
   mkdir -p ~/.local/bin && cp -r $DOTFILES_DIR/bin/* ~/.local/bin/ # install scripts
 
-  sudo yay -S --needed --noconfirm i3-gaps i3lock-color-git feh polybar picom rofi playerctl python-pywal flameshot
+  yay -S --needed --noconfirm i3-gaps i3lock-color-git feh polybar picom rofi playerctl python-pywal flameshot
   cp -r $DOTFILES_DIR/config/i3 ~/.config/
   cp -r $DOTFILES_DIR/config/polybar ~/.config/
   cp -r $DOTFILES_DIR/config/picom.conf ~/.config/picom.conf
@@ -352,6 +354,8 @@ function install_other() {
     done
   done
 }
+
+main
 
 while true; do
   msg "DOTFILES INSTALL - https://github.com/dev-math/dotfiles"
