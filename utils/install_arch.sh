@@ -122,7 +122,7 @@ function install_i3() {
   case "$OPTION" in
     1)
       sudo pacman -S --needed --noconfirm dunst
-      mkdir -p ~/.config/dunst && ln -sf ~/.cache/wal/dunstrc ~/.config/dunstrc
+      mkdir -p ~/.config/dunst && ln -sf ~/.cache/wal/dunstrc ~/.config/dunst/dunstrc
       ;;
     2)
       sudo pacman -S --needed --noconfirm xfce4-notifyd
