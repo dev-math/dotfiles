@@ -123,7 +123,7 @@ function install_i3() {
   case "$OPTION" in
     1)
       sudo pacman -S --needed --noconfirm dunst
-      mkdir -p ~/.config/dunst && cp -r $DOTFILES_DIR/config/dunst ~/config/
+      mkdir -p ~/.config/dunst && ln -sf ~/.cache/wal/dunstrc ~/.config/dunstrc
       ;;
     2)
       sudo pacman -S --needed --noconfirm xfce4-notifyd
@@ -144,7 +144,7 @@ function install_i3() {
 
 function install_kitty() {
   sudo pacman -S --needed --noconfirm kitty
-  cp -r $DOTFILES_DIR/config/kitty ~/.config/
+  mkdir -p ~/.config/kitty && cp -r $DOTFILES_DIR/config/kitty/ ~/.config/kitty/
 }
 
 function install_lunarvim() {
@@ -264,8 +264,8 @@ function install_internet() {
 }
 
 function install_gtk() {
-  cp -r .gtkrc-2.0 ~/.gtkrc-2.0
-  cp -r config/gtk-3.0 ~/.config/gtk-3.0
+  cp -r $DOTFILES_DIR/gtkrc-2.0 ~/.gtkrc-2.0
+  cp -r $DOTFILES_DIR/config/gtk-3.0 ~/.config/gtk-3.0
 }
 
 function install_other() {
