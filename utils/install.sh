@@ -11,8 +11,6 @@ function main() {
     exit 1
   fi
 
-  git clone https://github.com/dev-math/dotfiles.git $DOTFILES_DIR
-
   detect_platform
 
   create_dirs
