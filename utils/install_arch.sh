@@ -145,12 +145,15 @@ function install_i3() {
 
 function install_kitty() {
   sudo pacman -S --needed --noconfirm kitty
-  mkdir -p ~/.config/kitty && cp -r $DOTFILES_DIR/config/kitty/ ~/.config/kitty/
+  mkdir -p ~/.config/kitty && cp -r $DOTFILES_DIR/config/kitty/* ~/.config/kitty/
 }
 
 function install_lunarvim() {
   sudo pacman -S --noconfirm --needed yarn rust
-  bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+  if ! command -v lvim &> /dev/null
+  then
+    bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+  fi
   cp -r $DOTFILES_DIR/config/lunarvim.lua ~/.config/lvim/config.lua
 }
 
