@@ -133,7 +133,7 @@ function install_i3() {
       sed -i "s/toggleDunst/toggleXfceNotify/g" ~/.config/polybar/modules.ini
       ;;
     "b")
-      break
+      break 2
       ;;
     *)
       invalid_option
@@ -255,7 +255,7 @@ function install_internet() {
           sudo pacman -S --noconfirm --needed qutebrowser
           ;;
         "b")
-          break
+          break 2
           ;;
         *)
           invalid_option
@@ -348,7 +348,7 @@ function install_other() {
           flatpak install flathub md.obsidian.Obsidian
           ;;
         "b")
-          break
+          break 2
           ;;
         *)
           invalid_option
