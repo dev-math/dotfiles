@@ -33,12 +33,8 @@ prompt1="Enter your option: "
 prompt2="Enter n° of options (ex: 1 2 3 or 1-3): "
 
 read_input() {
-	if [[ $AUTOMATIC_MODE -eq 1 ]]; then
-		OPTION=$1
-	else
-		printf "%s" "$prompt1"
-		read -r OPTION
-	fi
+	printf "%s" "$prompt1"
+	read -r OPTION
 }
 
 read_input_options() {
