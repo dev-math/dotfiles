@@ -106,14 +106,12 @@ function install_i3() {
 
   # pywal
   mkdir -p ~/.config/wal/templates/ && cp -r $DOTFILES_DIR/config/wal/templates/* ~/.config/wal/templates/
-  wal -i $DOTFILES_DIR/misc/wallpapers/sereneforest.jpg
+  wal -i ~/Pictures/wallpapers/sereneforest.jpg -e -s -t -q -n
   # Symlink pywal files
   ln -sf ~/.cache/wal/Xresources ~/.Xresources
   sed -i "s/math/$(whoami)/g" ~/.config/wal/templates/flameshot.ini
   mkdir -p ~/.config/flameshot && ln -sf ~/.cache/wal/flameshot ~/.config/flameshot/flameshot.ini
 
-  
-  pause_function
   msg "i3-gaps) Notifications:"
   echo " 1) dunst"
   echo " 2) XFCE notifications"
@@ -162,7 +160,7 @@ function install_zsh() {
   mkdir -p ~/.zsh && cp -r $DOTFILES_DIR/zsh/* ~/.zsh/
   mv ~/.zsh/p10k.zsh ~/.p10k.zsh
   cp -r $DOTFILES_DIR/zshrc ~/.zshrc
-  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.9.0 # install asdf
+  [ ! -e ~/.asdf ] && git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.9.0 # install asdf
   chsh -s $(which zsh) # change default shell to zsh
 }
 
@@ -282,7 +280,7 @@ function install_other() {
     echo " 5) Thunar                         15) Obsidian"
     echo " 6) Ranger"
     echo " 7) Zathura"
-    echo " 8) Xournal++"
+    echo " 8) Xournal++                       b) BACK"
     echo " 9) eog (Image Viewer)"
     echo "10) Gucharmap"
     read_input_options
@@ -350,6 +348,9 @@ function install_other() {
           flatpak install flathub md.obsidian.Obsidian
           ;;
         "b")
+          break
+          ;;
+        16)
           break
           ;;
         *)

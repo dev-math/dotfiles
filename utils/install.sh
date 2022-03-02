@@ -11,10 +11,10 @@ function main() {
     exit 1
   fi
 
-  detect_platform
-
   create_dirs
   install_wallpapers
+
+  detect_platform
 }
 
 function create_dirs() {
