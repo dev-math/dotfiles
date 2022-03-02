@@ -350,9 +350,6 @@ function install_other() {
         "b")
           break
           ;;
-        16)
-          break
-          ;;
         *)
           invalid_option
           ;;
@@ -406,8 +403,9 @@ while true; do
       "q")
         exit 1
         ;;
-      *) echo "Try again" #TODO: fix that
-      ;;
+      *)
+        invalid_option
+        ;;
     esac
   done
 done
