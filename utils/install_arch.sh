@@ -10,6 +10,7 @@ backup_dirs=(
   "/home/$(whoami)/.config/kitty"
   "/home/$(whoami)/.config/picom.conf"
   "/home/$(whoami)/.config/gtk-3.0"
+  "/home/$(whoami)/.config/zathura"
   "/home/$(whoami)/.gtkrc-2.0"
   "/home/$(whoami)/.p10k.zsh"
   "/home/$(whoami)/.zshrc"
@@ -265,7 +266,7 @@ function install_internet() {
 
 function install_gtk() {
   cp -r $DOTFILES_DIR/gtkrc-2.0 ~/.gtkrc-2.0
-  cp -r $DOTFILES_DIR/config/gtk-3.0 ~/.config/gtk-3.0
+  mkdir -p ~/.config/gtk-3.0 && cp -r $DOTFILES_DIR/config/gtk-3.0/* ~/.config/gtk-3.0/
 }
 
 function install_other() {
@@ -307,7 +308,7 @@ function install_other() {
           if command -v wal &> /dev/null
           then
             mkdir -p ~/.config/zathura
-            ln -sf ~/.cache/wal/zathurarc ~/.config/zathura/
+            ln -sf ~/.cache/wal/zathurarc ~/.config/zathura/zathurarc
           fi
           ;;
         8)
