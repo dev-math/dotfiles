@@ -105,7 +105,7 @@ function install_i3() {
 
   # pywal
   mkdir -p ~/.config/wal/templates/ && cp -r $DOTFILES_DIR/config/wal/templates/* ~/.config/wal/templates/
-  wal -i ~/Pictures/wallpapers/sereneforest.jpg
+  wal -i $DOTFILES_DIR/misc/wallpapers/sereneforest.jpg
   # Symlink pywal files
   ln -sf ~/.cache/wal/.Xresources ~/.Xresources
   sed -i "s/math/$(whoami)/g" ~/.config/wal/templates/flameshot.ini
