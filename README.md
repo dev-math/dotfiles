@@ -38,7 +38,8 @@ Table of contents:
 This is the script I use in a clean ArchLinux install to set up my system.
 
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/dev-math/dotfiles/master/utils/install.sh)
+git clone https://github.com/dev-math/dotfiles ~/.dotfiles
+bash ~/.dotfiles/utils/install.sh
 ```
 
 ## Tips
