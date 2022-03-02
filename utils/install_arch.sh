@@ -156,7 +156,7 @@ function install_lunarvim() {
 function install_zsh() {
   yay -S --noconfirm --needed zsh neofetch bat exa
   mkdir -p ~/.zsh && cp -r $DOTFILES_DIR/zsh/* ~/.zsh/
-  mv ~/.zsh/.p10k.zsh ~/.p10k.zsh
+  mv ~/.zsh/p10k.zsh ~/.p10k.zsh
   cp -r $DOTFILES_DIR/.zshrc ~/.zshrc
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.9.0 # install asdf
   chsh -s $(which zsh) # change default shell to zsh
