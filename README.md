@@ -38,19 +38,11 @@ Table of contents:
 This is the script I use in a clean ArchLinux install to set up my system.
 
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/dev-math/dotfiles/master/bin/install.sh)
+bash <(curl -s https://raw.githubusercontent.com/dev-math/dotfiles/master/utils/install.sh)
 ```
 
 ## Tips
 
-- Disable PC Speaker
-
-  Create the file `/etc/modprobe.d/nobeep.conf` and add this line `blacklist pcspkr`
-
-- Start NetworkManager on boot
-
-  `sudo systemctl enable NetworkManager.service`
-  
 - [Configure asdf](https://asdf-vm.github.io/asdf/guide/getting-started.html) 
 
 - To generate a theme run ```wal -i path/to/image -o afterwal```
@@ -59,6 +51,10 @@ Preferably place the image in the ```~/Pictures/wallpapers``` folder
 ---
 
 ## Credits
+- [LunarVim](https://github.com/LunarVim/LunarVim/blob/rolling/utils/installer/install.sh)
+- [helmuthdu/aui](https://github.com/helmuthdu/aui)
+- [gustavohellwig/gh-zsh](https://github.com/gustavohellwig/gh-zsh/)
+- [Zinit config brucebentley](https://github.com/zdharma-continuum/zinit-configs/tree/master/brucebentley)
 - [NoSleep](https://github.com/morpheusthewhite/spicetify-themes/tree/master/NoSleep)
 - [Elementary](https://github.com/morpheusthewhite/spicetify-themes/tree/master/Elementary)
 - [Elenapan dotfiles](https://github.com/elenapan/dotfiles)
