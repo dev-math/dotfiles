@@ -148,6 +148,7 @@ function install_kitty() {
 }
 
 function install_lunarvim() {
+  sudo pacman -S --noconfirm --needed yarn rust
   bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
   cp -r $DOTFILES_DIR/config/lunarvim.lua ~/.config/lvim/config.lua
 }
