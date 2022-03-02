@@ -80,7 +80,7 @@ function check_system_deps() {
 
   msg "I will install some essential packages. Ok? 👉👈"
   read -p "[y]es or [n]o (default: no) : " -r answer
-  [ "$answer" != "${answer#[Yy]}" ] && system_update && sudo pacman -S --noconfirm --needed base-devel xclip udisks2 udiskie zip unzip unrar lzop cpio ntfs-3g dosfstools exfat-utils f2fs-tools fuse fuse-exfat mtpfs sshfs gvfs man-db man-pages texinfo networkmanager maim xorg-server xorg-xinit
+  [ "$answer" != "${answer#[Yy]}" ] && system_update && sudo pacman -S --noconfirm --needed base-devel xclip udisks2 udiskie zip unzip unrar lzop cpio ntfs-3g dosfstools exfat-utils f2fs-tools fuse fuse-exfat mtpfs sshfs gvfs man-db man-pages texinfo networkmanager maim xorg-server xorg-xinit archlinux-keyring
 }
 
 function install_yay() {
