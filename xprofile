@@ -10,11 +10,10 @@ xrdb -load ~/.Xresources
 # Start compositor
 picom &
 
-# Start notifications
-/usr/lib/xfce4/notifyd/xfce4-notifyd &
-
 # Start KDEconnect
 /usr/lib/kdeconnectd &
 
-# Start discord
-discord &
+# discord # Start discord
+
+# Mount helper
+udiskie &

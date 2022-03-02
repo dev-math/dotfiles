@@ -82,6 +82,9 @@ exec_always --no-startup-id ~/.local/bin/reloadPolybar
 # start program launcher
 bindsym $superkey+space exec "rofi -show drun -theme ~/.cache/wal/launcher.rasi"
 
+# emoji picker
+bindsym $superkey+control+space exec ~/.local/bin/rofi-emoji
+
 # start a terminal
 bindsym $superkey+Return exec $term
 
@@ -106,8 +109,7 @@ bindsym $superkey+plus gaps inner all plus 1; gaps outer all plus 1
 bindsym $superkey+minus gaps inner all minus 1; gaps outer all minus 1
 
 # Screenshots
-bindsym $superkey+Print exec ~/.local/bin/screenshot selection
-bindsym Print exec ~/.local/bin/screenshot full
+bindsym Print exec flameshot gui
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play-pause
