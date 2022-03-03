@@ -17,7 +17,7 @@ Table of contents:
 - **Shell:** [Zsh (Z shell)](http://zsh.sourceforge.net/) with [powerlevel10k](https://github.com/romkatv/powerlevel10k) framework
 - **Terminal:** [kitty](https://github.com/kovidgoyal/kitty/)
 - **Editor**: [Neovim](https://github.com/neovim/neovim/)
-- **Terminal font:** SF Mono
+- **Terminal font:** Hack Mono
 - **File Manager**: [Thunar](https://git.xfce.org/xfce/thunar/)
 - **Launcher**: [rofi](https://github.com/davatorium/rofi/)
 - **Browser**: [Brave](https://brave.com/)

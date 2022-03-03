@@ -42,7 +42,7 @@ element {{
 element-text {{
   background-color: #00000000;
   text-color: inherit;
-	font: "FiraCode Nerd Font 32";
+	font: "Hack Nerd Font 32";
   expand: true;
   horizontal-align: 0.5;
   vertical-align: 0.5;
