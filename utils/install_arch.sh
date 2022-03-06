@@ -53,6 +53,7 @@ function system_update() {
 
 function check_system_deps() {
   system_update
+  sudo pacman -Sy archlinux-keyring && sudo pacman -Su
 
   if ! command -v git &>/dev/null; then
     msg "It seems that you don't have git installed. Would you like to install?"
@@ -80,7 +81,7 @@ function check_system_deps() {
 
   msg "I will install some essential packages. Ok? 👉👈"
   read -p "[y]es or [n]o (default: no) : " -r answer
-  [ "$answer" != "${answer#[Yy]}" ] && system_update && sudo pacman -S --noconfirm --needed base-devel xclip udisks2 udiskie zip unzip unrar lzop cpio ntfs-3g dosfstools exfat-utils f2fs-tools fuse fuse-exfat mtpfs sshfs gvfs man-db man-pages texinfo networkmanager maim xorg-server xorg-xinit archlinux-keyring
+  [ "$answer" != "${answer#[Yy]}" ] && system_update && sudo pacman -S --noconfirm --needed base-devel xclip udisks2 udiskie zip unzip unrar lzop cpio ntfs-3g dosfstools exfat-utils f2fs-tools fuse fuse-exfat mtpfs sshfs gvfs man-db man-pages texinfo networkmanager maim xorg-server xorg-xinit
 }
 
 function install_yay() {
@@ -148,10 +149,7 @@ function install_kitty() {
 
 function install_lunarvim() {
   sudo pacman -S --noconfirm --needed yarn rust
-  if ! command -v lvim &> /dev/null
-  then
-    bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
-  fi
+  [ ! -f ~/.local/bin/lvim ] && bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
   cp -r $DOTFILES_DIR/config/lunarvim.lua ~/.config/lvim/config.lua
 }
 
@@ -333,14 +331,14 @@ function install_other() {
           ;;
         14)
           install_gtk
-          git clone https://github.com/vinceliuice/WhiteSur-icon-theme.git
-          (cd WhiteSur-icon-theme && ./install.sh && rm -Rf $(pwd))
-          git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git
-          (cd WhiteSur-gtk-theme && ./install.sh && rm -Rf $(pwd))
           echo 'gtk-theme-name="WhiteSur-dark"' >> ~/.gtkrc-2.0
           echo 'gtk-icon-theme-name="WhiteSur-dark"' >> ~/.gtkrc-2.0
           echo 'gtk-theme-name=WhiteSur-dark' >> ~/.config/gtk-3.0/settings.ini
           echo 'gtk-icon-theme-name=WhiteSur-dark' >> ~/.config/gtk-3.0/settings.ini
+          git clone https://github.com/vinceliuice/WhiteSur-icon-theme.git
+          (cd WhiteSur-icon-theme && ./install.sh && rm -Rf $(pwd))
+          git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git
+          (cd WhiteSur-gtk-theme && ./install.sh && rm -Rf $(pwd))
           echo "Done."
           ;;
         15)
