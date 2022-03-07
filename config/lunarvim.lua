@@ -3,14 +3,14 @@ vim.log.level = "warn"
 lvim.format_on_save = false
 lvim.colorscheme = "dracula"
 
-local handle = io.popen([[pgrep -x picom > /dev/null && echo -n "1" || echo -n "0"]])
-local picomResult = handle:read("*a")
-handle:close()
-if picomResult == "1" then
-  lvim.transparent_window = true
-else
-  lvim.transparent_window = false
-end
+-- local handle = io.popen([[pgrep -x picom > /dev/null && echo -n "1" || echo -n "0"]])
+-- local picomResult = handle:read("*a")
+-- handle:close()
+-- if picomResult == "1" then
+--   lvim.transparent_window = true
+-- else
+--   lvim.transparent_window = false
+-- end
 
 -- Vim options
 vim.opt.hidden = true -- required to keep multiple buffers and open multiple buffers
@@ -121,13 +121,18 @@ lvim.builtin.treesitter.ensure_installed = {
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 
-
 -- LSP
 lvim.lsp.on_attach_callback = function(_, bufnr)
   vim.cmd [[
     command! Format execute 'lua vim.lsp.buf.formatting()'
   ]]
 end
+
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  { exe = "prettierd", filetypes = { "css" } },
+  { exe = "isort", filetypes = { "python" } },
+}
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
