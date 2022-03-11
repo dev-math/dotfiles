@@ -2,20 +2,12 @@
 vim.log.level = "warn"
 lvim.format_on_save = false
 lvim.colorscheme = "dracula"
-
--- local handle = io.popen([[pgrep -x picom > /dev/null && echo -n "1" || echo -n "0"]])
--- local picomResult = handle:read("*a")
--- handle:close()
--- if picomResult == "1" then
---   lvim.transparent_window = true
--- else
---   lvim.transparent_window = false
--- end
+lvim.line_wrap_cursor_movement = false
 
 -- Vim options
+vim.opt.linebreak = true -- break lines
 vim.opt.hidden = true -- required to keep multiple buffers and open multiple buffers
 vim.opt.wrap = true -- display lines as one long line
-vim.wo.linebreak = true -- break lines
 vim.opt.backup = false -- creates a backup file
 vim.opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program) it is not allowed to be edited
 vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
@@ -38,8 +30,12 @@ vim.opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
 vim.opt.tabstop = 2 -- insert 2 spaces for a tab
 vim.opt.number = true -- set numbered lines
 vim.opt.signcolumn = "yes" -- always show the sign column otherwise it would shift the text each time
-vim.o.directory = '~/.config/nvim/swap//,/tmp//'
 vim.opt.cursorline = false -- highlight the current line
+vim.opt.smartcase = true -- case insentive unless capitals used in search
+vim.opt.wildmenu = true -- on TAB, complete options for system command
+vim.opt.directory = '~/.config/nvim/swap//,/tmp//'
+vim.opt.formatoptions:remove({ 'c', 'r', 'o' })
+vim.opt.whichwrap:remove({ 'h', 'l' })
 
 vim.opt.cmdheight = 2 -- more space in the neovim command line for displaying messages
 vim.opt.colorcolumn = "99999" -- fixes indentline for now
@@ -49,22 +45,17 @@ vim.opt.foldexpr = "" -- set to "nvim_treesitter#foldexpr()" for treesitter base
 vim.opt.guifont = "monospace:h17" -- the font used in graphical neovim applications
 vim.opt.hlsearch = true -- highlight all matches on previous search pattern
 vim.opt.showmode = false -- we don't need to see things like -- INSERT -- anymore
-vim.opt.smartcase = true -- smart case
 vim.opt.termguicolors = true -- set term gui colors (most terminals support this)
 vim.opt.title = true -- set the title of window to the value of the titlestring
-vim.opt.titlestring = "%<%F%=%l/%L - nvim" -- what the title of the window will be set to
+-- vim.opt.titlestring = "%<%F%=%l/%L - nvim" -- file currentline/totallines - nvim
+vim.opt.titlestring = "%<%F%= - nvim" -- file - nvim
 vim.opt.undodir = vim.fn.stdpath "cache" .. "/undo"
 vim.opt.relativenumber = false -- set relative numbered lines
-vim.opt.numberwidth = 4 -- set number column width to 2 {default 4}
+vim.opt.numberwidth = 4 -- set number column width
 vim.opt.spell = false
 vim.opt.spelllang = "en"
 vim.opt.scrolloff = 8 -- is one of my fav
 vim.opt.sidescrolloff = 8
-
--- Autocommands (https://neovim.io/doc/user/autocmd.html)
-lvim.autocommands.custom_groups = {
-  { "BufEnter", "*", "set fo-=c fo-=r fo-=o" }, -- Stop newline continution of comments
-}
 
 -- Plugins
 lvim.plugins = {
@@ -97,10 +88,15 @@ lvim.builtin.lualine.sections = {
 
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.dashboard.active = false
+lvim.builtin.which_key.active = false
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 0
+lvim.builtin.nvimtree.show_icons.git = 1
+lvim.builtin.treesitter.ignore_install = { "haskell" }
+lvim.builtin.treesitter.highlight.enabled = true
+local cmp = require 'cmp'
+lvim.builtin.cmp.mapping['<CR>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }) -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -118,9 +114,6 @@ lvim.builtin.treesitter.ensure_installed = {
   "yaml",
 }
 
-lvim.builtin.treesitter.ignore_install = { "haskell" }
-lvim.builtin.treesitter.highlight.enabled = true
-
 -- LSP
 lvim.lsp.on_attach_callback = function(_, bufnr)
   vim.cmd [[
@@ -133,6 +126,15 @@ formatters.setup {
   { exe = "prettierd", filetypes = { "css" } },
   { exe = "isort", filetypes = { "python" } },
 }
+
+require("lspconfig")["emmet_ls"].setup({
+  -- capabilities = capabilities,
+  filetypes = { "html", "css", "typescriptreact", "javascriptreact"},
+})
+
+require("lspconfig")["html"].setup({
+  filetypes = { "html" },
+})
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -172,10 +174,10 @@ lvim.keys.visual_mode["<C-S-d>"] = "<Esc>:'<,'>t.<CR>"
 -- Control buffers
 lvim.keys.normal_mode["<C-w>"] = ":Bd<cr>"
 lvim.keys.normal_mode["<S-w>"] = ":Bd!<cr>"
-lvim.keys.normal_mode["<Tab>"] = ":bnext<cr>"
-lvim.keys.normal_mode["<S-Tab>"] = ":bprevious<cr>"
-lvim.keys.normal_mode["<C-PageUp>"] = ":bnext<cr>"
-lvim.keys.normal_mode["<C-PageDown>"] = ":bprevious<cr>"
+lvim.keys.normal_mode["<Tab>"] = ":BufferLineCycleNext<cr>"
+lvim.keys.normal_mode["<S-Tab>"] = ":BufferLineCyclePrev<cr>"
+lvim.keys.normal_mode["<C-PageUp>"] = ":BufferLineCycleNext<cr>"
+lvim.keys.normal_mode["<C-PageDown>"] = ":BufferLineCyclePrev<cr>"
 lvim.keys.normal_mode["<S-PageUp>"] = ":BufferLineMovePrev<cr>"
 lvim.keys.normal_mode["<S-PageDown>"] = ":BufferLineMoveNext<cr>"
 lvim.keys.normal_mode["<leader>bp"] = ":BufferLinePick<cr>"
