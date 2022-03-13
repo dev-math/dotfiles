@@ -63,6 +63,7 @@ lvim.plugins = {
   {"mg979/vim-visual-multi"},
   {"Mofiqul/dracula.nvim"},
   {"nekonako/xresources-nvim"},
+  {"norcalli/nvim-colorizer.lua"},
 }
 
 -- lualine (statusline)
@@ -95,8 +96,8 @@ lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 1
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
-local cmp = require 'cmp'
-lvim.builtin.cmp.mapping['<CR>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }) -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+-- local cmp = require 'cmp'
+-- lvim.builtin.cmp.mapping['<CR>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }) -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -113,6 +114,8 @@ lvim.builtin.treesitter.ensure_installed = {
   "java",
   "yaml",
 }
+
+require "colorizer".setup()
 
 -- LSP
 lvim.lsp.on_attach_callback = function(_, bufnr)
