@@ -66,7 +66,7 @@ zinit light zsh-users/zsh-completions
 # Theme
 # - - - - - - - - - - - - - - - - - - - -
 zinit ice depth=1; zinit light romkatv/powerlevel10k # load powerlevel10k
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh # personal prompt config
+[[ ! -f ~/.zsh/.p10k.zsh ]] || source ~/.zsh/.p10k.zsh # personal prompt config
 
 # - - - - - - - - - - - - - - - - - - - -
 # End
