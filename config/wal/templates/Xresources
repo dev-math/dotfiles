@@ -68,7 +68,7 @@ XClock*secondColor: rgba:{color15.xrgba}
 URxvt*depth: 32
 
 ! Perl extensions
-URxvt.perl-ext-common:default,clipboard,keyboard-select,resize-font,matcher
+URxvt.perl-ext-common:default,resize-font,matcher
 
 ! Clickable URLs
 URxvt.url-launcher: /usr/bin/xdg-open
@@ -96,8 +96,6 @@ URxvt.letterSpace: -1
 ! Some configs
 URxvt*saveLines: 2000
 URxvt*scrollBar: false
-URxvt.copyCommand:          xclip -i -selection clipboard
-URxvt.pasteCommand:         xclip -o -selection clipboard
 URxvt*dynamicColors: on
 
 ! font resize
@@ -107,18 +105,16 @@ URxvt.keysym.Control-equal:     resize-font:reset
 URxvt.keysym.Control-question:  resize-font:show
 
 ! copy and paste
-URxvt.clipboard.autocopy: true
-URxvt.keysym.Shift-Control-C: command:\000
-URxvt.keysym.Shift-Control-c:   perl:clipboard:copy
-URxvt.keysym.Control-v:   perl:clipboard:paste
+URxvt.copyCommand:            xclip -i -selection clipboard
+URxvt.pasteCommand:           xclip -o -selection clipboard
+URxvt.clipboard.autocopy:     true
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+URxvt.keysym.Control-v:       eval:paste_clipboard
 
 ! URxvt.keysym.Control-Up: \033[1;5A
 ! URxvt.keysym.Control-Down: \033[1;5B
 URxvt.keysym.Control-Right: \033[1;5C
 URxvt.keysym.Control-Left: \033[1;5D
-
-URxvt.keysym.M-Escape: perl:keyboard-select:activate
-URxvt.keysym.M-s: perl:keyboard-select:search
 
 ! general font setup for applications ignoring fontconfig
 ! https://wiki.archlinux.org/index.php/Font_configuration#Fontconfig_configuration
