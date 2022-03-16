@@ -13,6 +13,7 @@ function main() {
 
   create_dirs
   install_wallpapers
+  install_scripts
 
   detect_platform
 }
@@ -24,6 +25,10 @@ function create_dirs() {
 
 function install_wallpapers() {
   cp -r $DOTFILES_DIR/misc/wallpapers/* ~/Pictures/wallpapers/
+}
+
+function install_scripts() {
+  mkdir -p ~/.local/bin && cp -r $DOTFILES_DIR/bin/* ~/.local/bin/
 }
 
 function detect_platform() {
