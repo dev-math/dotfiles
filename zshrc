@@ -1,4 +1,4 @@
-# source ~/.zsh/sshagent.zsh
+source ~/.zsh/sshagent.zsh
 
 # - - - - - - - - - - - - - - - - - - - -
 # Enable Instant Prompt
@@ -19,6 +19,12 @@ setopt autocd # change directory without 'cd'
 
 export PATH=$HOME/.local/bin:$PATH
 export EDITOR='lvim'
+
+# lang
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LC_TYPE=en_US.UTF-8
 
 source $HOME/.zsh/pywal.zsh
 source $HOME/.zsh/aliases.zsh
