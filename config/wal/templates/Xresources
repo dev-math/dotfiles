@@ -68,7 +68,11 @@ XClock*secondColor: rgba:{color15.xrgba}
 URxvt*depth: 32
 
 ! Perl extensions
-URxvt.perl-ext-common:default,clipboard,keyboard-select,resize-font
+URxvt.perl-ext-common:default,clipboard,keyboard-select,resize-font,matcher
+
+! Clickable URLs
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
 
 ! Disable Ctrl + Shift feature
 URxvt.iso14755: false
@@ -84,8 +88,10 @@ URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
 
 ! Font and Size
-URxvt.font: xft:Hack Nerd Font Mono:style=Regular:size=10.5
-URxvt.boldFont: xft:Hack Nerd Font Mono:style=Bold:size=10.5
+URxvt.font: xft:Hack Nerd Font Mono:style=Regular:size=14
+URxvt.boldFont: xft:Hack Nerd Font Mono:style=Bold:size=14
+URxvt.letterSpace: -1
+
 
 ! Some configs
 URxvt*saveLines: 2000
