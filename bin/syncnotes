@@ -1,0 +1,14 @@
+#!/bin/env bash
+
+cd ~/Notes
+
+git pull
+gstatus=`git status --porcelain`
+
+if [ ${#gstatus} -ne 0 ]
+then
+  # notify-send -i document-save -c transfer "Git" "changes in Notes"
+  git add --all
+  git commit -m "$gstatus"
+  git push origin main
+fi
