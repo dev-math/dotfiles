@@ -88,10 +88,9 @@ URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
 
 ! Font and Size
-URxvt.font: xft:Hack Nerd Font Mono:style=Regular:size=14
-URxvt.boldFont: xft:Hack Nerd Font Mono:style=Bold:size=14
-URxvt.letterSpace: -1
-
+URxvt*font: xft:Hack Nerd Font Mono:style=Regular:pixelsize=16
+URxvt*boldFont: xft:Hack Nerd Font Mono:style=Bold:pixelsize=16
+URxvt*letterSpace: -1
 
 ! Some configs
 URxvt*saveLines: 2000
