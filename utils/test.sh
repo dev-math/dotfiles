@@ -134,7 +134,9 @@ function config_base() {
   echo "blacklist pcspkr" > nobeep.conf
   sudo mv nobeep.conf /etc/modprobe.d/nobeep.conf
 
-  crontab $DOTFILES_DIR/config/cronjobs
+  cp -r $DOTFILES_DIR/config/cronjobs ~/.config/cronjobs
+  crontab -l >> ~/.config/cronjobs
+  crontab ~/.config/cronjobs
 }
 
 function config_pywal() {
