@@ -24,7 +24,7 @@ function create_dirs() {
 }
 
 function install_wallpapers() {
-  cp -r $DOTFILES_DIR/misc/wallpapers/* ~/Pictures/wallpapers/
+  cp -r $DOTFILES_DIR/misc/wallpaper.png ~/Pictures/wallpapers/wallpaper.png
 }
 
 function install_scripts() {

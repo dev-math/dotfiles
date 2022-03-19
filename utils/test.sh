@@ -143,7 +143,7 @@ function config_base() {
 
 function config_pywal() {
   mkdir -p ~/.config/wal/templates/ && cp -r $DOTFILES_DIR/config/wal/templates/* ~/.config/wal/templates/
-  wal -i ~/Pictures/wallpapers/sereneforest.jpg -e -s -t -q -n
+  wal -i ~/Pictures/wallpapers/wallpaper.png -e -s -t -q -n
   # Symlink pywal files
   sed -i "s/math/$(whoami)/g" ~/.config/wal/templates/flameshot.ini
   backup "~/.config/flameshot" && mkdir -p ~/.config/flameshot && ln -sf ~/.cache/wal/flameshot ~/.config/flameshot/flameshot.ini
