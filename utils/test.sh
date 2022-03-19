@@ -133,6 +133,8 @@ function config_base() {
   # Blacklist PC speaker module
   echo "blacklist pcspkr" > nobeep.conf
   sudo mv nobeep.conf /etc/modprobe.d/nobeep.conf
+
+  crontab $DOTFILES_DIR/config/cronjobs
 }
 
 function config_pywal() {
