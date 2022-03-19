@@ -19,7 +19,7 @@ function main() {
 }
 
 function create_dirs() {
-  mkdir -p ~/Projects ~/Downloads ~/Documents ~/Desktop
+  mkdir -p ~/Projects ~/Downloads ~/Documents ~/Desktop ~/Videos ~/Music ~/Notes
   mkdir -p ~/Pictures/wallpapers ~/Pictures/screenshots
 }
 

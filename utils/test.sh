@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
-DOTFILES_DIR=/home/$(whoami)/.dotfiles
 BACKUP=false
+
+DOTFILES_DIR=/home/$(whoami)/.dotfiles
 BACKUP_FOLDER="/home/$(whoami)/BACKUP-$(date +%Y.%m.%d-%H.%M.%S)"
 backup_dirs=(
   "/home/$(whoami)/.config/i3 $DOTFILES_DIR/config/i3 $DOTFILES_DIR/"
@@ -80,30 +81,23 @@ function install_fonts() {
   fc-cache
 }
 
-function install_video() {
-  # TODO: install auto
-  # sudo pacman -S --needed --noconfirm xf86-video-intel
-  # sudo pacman -S --needed --noconfirm xf86-video-amdgpu
-  # sudo pacman -S --needed --noconfirm nvidia nvidia-settings nvidia-utils
-}
-
-
 function install_base() {
   msg "Installing base packages"
-  yay -S --noconfirm --needed xclip udisks2 udiskie zip unzip unrar 7-zip lzop cpio ntfs-3g dosfstools exfat-utils f2fs-tools fuse fuse-exfat mtpfs sshfs gvfs man-db man-pages texinfo networkmanager maim xorg-server xorg-xinit
+  yay -S --noconfirm --needed xclip udisks2 udiskie zip unzip unrar 7-zip lzop cpio ntfs-3g dosfstools exfat-utils f2fs-tools fuse fuse-exfat mtpfs sshfs gvfs man-db man-pages texinfo networkmanager maim xorg-server xorg-xinit cronie
 
   msg "Installing apps that I use..."
   yay -S --noconfirm --needed i3-gaps i3lock-color-git feh polybar picom rofi playerctl python-pywal flameshot \
+    # xf86-video-intel \ # gpu | Optional: AMD= xf86-video-amdgpu NVIDIA= nvidia nvidia-settings nvidia-utils
     dunst \ # notifications | optional: xfce4-notifyd
     rxvt-unicode zsh bat exa neofetch \ # terminal config | optional: kitty
-    brave-bin discord qbittorrent torbrowser-launcher \ # Internet apps
+    brave-bin rclone discord qbittorrent torbrowser-launcher \ # Internet apps
     # thunar thunar-archive-plugin thunar-media-tags-plugin \ # Thunar file explorer
     ranger \ # Terminal file explorer
     eog \ # Image viewer
     mpv mpv-mpris \ # Video Player | optional: vlc
     alsa-utils alsa-plugins pulseaudio pulseaudio-alsa pavucontrol \ # Audio apps
     qalculate-gtk \ # Calculator
-    zathura zathura-djvu zathura-pdf-mupdf zathura-ps zathura-cb \ # PDF viewer
+   zathura zathura-djvu zathura-pdf-mupdf zathura-ps zathura-cb \ # PDF viewer
     papirus-icon-theme-git \ # Icon theme
     # 0ad wesnoth \ # Games
     # obs-studio gucharmap xournalpp chromium google-chrome firefox telegram-desktop qutebrowser \ # Optional
@@ -178,7 +172,6 @@ read -p "[y]es or [n]o (default: no) : " -r answer
 system_update
 check_system_deps
 install_fonts
-install_video
 install_base
 config_base
 config_pywal
