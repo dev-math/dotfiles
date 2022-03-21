@@ -6,8 +6,8 @@ BACKUP="false"
 
 packages=(
   "wget openssh curl usbutils xclip udisks2 udiskie zip unzip unrar 7-zip lzop cpio ntfs-3g dosfstools exfat-utils f2fs-tools fuse fuse-exfat mtpfs sshfs gvfs man-db man-pages texinfo networkmanager maim xorg-server xorg-xinit cronie" # Base
-  "cups system-config-printer"
-  "i3-gaps i3lock-color-git feh polybar picom rofi playerctl python-pywal flameshot"
+  "cups system-config-printer" # Printer
+  "i3-gaps i3lock-color-git feh polybar picom rofi playerctl python-pywal flameshot" # i3gaps setup
   "dunst" # notifications | optional: xfce4-notifyd
   "rxvt-unicode zsh bat exa neofetch" # terminal config | optional: kitty
   "brave-bin rclone discord qbittorrent torbrowser-launcher" # Internet apps
@@ -18,8 +18,8 @@ packages=(
   "qalculate-gtk" # Calculator
   "zathura zathura-djvu zathura-pdf-mupdf zathura-ps zathura-cb" # PDF viewer
   "papirus-icon-theme-git" # Icon theme
-  "kdeconnect""
-  # "xf86-video-intel" \ # gpu | Optional: AMD = xf86-video-amdgpu NVIDIA = nvidia nvidia-settings nvidia-utils
+  "kdeconnect"
+  # "xf86-video-intel" # gpu | Optional: AMD = xf86-video-amdgpu NVIDIA = nvidia nvidia-settings nvidia-utils
   # "thunar thunar-archive-plugin thunar-media-tags-plugin" # Thunar file explorer
   # "0ad wesnoth" # Games
   # "obs-studio gucharmap xournalpp chromium google-chrome firefox telegram-desktop qutebrowser" # Optional
@@ -32,7 +32,6 @@ BACKUP_FOLDER="/home/$(whoami)/BACKUP-$(date +%Y.%m.%d-%H.%M.%S)"
 backup_dirs=(
   "/home/$(whoami)/.config/i3 $DOTFILES_DIR/config/i3 $DOTFILES_DIR/"
   "/home/$(whoami)/.config/polybar $DOTFILES_DIR/config/polybar"
-  "/home/$(whoami)/.config/dunst $DOTFILES_DIR/config/dunst"
   # "/home/$(whoami)/.config/kitty $DOTFILES_DIR/config/kitty"
   "/home/$(whoami)/.config/lvim/config.lua $DOTFILES_DIR/config/lunarvim.lua"
   "/home/$(whoami)/.config/picom.conf $DOTFILES_DIR/config/picom.conf"
@@ -48,7 +47,8 @@ source $DOTFILES_DIR/utils/sharedfuncs.sh
 
 function backup() {
   if [[ $BACKUP = "false" ]]; then
-    rm -Rf $source
+    echo "oi"
+    rm -Rf "$1"
   else
     if [[ -e "$1" ]]; then
       mkdir -p "$BACKUP_FOLDER"
@@ -107,7 +107,7 @@ function install_fonts() {
 
 function install_base() {
   msg "Installing apps that I use..."
-  yay -S --needed --noconfirm "${packages[@]}"
+  yay -S --needed --noconfirm ${packages[@]}
 
   if [ ! -e ~/.local/bin/lvim ]; then
     msg "Installing Lunar Vim"
@@ -120,6 +120,9 @@ function install_base() {
 
   msg "Installing Obsidian"
   flatpak install flathub md.obsidian.Obsidian
+
+  msg "Installing asdf"
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.9.0
 }
 
 function config_base() {
@@ -136,6 +139,9 @@ function config_base() {
   mkdir -p ~/.urxvt/ext && cp -r $DOTFILES_DIR/urxvt/* ~/.urxvt/ext/ # Install URxvt perl extensions
   # config_xfce4notifyd
 
+  chsh -s $(which zsh) # change shell to zsh for the current user
+
+
   # Blacklist PC speaker module
   echo "blacklist pcspkr" > nobeep.conf
   sudo mv nobeep.conf /etc/modprobe.d/nobeep.conf
@@ -146,8 +152,9 @@ function config_base() {
 }
 
 function config_pywal() {
-  mkdir -p ~/.config/wal/templates/ && cp -r $DOTFILES_DIR/config/wal/templates/* ~/.config/wal/templates/
-  wal -i ~/Pictures/wallpapers/wallpaper.png -e -s -t -q -n
+  mkdir -p ~/.config/wal/templates/ 
+  cp -r $DOTFILES_DIR/config/wal/templates/* ~/.config/wal/templates/
+  wal -i ~/Pictures/wallpapers/wallpaper.png -e -s -t -q -n -o ~/.local/bin/afterwal
   # Symlink pywal files
   sed -i "s/math/$(whoami)/g" ~/.config/wal/templates/flameshot.ini
   backup "~/.config/flameshot" && mkdir -p ~/.config/flameshot && ln -sf ~/.cache/wal/flameshot ~/.config/flameshot/flameshot.ini
@@ -195,3 +202,7 @@ config_base
 config_pywal
 # config_hp_printer
 install_whitesur
+
+clear
+echo "Done."
+echo "Reboot the system."

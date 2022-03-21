@@ -8,8 +8,8 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 ###--- Variables ---###
-set $term kitty
-set $filemanager thunar
+set $term urxvt
+set $filemanager urxvt -e ranger
 set $innergap 8
 set $outergap 8
 

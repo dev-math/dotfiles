@@ -17,4 +17,4 @@ cp -rf ~/.cache/wal/obsidian.css ~/Notes/.obsidian/snippets/style.css
 # echo 'awesome.restart()' | awesome-client &> /dev/null
 
 # Reload spicetify colors (Reload spotify)
-spicetify update
+# spicetify update
