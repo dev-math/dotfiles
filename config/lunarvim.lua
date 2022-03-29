@@ -139,6 +139,11 @@ require("lspconfig")["html"].setup({
   filetypes = { "html" },
 })
 
+-- autocmds
+lvim.autocommands.custom_groups = {
+  { "TextChanged,TextChangedI", "~/Notes/*.md", "silent write"},
+}
+
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
 
