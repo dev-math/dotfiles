@@ -1,16 +1,20 @@
 #!/usr/bin/env bash
 set -e
 
+DOTFILES_DIR=/home/$(whoami)/.dotfiles
+source $DOTFILES_DIR/utils/sharedfuncs.sh
+BACKUP_FOLDER="/home/$(whoami)/BACKUP-$(date +%Y.%m.%d-%H.%M.%S)"
+
 # Change Here {{{
 BACKUP="false"
 
 packages=(
   "wget openssh curl usbutils xclip udisks2 udiskie zip unzip unrar 7-zip lzop cpio ntfs-3g dosfstools exfat-utils f2fs-tools fuse fuse-exfat mtpfs sshfs gvfs man-db man-pages texinfo networkmanager maim xorg-server xorg-xinit cronie" # Base
   "cups system-config-printer" # Printer
-  "i3-gaps i3lock-color-git feh polybar picom rofi playerctl python-pywal flameshot" # i3gaps setup
+  "i3-gaps feh polybar picom rofi playerctl python-pywal flameshot" # i3gaps setup
   "dunst" # notifications | optional: xfce4-notifyd
   "rxvt-unicode zsh bat exa neofetch" # terminal config | optional: kitty
-  "brave-bin rclone discord qbittorrent torbrowser-launcher" # Internet apps
+  "brave-bin rclone qbittorrent torbrowser-launcher" # Internet apps
   "ranger" # Terminal file explorer
   "eog" # Image viewer
   "mpv mpv-mpris" # Video Player | optional: vlc
@@ -24,11 +28,7 @@ packages=(
   # "0ad wesnoth" # Games
   # "obs-studio gucharmap xournalpp chromium google-chrome firefox telegram-desktop qutebrowser" # Optional
 )
-#}}}
 
-DOTFILES_DIR=/home/$(whoami)/.dotfiles
-
-BACKUP_FOLDER="/home/$(whoami)/BACKUP-$(date +%Y.%m.%d-%H.%M.%S)"
 backup_dirs=(
   "/home/$(whoami)/.config/i3 $DOTFILES_DIR/config/i3 $DOTFILES_DIR/"
   "/home/$(whoami)/.config/polybar $DOTFILES_DIR/config/polybar"
@@ -42,8 +42,7 @@ backup_dirs=(
   "/home/$(whoami)/.xinitrc $DOTFILES_DIR/xinitrc"
   "/home/$(whoami)/.xprofile $DOTFILES_DIR/xprofile"
 )
-
-source $DOTFILES_DIR/utils/sharedfuncs.sh
+#}}}
 
 function backup() {
   if [[ $BACKUP = "false" ]]; then
@@ -107,6 +106,12 @@ function install_fonts() {
 
 function install_base() {
   msg "Installing apps that I use..."
+  # install i3lock-color
+  cd /tmp
+  git clone https://github.com/Raymo111/i3lock-color.git && cd i3lock-color
+  ./install-i3lock-color.sh
+  cd $DOTFILES_DIR
+
   yay -S --needed --noconfirm ${packages[@]}
 
   if [ ! -e ~/.local/bin/lvim ]; then
@@ -114,6 +119,9 @@ function install_base() {
     yay -S --needed --noconfirm yarn rust
     bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
   fi
+
+  msg "Installing discord"
+  flatpak install flathub com.discordapp.Discord
 
   msg "Installing kotatogram"
   flatpak install flathub io.github.kotatogram
