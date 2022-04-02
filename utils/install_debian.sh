@@ -9,7 +9,7 @@ BACKUP_FOLDER="/home/$(whoami)/BACKUP-$(date +%Y.%m.%d-%H.%M.%S)"
 BACKUP="false"
 
 packages=(
-  "autoconf gcc make pkg-config libpam0g-dev libcairo2-dev libfontconfig1-dev libxcb-composite0-dev libev-dev libx11-xcb-dev libxcb-xkb-dev libxcb-xinerama0-dev libxcb-randr0-dev libxcb-image0-dev libxcb-util-dev libxcb-xrm-dev libxkbcommon-dev libxkbcommon-x11-dev libjpeg-dev wget openssh-client curl apt-transport-https usbutils xclip udisks2 zip unzip unrar 7zip lzop cpio ntfs-3g dosfstools exfat-utils f2fs-tools fuse exfat-fuse jmtpfs sshfs gvfs man-db texinfo cron python3-pip" # Dependencies
+  "autoconf gcc make pkg-config libpam0g-dev libcairo2-dev libfontconfig1-dev libxcb-composite0-dev libev-dev libx11-xcb-dev libxcb-xkb-dev libxcb-xinerama0-dev libxcb-randr0-dev libxcb-image0-dev libxcb-util-dev libxcb-xrm-dev libxkbcommon-dev libxkbcommon-x11-dev libjpeg-dev wget openssh-client curl apt-transport-https usbutils xclip udisks2 zip unzip unrar p7zip-rar p7zip-full lzop cpio ntfs-3g dosfstools exfat-utils f2fs-tools fuse exfat-fuse jmtpfs sshfs gvfs man-db texinfo cron python3-pip" # Dependencies
   "cups system-config-printer" # Printer
   "i3-gaps feh polybar picom rofi playerctl flameshot maim" # i3gaps setup
   "dunst" # notifications | optional: xfce4-notifyd
@@ -96,12 +96,14 @@ function install_fonts() {
 
 function install_base() {
   msg "Installing apps that I use..."
-  # install i3lock-color
-  cd /tmp
-  git clone https://github.com/Raymo111/i3lock-color.git && cd i3lock-color
-  ./install-i3lock-color.sh
-  cd $DOTFILES_DIR
-  sudo apt install -y ${packages[@]}
+  if ! command -v i3lock &>/dev/null; then
+    # install i3lock-color
+    cd /tmp
+    git clone https://github.com/Raymo111/i3lock-color.git && cd i3lock-color
+    ./install-i3lock-color.sh
+    cd $DOTFILES_DIR
+    sudo apt install -y ${packages[@]}
+  fi
 
   if [ ! -e ~/.local/bin/lvim ]; then
     msg "Installing Lunar Vim"
