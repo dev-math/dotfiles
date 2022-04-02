@@ -46,7 +46,6 @@ backup_dirs=(
 
 function backup() {
   if [[ $BACKUP = "false" ]]; then
-    echo "oi"
     rm -Rf "$1"
   else
     if [[ -e "$1" ]]; then
