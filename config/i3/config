@@ -79,6 +79,11 @@ title_align center
 exec_always --no-startup-id ~/.local/bin/reloadPolybar
 
 ###--- BINDS ---###
+# Make the currently focused window a scratchpad
+bindsym $altkey+Shift+minus move scratchpad
+# Show the first scratchpad window
+bindsym $altkey+minus scratchpad show
+
 # start program launcher
 bindsym $superkey+space exec "rofi -show drun -theme ~/.cache/wal/launcher.rasi"
 
