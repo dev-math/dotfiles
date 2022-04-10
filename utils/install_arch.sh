@@ -197,8 +197,8 @@ system_update
 check_system_deps
 install_fonts
 install_base
-config_base
 config_pywal
+config_base
 # config_hp_printer
 install_whitesur
 
