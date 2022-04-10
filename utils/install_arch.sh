@@ -156,15 +156,7 @@ function config_base() {
   sudo mv nobeep.conf /etc/modprobe.d/nobeep.conf
 
   # Set keyboard layout
-sudo cat <<EOF >> /etc/X11/xorg.conf.d/00-keyboard.conf
-Section "InputClass"
-        Identifier "system-keyboard"
-        MatchIsKeyboard "on"
-        Option "XkbLayout" "br"
-        Option "XkbModel" "abnt2"
-        Option "XkbVariant" "abnt2"
-EndSection
-EOF
+  sudo cp -r $DOTFILES_DIR/config/00-keyboard.conf /etc/X11/xorg.conf.d/00-keyboard.conf
 
   cp -r $DOTFILES_DIR/config/cronjobs ~/.config/cronjobs
   crontab -l >> ~/.config/cronjobs
