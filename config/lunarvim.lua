@@ -64,6 +64,7 @@ lvim.plugins = {
   {"Mofiqul/dracula.nvim"},
   {"nekonako/xresources-nvim"},
   {"norcalli/nvim-colorizer.lua"},
+  {"mfussenegger/nvim-jdtls"},
 }
 
 -- lualine (statusline)
