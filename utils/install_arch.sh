@@ -155,6 +155,17 @@ function config_base() {
   echo "blacklist pcspkr" > nobeep.conf
   sudo mv nobeep.conf /etc/modprobe.d/nobeep.conf
 
+  # Set keyboard layout
+sudo cat <<EOF >> /etc/X11/xorg.conf.d/00-keyboard.conf
+Section "InputClass"
+        Identifier "system-keyboard"
+        MatchIsKeyboard "on"
+        Option "XkbLayout" "br"
+        Option "XkbModel" "abnt2"
+        Option "XkbVariant" "abnt2"
+EndSection
+EOF
+
   cp -r $DOTFILES_DIR/config/cronjobs ~/.config/cronjobs
   crontab -l >> ~/.config/cronjobs
   crontab ~/.config/cronjobs
@@ -180,10 +191,10 @@ function install_whitesur() {
 }
 
 function config_xfce4notifyd() {
-  cat <<EOF >> ~/.xprofile
+cat <<EOF >> ~/.xprofile
 
-  # Start notifications
-  /usr/lib/xfce4/notifyd/xfce4-notifyd &
+# Start notifications
+/usr/lib/xfce4/notifyd/xfce4-notifyd &
 EOF
   sed -i "s/refreshDunst/refreshXfceNotify/g" ~/.config/polybar/modules.ini
   sed -i "s/toggleDunst/toggleXfceNotify/g" ~/.config/polybar/modules.ini
