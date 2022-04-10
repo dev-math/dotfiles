@@ -106,10 +106,12 @@ function install_fonts() {
 function install_base() {
   msg "Installing apps that I use..."
   # install i3lock-color
-  cd /tmp
-  git clone https://github.com/Raymo111/i3lock-color.git && cd i3lock-color
-  ./install-i3lock-color.sh
-  cd $DOTFILES_DIR
+  if ! command -v i3lock &>/dev/null; then
+    cd /tmp
+    git clone https://github.com/Raymo111/i3lock-color.git && cd i3lock-color
+    ./install-i3lock-color.sh
+    cd $DOTFILES_DIR
+  fi
 
   yay -S --needed --noconfirm ${packages[@]}
 
@@ -175,16 +177,6 @@ function install_whitesur() {
   (cd WhiteSur-icon-theme && ./install.sh && rm -Rf $(pwd))
   git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git
   (cd WhiteSur-gtk-theme && ./install.sh && rm -Rf $(pwd))
-
-  cat <<EOF > ~/.gtkrc-2.0
-gtk-theme-name="WhiteSur-dark"
-gtk-icon-theme-name="WhiteSur-dark"
-EOF
-
-  cat <<EOF > ~/.config/gtk-3.0/settings.ini
-gtk-theme-name=WhiteSur-dark
-gtk-icon-theme-name=WhiteSur-dark
-EOF
 }
 
 function config_xfce4notifyd() {
