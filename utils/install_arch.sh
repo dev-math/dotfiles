@@ -13,7 +13,7 @@ packages=(
   "cups system-config-printer" # Printer
   "i3-gaps feh polybar picom rofi playerctl python-pywal flameshot" # i3gaps setup
   "dunst" # notifications | optional: xfce4-notifyd
-  "rxvt-unicode zsh bat exa neofetch" # terminal config | optional: kitty
+  "alacritty zsh bat exa neofetch" # terminal config | optional: kitty rxvt-unicode
   "brave-bin rclone qbittorrent torbrowser-launcher" # Internet apps
   "ranger" # Terminal file explorer
   "eog" # Image viewer
@@ -33,6 +33,7 @@ backup_dirs=(
   "/home/$(whoami)/.config/i3 $DOTFILES_DIR/config/i3 $DOTFILES_DIR/"
   "/home/$(whoami)/.config/polybar $DOTFILES_DIR/config/polybar"
   # "/home/$(whoami)/.config/kitty $DOTFILES_DIR/config/kitty"
+  "/home/$(whoami)/.config/alacritty $DOTFILES_DIR/config/alacritty"
   "/home/$(whoami)/.config/lvim/config.lua $DOTFILES_DIR/config/lunarvim.lua"
   "/home/$(whoami)/.config/picom.conf $DOTFILES_DIR/config/picom.conf"
   "/home/$(whoami)/.config/gtk-3.0 $DOTFILES_DIR/config/gtk-3.0"
@@ -145,11 +146,10 @@ function config_base() {
     ln -sf $dest $source
   done
 
-  mkdir -p ~/.urxvt/ext && cp -r $DOTFILES_DIR/urxvt/* ~/.urxvt/ext/ # Install URxvt perl extensions
+  # mkdir -p ~/.urxvt/ext && cp -r $DOTFILES_DIR/urxvt/* ~/.urxvt/ext/ # Install URxvt perl extensions
   # config_xfce4notifyd
 
   chsh -s $(which zsh) # change shell to zsh for the current user
-
 
   # Blacklist PC speaker module
   echo "blacklist pcspkr" > nobeep.conf
@@ -180,7 +180,7 @@ function install_whitesur() {
 }
 
 function config_xfce4notifyd() {
-  cat <<EOF > ~/.xprofile
+  cat <<EOF >> ~/.xprofile
 
   # Start notifications
   /usr/lib/xfce4/notifyd/xfce4-notifyd &
