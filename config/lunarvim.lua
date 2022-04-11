@@ -153,11 +153,11 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.insert_mode["<C-s>"] = "<C-o>:w<cr>"
 lvim.keys.visual_mode["<C-s>"] = "<Esc>:w<cr>"
 
--- Add selection to next find match (Ctrl + d)
+-- Add selection to next find match (leaderkey + s)
 vim.cmd [[
   let g:VM_maps = {}
-  let g:VM_maps['Find Under']         = '<C-d>'
-  let g:VM_maps['Find Subword Under'] = '<C-d>'
+  let g:VM_maps['Find Under']         = '<leader>s'
+  let g:VM_maps['Find Subword Under'] = '<leader>s'
 ]]
 
 --  Format document
@@ -176,9 +176,9 @@ lvim.keys.insert_mode["<C-b>"] = "<Esc>:NvimTreeToggle<cr>"
 lvim.keys.visual_mode["<C-b>"] = "<Esc>:NvimTreeToggle<cr>"
 
 -- Copy line down (CTRL+SHIFT+D)
-lvim.keys.normal_mode["<C-S-d>"] = ":t.<cr>"
-lvim.keys.insert_mode["<C-S-d>"] = "<C-o>:t.<cr>"
-lvim.keys.visual_mode["<C-S-d>"] = "<Esc>:'<,'>t.<CR>"
+lvim.keys.normal_mode["<C-d>"] = ":t.<cr>"
+lvim.keys.insert_mode["<C-d>"] = "<C-o>:t.<cr>"
+lvim.keys.visual_mode["<C-d>"] = "<Esc>:'<,'>t.<CR>"
 
 -- Control buffers
 lvim.keys.normal_mode["<C-w>"] = ":Bd<cr>"
