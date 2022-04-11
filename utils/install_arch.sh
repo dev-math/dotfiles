@@ -15,7 +15,7 @@ packages=(
   "dunst" # notifications | optional: xfce4-notifyd
   "alacritty zsh bat exa neofetch" # terminal config | optional: kitty rxvt-unicode
   "brave-bin rclone qbittorrent torbrowser-launcher" # Internet apps
-  "ranger" # Terminal file explorer
+  # "ranger" # Terminal file explorer
   "eog" # Image viewer
   "mpv mpv-mpris" # Video Player | optional: vlc
   "alsa-utils alsa-plugins pulseaudio pulseaudio-alsa pavucontrol" # Audio apps
@@ -24,7 +24,7 @@ packages=(
   "papirus-icon-theme-git" # Icon theme
   "kdeconnect"
   # "xf86-video-intel" # gpu | Optional: AMD = xf86-video-amdgpu NVIDIA = nvidia nvidia-settings nvidia-utils
-  # "thunar thunar-archive-plugin thunar-media-tags-plugin" # Thunar file explorer
+  "thunar thunar-archive-plugin thunar-media-tags-plugin" # Thunar file explorer
   # "0ad wesnoth" # Games
   # "obs-studio gucharmap xournalpp chromium google-chrome firefox telegram-desktop qutebrowser" # Optional
 )
@@ -112,6 +112,7 @@ function install_base() {
     git clone https://github.com/Raymo111/i3lock-color.git && cd i3lock-color
     ./install-i3lock-color.sh
     cd $DOTFILES_DIR
+    rm -Rf /tmp/i3lock-color
   fi
 
   yay -S --needed --noconfirm ${packages[@]}
@@ -132,7 +133,10 @@ function install_base() {
   flatpak install flathub md.obsidian.Obsidian
 
   msg "Installing asdf"
-  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.9.0
+  if ! command -v asdf &> /dev/null
+  then
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.9.0
+  fi
 }
 
 function config_base() {
