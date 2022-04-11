@@ -19,6 +19,7 @@ setopt autocd # change directory without 'cd'
 
 export PATH=$HOME/.local/bin:$PATH
 export EDITOR='lvim'
+export PRETTIERD_DEFAULT_CONFIG=$HOME/.dotfiles/prettierrc
 
 # lang
 export LANG=en_US.UTF-8
