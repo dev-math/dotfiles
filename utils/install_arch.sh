@@ -9,13 +9,12 @@ BACKUP_FOLDER="/home/$(whoami)/BACKUP-$(date +%Y.%m.%d-%H.%M.%S)"
 BACKUP="false"
 
 packages=(
-  "wget openssh curl usbutils xclip udisks2 udiskie zip unzip unrar p7zip lzop cpio ntfs-3g dosfstools exfat-utils f2fs-tools fuse fuse-exfat mtpfs sshfs gvfs man-db man-pages texinfo networkmanager maim xorg-server xorg-xinit cronie" # Base
+  "wget openssh curl usbutils xclip udisks2 udiskie zip unzip unrar p7zip lzop cpio ntfs-3g dosfstools exfat-utils f2fs-tools fuse fuse-exfat mtpfs sshfs gvfs man-db man-pages texinfo networkmanager maim xorg-xrandr xorg-server xorg-xinit cronie" # Base
   "cups system-config-printer" # Printer
   "i3-gaps feh polybar picom rofi playerctl python-pywal flameshot" # i3gaps setup
   "dunst" # notifications | optional: xfce4-notifyd
   "alacritty zsh bat exa neofetch" # terminal config | optional: kitty rxvt-unicode
   "brave-bin rclone qbittorrent torbrowser-launcher" # Internet apps
-  # "ranger" # Terminal file explorer
   "eog" # Image viewer
   "mpv mpv-mpris" # Video Player | optional: vlc
   "alsa-utils alsa-plugins pulseaudio pulseaudio-alsa pavucontrol" # Audio apps
@@ -23,10 +22,14 @@ packages=(
   "zathura zathura-djvu zathura-pdf-mupdf zathura-ps zathura-cb" # PDF viewer
   "papirus-icon-theme-git" # Icon theme
   "kdeconnect"
-  "xf86-video-intel" # gpu | Optional: AMD = xf86-video-amdgpu NVIDIA = nvidia nvidia-settings nvidia-utils
   "thunar thunar-archive-plugin thunar-media-tags-plugin" # Thunar file explorer
-  # "0ad wesnoth" # Games
+  "mesa mesa-utils libva-mesa-driver"
+  # "xf86-video-intel libva-intel-driver" # Intel GPU
+  # "xf86-video-amdgpu" # AMD GPU
+  # "nvidia nvidia-utils nvidia-settings" # Nvidia GPU
   # "obs-studio gucharmap xournalpp chromium google-chrome firefox telegram-desktop qutebrowser" # Optional
+  # "0ad wesnoth" # Games
+  # "ranger" # Terminal file explorer
 )
 
 backup_dirs=(
@@ -206,7 +209,7 @@ install_fonts
 install_base
 config_pywal
 config_base
-config_hp_printer
+# config_hp_printer
 install_whitesur
 
 clear
