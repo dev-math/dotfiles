@@ -23,7 +23,7 @@ packages=(
   "zathura zathura-djvu zathura-pdf-mupdf zathura-ps zathura-cb" # PDF viewer
   "papirus-icon-theme-git" # Icon theme
   "kdeconnect"
-  # "xf86-video-intel" # gpu | Optional: AMD = xf86-video-amdgpu NVIDIA = nvidia nvidia-settings nvidia-utils
+  "xf86-video-intel" # gpu | Optional: AMD = xf86-video-amdgpu NVIDIA = nvidia nvidia-settings nvidia-utils
   "thunar thunar-archive-plugin thunar-media-tags-plugin" # Thunar file explorer
   # "0ad wesnoth" # Games
   # "obs-studio gucharmap xournalpp chromium google-chrome firefox telegram-desktop qutebrowser" # Optional
@@ -206,7 +206,7 @@ install_fonts
 install_base
 config_pywal
 config_base
-# config_hp_printer
+config_hp_printer
 install_whitesur
 
 clear
