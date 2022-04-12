@@ -211,9 +211,9 @@ vnoremap / y/\V<C-R>=escape(@",'/\')<CR><CR>
 ]]
 
 -- Cut line (CTRL+X)
-lvim.keys.normal_mode["<C-x>"] = "dd<cr>"
-lvim.keys.insert_mode["<C-x>"] = "<C-o>dd<cr>"
-lvim.keys.visual_mode["<C-x>"] = "<Esc>dd<cr>"
+-- lvim.keys.normal_mode["<C-x>"] = "dd<cr>"
+-- lvim.keys.insert_mode["<C-x>"] = "<C-o>dd<cr>"
+-- lvim.keys.visual_mode["<C-x>"] = "<Esc>dd<cr>"
 -- Remove line (dd)
 lvim.keys.normal_mode["d"] = '"_d'
 lvim.keys.visual_mode["d"] = '"_d'
