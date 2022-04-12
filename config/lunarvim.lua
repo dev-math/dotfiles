@@ -161,9 +161,9 @@ vim.cmd [[
 ]]
 
 --  Format document
-lvim.keys.normal_mode["<C-S-i>"] = ":Format<cr>"
-lvim.keys.insert_mode["<C-S-i>"] = "<C-o>:Format<cr>"
-lvim.keys.visual_mode["<C-S-i>"] = "<Esc>:Format<cr>"
+lvim.keys.normal_mode["<leader>i>"] = ":Format<cr>"
+lvim.keys.insert_mode["<leader>i>"] = "<C-o>:Format<cr>"
+lvim.keys.visual_mode["<leader>i>"] = "<Esc>:Format<cr>"
 
 --  Toggle comment
 vim.api.nvim_set_keymap('n', '<C-_>', 'gcc', { silent = true })
