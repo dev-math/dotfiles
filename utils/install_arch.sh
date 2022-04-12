@@ -9,7 +9,7 @@ BACKUP_FOLDER="/home/$(whoami)/BACKUP-$(date +%Y.%m.%d-%H.%M.%S)"
 BACKUP="false"
 
 packages=(
-  "wget openssh curl usbutils xclip udisks2 udiskie zip unzip unrar p7zip lzop cpio ntfs-3g dosfstools exfat-utils f2fs-tools fuse fuse-exfat mtpfs sshfs gvfs man-db man-pages texinfo networkmanager maim xorg-xrandr xorg-server xorg-xinit cronie" # Base
+  "wget openssh curl usbutils xclip udisks2 udiskie zip unzip unrar p7zip lzop cpio ntfs-3g dosfstools exfat-utils f2fs-tools fuse fuse-exfat mtpfs sshfs gvfs man-db man-pages texinfo networkmanager maim xorg-xrandr xorg-server xorg-xinit cronie parcellite" # Base
   "cups system-config-printer" # Printer
   "i3-gaps feh polybar picom rofi playerctl python-pywal flameshot" # i3gaps setup
   "dunst" # notifications | optional: xfce4-notifyd

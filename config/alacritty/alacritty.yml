@@ -19,3 +19,6 @@ font:
 
 window:
   opacity: 1.0
+
+selection:
+  save_to_clipboard: false

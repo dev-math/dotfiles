@@ -1,19 +1,10 @@
-# Keyboard layout
-# setxkbmap -model abnt2 -layout br -variant abnt2
+# setxkbmap -model abnt2 -layout br -variant abnt2 # keyboard layout
+wal -R # Load pywal colors and wallpaper
+xrdb -load ~/.Xresources # Load Xresources
 
-# Load pywal colors and wallpaper
-wal -R
-
-# Load Xresources
-xrdb -load ~/.Xresources
-
-# Start compositor
-picom &
-
-# Start KDEconnect
-/usr/lib/kdeconnectd &
+/usr/lib/kdeconnectd & # Start KDEconnect
+picom & # Start compositor
+parcellite -d & # clipboard manager
+udiskie & # mount helper
 
 # discord # Start discord
-
-# Mount helper
-udiskie &
