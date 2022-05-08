@@ -4,7 +4,7 @@ xrdb -load ~/.Xresources # Load Xresources
 
 /usr/lib/kdeconnectd & # Start KDEconnect
 picom & # Start compositor
-parcellite -d & # clipboard manager
+parcellite -n & # clipboard manager
 udiskie & # mount helper
 
 # discord # Start discord
