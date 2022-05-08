@@ -22,6 +22,7 @@ packages=(
   "zathura zathura-djvu zathura-pdf-mupdf zathura-ps zathura-cb" # PDF viewer
   "papirus-icon-theme-git" # Icon theme
   "kdeconnect"
+  "bluez bluez-utils pulseaudio-bluetooth" # bluetooth
   "thunar thunar-archive-plugin thunar-media-tags-plugin" # Thunar file explorer
   "mesa mesa-utils libva-mesa-driver"
   "xf86-video-intel libva-intel-driver" # Intel GPU
