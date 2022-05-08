@@ -70,7 +70,7 @@ hide_edge_borders none
 focus_follows_mouse no
 
 # Font for window titles
-font pango:SF Pro Display bold 12
+font pango:SF Pro Display bold 16
 
 for_window [class=".*"] title_format "%title  ⋯  %class"
 title_align center
