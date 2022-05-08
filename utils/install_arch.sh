@@ -14,7 +14,7 @@ packages=(
   "i3-gaps feh polybar picom rofi playerctl python-pywal flameshot" # i3gaps setup
   "dunst" # notifications | optional: xfce4-notifyd
   "alacritty zsh bat exa neofetch" # terminal config | optional: kitty rxvt-unicode
-  "brave-bin rclone qbittorrent torbrowser-launcher" # Internet apps
+  "firefox brave-bin rclone qbittorrent torbrowser-launcher" # Internet apps
   "eog" # Image viewer
   "mpv mpv-mpris" # Video Player | optional: vlc
   "alsa-utils alsa-plugins pulseaudio pulseaudio-alsa pavucontrol" # Audio apps
@@ -24,10 +24,10 @@ packages=(
   "kdeconnect"
   "thunar thunar-archive-plugin thunar-media-tags-plugin" # Thunar file explorer
   "mesa mesa-utils libva-mesa-driver"
-  # "xf86-video-intel libva-intel-driver" # Intel GPU
+  "xf86-video-intel libva-intel-driver" # Intel GPU
   # "xf86-video-amdgpu" # AMD GPU
   # "nvidia nvidia-utils nvidia-settings" # Nvidia GPU
-  # "obs-studio gucharmap xournalpp chromium google-chrome firefox telegram-desktop qutebrowser" # Optional
+  # "obs-studio gucharmap xournalpp chromium google-chrome telegram-desktop qutebrowser" # Optional
   # "0ad wesnoth" # Games
   # "ranger" # Terminal file explorer
 )
