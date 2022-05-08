@@ -130,10 +130,10 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # split in horizontal orientation
-bindsym $superkey+Shift+h split h
+bindsym $superkey+$altkey+h split h
 
 # split in vertical orientation
-bindsym $superkey+Shift+v split v
+bindsym $superkey+$altkey+v split v
 
 # change focus
 bindsym $superkey+h focus left
@@ -142,10 +142,10 @@ bindsym $superkey+k focus up
 bindsym $superkey+l focus right
 
 # move focused window
-bindsym $superkey+Left move left
-bindsym $superkey+Down move down
-bindsym $superkey+Up move up
-bindsym $superkey+Right move right
+bindsym $superkey+Shift+h move left
+bindsym $superkey+Shift+j move down
+bindsym $superkey+Shift+k move up
+bindsym $superkey+Shift+l move right
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $superkey+s layout stacking
