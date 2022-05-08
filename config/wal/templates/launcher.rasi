@@ -2,7 +2,7 @@
 /* theme edited by @dev-math  */
 
 configuration {{
-    font                   : "SF Pro Display 12";
+    font                   : "SF Pro Display 18";
     show-icons             : true;
     icon-theme             : "Papirus";
     display-drun           : "";
@@ -24,8 +24,8 @@ configuration {{
 }}
 #window {{
     location            : center;
-    y-offset            : -200;
-    width               : 640;
+    y-offset            : -300;
+    width               : 700;
     border-radius       : 8;
     background-color    : @bg-color;
 }}
