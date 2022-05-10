@@ -146,7 +146,7 @@ lvim.autocommands.custom_groups = {
   { "TextChanged,TextChangedI", "~/Notes/*.md", "silent write"},
 }
 
--- keymappings [view all the defaults by pressing <leader>Lk]
+-- keymappings
 lvim.leader = "space"
 
 -- Save file (Ctrl+S)
