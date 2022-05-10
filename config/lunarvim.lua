@@ -21,7 +21,7 @@ vim.opt.showtabline = 2 -- always show tabs
 vim.opt.splitbelow = true -- force all horizontal splits to go below current window
 vim.opt.splitright = true -- force all vertical splits to go to the right of current window
 vim.opt.swapfile = false -- creates a swapfile
-vim.opt.timeoutlen = 100 -- time to wait for a mapped sequence to complete (in milliseconds)
+vim.opt.timeoutlen = 500 -- time to wait for a mapped sequence to complete (in milliseconds)
 vim.opt.undofile = true -- enable persistent undo
 vim.opt.updatetime = 300 -- faster completion
 vim.opt.smartindent = true -- make indenting smarter again
@@ -29,6 +29,7 @@ vim.opt.expandtab = true -- convert tabs to spaces
 vim.opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
 vim.opt.tabstop = 2 -- insert 2 spaces for a tab
 vim.opt.number = true -- set numbered lines
+vim.opt.relativenumber = true -- set numbered lines
 vim.opt.signcolumn = "yes" -- always show the sign column otherwise it would shift the text each time
 vim.opt.cursorline = false -- highlight the current line
 vim.opt.smartcase = true -- case insentive unless capitals used in search
@@ -89,7 +90,7 @@ lvim.builtin.lualine.sections = {
 }
 
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
-lvim.builtin.dashboard.active = false
+lvim.builtin.alpha.active = false
 lvim.builtin.which_key.active = false
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
