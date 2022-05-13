@@ -163,8 +163,8 @@ function config_base() {
   echo "blacklist pcspkr" > nobeep.conf
   sudo mv nobeep.conf /etc/modprobe.d/nobeep.conf
 
-  # Set keyboard layout
-  sudo cp -r $DOTFILES_DIR/config/00-keyboard.conf /etc/X11/xorg.conf.d/00-keyboard.conf
+  sudo cp -r $DOTFILES_DIR/config/00-keyboard.conf /etc/X11/xorg.conf.d/00-keyboard.conf # Set keyboard layout
+  sudo cp -r $DOTFILES_DIR/config/30-touchpad.conf /etc/X11/xorg.conf.d/30-touchpad.conf # touchpad (laptop)
 
   cp -r $DOTFILES_DIR/config/cronjobs ~/.config/cronjobs
   crontab -l >> ~/.config/cronjobs
