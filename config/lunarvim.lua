@@ -60,12 +60,12 @@ vim.opt.sidescrolloff = 8
 
 -- Plugins
 lvim.plugins = {
-  {"moll/vim-bbye"},
-  {"mg979/vim-visual-multi"},
-  {"Mofiqul/dracula.nvim"},
-  {"nekonako/xresources-nvim"},
-  {"norcalli/nvim-colorizer.lua"},
-  {"mfussenegger/nvim-jdtls"},
+  { "moll/vim-bbye" },
+  { "mg979/vim-visual-multi" },
+  { "Mofiqul/dracula.nvim" },
+  { "nekonako/xresources-nvim" },
+  { "norcalli/nvim-colorizer.lua" },
+  { "mfussenegger/nvim-jdtls" },
 }
 
 -- lualine (statusline)
@@ -74,19 +74,19 @@ local components = require "lvim.core.lualine.components"
 lvim.builtin.lualine.options = {
   icons_enabled = true,
   theme = 'auto',
-  component_separators = { left = '', right = ''},
-  section_separators = { left = '', right = ''},
+  component_separators = { left = '', right = '' },
+  section_separators = { left = '', right = '' },
   disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline", "toggleterm" },
   always_divide_middle = true,
 }
 
 lvim.builtin.lualine.sections = {
-  lualine_a = {components.mode},
-  lualine_b = {'branch', components.diff},
-  lualine_c = {'filename', components.python_env},
-  lualine_x = {components.diagnostics, components.treesitter, components.lsp, components.encoding, 'fileformat', 'filetype'},
-  lualine_y = {'progress'},
-  lualine_z = {'location'},
+  lualine_a = { components.mode },
+  lualine_b = { 'branch', components.diff },
+  lualine_c = { 'filename', components.python_env },
+  lualine_x = { components.diagnostics, components.treesitter, components.lsp, components.encoding, 'fileformat', 'filetype' },
+  lualine_y = { 'progress' },
+  lualine_z = { 'location' },
 }
 
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
@@ -134,7 +134,7 @@ formatters.setup {
 
 require("lspconfig")["emmet_ls"].setup({
   -- capabilities = capabilities,
-  filetypes = { "html", "css", "typescriptreact", "javascriptreact"},
+  filetypes = { "html", "css", "typescriptreact", "javascriptreact" },
 })
 
 require("lspconfig")["html"].setup({
@@ -143,7 +143,7 @@ require("lspconfig")["html"].setup({
 
 -- autocmds
 lvim.autocommands.custom_groups = {
-  { "TextChanged,TextChangedI", "~/Notes/*.md", "silent write"},
+  { "TextChanged,TextChangedI", "~/Notes/*.md", "silent write" },
 }
 
 -- keymappings
@@ -163,8 +163,6 @@ vim.cmd [[
 
 --  Format document
 lvim.keys.normal_mode["<leader>i>"] = ":Format<cr>"
-lvim.keys.insert_mode["<leader>i>"] = "<C-o>:Format<cr>"
-lvim.keys.visual_mode["<leader>i>"] = "<Esc>:Format<cr>"
 
 --  Toggle comment
 vim.api.nvim_set_keymap('n', '<C-_>', 'gcc', { silent = true })
