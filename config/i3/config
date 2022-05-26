@@ -116,6 +116,10 @@ bindsym $superkey+plus gaps inner all minus 1; gaps outer all minus 1
 # Screenshots
 bindsym Print exec flameshot gui
 
+# Brightness control
+bindsym XF86MonBrightnessUp exec light -A 5
+bindsym XF86MonBrightnessDown exec light -U 5
+
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPause exec playerctl pause
