@@ -51,7 +51,6 @@ vim.opt.title = true -- set the title of window to the value of the titlestring
 -- vim.opt.titlestring = "%<%F%=%l/%L - nvim" -- file currentline/totallines - nvim
 vim.opt.titlestring = "%<%F%= - nvim" -- file - nvim
 vim.opt.undodir = vim.fn.stdpath "cache" .. "/undo"
-vim.opt.relativenumber = false -- set relative numbered lines
 vim.opt.numberwidth = 4 -- set number column width
 vim.opt.spell = false
 vim.opt.spelllang = "en"
