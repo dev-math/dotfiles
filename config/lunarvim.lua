@@ -1,7 +1,8 @@
 -- general
 vim.log.level = "warn"
+-- vim.o.background = 'light'
+lvim.colorscheme = "pywal"
 lvim.format_on_save = false
-lvim.colorscheme = "dracula"
 lvim.line_wrap_cursor_movement = false
 
 -- Vim options
@@ -63,6 +64,7 @@ lvim.plugins = {
   { "mg979/vim-visual-multi" },
   { "Mofiqul/dracula.nvim" },
   { "nekonako/xresources-nvim" },
+  { "AlphaTechnolog/pywal.nvim", as = "pywal" },
   { "norcalli/nvim-colorizer.lua" },
   { "mfussenegger/nvim-jdtls" },
 }
