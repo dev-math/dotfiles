@@ -1,5 +1,6 @@
 alias setWallpaper='rofi -show themes:~/.local/bin/getWallpapers -theme ~/.cache/wal/launcher.rasi'
 
+alias open='xdg-open'
 alias vim='lvim'
 alias cat='bat --style=auto'
 alias ls='exa --icons'
