@@ -1,7 +1,7 @@
 -- general
 vim.log.level = "warn"
 -- vim.o.background = 'light'
-lvim.colorscheme = "pywal"
+lvim.colorscheme = "dracula"
 lvim.format_on_save = false
 lvim.line_wrap_cursor_movement = false
 
@@ -62,7 +62,7 @@ vim.opt.sidescrolloff = 8
 lvim.plugins = {
   { "moll/vim-bbye" },
   { "mg979/vim-visual-multi" },
-  { "Mofiqul/dracula.nvim" },
+  { "dracula/vim", as = "dracula" },
   { "nekonako/xresources-nvim" },
   { "AlphaTechnolog/pywal.nvim", as = "pywal" },
   { "norcalli/nvim-colorizer.lua" },
@@ -96,7 +96,7 @@ lvim.builtin.alpha.active = false
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 1
+-- lvim.builtin.nvimtree.show_icons.git = 1
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 -- local cmp = require 'cmp'
@@ -143,9 +143,7 @@ require("lspconfig")["html"].setup({
 })
 
 -- autocmds
-lvim.autocommands.custom_groups = {
-  { "TextChanged,TextChangedI", "~/Notes/*.md", "silent write" },
-}
+vim.api.nvim_create_autocmd({"TextChanged,TextChangedI"}, { pattern = "~/Notes/*.md", command = "silent write"})
 
 -- keymappings
 lvim.leader = "space"
