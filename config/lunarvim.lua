@@ -60,6 +60,25 @@ vim.opt.sidescrolloff = 8
 
 -- Plugins
 lvim.plugins = {
+  { "lukas-reineke/indent-blankline.nvim" },
+  { "windwp/nvim-ts-autotag" },
+  { "hrsh7th/cmp-cmdline" },
+  { "hrsh7th/cmp-emoji" },
+  { "hrsh7th/cmp-nvim-lua" },
+  {
+    "tzachar/cmp-tabnine",
+    config = function()
+      local tabnine = require "cmp_tabnine.config"
+      tabnine:setup {
+        max_lines = 1000,
+        max_num_results = 20,
+        sort = true,
+      }
+    end,
+
+    run = "./install.sh",
+    requires = "hrsh7th/nvim-cmp",
+  },
   { "moll/vim-bbye" },
   { "mg979/vim-visual-multi" },
   { "dracula/vim", as = "dracula" },
@@ -85,40 +104,189 @@ lvim.builtin.lualine.sections = {
   lualine_a = { components.mode },
   lualine_b = { 'branch', components.diff },
   lualine_c = { 'filename', components.python_env },
-  lualine_x = { components.diagnostics, components.treesitter, components.lsp, components.encoding, 'fileformat', 'filetype' },
+  lualine_x = { components.diagnostics, components.treesitter, components.lsp, components.encoding, 'fileformat',
+    'filetype' },
   lualine_y = { 'progress' },
   lualine_z = { 'location' },
 }
 
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
-lvim.builtin.alpha.active = false
 -- lvim.builtin.which_key.active = false
+-- local cmp = require 'cmp'
+-- lvim.builtin.cmp.mapping['<CR>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }) -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+lvim.builtin.alpha.active = false
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
--- lvim.builtin.nvimtree.show_icons.git = 1
-lvim.builtin.treesitter.ignore_install = { "haskell" }
-lvim.builtin.treesitter.highlight.enabled = true
--- local cmp = require 'cmp'
--- lvim.builtin.cmp.mapping['<CR>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }) -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 
--- if you don't want all the parsers change this to a table of the ones you want
-lvim.builtin.treesitter.ensure_installed = {
-  "bash",
-  "c",
-  "javascript",
-  "json",
-  "lua",
-  "python",
-  "typescript",
-  "tsx",
-  "css",
-  "rust",
-  "java",
-  "yaml",
+local kind_icons = {
+	 Text = "",
+   Method = "",
+   Function = "",
+   Constructor = "",
+   Field = "ﰠ",
+   Variable = "",
+   Class = "ﴯ",
+   Interface = "",
+   Module = "",
+   Property = "ﰠ",
+   Unit = "塞",
+   Value = "",
+   Enum = "",
+   Keyword = "",
+   Snippet = "",
+   Color = "",
+   File = "",
+   Reference = "",
+   Folder = "",
+   EnumMember = "",
+   Constant = "",
+   Struct = "פּ",
+   Event = "",
+   Operator = "",
+   TypeParameter = "",
 }
 
-require "colorizer".setup()
+local snip_status_ok, luasnip = pcall(require, "luasnip")
+if not snip_status_ok then
+  return
+else
+	luasnip.config.set_config {
+		history = true,
+		updateevents = "TextChanged,TextChangedI",
+	}
+
+	require("luasnip/loaders/from_vscode").lazy_load()
+end
+
+local cmp = require "cmp"
+lvim.builtin.cmp = {
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body) -- For `luasnip` users.
+    end,
+  },
+  formatting = {
+    format = function(entry, vim_item)
+      vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
+
+      vim_item.menu = ({
+        nvim_lsp = "[LSP]",
+        nvim_lua = "[Lua]",
+        buffer = "[BUF]",
+      })[entry.source.name]
+
+      return vim_item
+    end,
+  },
+   mapping = {
+      ["<C-p>"] = cmp.mapping.select_prev_item(),
+      ["<C-n>"] = cmp.mapping.select_next_item(),
+      ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+      ["<C-f>"] = cmp.mapping.scroll_docs(4),
+      ["<C-Space>"] = cmp.mapping.complete(),
+      ["<C-e>"] = cmp.mapping.close(),
+      ["<CR>"] = cmp.mapping.confirm {
+         behavior = cmp.ConfirmBehavior.Replace,
+         select = true,
+      },
+      ["<Tab>"] = function(fallback)
+         if cmp.visible() then
+            cmp.select_next_item()
+         elseif require("luasnip").expand_or_jumpable() then
+            vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
+         else
+            fallback()
+         end
+      end,
+      ["<S-Tab>"] = function(fallback)
+         if cmp.visible() then
+            cmp.select_prev_item()
+         elseif require("luasnip").jumpable(-1) then
+            vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
+         else
+            fallback()
+         end
+      end,
+   },
+  sources = {
+    { name = "nvim_lsp" },
+    { name = "luasnip" },
+    { name = "buffer" },
+    { name = "cmp_tabnine" },
+    { name = "nvim_lua" },
+    { name = "path" },
+  },
+}
+
+lvim.builtin.treesitter = {
+  ignore_install = {
+    "haskell",
+  },
+  ensure_installed = {
+    "bash",
+    "c",
+    "comment",
+    "cpp",
+    "css",
+    "glimmer",
+    "go",
+    "html",
+    "java",
+    "javascript",
+    "jsdoc",
+    "json",
+    "jsonc",
+    "markdown",
+    "lua",
+    "php",
+    "python",
+    "query",
+    "rst",
+    "rust",
+    "scss",
+    "svelte",
+    "tsx",
+    "typescript",
+    "vim",
+  },
+  highlight = {
+    enable = true,
+    use_languagetree = true,
+  },
+  autotag = { enable = true },
+  matchup = { enable = true },
+}
+
+require "colorizer".setup({ "*" }, {
+  RGB = true, -- #RGB hex codes
+  RRGGBB = true, -- #RRGGBB hex codes
+  RRGGBBAA = true, -- #RRGGBBAA hex codes
+  rgb_fn = true, -- CSS rgb() and rgba() functions
+  hsl_fn = true, -- CSS hsl() and hsla() functions
+  css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+  css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+})
+
+require("indent_blankline").setup {
+  indentLine_enabled = 1,
+  char = "▏",
+  filetype_exclude = {
+    "help",
+    "alpha",
+    "terminal",
+    "dashboard",
+    "packer",
+    "lspinfo",
+    "TelescopePrompt",
+    "TelescopeResults",
+    "nvchad_cheatsheet",
+  },
+  buftype_exclude = { "terminal" },
+  show_trailing_blankline_indent = false,
+  show_first_indent_level = false,
+}
 
 -- LSP
 lvim.lsp.on_attach_callback = function(_, bufnr)
@@ -143,7 +311,7 @@ require("lspconfig")["html"].setup({
 })
 
 -- autocmds
-vim.api.nvim_create_autocmd({"TextChanged,TextChangedI"}, { pattern = "~/Notes/*.md", command = "silent write"})
+vim.api.nvim_create_autocmd({ "TextChanged,TextChangedI" }, { pattern = "~/Notes/*.md", command = "silent write" })
 
 -- keymappings
 lvim.leader = "space"
