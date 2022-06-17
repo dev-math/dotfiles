@@ -60,6 +60,7 @@ vim.opt.sidescrolloff = 8
 
 -- Plugins
 lvim.plugins = {
+  { "mustache/vim-mustache-handlebars" },
   { "lukas-reineke/indent-blankline.nvim" },
   { "windwp/nvim-ts-autotag" },
   { "hrsh7th/cmp-cmdline" },
@@ -117,6 +118,8 @@ lvim.builtin.lualine.sections = {
 lvim.builtin.alpha.active = false
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
+lvim.builtin.nvimtree.setup.git.ignore = false
+lvim.builtin.nvimtree.setup.filters.exclude = { "node_modules" }
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 
@@ -214,7 +217,7 @@ lvim.builtin.cmp = {
     { name = "nvim_lsp" },
     { name = "luasnip" },
     { name = "buffer" },
-    { name = "cmp_tabnine" },
+    -- { name = "cmp_tabnine" },
     { name = "nvim_lua" },
     { name = "path" },
   },
