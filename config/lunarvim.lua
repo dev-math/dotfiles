@@ -1,7 +1,7 @@
 -- general
 vim.log.level = "warn"
 -- vim.o.background = 'light'
-lvim.colorscheme = "dracula"
+lvim.colorscheme = "gruvbox-material"
 lvim.format_on_save = false
 lvim.line_wrap_cursor_movement = false
 
@@ -83,6 +83,8 @@ lvim.plugins = {
   { "moll/vim-bbye" },
   { "mg979/vim-visual-multi" },
   { "dracula/vim", as = "dracula" },
+  { "Th3Whit3Wolf/space-nvim" },
+  { "sainnhe/gruvbox-material" },
   { "nekonako/xresources-nvim" },
   { "AlphaTechnolog/pywal.nvim", as = "pywal" },
   { "norcalli/nvim-colorizer.lua" },
@@ -303,6 +305,8 @@ formatters.setup {
   { exe = "prettierd", filetypes = { "css" } },
   { exe = "isort", filetypes = { "python" } },
 }
+
+require'lspconfig'.jdtls.setup{}
 
 require("lspconfig")["emmet_ls"].setup({
   -- capabilities = capabilities,
