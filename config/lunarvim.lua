@@ -39,7 +39,7 @@ vim.opt.directory = '~/.config/nvim/swap//,/tmp//'
 vim.opt.formatoptions:remove({ 'c', 'r', 'o' })
 vim.opt.whichwrap:remove({ 'h', 'l' })
 
-vim.opt.cmdheight = 2 -- more space in the neovim command line for displaying messages
+vim.opt.cmdheight = 1 -- more space in the neovim command line for displaying messages
 vim.opt.colorcolumn = "99999" -- fixes indentline for now
 vim.opt.completeopt = { "menuone", "noselect" }
 vim.opt.foldmethod = "manual" -- folding set to "expr" for treesitter based folding
