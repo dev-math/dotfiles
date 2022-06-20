@@ -10,8 +10,8 @@
 ###--- Variables ---###
 set $term alacritty
 set $filemanager thunar
-set $innergap 8
-set $outergap 8
+set $innergap 0
+set $outergap 0
 
 # Mod1=<Alt>, Mod4=<Super>
 set $superkey Mod4
