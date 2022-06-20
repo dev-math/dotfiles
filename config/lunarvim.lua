@@ -123,6 +123,7 @@ lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.git.ignore = false
 lvim.builtin.nvimtree.setup.filters.exclude = { "node_modules" }
 lvim.builtin.nvimtree.setup.view.side = "left"
+lvim.builtin.gitsigns.active = false
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 
 local kind_icons = {
@@ -338,7 +339,7 @@ vim.cmd [[
 --  Format document
 lvim.keys.normal_mode["<leader>i>"] = ":Format<cr>"
 
---  Toggle comment
+ -- Toggle comment
 vim.api.nvim_set_keymap('n', '<C-_>', 'gcc', { silent = true })
 vim.api.nvim_set_keymap('i', '<C-_>', '<C-o>gcc', { silent = true })
 vim.api.nvim_set_keymap('v', '<C-_>', 'gcc', { silent = true })

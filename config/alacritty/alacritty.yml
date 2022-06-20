@@ -1,24 +1,60 @@
+env:
+  TERM: alacritty
+
+window:
+  padding:
+    x: 2
+    y: 2
+
+  decorations: full
+
+  # Window title
+  # title: Alacritty
+
+  # Window class (Linux/BSD only):
+  # class:
+    # Application instance name
+    # instance: Alacritty
+    # General application class
+    # general: Alacritty
+
+  gtk_theme_variant: none
+
+scrolling:
+  # Maximum number of lines in the scrollback buffer.
+  # Specifying '0' will disable scrolling.
+  history: 10000
+
+  # Scrolling distance multiplier.
+  multiplier: 3
+
 font:
   normal:
-    family: Hack Nerd Font Mono 
+    family: Caskaydia Cove Nerd Font Mono 
     style: Regular
 
   bold:
-    family: Hack Nerd Font Mono 
+    family: Caskaydia Cove Nerd Font Mono
     style: Bold
 
   italic:
-    family: Hack Nerd Font Mono 
+    family: Caskaydia Cove Nerd Font Mono
     style: Italic
 
   bold_italic:
-    family: Hack Nerd Font Mono 
+    family: Caskaydia Cove Nerd Font Mono
     style: Bold Italic
 
-  size: 13
+  # Point size
+  size: 12.0
 
-window:
-  opacity: 1.0
+  # Offset is the extra space around each character. `offset.y` can be thought of
+  # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
+  offset:
+   x: 0
+   y: 0
+
+window_opacity: 1.0
 
 selection:
   save_to_clipboard: false
