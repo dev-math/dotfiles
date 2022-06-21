@@ -1,4 +1,4 @@
-# source ~/.zsh/sshagent.zsh
+source ~/.zsh/sshagent.zsh
 
 # - - - - - - - - - - - - - - - - - - - -
 # Enable Instant Prompt
@@ -17,9 +17,15 @@ fi
 
 setopt autocd # change directory without 'cd'
 
+# Java exports
+export JDTLS_HOME=$HOME/.local/share/nvim/lsp/jdt-language-server/
+export WORKSPACE=$HOME/.local/share/nvim/lsp/jdt-language-server/workspace/
+export JAVA_HOME=/usr/lib/jvm/default
+export PATH=$JAVA_HOME/bin:$PATH
+
 export PATH=$HOME/.local/bin:$PATH
-export EDITOR='lvim'
 export PRETTIERD_DEFAULT_CONFIG=$HOME/.dotfiles/prettierrc
+export EDITOR='lvim'
 
 # lang
 export LANG=en_US.UTF-8
@@ -33,7 +39,6 @@ source $HOME/.zsh/completion.zsh
 source $HOME/.zsh/history.zsh
 source $HOME/.zsh/key-bindings.zsh
 source $HOME/.asdf/asdf.sh
-
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
