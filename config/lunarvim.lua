@@ -76,8 +76,8 @@ lvim.plugins = {
         sort = true,
       }
     end,
-
     run = "./install.sh",
+
     requires = "hrsh7th/nvim-cmp",
   },
   { "moll/vim-bbye" },
@@ -89,6 +89,7 @@ lvim.plugins = {
   { "AlphaTechnolog/pywal.nvim", as = "pywal" },
   { "norcalli/nvim-colorizer.lua" },
   { "mfussenegger/nvim-jdtls" },
+  { "christoomey/vim-tmux-navigator" },
 }
 
 -- lualine (statusline)
@@ -306,7 +307,7 @@ formatters.setup {
 }
 
 require("lspconfig")["jdtls"].setup({
-  filetypes = { "java " }
+  filetypes = { "java" }
 })
 
 require("lspconfig")["emmet_ls"].setup({
@@ -324,6 +325,22 @@ vim.api.nvim_create_autocmd({ "TextChanged,TextChangedI" }, { pattern = "~/Notes
 -- keymappings
 lvim.leader = "space"
 
+-- Window spliter
+lvim.keys.normal_mode["ss"] = "<C-w>s"
+lvim.keys.normal_mode["vv"] = "<C-w>v"
+
+-- ===== vim-tmux-navigator =====
+-- Don't allow any default key-mappings.
+vim.g.tmux_navigator_no_mappings = 1
+
+-- Re-enable tmux_navigator.vim default bindings, minus <c-\>. <c-\> conflicts with NERDTree "current file".
+
+
+vim.api.nvim_set_keymap('n', '<C-h>', ':TmuxNavigateLeft<cr>', { silent = true })
+vim.api.nvim_set_keymap('n', '<C-j>', ':TmuxNavigateDown<cr>', { silent = true })
+vim.api.nvim_set_keymap('n', '<C-k>', ':TmuxNavigateUp<cr>', { silent = true })
+vim.api.nvim_set_keymap('n', '<C-l>', ':TmuxNavigateRight<cr>', { silent = true })
+
 -- Save file (Ctrl+S)
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.insert_mode["<C-s>"] = "<C-o>:w<cr>"
@@ -339,7 +356,7 @@ vim.cmd [[
 --  Format document
 lvim.keys.normal_mode["<leader>i>"] = ":Format<cr>"
 
- -- Toggle comment
+-- Toggle comment
 vim.api.nvim_set_keymap('n', '<C-_>', 'gcc', { silent = true })
 vim.api.nvim_set_keymap('i', '<C-_>', '<C-o>gcc', { silent = true })
 vim.api.nvim_set_keymap('v', '<C-_>', 'gcc', { silent = true })
@@ -355,7 +372,8 @@ lvim.keys.insert_mode["<C-d>"] = "<C-o>:t.<cr>"
 lvim.keys.visual_mode["<C-d>"] = "<Esc>:'<,'>t.<CR>"
 
 -- Control buffers
-lvim.keys.normal_mode["<C-w>"] = ":Bd<cr>"
+lvim.keys.normal_mode["<leader>q"] = ":q<cr>"
+lvim.keys.normal_mode["<leader>w>"] = ":Bd<cr>"
 lvim.keys.normal_mode["<S-w>"] = ":Bd!<cr>"
 lvim.keys.normal_mode["<Tab>"] = ":BufferLineCycleNext<cr>"
 lvim.keys.normal_mode["<S-Tab>"] = ":BufferLineCyclePrev<cr>"
