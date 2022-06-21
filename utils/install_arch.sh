@@ -13,7 +13,7 @@ packages=(
   "cups system-config-printer" # Printer
   "i3-gaps feh polybar picom rofi playerctl python-pywal flameshot" # i3gaps setup
   "dunst" # notifications | optional: xfce4-notifyd
-  "alacritty zsh bat exa neofetch" # terminal config | optional: kitty rxvt-unicode
+  "alacritty zsh bat exa neofetch tmux" # terminal config | optional: kitty rxvt-unicode
   "firefox brave-bin rclone qbittorrent torbrowser-launcher" # Internet apps
   "eog" # Image viewer
   "mpv mpv-mpris" # Video Player | optional: vlc
