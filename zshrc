@@ -1,4 +1,4 @@
-source ~/.zsh/sshagent.zsh
+# source ~/.zsh/sshagent.zsh
 
 # - - - - - - - - - - - - - - - - - - - -
 # Enable Instant Prompt
