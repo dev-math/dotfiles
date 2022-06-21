@@ -334,8 +334,6 @@ lvim.keys.normal_mode["vv"] = "<C-w>v"
 vim.g.tmux_navigator_no_mappings = 1
 
 -- Re-enable tmux_navigator.vim default bindings, minus <c-\>. <c-\> conflicts with NERDTree "current file".
-
-
 vim.api.nvim_set_keymap('n', '<C-h>', ':TmuxNavigateLeft<cr>', { silent = true })
 vim.api.nvim_set_keymap('n', '<C-j>', ':TmuxNavigateDown<cr>', { silent = true })
 vim.api.nvim_set_keymap('n', '<C-k>', ':TmuxNavigateUp<cr>', { silent = true })
@@ -372,9 +370,32 @@ lvim.keys.insert_mode["<C-d>"] = "<C-o>:t.<cr>"
 lvim.keys.visual_mode["<C-d>"] = "<Esc>:'<,'>t.<CR>"
 
 -- Control buffers
-lvim.keys.normal_mode["<leader>q"] = ":q<cr>"
-lvim.keys.normal_mode["<leader>w>"] = ":Bd<cr>"
-lvim.keys.normal_mode["<S-w>"] = ":Bd!<cr>"
+
+-- intelligently close a window
+vim.cmd [[
+function! CloseWindowOrKillBuffer(IGNORE_SAVE)
+  let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
+
+  if matchstr(expand("%"), 'NERD') == 'NERD'
+    wincmd c
+    return
+  endif
+
+  if number_of_windows_to_this_buffer > 1
+    wincmd c
+  else
+    if a:IGNORE_SAVE == 'true'
+      Bd!
+    else
+      Bd 
+    endif
+  endif
+endfunction
+
+nnoremap <silent> <C-w> :call CloseWindowOrKillBuffer("false")<CR>
+nnoremap <silent> <S-w> :call CloseWindowOrKillBuffer("true")<CR>
+]]
+
 lvim.keys.normal_mode["<Tab>"] = ":BufferLineCycleNext<cr>"
 lvim.keys.normal_mode["<S-Tab>"] = ":BufferLineCyclePrev<cr>"
 lvim.keys.normal_mode["<C-PageUp>"] = ":BufferLineCycleNext<cr>"
