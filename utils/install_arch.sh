@@ -42,6 +42,7 @@ backup_dirs=(
   "/home/$(whoami)/.config/lvim/config.lua $DOTFILES_DIR/config/lunarvim.lua"
   "/home/$(whoami)/.config/picom.conf $DOTFILES_DIR/config/picom.conf"
   "/home/$(whoami)/.config/tmux $DOTFILES_DIR/config/tmux"
+  "/home/$(whoami)/.config/autorandr $DOTFILES_DIR/config/autorandr"
   "/home/$(whoami)/.config/gtk-3.0 $DOTFILES_DIR/config/gtk-3.0"
   "/home/$(whoami)/.gtkrc-2.0 $DOTFILES_DIR/gtkrc-2.0"
   "/home/$(whoami)/.zsh $DOTFILES_DIR/zsh"
