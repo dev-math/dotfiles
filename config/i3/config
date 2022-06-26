@@ -185,7 +185,7 @@ bindsym $superkey+9 workspace number $ws9
 bindsym $superkey+0 workspace number $ws10
 
 # move workspace to output
-bindsym $superkey+$altkey+m move workspace to output next
+bindsym $superkey+p move workspace to output next
 
 # move focused container to workspace
 bindsym $superkey+Shift+1 move container to workspace number $ws1
