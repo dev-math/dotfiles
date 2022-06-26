@@ -14,3 +14,7 @@ window decoration {
     padding: 0;
 }
 
+.window-frame {
+  box-shadow: none;
+  margin: 1;
+}
