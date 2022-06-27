@@ -241,11 +241,13 @@ for_window [class="GParted"] floating enable border normal
 for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Pavucontrol"] resize set 800 600
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="bubble"] floating enable
-for_window [window_role="task_dialog"] floating enable
-for_window [window_role="Preferences"] floating enable
-for_window [window_type="dialog"] floating enable
+for_window [floating] move absolute position center
+for_window [window_role="pop-up"] floating enable, move absolute position center
+for_window [window_role="bubble"] floating enable, move absolute position center
+for_window [window_role="task_dialog"] floating enable, move absolute position center
+for_window [window_role="Preferences"] floating enable, move absolute position center
+for_window [window_type="dialog"] floating enable, move absolute position center
+for_window [window_type="DIALOG"] floating enable, move absolute position center
 for_window [window_type="menu"] floating enable
 for_window [title="YouTube Music"] floating disable
 
