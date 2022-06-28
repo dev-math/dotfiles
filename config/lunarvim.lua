@@ -60,6 +60,8 @@ vim.opt.sidescrolloff = 8
 
 -- Plugins
 lvim.plugins = {
+  { "iamcco/markdown-preview.nvim", run = "cd app && npm install",
+    setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, },
   { "mustache/vim-mustache-handlebars" },
   { "lukas-reineke/indent-blankline.nvim" },
   { "windwp/nvim-ts-autotag" },
