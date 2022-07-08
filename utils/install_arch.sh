@@ -14,7 +14,7 @@ packages=(
   "i3-gaps feh polybar picom rofi playerctl python-pywal flameshot" # i3gaps setup
   "dunst" # notifications | optional: xfce4-notifyd
   "alacritty zsh bat exa neofetch tmux" # terminal config | optional: kitty rxvt-unicode
-  "firefox brave-bin rclone qbittorrent torbrowser-launcher" # Internet apps
+  "brave-bin rclone qbittorrent torbrowser-launcher" # Internet apps
   "eog" # Image viewer
   "mpv mpv-mpris" # Video Player | optional: vlc
   "alsa-utils alsa-plugins pulseaudio pulseaudio-alsa pavucontrol" # Audio apps
@@ -132,6 +132,9 @@ function install_base() {
 
   msg "Installing discord"
   flatpak install flathub com.discordapp.Discord
+
+  msg "Installing firefox"
+  flatpak install flathub org.mozilla.firefox
 
   msg "Installing kotatogram"
   flatpak install flathub io.github.kotatogram
