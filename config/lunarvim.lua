@@ -4,6 +4,7 @@ vim.log.level = "warn"
 lvim.colorscheme = "gruvbox-material"
 lvim.format_on_save = false
 lvim.line_wrap_cursor_movement = false
+lvim.lsp.automatic_servers_installation = true
 
 -- Vim options
 vim.opt.linebreak = true -- break lines
@@ -60,6 +61,7 @@ vim.opt.sidescrolloff = 8
 
 -- Plugins
 lvim.plugins = {
+  { "lervag/vimtex" },
   { "iamcco/markdown-preview.nvim", run = "cd app && npm install",
     setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, },
   { "mustache/vim-mustache-handlebars" },
@@ -330,6 +332,9 @@ lvim.leader = "space"
 -- Window spliter
 lvim.keys.normal_mode["ss"] = "<C-w>s"
 lvim.keys.normal_mode["vv"] = "<C-w>v"
+
+-- ===== vimtex =====
+vim.g.vimtex_view_method = "zathura"
 
 -- ===== vim-tmux-navigator =====
 -- Don't allow any default key-mappings.
