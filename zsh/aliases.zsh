@@ -2,7 +2,7 @@ alias setWallpaper='rofi -show themes:~/.local/bin/getWallpapers -theme ~/.cache
 
 open() { xdg-open "$@" &!; }
 
-alias vim='lvim'
+alias vim='nvim'
 alias cat='bat --style=auto'
 alias ls='exa --icons'
 
