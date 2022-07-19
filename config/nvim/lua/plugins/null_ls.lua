@@ -1,4 +1,7 @@
-local null_ls = require('null-ls')
+local ok, null_ls = pcall(require, "null-ls")
+if not ok then
+  return
+end
 
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
 local formatting = null_ls.builtins.formatting

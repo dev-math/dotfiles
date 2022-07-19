@@ -1,4 +1,9 @@
-require('todo-comments').setup {
+local ok, todo_comments = pcall(require, "todo-comments")
+if not ok then
+  return
+end
+
+todo_comments.setup {
   keywords = {
     FIX = {
       icon = " ", -- icon used for the sign, and in search results

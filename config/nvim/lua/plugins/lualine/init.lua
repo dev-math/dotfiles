@@ -1,6 +1,11 @@
+local ok, lualine = pcall(require, "lualine")
+if not ok then
+  return
+end
+
 local components = require('plugins.lualine.components')
 
-require('lualine').setup {
+lualine.setup {
   options = {
     icons_enabled = true,
     theme = 'auto',

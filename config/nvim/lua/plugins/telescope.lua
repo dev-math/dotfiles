@@ -1,3 +1,8 @@
+local ok, telescope = pcall(require, "telescope")
+if not ok then
+  return
+end
+
 local actions = require('telescope.actions')
 local u = require('core.utils')
 
@@ -45,7 +50,7 @@ local opts_flex = {
   },
 }
 
-require('telescope').setup({
+telescope.setup({
   defaults = {
     prompt_prefix = '🔍 ',
     selection_caret = " ",

@@ -1,3 +1,8 @@
+local ok, cmp = pcall(require, "cmp")
+if not ok then
+  return
+end
+
 local kind_icons = {
   Text = "",
   Method = "",
@@ -25,8 +30,6 @@ local kind_icons = {
   Operator = "",
   TypeParameter = "",
 }
-
-local cmp = require'cmp'
 
 cmp.setup({
   snippet = {

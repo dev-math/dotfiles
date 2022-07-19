@@ -18,5 +18,10 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
     config = u.merge(config, require('lsp.servers.sumneko_lua'))
   end
 
-  lspconfig[server.name].setup(config)
+  local status_ok, coq = pcall(require, "coq")
+  if not status_ok then
+    lspconfig[server.name].setup(config)
+  else
+    lspconfig[server.name].setup(coq.lsp_ensure_capabilities(config))
+  end
 end

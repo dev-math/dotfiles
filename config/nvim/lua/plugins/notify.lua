@@ -1,8 +1,12 @@
+local ok, notify = pcall(require, "notify")
+if not ok then
+  return
+end
+
 local config = {
   stages = "fade",
   timeout = 5000,
 }
 
-local notify = require("notify")
 notify.setup(config)
 vim.notify = notify

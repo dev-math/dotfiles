@@ -1,3 +1,8 @@
+local ok, vim_bbye = pcall(require, "vim-bbye")
+if not ok then
+  return
+end
+
 -- intelligently close a window
 vim.cmd [[
 function! CloseWindowOrKillBuffer(IGNORE_SAVE)

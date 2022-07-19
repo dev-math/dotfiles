@@ -1,3 +1,8 @@
+local ok, tmux_nav = pcall(require, "vim-tmux-navigator")
+if not ok then
+  return
+end
+
 local keymap = vim.keymap.set -- Shorten function name
 local opts = { silent = true }
 

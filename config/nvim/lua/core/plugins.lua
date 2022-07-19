@@ -91,6 +91,14 @@ return require('packer').startup(function(use)
     disable = not config.enable_lsp
   }
 
+  use {
+    'windwp/nvim-autopairs',
+    config = function()
+      require('plugins.autopairs')
+    end,
+    after = 'nvim-cmp',
+    event = 'InsertEnter',
+  }
 
   use {
     'hrsh7th/nvim-cmp',                                 -- Autocompletion
@@ -113,15 +121,20 @@ return require('packer').startup(function(use)
       { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
       -- { 'hrsh7th/cmp-tabnine'}, after = 'nvim-cmp' },
       { 'andersevenrud/cmp-tmux', after = 'nvim-cmp' },
-      {
-        'windwp/nvim-autopairs',
-        config = function()
-          require('plugins.autopairs')
-        end,
-        after = 'nvim-cmp',
-      },
     },
     event = 'InsertEnter',
+    disable = not config.enable_lsp
+  }
+
+  use {
+    'ms-jpq/coq_nvim', branch = 'coq',                  -- Fast as FUCK nvim completion 
+    config = function()
+      vim.cmd('COQnow --shut-up')
+    end,
+    requires = {
+      { 'ms-jpq/coq.artifacts', branch = 'artifacts'},
+      { 'ms-jpq/coq.thirdparty', branch = '3p' },
+    },
     disable = not config.enable_lsp
   }
 
@@ -134,25 +147,12 @@ return require('packer').startup(function(use)
   }
 
   use {
-    'ms-jpq/coq_nvim',                                  -- Fast as FUCK nvim completion 
-    config = function()
-      vim.cmd('COQnow [--shut-up]')
-    end,
-    branch = 'coq',
-    requires = {
-      { 'ms-jpq/coq.artifacts', branch = 'artifacts'},
-    },
-    disable = true,
-  }
-
-  use {
     'akinsho/toggleterm.nvim',                          -- Easily manage multiple terminal windows
     tag = 'v2.*',
     config = function()
       require('plugins.toggleterm')
     end
   }
-
 
   use {
     'mg979/vim-visual-multi',

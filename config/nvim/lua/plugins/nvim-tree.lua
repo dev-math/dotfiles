@@ -1,4 +1,9 @@
-require("nvim-tree").setup({
+local ok, nvimtree = pcall(require, "nvim-tree")
+if not ok then
+  return
+end
+
+nvimtree.setup({
   disable_netrw = true,
   sort_by = "name",
   ignore_ft_on_setup = {

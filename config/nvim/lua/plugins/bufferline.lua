@@ -1,3 +1,8 @@
+local ok, bufferline = pcall(require, "bufferline")
+if not ok then
+  return
+end
+
 local function is_ft(b, ft)
   return vim.bo[b].filetype == ft
 end
@@ -31,7 +36,7 @@ local function custom_filter(buf, buf_nums)
   return (tab_num == last_tab and is_log) or (tab_num ~= last_tab and not is_log)
 end
 
-require('bufferline').setup {
+bufferline.setup {
   options = {
     tab_size = 20,
     right_mouse_command = "vert sbuffer %d", -- can be a string | function, see "Mouse actions"

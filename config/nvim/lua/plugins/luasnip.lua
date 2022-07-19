@@ -1,4 +1,7 @@
-local ls = require('luasnip')
+local ok, ls = pcall(require, "luasnip")
+if not ok then
+  return
+end
 
 -- Every unspecified option will be set to the default.
 ls.config.set_config({
