@@ -39,7 +39,8 @@ backup_dirs=(
   "/home/$(whoami)/.config/polybar $DOTFILES_DIR/config/polybar"
   # "/home/$(whoami)/.config/kitty $DOTFILES_DIR/config/kitty"
   "/home/$(whoami)/.config/alacritty $DOTFILES_DIR/config/alacritty"
-  "/home/$(whoami)/.config/lvim/config.lua $DOTFILES_DIR/config/lunarvim.lua"
+  # "/home/$(whoami)/.config/lvim/config.lua $DOTFILES_DIR/config/lunarvim.lua"
+  "/home/$(whoami)/.config/nvim $DOTFILES_DIR/config/nvim"
   "/home/$(whoami)/.config/picom.conf $DOTFILES_DIR/config/picom.conf"
   "/home/$(whoami)/.config/tmux $DOTFILES_DIR/config/tmux"
   "/home/$(whoami)/.config/autorandr $DOTFILES_DIR/config/autorandr"
@@ -124,11 +125,11 @@ function install_base() {
 
   yay -S --needed --noconfirm ${packages[@]}
 
-  if [ ! -e ~/.local/bin/lvim ]; then
-    msg "Installing Lunar Vim"
-    yay -S --needed --noconfirm yarn rust
-    bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
-  fi
+  # if [ ! -e ~/.local/bin/lvim ]; then
+  #   msg "Installing Lunar Vim"
+  #   yay -S --needed --noconfirm yarn rust
+  #   bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+  # fi
 
   msg "Installing discord"
   flatpak install flathub com.discordapp.Discord
