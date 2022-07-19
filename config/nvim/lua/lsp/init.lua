@@ -1,11 +1,13 @@
-local status_ok, _ = pcall(require, "lspconfig")
-if not status_ok then
-	return
+local ok, lsp_installer = pcall(require, 'nvim-lsp-installer')
+if not ok then
+  return
 end
 
-require "lsp.null-ls"
-require "lsp.handlers"
-require "lsp.lspconfig"
-require "lsp.lsp-signature"
-require "lsp.lsp-installer"
-require "lsp.renamer"
+local ok, fidget = pcall(require, 'fidget')
+if ok then
+  fidget.setup{}
+end
+
+require('lsp.lsp-installer')
+require('lsp.lspconfig')
+require('lsp.handlers')

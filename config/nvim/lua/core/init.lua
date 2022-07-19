@@ -1,0 +1,5 @@
+require('core.editor')
+require('core.keymaps')
+require('core.autocommand')
+require('core.utils')
+require('core.plugins')

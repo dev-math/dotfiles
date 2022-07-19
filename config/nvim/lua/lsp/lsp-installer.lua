@@ -1,17 +1,21 @@
-local status_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
-if not status_ok then
-  return
+local lsp_installer = require('nvim-lsp-installer')
+
+local on_windows = vim.loop.os_uname().version:match 'Windows'
+
+local function join_paths(...)
+  local path_sep = on_windows and '\\' or '/'
+  local result = table.concat({ ... }, path_sep)
+  return result
 end
 
--- Register a handler that will be called for all installed servers.
--- Alternatively, you may also register handlers on specific server instances instead (see example below).
-lsp_installer.on_server_ready(function(server)
-  local opts = {
-	  on_attach = require("lsp.lspconfig").on_attach,
-    capabilities = require("lsp.lspconfig").capabilities,
+lsp_installer.setup {
+  install_root_dir = join_paths(vim.call('stdpath', 'data'), 'lsp_servers'),
+  automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
+  ui = {
+    icons = {
+      server_installed = "✓",
+      server_pending = "➜",
+      server_uninstalled = "✗"
+    }
   }
-
-  -- This setup() function is exactly the same as lspconfig's setup function.
-  -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-  server:setup(opts)
-end)
+}
