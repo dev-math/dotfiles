@@ -1,4 +1,3 @@
-local u = require('core.utils')
 local default_on_attach = require('lsp.servers.default').on_attach
 local M = {}
 
@@ -8,7 +7,7 @@ function M.on_attach(client, bufnr)
   local ts_utils = require('nvim-lsp-ts-utils')
 
   -- defaults
-  ts_utils.setup(u.merge({
+  ts_utils.setup({
     debug = false,
     disable_commands = false,
     enable_import_on_completion = true,
@@ -36,7 +35,7 @@ function M.on_attach(client, bufnr)
     -- filter diagnostics
     filter_out_diagnostics_by_severity = {},
     filter_out_diagnostics_by_code = {},
-  }, {}))
+  })
 
   -- required to fix code action ranges and filter diagnostics
   ts_utils.setup_client(client)

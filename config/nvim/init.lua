@@ -7,4 +7,3 @@ do
 end
 require('core')
 require('lsp')
-require'lspconfig'.tsserver.setup {}
