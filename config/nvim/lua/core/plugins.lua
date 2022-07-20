@@ -72,6 +72,7 @@ return require('packer').startup(function(use)
           require('lsp.lsp-signature')
         end,
         after = 'nvim-lspconfig',
+        disable = not config.enable_lsp_signature,
       },
     },
     disable = not config.enable_lsp

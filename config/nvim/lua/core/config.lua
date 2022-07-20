@@ -1,6 +1,6 @@
 local config = {
   enable_lsp = true,
-  enable_cmp = false,
+  enable_lsp_signature = false,
   theme = 'gruvbox-material',
 }
 
