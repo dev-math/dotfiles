@@ -30,9 +30,9 @@ keymap('v', '<C-s>', '<Esc>:w<CR>', opts)
 keymap('n', '<Esc>', ':noh <cr>', opts)
 
 -- Cut line (CTRL+X)
--- keymap('n', '<C-x>"', 'dd<cr>', opts)
--- keymap('i', '<C-x>"', '<C-o>dd<cr>', opts)
--- keymap('v', '<C-x>"', '<Esc>dd<cr>', opts)
+keymap('n', '<C-x>', 'dd', opts)
+keymap('i', '<C-x>', '<C-o>dd', opts)
+keymap('v', '<C-x>', '"+x', opts)
 
 -- Remove line (dd)
 keymap({'n', 'v'}, 'd', '"_d', opts)
