@@ -259,7 +259,7 @@ return require('packer').startup(function(use)
       'kyazdani42/nvim-web-devicons',                   -- For file icons
       opt = true
     },
-    after = config.theme,
+    after = 'nvim-lspconfig',
   }
 
   use {
