@@ -81,3 +81,11 @@ keymap('t', '<C-l>', '<C-\\><C-N><C-w>l', opts)
 -- Indenting
 keymap('v', '<', '<gv', opts)
 keymap('v', '>', '>gv', opts)
+
+-- Quickfix mappings
+keymap('n', '<leader>ck', ':cexpr []<cr>', opts)
+keymap('n', '<leader>cc', ':cclose <cr>', opts)
+keymap('n', '<leader>co', ':copen <cr>', opts)
+keymap('n', '<leader>cf', ':cfdo %s/', opts)
+keymap('n', '<leader>cp', ':cprev<cr>zz', opts)
+keymap('n', '<leader>cn', ':cnext<cr>zz', opts)

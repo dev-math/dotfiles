@@ -69,3 +69,29 @@ vim.opt.numberwidth = 4                                      -- set number colum
 vim.opt.scrolloff = 8                                        -- Minimal number of screen lines to keep above and below the cursor
 vim.opt.sidescrolloff = 8                                    -- Minimal number of screen columns to keep to the left and to the right of the cursor
 vim.opt.cmdheight = 1                                        -- more space in the neovim command line for displaying messages
+
+-- DISABLE
+local disabled_built_ins = {
+  'netrw',
+  'netrwPlugin',
+  'netrwSettings',
+  'netrwFileHandlers',
+  'gzip',
+  'zip',
+  'zipPlugin',
+  'tar',
+  'tarPlugin',
+  'getscript',
+  'getscriptPlugin',
+  'vimball',
+  'vimballPlugin',
+  '2html_plugin',
+  'logipat',
+  'rrhelper',
+  'spellfile_plugin',
+  'matchit',
+}
+
+for _, plugin in pairs(disabled_built_ins) do
+  vim.g['loaded_' .. plugin] = 1
+end

@@ -3,7 +3,9 @@ if not ok then
   return
 end
 
-local keymap = vim.keymap.set -- Shorten function name
+comment.setup()
+
+local keymap = vim.api.nvim_set_keymap -- Shorten function name
 local opts = { silent = true }
 
 -- Toggle comment

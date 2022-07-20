@@ -96,7 +96,6 @@ return require('packer').startup(function(use)
     config = function()
       require('plugins.autopairs')
     end,
-    after = 'nvim-cmp',
     event = 'InsertEnter',
   }
 
@@ -129,13 +128,13 @@ return require('packer').startup(function(use)
   use {
     'ms-jpq/coq_nvim', branch = 'coq',                  -- Fast as FUCK nvim completion 
     config = function()
-      vim.cmd('COQnow --shut-up')
+      require('plugins.coq')
     end,
     requires = {
       { 'ms-jpq/coq.artifacts', branch = 'artifacts'},
       { 'ms-jpq/coq.thirdparty', branch = '3p' },
     },
-    disable = not config.enable_lsp
+    disable = true
   }
 
   use {
@@ -218,7 +217,7 @@ return require('packer').startup(function(use)
   use {
     'numToStr/Comment.nvim',                            -- Smart and Powerful commenting plugin for neovim 
     config = function()
-      require('plugins.comment')
+        require('plugins.comment')
     end,
     event = 'BufWinEnter',
   }
