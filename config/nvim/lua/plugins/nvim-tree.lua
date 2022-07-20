@@ -5,6 +5,19 @@ end
 
 nvimtree.setup({
   disable_netrw = true,
+  hijack_netrw = true,
+  open_on_setup = false,
+  open_on_setup_file = false,
+  ignore_buffer_on_setup = false,
+  auto_reload_on_write = true,
+  hijack_unnamed_buffer_when_opening = false,
+  hijack_directories = {
+    enable = true,
+    auto_open = true,
+  },
+  open_on_tab = false,
+  hijack_cursor = false,
+  update_cwd = false,
   sort_by = "name",
   ignore_ft_on_setup = {
     "startify",
@@ -67,9 +80,9 @@ keymap('n', '<C-b>', ':NvimTreeToggle<CR>', opts)
 keymap('i', '<C-b>', '<Esc>:NvimTreeToggle<CR>', opts)
 keymap('v', '<C-b>', '<Esc>:NvimTreeToggle<CR>', opts)
 
--- Autoclose nvim is nvim-tree is only buffer open
-vim.api.nvim_create_autocmd('BufEnter', {
-  command = [[if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif]],
-  group = vim.api.nvim_create_augroup('NvimNvimTree', { clear = true }),
-  nested = true,
-})
+-- -- Autoclose nvim is nvim-tree is only buffer open
+-- vim.api.nvim_create_autocmd('BufEnter', {
+--   command = [[if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif]],
+--   group = vim.api.nvim_create_augroup('NvimNvimTree', { clear = true }),
+--   nested = true,
+-- })

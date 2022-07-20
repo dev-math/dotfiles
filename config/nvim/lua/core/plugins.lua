@@ -239,15 +239,15 @@ return require('packer').startup(function(use)
       'kyazdani42/nvim-web-devicons',                   -- For file icons
       opt = true
     },
-    cmd = {
-      'NvimTreeClipboard',
-      'NvimTreeClose',
-      'NvimTreeFindFile',
-      'NvimTreeOpen',
-      'NvimTreeRefresh',
-      'NvimTreeToggle',
-    },
-    event = 'VimEnter',
+    -- cmd = {
+    --   'NvimTreeClipboard',
+    --   'NvimTreeClose',
+    --   'NvimTreeFindFile',
+    --   'NvimTreeOpen',
+    --   'NvimTreeRefresh',
+    --   'NvimTreeToggle',
+    -- },
+    -- event = 'VimEnter',
   }
 
   use {
