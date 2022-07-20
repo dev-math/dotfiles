@@ -37,7 +37,7 @@ vim.opt.writebackup = false                                  -- if a file is bei
 vim.opt.undofile = true                                      -- enable persistent undo
 vim.opt.undodir = vim.fn.stdpath "cache" .. "/undo"
 vim.opt.directory = '~/.config/nvim/swap//,/tmp//'
-vim.opt.formatoptions:remove({ 'c', 'r', 'o' })
+vim.opt.formatoptions:remove({ 'c', 'r', 'o' })              -- dont take effect. using autocmd...
 vim.opt.whichwrap:remove({ 'h', 'l' })
 vim.opt.foldmethod = "manual"                                -- folding set to "expr" for treesitter based folding
 vim.opt.foldexpr = ""                                        -- set to "nvim_treesitter#foldexpr()" for treesitter based folding

@@ -24,3 +24,10 @@ vim.cmd [[
     autocmd BufWritePost ~/.config/nvim/lua/core/config.lua source ~/.config/nvim/lua/core/plugins.lua | PackerSync
   augroup end
 ]]
+
+-- formatoptios dont take effect on editor.lua
+vim.cmd [[
+  autocmd BufWinEnter * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+  autocmd BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+  autocmd BufNewFile * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+]]
