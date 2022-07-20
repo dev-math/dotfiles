@@ -1,7 +1,7 @@
 local config = {
   enable_lsp = true,
   enable_cmp = false,
-  theme = 'dracula',
+  theme = 'gruvbox-material ',
 }
 
 return config

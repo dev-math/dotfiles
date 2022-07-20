@@ -4,6 +4,7 @@ if not ok then
 end
 
 local config = {
+  background_colour = '#000000',
   stages = "fade",
   timeout = 5000,
 }
