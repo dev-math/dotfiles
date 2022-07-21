@@ -122,7 +122,7 @@ return require('packer').startup(function(use)
       -- { 'hrsh7th/cmp-tabnine'}, after = 'nvim-cmp' },
       { 'andersevenrud/cmp-tmux', after = 'nvim-cmp' },
     },
-    event = 'InsertEnter',
+    -- event = 'InsertEnter',
     disable = not config.enable_lsp
   }
 
@@ -240,15 +240,15 @@ return require('packer').startup(function(use)
       'kyazdani42/nvim-web-devicons',                   -- For file icons
       opt = true
     },
-    -- cmd = {
-    --   'NvimTreeClipboard',
-    --   'NvimTreeClose',
-    --   'NvimTreeFindFile',
-    --   'NvimTreeOpen',
-    --   'NvimTreeRefresh',
-    --   'NvimTreeToggle',
-    -- },
-    -- event = 'VimEnter',
+    cmd = {
+      'NvimTreeClipboard',
+      'NvimTreeClose',
+      'NvimTreeFindFile',
+      'NvimTreeOpen',
+      'NvimTreeRefresh',
+      'NvimTreeToggle',
+    },
+    event = 'VimEnter',
   }
 
   use {

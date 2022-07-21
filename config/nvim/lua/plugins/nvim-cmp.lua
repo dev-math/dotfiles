@@ -3,6 +3,7 @@ if not ok then
   return
 end
 
+
 local kind_icons = {
   Text = "",
   Method = "",
