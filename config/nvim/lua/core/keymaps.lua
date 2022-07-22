@@ -89,3 +89,9 @@ keymap('n', '<leader>co', ':copen <cr>', opts)
 keymap('n', '<leader>cf', ':cfdo %s/', opts)
 keymap('n', '<leader>cp', ':cprev<cr>zz', opts)
 keymap('n', '<leader>cn', ':cnext<cr>zz', opts)
+
+-- Diagnostic keymaps
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
