@@ -45,7 +45,9 @@ cmp.setup({
       vim_item.menu = ({
         nvim_lsp = "[LSP]",
         nvim_lua = "[Lua]",
-        buffer = "[BUF]",
+        buffer = "[Buffer]",
+        luasnip = "[Snippet]",
+        path = "[Path]",
       })[entry.source.name]
 
       return vim_item
@@ -83,16 +85,16 @@ cmp.setup({
   },
   sources = {
     { name = 'nvim_lsp' },
-    { name = 'path' },
     { name = 'luasnip' },
-    -- { name = 'cmp_tabnine' },
-    { name = 'nvim_lua' },
-    { name = 'buffer' },
-    -- { name = "calc" },
-    { name = 'emoji' },
-    -- { name = 'treesitter' },
-    -- { name = 'crates' },
-    { name = 'tmux' },
-    { name = 'cmdline' },
+    { name = 'path' },
+    -- -- { name = 'cmp_tabnine' },
+    -- { name = 'nvim_lua' },
+    -- { name = 'buffer' },
+    -- -- { name = "calc" },
+    -- { name = 'emoji' },
+    -- -- { name = 'treesitter' },
+    -- -- { name = 'crates' },
+    -- { name = 'tmux' },
+    -- { name = 'cmdline' },
   },
 })
