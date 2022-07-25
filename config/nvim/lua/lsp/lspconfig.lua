@@ -1,6 +1,14 @@
+local ok, lspconfig = pcall(require, 'lspconfig')
+if not ok then
+  return
+end
+
+local ok, lsp_installer = pcall(require, 'nvim-lsp-installer')
+if not ok then
+  return
+end
+
 local u = require('core.utils')
-local lsp_installer = require("nvim-lsp-installer")
-local lspconfig = require("lspconfig")
 local default_config = require('lsp.servers.default')
 
 for _, server in ipairs(lsp_installer.get_installed_servers()) do

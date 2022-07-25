@@ -1,4 +1,7 @@
-local lsp_installer = require('nvim-lsp-installer')
+local ok, lsp_installer = pcall(require, 'nvim-lsp-installer')
+if not ok then
+  return
+end
 
 local on_windows = vim.loop.os_uname().version:match 'Windows'
 
