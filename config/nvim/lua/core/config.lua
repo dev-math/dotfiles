@@ -1,7 +1,8 @@
 local config = {
   enable_lsp = true,
   enable_lsp_signature = false,
-  theme = 'gruvbox-material',
+  enable_lightbulb = false,
+  theme = 'dracula',
 }
 
 return config

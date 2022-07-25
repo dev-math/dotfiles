@@ -205,7 +205,7 @@ return require('packer').startup(function(use)
     config = function ()
       require('nvim-lightbulb').setup({autocmd = {enabled = true}})
     end,
-    disable = true,
+    disable = not config.enable_lightbulb,
   }
 
   use {
