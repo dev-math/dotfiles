@@ -40,7 +40,7 @@ function detect_platform() {
       elif [ -f "/etc/fedora-release" ] || [ -f "/etc/redhat-release" ]; then
         echo "Fedora is not currently supported."
       else # assume debian based
-        $DOTFILES_DIR/utils/install_debian.sh
+        echo "Debian is not currently supported."
       fi
       ;;
     *)
