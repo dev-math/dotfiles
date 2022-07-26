@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-DOTFILES_DIR=/home/$(whoami)/.dotfiles
+DOTFILES_DIR="/home/$(whoami)/.dotfiles"
 source $DOTFILES_DIR/utils/sharedfuncs.sh
 BACKUP_FOLDER="/home/$(whoami)/BACKUP-$(date +%Y.%m.%d-%H.%M.%S)"
 
@@ -17,15 +17,16 @@ packages=(
   "brave-bin rclone qbittorrent torbrowser-launcher" # Internet apps
   "eog" # Image viewer
   "mpv mpv-mpris" # Video Player | optional: vlc
-  "alsa-utils alsa-plugins pulseaudio pulseaudio-alsa pavucontrol" # Audio apps
+  "alsa-utils alsa-plugins pavucontrol pipewire wireplumber pipewire-alsa pipewire-pulse pipewire-jack" # Audio apps
+  "bluez bluez-utils" # bluetooth
   "qalculate-gtk" # Calculator
   "zathura zathura-djvu zathura-pdf-mupdf zathura-ps zathura-cb" # PDF viewer
   "papirus-icon-theme-git" # Icon theme
   "light redshift autorandr" # screen
   "kdeconnect"
-  "bluez bluez-utils pulseaudio-bluetooth" # bluetooth
   "thunar thunar-archive-plugin thunar-media-tags-plugin" # Thunar file explorer
   "mesa mesa-utils libva-mesa-driver"
+  "thermald" # Intel CPU
   "xf86-video-intel libva-intel-driver" # Intel GPU
   # "xf86-video-amdgpu" # AMD GPU
   # "nvidia nvidia-utils nvidia-settings" # Nvidia GPU
@@ -160,6 +161,12 @@ function config_base() {
     backup "$source"
     ln -sf $dest $source
   done
+
+
+  # Thermald prevents throttling on intel cpu's
+  if command -v thermald &>/dev/null; then
+    sudo systemctl enable --now thermald
+  fi
 
   # mkdir -p ~/.urxvt/ext && cp -r $DOTFILES_DIR/urxvt/* ~/.urxvt/ext/ # Install URxvt perl extensions
   # config_xfce4notifyd
