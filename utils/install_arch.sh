@@ -74,8 +74,8 @@ function system_update() {
 
 function check_system_deps() {
   msg "Checking some things..."
-  sudo pacman -S --noconfirm --needed base-devel flatpak
   sudo pacman -Sy --noconfirm --needed archlinux-keyring && sudo pacman -Su --noconfirm --needed
+  sudo pacman -S --noconfirm --needed base-devel flatpak
 
   if ! command -v git &>/dev/null; then
     msg "It seems that you don't have git installed. Would you like to install?"
@@ -218,8 +218,8 @@ function config_hp_printer() {
   yay -S --needed --noconfirm hplip hplip-plugin
 }
 
-system_update
 check_system_deps
+system_update
 install_fonts
 install_base
 config_pywal
