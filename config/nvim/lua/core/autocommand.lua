@@ -14,13 +14,6 @@ vim.cmd [[
   augroup packer_user_config
     autocmd!
     autocmd BufWritePost ~/.config/nvim/* source <afile> | PackerSync
-  augroup end
-]]
-
--- Autocommand that reloads plugins whenever you save config.lua
-vim.cmd [[
-  augroup packer_user_config
-    autocmd!
     autocmd BufWritePost ~/.config/nvim/lua/core/config.lua source ~/.config/nvim/lua/core/plugins.lua | PackerSync
   augroup end
 ]]
@@ -30,4 +23,11 @@ vim.cmd [[
   autocmd BufWinEnter * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
   autocmd BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
   autocmd BufNewFile * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+]]
+
+vim.cmd [[
+  augroup format_on_save
+    autocmd!
+    autocmd BufWritePre *.prisma lua vim.lsp.buf.formatting_sync()
+  augroup end
 ]]
