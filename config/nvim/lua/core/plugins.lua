@@ -27,12 +27,12 @@ packer.init {
 }
 
 return require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'                          -- Packer can manage itself as an optional plugin
-  use 'lewis6991/impatient.nvim'                        -- Speed up loading Lua modules
-  use 'nathom/filetype.nvim'                            -- A faster version of filetype.vim 
-  use 'antoinemadec/FixCursorHold.nvim'                 -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
-  use 'rafamadriz/friendly-snippets'                    -- Set of preconfigured snippets
-  use 'gpanders/editorconfig.nvim'                      -- EditorConfig plugin for neovim
+  use 'wbthomason/packer.nvim' -- Packer can manage itself as an optional plugin
+  use 'lewis6991/impatient.nvim' -- Speed up loading Lua modules
+  use 'nathom/filetype.nvim' -- A faster version of filetype.vim 
+  use 'antoinemadec/FixCursorHold.nvim' -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
+  use 'rafamadriz/friendly-snippets' -- Set of preconfigured snippets
+  use 'gpanders/editorconfig.nvim' -- EditorConfig plugin for neovim
 
   -- Using coc (my old config)
   use {
@@ -50,13 +50,13 @@ return require('packer').startup(function(use)
 
   -- LSP
   use {
-    'neovim/nvim-lspconfig',                            -- Collection of configurations for built-in LSP client
+    'neovim/nvim-lspconfig', -- Collection of configurations for built-in LSP client
     requires = {
-      { 'williamboman/nvim-lsp-installer' },            -- Automatically install language servers to stdpath
-      { 'j-hui/fidget.nvim' },                          -- lsp progress
-      { 'b0o/SchemaStore.nvim' },                       -- Access to the SchemaStore catalog
+      { 'williamboman/nvim-lsp-installer' }, -- Automatically install language servers to stdpath
+      { 'j-hui/fidget.nvim' }, -- lsp progress
+      { 'b0o/SchemaStore.nvim' }, -- Access to the SchemaStore catalog
       {
-        'jose-elias-alvarez/nvim-lsp-ts-utils',         -- Improve TS development
+        'jose-elias-alvarez/nvim-lsp-ts-utils', -- Improve TS development
         ft = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
       },
       {
@@ -101,14 +101,21 @@ return require('packer').startup(function(use)
   }
 
   use {
-    'hrsh7th/nvim-cmp',                                 -- Autocompletion
+    "kylechui/nvim-surround",
+    config = function()
+      require("nvim-surround").setup()
+    end
+  }
+
+  use {
+    'hrsh7th/nvim-cmp', -- Autocompletion
     config = function()
       require('plugins.nvim-cmp')
     end,
     requires = {
       {
         'L3MON4D3/LuaSnip',
-        config = function ()
+        config = function()
           require('plugins.luasnip')
         end,
       },
@@ -127,19 +134,19 @@ return require('packer').startup(function(use)
   }
 
   use {
-    'ms-jpq/coq_nvim', branch = 'coq',                  -- Fast as FUCK nvim completion 
+    'ms-jpq/coq_nvim', branch = 'coq', -- Fast as FUCK nvim completion
     config = function()
       require('plugins.coq')
     end,
     requires = {
-      { 'ms-jpq/coq.artifacts', branch = 'artifacts'},
+      { 'ms-jpq/coq.artifacts', branch = 'artifacts' },
       { 'ms-jpq/coq.thirdparty', branch = '3p' },
     },
     disable = true
   }
 
   use {
-    'folke/todo-comments.nvim',                         -- Highlight, list and search todo comments in your projects 
+    'folke/todo-comments.nvim', -- Highlight, list and search todo comments in your projects
     requires = 'nvim-lua/plenary.nvim',
     config = function()
       require('plugins.todo-comments')
@@ -147,7 +154,7 @@ return require('packer').startup(function(use)
   }
 
   use {
-    'akinsho/toggleterm.nvim',                          -- Easily manage multiple terminal windows
+    'akinsho/toggleterm.nvim', -- Easily manage multiple terminal windows
     tag = 'v2.*',
     config = function()
       require('plugins.toggleterm')
@@ -176,7 +183,7 @@ return require('packer').startup(function(use)
   }
 
   use {
-    'rcarriga/nvim-notify',                             -- Beautiful notifications
+    'rcarriga/nvim-notify', -- Beautiful notifications
     config = function()
       require('plugins.notify')
     end,
@@ -184,8 +191,8 @@ return require('packer').startup(function(use)
   }
 
   use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.0',     -- fuzzy finder
-    config = function ()
+    'nvim-telescope/telescope.nvim', tag = '0.1.0', -- fuzzy finder
+    config = function()
       require('plugins.telescope')
     end,
     requires = {
@@ -201,30 +208,30 @@ return require('packer').startup(function(use)
   }
 
   use {
-    'kosayoda/nvim-lightbulb',                          -- Lightbulbs on lines with code actions
-    config = function ()
-      require('nvim-lightbulb').setup({autocmd = {enabled = true}})
+    'kosayoda/nvim-lightbulb', -- Lightbulbs on lines with code actions
+    config = function()
+      require('nvim-lightbulb').setup({ autocmd = { enabled = true } })
     end,
     disable = not config.enable_lightbulb,
   }
 
   use {
     'christoomey/vim-tmux-navigator',
-    config = function ()                                -- navigation between tmux panes and vim splits
+    config = function() -- navigation between tmux panes and vim splits
       require('plugins.tmux-nav')
     end
   }
 
   use {
-    'numToStr/Comment.nvim',                            -- Smart and Powerful commenting plugin for neovim 
+    'numToStr/Comment.nvim', -- Smart and Powerful commenting plugin for neovim
     config = function()
-        require('plugins.comment')
+      require('plugins.comment')
     end,
     event = 'BufWinEnter',
   }
 
   use {
-    'moll/vim-bbye',                                    -- Delete buffers without closing windows or messing up your layout
+    'moll/vim-bbye', -- Delete buffers without closing windows or messing up your layout
     config = function()
       require('plugins.vim-bbye')
     end,
@@ -232,12 +239,12 @@ return require('packer').startup(function(use)
   }
 
   use {
-    'kyazdani42/nvim-tree.lua',                         -- File Explorer
+    'kyazdani42/nvim-tree.lua', -- File Explorer
     config = function()
       require('plugins.nvim-tree')
     end,
     requires = {
-      'kyazdani42/nvim-web-devicons',                   -- For file icons
+      'kyazdani42/nvim-web-devicons', -- For file icons
       opt = true
     },
     cmd = {
@@ -252,19 +259,19 @@ return require('packer').startup(function(use)
   }
 
   use {
-    'nvim-lualine/lualine.nvim',                        -- Statusline
+    'nvim-lualine/lualine.nvim', -- Statusline
     config = function()
       require('plugins.lualine')
     end,
     requires = {
-      'kyazdani42/nvim-web-devicons',                   -- For file icons
+      'kyazdani42/nvim-web-devicons', -- For file icons
       opt = true
     },
     after = 'nvim-lspconfig',
   }
 
   use {
-    'akinsho/bufferline.nvim',                          -- Tabline
+    'akinsho/bufferline.nvim', -- Tabline
     tag = 'v2.*',
     config = function()
       require('plugins.bufferline')
@@ -294,7 +301,7 @@ return require('packer').startup(function(use)
     config = function()
       vim.cmd('colorscheme gruvbox-material')
     end,
-   disable = config.theme ~= 'gruvbox-material',
+    disable = config.theme ~= 'gruvbox-material',
   }
   use {
     'nekonako/xresources-nvim',
