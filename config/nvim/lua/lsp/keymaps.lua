@@ -24,7 +24,7 @@ function M.init(client, bufnr)
   vim.keymap.set('n', '<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, bufopts)
-  vim.keymap.set('n', '<leader>i', vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set('n', '<leader>i', vim.lsp.buf.format { async = true }, bufopts)
   vim.keymap.set('v', '<leader>i', vim.lsp.buf.range_formatting, bufopts)
 
   -- Create a command `:Format` local to the LSP buffer
