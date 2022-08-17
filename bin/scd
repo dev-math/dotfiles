@@ -37,10 +37,10 @@ case "$1" in
       source=${strarr[0]}
       dest=${strarr[1]}
 
-      if [[ $(pidof -x rclone -o %PPID) ]]; then
-        notify-send "Backup already running, exiting..." -t 5000
-        exit 1
-      fi
+      # if [[ $(pidof -x rclone -o %PPID) ]]; then
+      #   notify-send "Backup already running, exiting..." -t 5000
+      #   exit 1
+      # fi
 
       rclone copy --update --verbose --max-age 24h --contimeout 60s --timeout 300s --retries 3 --low-level-retries 10 "$source" "$dest"
     done
