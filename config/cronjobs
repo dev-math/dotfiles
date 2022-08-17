@@ -1,1 +1,3 @@
-*/1 * * * * export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus; export DISPLAY=:0; export SSH_AUTH_SOCK=/tmp/ssh-XXXXXXALq4SO/agent.430; bash ~/.local/bin/syncnotes
+# */1 * * * * export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus; export DISPLAY=:0; export SSH_AUTH_SOCK=/tmp/ssh-XXXXXXALq4SO/agent.430; bash ~/.local/bin/syncnotes
+# At 21:00
+0 21 * * * export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus; export DISPLAY=:0; export SSH_AUTH_SOCK=/tmp/ssh-XXXXXXALq4SO/agent.430; bash /home/math/.local/bin/scd backup >/dev/null 2>&1

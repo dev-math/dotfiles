@@ -36,7 +36,7 @@ packages=(
 )
 
 backup_dirs=(
-  "/home/$(whoami)/.config/i3 $DOTFILES_DIR/config/i3 $DOTFILES_DIR/"
+  "/home/$(whoami)/.config/i3 $DOTFILES_DIR/config/i3"
   "/home/$(whoami)/.config/polybar $DOTFILES_DIR/config/polybar"
   # "/home/$(whoami)/.config/kitty $DOTFILES_DIR/config/kitty"
   "/home/$(whoami)/.config/alacritty $DOTFILES_DIR/config/alacritty"
@@ -181,8 +181,10 @@ function config_base() {
   sudo cp -r $DOTFILES_DIR/config/30-touchpad.conf /etc/X11/xorg.conf.d/30-touchpad.conf # touchpad (laptop)
 
   cp -r $DOTFILES_DIR/config/cronjobs ~/.config/cronjobs
+  sed -i "s/math/$(whoami)/g" ~/.config/cronjobs
   crontab -l >> ~/.config/cronjobs
   crontab ~/.config/cronjobs
+  systemctl enable --now cronie
 }
 
 function config_pywal() {

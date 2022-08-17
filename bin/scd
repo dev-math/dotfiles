@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+notify-send "Backup..." -t 5000
+
+DIR_MOUNT="$HOME/Cloud"
+REMOTE="gdrive:"
+
+backup_dirs=(
+  "/home/$(whoami)/Documents $REMOTE/Documents"
+  "/home/$(whoami)/Music $REMOTE/Music"
+  "/home/$(whoami)/Pictures $REMOTE/Pictures"
+  "/home/$(whoami)/Documents/Notes $REMOTE/Documents/Notes"
+)
+
+mkdir -p "$DIR_MOUNT"
+
+case "$1" in
+  mount)
+    rclone mount "$REMOTE" "$DIR_MOUNT" --daemon
+    ;;
+  unmount)
+    fusermount -u "$DIR_MOUNT"
+    ;;
+  # sync)
+    #   for dir in "${backup_dirs[@]}"; do
+    #     IFS=" "
+    #     read -a strarr <<< "$dir"
+    #     source=${strarr[0]}
+    #     dest=${strarr[1]}
+    #     rclone -vP sync "$source" "$dest"
+    #   done
+    #   ;;
+  backup)
+    for dir in "${backup_dirs[@]}"; do
+      IFS=" "
+      read -a strarr <<< "$dir"
+      source=${strarr[0]}
+      dest=${strarr[1]}
+
+      if [[ $(pidof -x rclone -o %PPID) ]]; then
+        notify-send "Backup already running, exiting..." -t 5000
+        exit 1
+      fi
+
+      rclone copy --update --verbose --max-age 24h --contimeout 60s --timeout 300s --retries 3 --low-level-retries 10 "$source" "$dest"
+    done
+    ;;
+  *) echo "Erro"
+    ;;
+esac
