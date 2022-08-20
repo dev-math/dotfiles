@@ -25,9 +25,18 @@ vim.cmd [[
   autocmd BufNewFile * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 ]]
 
+-- Format on save prisma files
 vim.cmd [[
   augroup format_on_save
     autocmd!
     autocmd BufWritePre *.prisma lua vim.lsp.buf.formatting_sync()
+  augroup end
+]]
+
+-- Save on write my notes
+vim.cmd [[
+  augroup SaveNotes
+    autocmd!
+    autocmd TextChanged,TextChangedI ~/Documents/Notes/*.md silent write
   augroup end
 ]]
