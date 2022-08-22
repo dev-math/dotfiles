@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-notify-send "Backup..." -t 5000
-
 DIR_MOUNT="$HOME/Cloud"
 REMOTE="gdrive:"
 
@@ -31,6 +29,7 @@ case "$1" in
     #   done
     #   ;;
   backup)
+    notify-send "Backup..." -t 5000
     for dir in "${backup_dirs[@]}"; do
       IFS=" "
       read -a strarr <<< "$dir"
@@ -46,6 +45,7 @@ case "$1" in
     done
     ;;
   backupall)
+    notify-send "Backup..." -t 5000
     for dir in "${backup_dirs[@]}"; do
       IFS=" "
       read -a strarr <<< "$dir"
