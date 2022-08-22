@@ -45,6 +45,16 @@ case "$1" in
       rclone copy --update --verbose --max-age 24h --contimeout 60s --timeout 300s --retries 3 --low-level-retries 10 "$source" "$dest"
     done
     ;;
+  backupall)
+    for dir in "${backup_dirs[@]}"; do
+      IFS=" "
+      read -a strarr <<< "$dir"
+      source=${strarr[0]}
+      dest=${strarr[1]}
+
+      rclone copy --update --verbose --contimeout 60s --timeout 300s --retries 3 --low-level-retries 10 "$source" "$dest"
+    done
+    ;;
   *) echo "Erro"
     ;;
 esac
