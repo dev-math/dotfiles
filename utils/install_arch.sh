@@ -11,11 +11,13 @@ BACKUP="false"
 packages=(
   "wget openssh curl usbutils xclip udisks2 udiskie zip unzip unrar p7zip lzop cpio ntfs-3g dosfstools exfat-utils f2fs-tools fuse fuse-exfat mtpfs sshfs gvfs man-db man-pages texinfo networkmanager maim xorg-xrandr xorg-server xorg-xinit cronie parcellite libappindicator-gtk3" # Base
   "cups system-config-printer" # Printer
-  "i3-gaps feh polybar picom rofi playerctl python-pywal flameshot" # i3gaps setup
+  "i3-gaps polybar picom rofi playerctl python-pywal flameshot-git xdg-desktop-portal xdg-desktop-portal-wlr" # i3gaps setup
   "dunst" # notifications | optional: xfce4-notifyd
   "alacritty zsh bat exa neofetch tmux" # terminal config | optional: kitty rxvt-unicode
-  "brave-bin rclone qbittorrent torbrowser-launcher" # Internet apps
-  "eog" # Image viewer
+  "firefox brave-bin rclone qbittorrent torbrowser-launcher obs-studio" # Internet apps
+  "obsidian" # note taking
+  "discord telegram-desktop" # chat apps | optional: kotatogram-desktop
+  "feh eog" # Image viewer
   "mpv mpv-mpris" # Video Player | optional: vlc
   "alsa-utils alsa-plugins pavucontrol pipewire wireplumber pipewire-alsa pipewire-pulse pipewire-jack" # Audio apps
   "bluez bluez-utils" # bluetooth
@@ -30,7 +32,7 @@ packages=(
   "xf86-video-intel libva-intel-driver" # Intel GPU
   # "xf86-video-amdgpu" # AMD GPU
   # "nvidia nvidia-utils nvidia-settings" # Nvidia GPU
-  # "obs-studio gucharmap xournalpp chromium google-chrome telegram-desktop qutebrowser" # Optional
+  # "gucharmap xournalpp chromium google-chrome qutebrowser" # Optional
   # "0ad wesnoth" # Games
   # "ranger" # Terminal file explorer
 )
@@ -38,19 +40,18 @@ packages=(
 backup_dirs=(
   "/home/$(whoami)/.config/i3 $DOTFILES_DIR/config/i3"
   "/home/$(whoami)/.config/polybar $DOTFILES_DIR/config/polybar"
-  # "/home/$(whoami)/.config/kitty $DOTFILES_DIR/config/kitty"
   "/home/$(whoami)/.config/alacritty $DOTFILES_DIR/config/alacritty"
-  # "/home/$(whoami)/.config/lvim/config.lua $DOTFILES_DIR/config/lunarvim.lua"
   "/home/$(whoami)/.config/nvim $DOTFILES_DIR/config/nvim"
+  "/home/$(whoami)/.config/mimeapps.list $DOTFILES_DIR/config/mimeapps.list"
   "/home/$(whoami)/.config/picom.conf $DOTFILES_DIR/config/picom.conf"
   "/home/$(whoami)/.config/tmux $DOTFILES_DIR/config/tmux"
   "/home/$(whoami)/.config/autorandr $DOTFILES_DIR/config/autorandr"
   "/home/$(whoami)/.config/gtk-3.0 $DOTFILES_DIR/config/gtk-3.0"
   "/home/$(whoami)/.gtkrc-2.0 $DOTFILES_DIR/gtkrc-2.0"
-  "/home/$(whoami)/.zsh $DOTFILES_DIR/zsh"
+  "/home/$(whoami)/.config/zsh $DOTFILES_DIR/config/zsh"
   "/home/$(whoami)/.zshrc $DOTFILES_DIR/zshrc"
   "/home/$(whoami)/.xinitrc $DOTFILES_DIR/xinitrc"
-  "/home/$(whoami)/.xprofile $DOTFILES_DIR/xprofile"
+  # "/home/$(whoami)/.xprofile $DOTFILES_DIR/xprofile"
 )
 #}}}
 
@@ -132,22 +133,12 @@ function install_base() {
   #   bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
   # fi
 
-  msg "Installing discord"
-  flatpak install flathub com.discordapp.Discord
-
-  msg "Installing firefox"
-  flatpak install flathub org.mozilla.firefox
-
-  msg "Installing kotatogram"
-  flatpak install flathub io.github.kotatogram
-
-  msg "Installing Obsidian"
-  flatpak install flathub md.obsidian.Obsidian
-
   msg "Installing asdf"
   if ! command -v asdf &> /dev/null
   then
-    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.9.0
+    if [[ ! -d $HOME/.asdf ]]; then
+      git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.9.0
+    fi
   fi
 }
 
@@ -171,6 +162,11 @@ function config_base() {
   # mkdir -p ~/.urxvt/ext && cp -r $DOTFILES_DIR/urxvt/* ~/.urxvt/ext/ # Install URxvt perl extensions
   # config_xfce4notifyd
 
+
+cat << 'EOF' >| ~/.zshenv
+export ZDOTDIR=~/.config/zsh
+[[ -f $ZDOTDIR/.zshenv ]] && . $ZDOTDIR/.zshenv
+EOF
   chsh -s $(which zsh) # change shell to zsh for the current user
 
   # Blacklist PC speaker module
@@ -185,6 +181,9 @@ function config_base() {
   crontab -l >> ~/.config/cronjobs
   crontab ~/.config/cronjobs
   systemctl enable --now cronie
+
+  # enable pipewire
+  systemctl --user enable --now pipewire-pulse.service
 }
 
 function config_pywal() {
@@ -226,7 +225,7 @@ install_fonts
 install_base
 config_pywal
 config_base
-# config_hp_printer
+config_hp_printer
 install_whitesur
 
 clear

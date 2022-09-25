@@ -20,6 +20,8 @@ function main() {
 
 function create_dirs() {
   mkdir -p ~/Projects ~/Downloads ~/Documents/Books ~/Desktop ~/Videos ~/Music
+  mkdir -p ~/Documents/Notes
+  # ln -sf ~/Documents/Books/ ~/Documents/Notes/0.1\ Assets/Books
   mkdir -p ~/Pictures/wallpapers ~/Pictures/screenshots
 }
 

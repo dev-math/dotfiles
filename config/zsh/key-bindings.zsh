@@ -15,8 +15,15 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
   zle -N zle-line-finish
 fi
 
-# Use emacs key bindings
-bindkey -e
+# Use vi key bindings
+bindkey -v
+export KEYTIMEOUT=1
+
+# Use vim keys in tab complete menu:
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
 
 # [PageUp] - Up a line of history
 if [[ -n "${terminfo[kpp]}" ]]; then
@@ -103,30 +110,31 @@ bindkey -M emacs '^[[1;5D' backward-word
 bindkey -M viins '^[[1;5D' backward-word
 bindkey -M vicmd '^[[1;5D' backward-word
 
+bindkey '^W' backward-kill-word
+bindkey '^[^?' backward-kill-word
 
+bindkey '^a' beginning-of-line
+bindkey '^e' end-of-line
 bindkey '\ew' kill-region                             # [Esc-w] - Kill from the cursor to the mark
 bindkey -s '\el' 'ls\n'                               # [Esc-l] - run command: ls
 bindkey '^r' history-incremental-search-backward      # [Ctrl-r] - Search backward incrementally for a specified string. The string may begin with ^ to anchor the search to the beginning of the line.
 bindkey ' ' magic-space                               # [Space] - don't do history expansion
-
+bindkey -s '^f' '^ucd "$(dirname "$(fzf)")"\n' # [Ctrl-f] - fuzzy finder search
 
 # Edit the current command line in $EDITOR
 autoload -U edit-command-line
 zle -N edit-command-line
-bindkey '\C-x\C-e' edit-command-line
+bindkey '^v' edit-command-line
 
 # file rename magick
 bindkey "^[m" copy-prev-shell-word
 
 # consider emacs keybindings:
-
 #bindkey -e  ## emacs key bindings
-#
 #bindkey '^[[A' up-line-or-search
 #bindkey '^[[B' down-line-or-search
 #bindkey '^[^[[C' emacs-forward-word
 #bindkey '^[^[[D' emacs-backward-word
-#
 #bindkey -s '^X^Z' '%-^M'
 #bindkey '^[e' expand-cmd-path
 #bindkey '^[^I' reverse-menu-complete
@@ -135,4 +143,3 @@ bindkey "^[m" copy-prev-shell-word
 #bindkey '^I' complete-word
 ## Fix weird sequence that rxvt produces
 #bindkey -s '^[[Z' '\t'
-#

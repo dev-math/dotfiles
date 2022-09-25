@@ -10,8 +10,8 @@
 ###--- Variables ---###
 set $term alacritty
 set $filemanager thunar
-set $innergap 0
-set $outergap 0
+set $innergap 10
+set $outergap 10
 
 # Mod1=<Alt>, Mod4=<Super>
 set $superkey Mod4
@@ -33,6 +33,10 @@ set $ws10 "10"
 # colors from xresources or red in case of errors
 set_from_resource $bg          i3wm.background  #ff0000
 set_from_resource $fg          i3wm.foreground  #ff0000
+set_from_resource $urgent      i3wm.color3      #ff0000
+set_from_resource $normal      i3wm.color4      #ff0000
+set_from_resource $inactive    i3wm.color7      #ff0000
+set_from_resource $unfocused   i3wm.color7      #ff0000
 set_from_resource $color0      i3wm.color0      #ff0000
 set_from_resource $color1      i3wm.color1      #ff0000
 set_from_resource $color2      i3wm.color2      #ff0000
@@ -50,13 +54,13 @@ set_from_resource $color13     i3wm.color13     #ff0000
 set_from_resource $color14     i3wm.color14     #ff0000
 set_from_resource $color15     i3wm.color15     #ff0000
 
-# class                 border    backgr.    text      indicator    child_border
+# class                 border      backgr.    text      indicator    child_border
 client.background       $bg
-client.focused          $color4   $color0    $color7   $color4      $color4
-client.focused_inactive $bg       $color0    $fg       $bg          $bg
-client.unfocused        $bg       $color0    $fg       $bg          $bg
-client.urgent           $color3   $color0    $fg       $color3      $color3
-client.placeholder      $bg       $color0    $fg       $bg          $bg    
+client.focused          $normal     $normal    $bg       $normal      $normal
+client.focused_inactive $inactive   $inactive  $fg       $inactive    $inactive
+client.unfocused        $unfocused  $unfocused $fg       $unfocused   $unfocused
+client.urgent           $urgent     $urgent    $fg       $urgent      $urgent
+client.placeholder      $unfocused  $unfocused $fg       $unfocused   $unfocused
 
 ###--- SETTINGS ---###
 new_window pixel 2

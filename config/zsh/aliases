@@ -1,6 +1,17 @@
-alias setWallpaper='rofi -show themes:~/.local/bin/getWallpapers -theme ~/.cache/wal/launcher.rasi'
-
 open() { xdg-open "$@" &!; }
+
+help () {
+  # Shows pretty `man` page.
+  env \
+    LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+    LESS_TERMCAP_md=$(printf "\e[1;31m") \
+    LESS_TERMCAP_me=$(printf "\e[0m") \
+    LESS_TERMCAP_se=$(printf "\e[0m") \
+    LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+    LESS_TERMCAP_ue=$(printf "\e[0m") \
+    LESS_TERMCAP_us=$(printf "\e[1;32m") \
+      man "$@"
+}
 
 alias vim='nvim'
 alias cat='bat --style=auto'
@@ -55,7 +66,6 @@ alias ff='find . -type f -name'
 
 alias h='history'
 alias hgrep="fc -El 0 | grep"
-alias help='man'
 alias p='ps -f'
 alias sortnr='sort -n -r'
 alias unexport='unset'

@@ -8,6 +8,7 @@ backup_dirs=(
   "/home/$(whoami)/Music $REMOTE/Music"
   "/home/$(whoami)/Pictures $REMOTE/Pictures"
   "/home/$(whoami)/Documents/Notes $REMOTE/Documents/Notes"
+  "/home/$(whoami)/Documents/Books $REMOTE/Documents/Books"
 )
 
 mkdir -p "$DIR_MOUNT"
