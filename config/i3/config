@@ -91,7 +91,7 @@ bindsym $altkey+minus scratchpad show
 # start program launcher
 bindsym $superkey+space exec "rofi -show drun -theme ~/.cache/wal/launcher.rasi"
 
-# emoji picker
+# emoji picke
 bindsym $superkey+control+space exec ~/.local/bin/rofi-emoji
 
 # start a terminal

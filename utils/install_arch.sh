@@ -24,7 +24,8 @@ packages=(
   "qalculate-gtk" # Calculator
   "zathura zathura-djvu zathura-pdf-mupdf zathura-ps zathura-cb" # PDF viewer
   "papirus-icon-theme-git" # Icon theme
-  "light redshift autorandr" # screen
+  "light redshift autorandr arandr" # screen
+  "tlp" # save laptop battery power
   "kdeconnect"
   "thunar thunar-archive-plugin thunar-media-tags-plugin" # Thunar file explorer
   "mesa mesa-utils libva-mesa-driver"
@@ -49,9 +50,8 @@ backup_dirs=(
   "/home/$(whoami)/.config/gtk-3.0 $DOTFILES_DIR/config/gtk-3.0"
   "/home/$(whoami)/.gtkrc-2.0 $DOTFILES_DIR/gtkrc-2.0"
   "/home/$(whoami)/.config/zsh $DOTFILES_DIR/config/zsh"
-  "/home/$(whoami)/.zshrc $DOTFILES_DIR/zshrc"
   "/home/$(whoami)/.xinitrc $DOTFILES_DIR/xinitrc"
-  # "/home/$(whoami)/.xprofile $DOTFILES_DIR/xprofile"
+  "/home/$(whoami)/.xprofile $DOTFILES_DIR/xprofile"
 )
 #}}}
 
@@ -184,6 +184,12 @@ EOF
 
   # enable pipewire
   systemctl --user enable --now pipewire-pulse.service
+
+
+  # enable tlp for battery power saving
+  systemctl enable --now tlp.service
+  systemctl mask systemd-rfkill.service
+  systemctl mask systemd-rfkill.socket
 }
 
 function config_pywal() {

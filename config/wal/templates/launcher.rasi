@@ -24,7 +24,7 @@ configuration {{
 }}
 #window {{
     location            : center;
-    y-offset            : -300;
+    y-offset            : 0;
     width               : 700;
     border-radius       : 8;
     background-color    : @bg-color;
