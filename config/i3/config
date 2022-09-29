@@ -92,7 +92,7 @@ bindsym $altkey+minus scratchpad show
 bindsym $superkey+space exec "rofi -show drun -theme ~/.cache/wal/launcher.rasi"
 
 # emoji picke
-bindsym $superkey+control+space exec ~/.local/bin/rofi-emoji
+bindsym $superkey+control+space exec rofi -modi emoji -show emoji -kb-custom-1 Ctrl+C
 
 # start a terminal
 bindsym $superkey+Return exec $term
