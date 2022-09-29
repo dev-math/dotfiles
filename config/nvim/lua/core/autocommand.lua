@@ -37,6 +37,7 @@ vim.cmd [[
 vim.cmd [[
   augroup SaveNotes
     autocmd!
-    autocmd TextChanged,TextChangedI ~/Documents/Notes/*.md silent write
+    autocmd TextChanged ~/Documents/Notes/* silent write
+    autocmd TextChangedI ~/Documents/Notes/* silent write
   augroup end
 ]]
