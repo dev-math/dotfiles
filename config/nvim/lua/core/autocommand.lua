@@ -37,7 +37,14 @@ vim.cmd [[
 vim.cmd [[
   augroup SaveNotes
     autocmd!
-    autocmd TextChanged ~/Documents/Notes/* silent write
-    autocmd TextChangedI ~/Documents/Notes/* silent write
+    autocmd TextChanged,TextChangedI ~/Documents/Notes/*.md silent write
+  augroup end
+]]
+
+-- Compile tex files on save
+vim.cmd [[
+  augroup compileTex
+    autocmd!
+    autocmd BufWritePre *.tex pdflatex <afile>
   augroup end
 ]]
