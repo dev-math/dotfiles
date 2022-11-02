@@ -42,9 +42,9 @@ vim.cmd [[
 ]]
 
 -- Compile tex files on save
-vim.cmd [[
-  augroup compileTex
-    autocmd!
-    autocmd BufWritePre *.tex pdflatex <afile>
-  augroup end
-]]
+-- vim.cmd [[
+--   augroup compileTex
+--     autocmd!
+--     autocmd BufWritePost *.tex silent! execute "!pdflatex % >/dev/null 2>&1" | redraw!
+--   augroup end
+-- ]]
