@@ -4,7 +4,6 @@ if not ok then
 end
 
 require('lsp.lsp-installer')
-require('lsp.lspconfig')
 require('lsp.handlers')
 require('lsp.lsp-signature')
 
