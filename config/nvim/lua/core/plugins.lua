@@ -33,6 +33,7 @@ return require('packer').startup(function(use)
   use 'antoinemadec/FixCursorHold.nvim' -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
   use 'rafamadriz/friendly-snippets' -- Set of preconfigured snippets
   use 'gpanders/editorconfig.nvim' -- EditorConfig plugin for neovim
+  use 'lervag/vimtex' -- Latex support
 
   -- Using coc (my old config)
   use {
