@@ -6,6 +6,7 @@ end
 require('lsp.lsp-installer')
 require('lsp.handlers')
 require('lsp.lsp-signature')
+require('lsp.lspconfig')
 
 local ok, fidget = pcall(require, 'fidget')
 if ok then
