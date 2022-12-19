@@ -13,7 +13,7 @@ packages=(
   "cups system-config-printer" # Printer
   "i3-gaps polybar picom rofi playerctl python-pywal flameshot-git xdg-desktop-portal xdg-desktop-portal-wlr" # i3gaps setup
   "dunst" # notifications | optional: xfce4-notifyd
-  "alacritty zsh bat exa neofetch tmux" # terminal config | optional: kitty rxvt-unicode
+  "alacritty zsh bat exa neofetch tmux fd ripgrep" # terminal config | optional: kitty rxvt-unicode
   "firefox brave-bin rclone qbittorrent torbrowser-launcher obs-studio" # Internet apps
   "obsidian" # note taking
   "discord telegram-desktop" # chat apps | optional: kotatogram-desktop
