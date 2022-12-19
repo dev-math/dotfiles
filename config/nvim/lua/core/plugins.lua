@@ -265,14 +265,13 @@ return require('packer').startup(function(use)
     end,
     requires = {
       'kyazdani42/nvim-web-devicons', -- For file icons
-      opt = true
     },
     after = 'nvim-lspconfig',
   }
 
   use {
     'akinsho/bufferline.nvim', -- Tabline
-    tag = 'v2.*',
+    tag = 'v3.*',
     config = function()
       require('plugins.bufferline')
     end,
@@ -281,7 +280,8 @@ return require('packer').startup(function(use)
 
   -- Colorschemes
   use {
-    'dracula/vim',
+    -- 'dracula/vim',
+    'Mofiqul/dracula.nvim',
     as = 'dracula',
     config = function()
       vim.cmd('colorscheme dracula')
@@ -309,6 +309,21 @@ return require('packer').startup(function(use)
       vim.cmd('colorscheme xresources-nvim')
     end,
     disable = config.theme ~= 'xresources-nvim',
+  }
+  use {
+    'Mofiqul/vscode.nvim',
+    config = function()
+      vim.cmd('colorscheme vscode')
+    end,
+    disable = config.theme ~= 'vscode',
+  }
+
+  use {
+    'ishan9299/nvim-solarized-lua',
+    config = function()
+      vim.cmd('colorscheme solarized')
+    end,
+    disable = config.theme ~= 'solarized',
   }
 
 
