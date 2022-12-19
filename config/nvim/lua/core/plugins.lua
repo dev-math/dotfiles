@@ -246,7 +246,6 @@ return require('packer').startup(function(use)
     end,
     requires = {
       'kyazdani42/nvim-web-devicons', -- For file icons
-      opt = true
     },
     cmd = {
       'NvimTreeClipboard',
