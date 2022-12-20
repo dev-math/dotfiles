@@ -131,7 +131,7 @@ return require('packer').startup(function(use)
       { 'andersevenrud/cmp-tmux', after = 'nvim-cmp' },
     },
     -- event = 'InsertEnter',
-    disable = not config.enable_lsp
+    disable = true
   }
 
   use {
@@ -143,7 +143,7 @@ return require('packer').startup(function(use)
       { 'ms-jpq/coq.artifacts', branch = 'artifacts' },
       { 'ms-jpq/coq.thirdparty', branch = '3p' },
     },
-    disable = true
+    disable = false
   }
 
   use {
@@ -276,6 +276,12 @@ return require('packer').startup(function(use)
       require('plugins.bufferline')
     end,
     requires = 'kyazdani42/nvim-web-devicons'
+  }
+
+  -- Java Support
+  use {
+    'mfussenegger/nvim-jdtls',
+    ft = { 'java' }
   }
 
   -- Colorschemes
