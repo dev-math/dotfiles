@@ -34,20 +34,21 @@ local kind_icons = {
 cmp.setup({
   snippet = {
     expand = function(args)
-      require'luasnip'.lsp_expand(args.body)
+      require 'luasnip'.lsp_expand(args.body)
     end,
   },
   formatting = {
+    ---@diagnostic disable-next-line: unused-local
     format = function(entry, vim_item)
       vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
 
-      vim_item.menu = ({
-        nvim_lsp = "[LSP]",
-        nvim_lua = "[Lua]",
-        buffer = "[Buffer]",
-        luasnip = "[Snippet]",
-        path = "[Path]",
-      })[entry.source.name]
+      -- vim_item.menu = ({
+      --   nvim_lsp = "[LSP]",
+      --   nvim_lua = "[Lua]",
+      --   buffer = "[Buffer]",
+      --   luasnip = "[Snippet]",
+      --   path = "[Path]",
+      -- })[entry.source.name]
 
       return vim_item
     end,
@@ -85,15 +86,15 @@ cmp.setup({
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'buffer' },
     { name = 'path' },
     -- { name = 'cmp_tabnine' },
-    { name = 'nvim_lua' },
-    { name = 'buffer' },
+    { name = 'nvim_lua', ft = 'lua' },
     -- { name = "calc" },
     -- { name = 'emoji' },
     -- { name = 'treesitter' },
     -- { name = 'crates' },
-    { name = 'tmux' },
-    { name = 'cmdline' },
+    -- { name = 'tmux' },
+    -- { name = 'cmdline' },
   },
 })
