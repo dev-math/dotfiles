@@ -281,7 +281,7 @@ return require('packer').startup(function(use)
   -- Java Support
   use {
     'mfussenegger/nvim-jdtls',
-    ft = { 'java' }
+    ft = { 'java' },
   }
 
   use {
