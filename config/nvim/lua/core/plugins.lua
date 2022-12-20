@@ -54,7 +54,7 @@ return require('packer').startup(function(use)
     'neovim/nvim-lspconfig', -- Collection of configurations for built-in LSP client
     requires = {
       { 'williamboman/nvim-lsp-installer' }, -- Automatically install language servers to stdpath
-      { 'j-hui/fidget.nvim' }, -- lsp progress
+      -- { 'j-hui/fidget.nvim' }, -- lsp progress
       { 'b0o/SchemaStore.nvim' }, -- Access to the SchemaStore catalog
       {
         'jose-elias-alvarez/nvim-lsp-ts-utils', -- Improve TS development
@@ -131,7 +131,7 @@ return require('packer').startup(function(use)
       { 'andersevenrud/cmp-tmux', after = 'nvim-cmp' },
     },
     -- event = 'InsertEnter',
-    disable = true
+    disable = not config.enable_lsp
   }
 
   use {
@@ -143,7 +143,7 @@ return require('packer').startup(function(use)
       { 'ms-jpq/coq.artifacts', branch = 'artifacts' },
       { 'ms-jpq/coq.thirdparty', branch = '3p' },
     },
-    disable = false
+    disable = true
   }
 
   use {
@@ -166,7 +166,7 @@ return require('packer').startup(function(use)
     'mg979/vim-visual-multi',
     config = function()
       require('plugins.vim-visual-multi')
-    end
+    end,
   }
 
   use {
@@ -281,6 +281,11 @@ return require('packer').startup(function(use)
   -- Java Support
   use {
     'mfussenegger/nvim-jdtls',
+    ft = { 'java' }
+  }
+
+  use {
+    'artur-shaik/jc.nvim',
     ft = { 'java' }
   }
 
