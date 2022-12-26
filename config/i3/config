@@ -95,7 +95,7 @@ bindsym $superkey+space exec "rofi -show drun -theme ~/.cache/wal/launcher.rasi"
 bindsym $superkey+control+space exec rofi -modi emoji -show emoji -kb-custom-1 Ctrl+C
 
 # start a terminal
-bindsym $superkey+Return exec $term
+bindsym $superkey+Return exec $term -e tmux
 
 # start file manager
 bindsym $superkey+e exec $filemanager
