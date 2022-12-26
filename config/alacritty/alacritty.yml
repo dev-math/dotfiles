@@ -6,6 +6,8 @@ window:
     x: 0
     y: 0
 
+  dynamic_padding: true
+
   opacity: 0.8
 
   decorations: full
