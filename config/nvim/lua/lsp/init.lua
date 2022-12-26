@@ -3,7 +3,7 @@ if not ok then
   return
 end
 
-require('lsp.lsp-installer')
+require('lsp.mason')
 require('lsp.handlers')
 require('lsp.lsp-signature')
 require('lsp.lspconfig')

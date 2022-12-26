@@ -29,7 +29,7 @@ packer.init {
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim' -- Packer can manage itself as an optional plugin
   use 'lewis6991/impatient.nvim' -- Speed up loading Lua modules
-  use 'nathom/filetype.nvim' -- A faster version of filetype.vim 
+  use 'nathom/filetype.nvim' -- A faster version of filetype.vim
   use 'antoinemadec/FixCursorHold.nvim' -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
   use 'rafamadriz/friendly-snippets' -- Set of preconfigured snippets
   use 'gpanders/editorconfig.nvim' -- EditorConfig plugin for neovim
@@ -53,7 +53,8 @@ return require('packer').startup(function(use)
   use {
     'neovim/nvim-lspconfig', -- Collection of configurations for built-in LSP client
     requires = {
-      { 'williamboman/nvim-lsp-installer' }, -- Automatically install language servers to stdpath
+      { 'williamboman/mason.nvim' },
+      { 'williamboman/mason-lspconfig.nvim' },
       -- { 'j-hui/fidget.nvim' }, -- lsp progress
       { 'b0o/SchemaStore.nvim' }, -- Access to the SchemaStore catalog
       {
@@ -62,6 +63,9 @@ return require('packer').startup(function(use)
       },
       {
         'jose-elias-alvarez/null-ls.nvim',
+        requires = {
+          { 'jayp0521/mason-null-ls.nvim' },
+        },
         config = function()
           require('plugins.null_ls')
         end,

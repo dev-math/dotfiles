@@ -3,7 +3,7 @@ if not ok then
   return
 end
 
-local ok, lsp_installer = pcall(require, 'nvim-lsp-installer')
+local ok, mason_lspconfig = pcall(require, 'mason-lspconfig')
 if not ok then
   return
 end
@@ -11,7 +11,7 @@ end
 local u = require('core.utils')
 local default_config = require('lsp.servers.default')
 
-for _, server in ipairs(lsp_installer.get_installed_servers()) do
+for _, server in ipairs(mason_lspconfig.get_installed_servers()) do
   local config = default_config
 
   if server.name == 'jsonls' then
