@@ -106,6 +106,13 @@ return require("packer").startup(function(use)
 		disable = not config.enable_lsp,
 	})
 
+  use {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup()
+    end
+  }
+
 	use({
 		"windwp/nvim-autopairs",
 		config = function()
