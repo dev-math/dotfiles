@@ -13,11 +13,19 @@ local code_actions = null_ls.builtins.code_actions
 null_ls.setup {
   debug = false,
   sources = {
-    formatting.prettierd,
+    formatting.prettierd.with({
+      prefer_local = "node_modules/.bin",
+    }),
     formatting.stylua,
-    formatting.eslint_d,
-    code_actions.eslint_d,
-    diagnostics.eslint_d,
+    formatting.eslint_d.with({
+      prefer_local = "node_modules/.bin",
+    }),
+    code_actions.eslint_d({
+      prefer_local = "node_modules/.bin",
+    }),
+    diagnostics.eslint_d({
+      prefer_local = "node_modules/.bin",
+    }),
   },
 }
 
