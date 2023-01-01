@@ -13,6 +13,7 @@ local code_actions = null_ls.builtins.code_actions
 null_ls.setup {
   debug = false,
   sources = {
+    formatting.clang_format,
     formatting.prettierd.with({
       prefer_local = "node_modules/.bin",
     }),
