@@ -27,13 +27,13 @@ function M.init(_, bufnr)
 	vim.keymap.set("n", "<leader>i", vim.lsp.buf.format, bufopts)
 	vim.keymap.set("v", "<leader>i", vim.lsp.buf.range_formatting, bufopts)
 
-	-- Create a command `:Format` local to the LSP buffer
-	vim.api.nvim_buf_create_user_command(
-		bufnr,
-		"Format",
-		vim.lsp.buf.format,
-		{ desc = "Format current buffer with LSP" }
-	)
+	-- -- Create a command `:Format` local to the LSP buffer
+	-- vim.api.nvim_buf_create_user_command(
+	-- 	bufnr,
+	-- 	"Format",
+	-- 	vim.lsp.buf.format,
+	-- 	{ desc = "Format current buffer with LSP" }
+	-- )
 end
 
 return M
