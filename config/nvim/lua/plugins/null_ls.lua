@@ -42,6 +42,6 @@ end
 
 mason_null_ls.setup({
 	ensure_installed = nil,
-	automatic_installation = true,
-	automatic_setup = false,
+	automatic_installation = false,
+	automatic_setup = true,
 })

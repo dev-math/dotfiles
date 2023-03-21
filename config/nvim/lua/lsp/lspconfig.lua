@@ -18,6 +18,8 @@ mason_lspconfig.setup_handlers({
       config = u.merge(config, require('lsp.servers.jsonls'))
     elseif server_name == 'sumneko_lua' then
       config = u.merge(config, require('lsp.servers.sumneko_lua'))
+    elseif server_name == 'clangd' then
+      config = u.merge(config, require('lsp.servers.clangd'))
     elseif server_name == 'tsserver' then
       config = u.merge(config, require('lsp.servers.tsserver'))
     end
