@@ -15,12 +15,12 @@ Table of contents:
 - **OS:** [Arch Linux](https://archlinux.org/)
 - **WM:** [i3-gaps](https://github.com/Airblader/i3)
 - **Shell:** [Zsh (Z shell)](http://zsh.sourceforge.net/) with [powerlevel10k](https://github.com/romkatv/powerlevel10k) framework
-- **Terminal:** [kitty](https://github.com/kovidgoyal/kitty/)
+- **Terminal:** [Alacritty](https://github.com/alacritty/alacritty)
 - **Editor**: [Neovim](https://github.com/neovim/neovim/)
-- **Terminal font:** Hack Mono
+- **Terminal font:** Caskaydia Cove Nerd Font
 - **File Manager**: [Thunar](https://git.xfce.org/xfce/thunar/)
 - **Launcher**: [rofi](https://github.com/davatorium/rofi/)
-- **Browser**: [Brave](https://brave.com/)
+- **Browser**: [Firefox](https://www.mozilla.org/pt-BR/firefox/new/) white [WhiteSur](https://github.com/vinceliuice/WhiteSur-gtk-theme) Alt theme
 
 ## Screenshots
 ![](https://i.imgur.com/bEVQdEy.jpg)
@@ -43,10 +43,6 @@ bash ~/.dotfiles/utils/install.sh
 ```
 
 ## Tips
-
-- Edit .xprofile file and set your keyboard layout
-
-- [Configure asdf](https://asdf-vm.github.io/asdf/guide/getting-started.html) 
 
 - To generate a theme run ```wal -i path/to/image -o afterwal```
 Preferably place the image in the ```~/Pictures/wallpapers``` folder
