@@ -20,7 +20,7 @@ Table of contents:
 - **Terminal font:** Caskaydia Cove Nerd Font
 - **File Manager**: [Thunar](https://git.xfce.org/xfce/thunar/)
 - **Launcher**: [rofi](https://github.com/davatorium/rofi/)
-- **Browser**: [Firefox](https://www.mozilla.org/pt-BR/firefox/new/) white [WhiteSur](https://github.com/vinceliuice/WhiteSur-gtk-theme) Alt theme
+- **Browser**: [Firefox](https://www.mozilla.org/pt-BR/firefox/new/) with [WhiteSur](https://github.com/vinceliuice/WhiteSur-gtk-theme) Alt theme
 
 ## Screenshots
 ![](https://i.imgur.com/bEVQdEy.jpg)
