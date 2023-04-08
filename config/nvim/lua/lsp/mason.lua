@@ -28,6 +28,6 @@ if not ok then
 end
 
 mason_lspconfig.setup {
-  ensure_installed = { "clangd", "tsserver", "html", "cssls", "jsonls", "jdtls", "sumneko_lua" },
+  ensure_installed = { "clangd", "tsserver", "html", "cssls", "jsonls", "jdtls" },
   automatic_installation = false, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
 }
