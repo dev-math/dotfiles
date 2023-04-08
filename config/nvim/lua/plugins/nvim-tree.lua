@@ -6,9 +6,6 @@ end
 nvimtree.setup({
   disable_netrw = true,
   hijack_netrw = true,
-  open_on_setup = false,
-  open_on_setup_file = false,
-  ignore_buffer_on_setup = false,
   auto_reload_on_write = true,
   hijack_unnamed_buffer_when_opening = false,
   hijack_directories = {
@@ -19,11 +16,6 @@ nvimtree.setup({
   hijack_cursor = false,
   update_cwd = false,
   sort_by = "name",
-  ignore_ft_on_setup = {
-    "startify",
-    "dashboard",
-    "alpha",
-  },
   diagnostics = {
     enable = true,
     icons = {
