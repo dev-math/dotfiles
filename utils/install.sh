@@ -23,7 +23,7 @@ packages=(
   "noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra fontconfig" # fonts
   "thunar thunar-archive-plugin thunar-media-tags-plugin" # Thunar file explorer
   "mesa mesa-utils libva-mesa-driver"
-  "steam" # Games | optional: 0ad wesnoth
+  "lutris steam" # Games | optional: 0ad wesnoth
   # "xf86-video-amdgpu" # AMD GPU
   # "nvidia nvidia-utils nvidia-settings" # Nvidia GPU
   # "gucharmap xournalpp chromium google-chrome qutebrowser" # Optional
