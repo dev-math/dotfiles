@@ -254,9 +254,13 @@ for_window [window_type="dialog"] floating enable, move absolute position center
 for_window [window_type="DIALOG"] floating enable, move absolute position center
 for_window [window_type="menu"] floating enable
 for_window [title="YouTube Music"] floating disable
+for_window [title="WhatsApp Web"] floating disable
 
 # Assign (use xprop to get window class (need xdotool))
 assign [class="discord"] → number 10
 assign [class="kotatogram-desktop"] → number 10
 assign [class="KotatogramDesktop"] → number 10
+assign [class="telegram-desktop"] → number 10
+assign [class="TelegramDesktop"] → number 10
+assign [title="WhatsApp Web"] → number 10
 assign [title="YouTube Music"] → number 9
