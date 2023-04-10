@@ -3,7 +3,7 @@ set -e
 
 # Define the list of packages to be installed
 packages=(
-  "wget openssh curl usbutils xclip udisks2 udiskie zip unzip unrar p7zip lzop cpio ntfs-3g dosfstools exfat-utils f2fs-tools fuse fuse-exfat mtpfs sshfs gvfs man-db man-pages texinfo networkmanager maim xorg-xrandr xorg-server xorg-xinit cronie parcellite libappindicator-gtk3" # Base
+  "wget openssh curl usbutils xclip udisks2 udiskie zip unzip unrar p7zip lzop cpio ntfs-3g dosfstools exfat-utils f2fs-tools fuse fuse-exfat mtpfs sshfs gvfs man-db man-pages texinfo networkmanager maim xorg-xrandr xorg-server xorg-xgamma xorg-xinit cronie parcellite libappindicator-gtk3" # Base
   "cups system-config-printer" # Printer
   "i3-gaps polybar picom rofi playerctl python-pywal flameshot-git xdg-desktop-portal xdg-desktop-portal-wlr" # i3gaps setup
   "dunst" # notifications | optional: xfce4-notifyd
@@ -22,8 +22,8 @@ packages=(
   "kdeconnect"
   "noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra fontconfig" # fonts
   "thunar thunar-archive-plugin thunar-media-tags-plugin" # Thunar file explorer
-  "mesa mesa-utils libva-mesa-driver"
-  "lutris steam" # Games | optional: 0ad wesnoth
+  "mesa mesa-utils libva-mesa-driver vkd3d lib32-vkd3d"
+  "lutris wine lib32-gamemode gamemode steam" # Games | optional: 0ad wesnoth
   # "xf86-video-amdgpu" # AMD GPU
   # "nvidia nvidia-utils nvidia-settings" # Nvidia GPU
   # "gucharmap xournalpp chromium google-chrome qutebrowser" # Optional
