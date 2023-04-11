@@ -9,6 +9,7 @@ packages=(
   "dunst" # notifications | optional: xfce4-notifyd
   "alacritty zsh bat exa neofetch tmux fd ripgrep" # terminal config | optional: kitty rxvt-unicode
   "firefox brave-bin rclone qbittorrent torbrowser-launcher obs-studio" # Internet apps
+  "docker neovim" # Development
   "obsidian" # note taking
   "discord telegram-desktop" # chat apps | optional: kotatogram-desktop
   "feh" # Image viewer | optional: eog
