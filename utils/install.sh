@@ -89,7 +89,7 @@ sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
 sed -i '/%wheel\ ALL=(ALL)\ ALL/s/^#//' /etc/sudoers
 
 ## add user to groups
-usermod -m -G wheel,video $(whoami)
+usermod -m -G wheel,video,docker $(whoami)
 
 ## create default dirs
 mkdir -p ~/Projects ~/Downloads ~/Documents/Books ~/Desktop ~/Videos ~/Music
