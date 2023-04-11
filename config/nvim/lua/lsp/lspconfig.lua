@@ -12,7 +12,12 @@ local u = require('core.utils')
 local default_config = require('lsp.servers.default')
 local config = default_config
 
-mason_lspconfig.setup_handlers({
+mason_lspconfig.setup {
+  ensure_installed = { "clangd", "tsserver", "html", "cssls", "jsonls", "jdtls" },
+  automatic_installation = false, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
+}
+
+mason_lspconfig.setup_handlers{
   function (server_name) -- default handler (optional)
     if server_name == 'jsonls' then
       config = u.merge(config, require('lsp.servers.jsonls'))
@@ -31,4 +36,4 @@ mason_lspconfig.setup_handlers({
       lspconfig[server_name].setup(coq.lsp_ensure_capabilities(config))
     end
   end,
-})
+}
