@@ -41,6 +41,11 @@ bufferline.setup {
     tab_size = 20,
     right_mouse_command = "vert sbuffer %d", -- can be a string | function, see "Mouse actions"
     diagnostics = "nvim_lsp",
+    buffer_close_icon = '',
+    modified_icon = '●',
+    close_icon = '',
+    left_trunc_marker = '',
+    right_trunc_marker = '',
     diagnostics_indicator = diagnostics_indicator,
     -- NOTE: this will be called a lot so don't do any heavy processing here
     custom_filter = custom_filter,
@@ -75,7 +80,7 @@ bufferline.setup {
         padding = 1,
       },
     },
-    show_close_icon = false,
+    show_close_icon = true,
     separator_style = "thin",
     always_show_bufferline = false,
     sort_by = "id",
