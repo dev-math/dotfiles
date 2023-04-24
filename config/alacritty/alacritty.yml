@@ -34,19 +34,19 @@ scrolling:
 
 font:
   normal:
-    family: Caskaydia Cove Nerd Font Mono 
+    family: Hack Nerd Font Mono 
     style: Regular
 
   bold:
-    family: Caskaydia Cove Nerd Font Mono
+    family: Hack Nerd Font Mono
     style: Bold
 
   italic:
-    family: Caskaydia Cove Nerd Font Mono
+    family: Hack Nerd Font Mono
     style: Italic
 
   bold_italic:
-    family: Caskaydia Cove Nerd Font Mono
+    family: Hack Nerd Font Mono
     style: Bold Italic
 
   # Point size
