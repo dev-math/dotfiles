@@ -95,3 +95,31 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+
+
+-- LSP
+keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
+keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+-- keymap("v", "<leader>ca", vim.lsp.buf.range_code_action, opts)
+
+keymap("n", "gd", require("telescope.builtin").lsp_definitions, opts)
+keymap("n", "gi", require("telescope.builtin").lsp_implementations, opts)
+keymap("n", "gr", require("telescope.builtin").lsp_references, opts)
+keymap("n", "<leader>ds", require("telescope.builtin").lsp_document_symbols, opts)
+keymap("n", "<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, opts)
+
+keymap("n", "K", vim.lsp.buf.hover, opts)
+keymap("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+
+keymap("n", "gD", vim.lsp.buf.declaration, opts)
+keymap("n", "gt", require("telescope.builtin").lsp_type_definitions, opts)
+keymap("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
+keymap("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
+keymap("n", "<leader>wl", function()
+  print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+end, opts)
+keymap("n", "<leader>i", vim.lsp.buf.format, opts)
+-- keymap("v", "<leader>i", vim.lsp.buf.range_formatting, opts)
+
+-- Create a command `:Format` local to the LSP buffer
+vim.api.nvim_create_user_command("Format", vim.lsp.buf.format, { desc = "Format current buffer with LSP" })

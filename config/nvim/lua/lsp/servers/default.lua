@@ -7,8 +7,6 @@ function M.on_attach(client, bufnr)
 
   -- Enable completion triggered by <c-x><c-o>
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  require('lsp.keymaps').init(client, bufnr)
 end
 
 M.flags = {
