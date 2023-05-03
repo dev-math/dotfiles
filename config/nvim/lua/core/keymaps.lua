@@ -8,9 +8,7 @@ local opts = { noremap = true, silent = true }
 --   term_mode = "t",
 --   command_mode = "c",
 
--- Set <space> as the leader key
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+-- keyleader is set on core.init.lua
 
 -- Window spliter
 keymap('n', 'ss', '<C-w>s', opts)
