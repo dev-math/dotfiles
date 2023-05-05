@@ -14,6 +14,7 @@ help () {
 }
 
 alias icb="ssh -p 2112 matheuss@200.144.244.172"
+alias pet="ssh petsi@192.168.0.90"
 alias ssh='TERM=xterm-256color ssh'
 
 alias vim='nvim'
