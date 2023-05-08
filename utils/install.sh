@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -e
 
+install_keyboard="y"
+install_touchpad="y"
+install_hp="y"
+backup_files="n"
+
 # Define the list of packages to be installed
 packages=(
   "wget openssh curl usbutils xclip udisks2 udiskie zip unzip unrar p7zip lzop cpio ntfs-3g dosfstools exfat-utils f2fs-tools fuse fuse-exfat mtpfs sshfs gvfs man-db man-pages texinfo networkmanager maim xorg-xrandr xorg-server xorg-xgamma xorg-xinit cronie parcellite libappindicator-gtk3" # Base
@@ -83,13 +88,10 @@ function backup() {
 }
 
 ## enable multilib rep
-sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
+sed "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf > tmp_file && sudo mv tmp_file /etc/pacman.conf
 
 ## enable sudo
-sed -i '/%wheel\ ALL=(ALL)\ ALL/s/^#//' /etc/sudoers
-
-## add user to groups
-usermod -m -G wheel,video,docker $(whoami)
+sed '/%wheel\ ALL=(ALL)\ ALL/s/^#//' /etc/sudoers > tmp_file && sudo mv tmp_file /etc/sudoers
 
 ## create default dirs
 mkdir -p ~/Projects ~/Downloads ~/Documents/Books ~/Desktop ~/Videos ~/Music
@@ -134,7 +136,6 @@ echo "Installing packages with yay..."
 yay "${install_flags[@]}" "${packages[@]}"
 
 # Prompt the user to backup dotfiles
-backup_files="n"
 if [ "$noconfirm" = false ]; then
   read -p "Do you want to backup your current dotfiles? (y/N) " -r REPLY
   if [[ "$REPLY" =~ ^[Yy]$ ]]; then
@@ -245,7 +246,7 @@ else
 fi
 
 # Configure and enable cronjobs
-sed -i "s/math/$(whoami)/g" ~/.config/cronjobs
+sed "s/math/$(whoami)/g" ~/.config/cronjobs > tmp_file && sudo mv tmp_file ~/.config/cronjobs
 crontab -l >> ~/.config/cronjobs
 crontab ~/.config/cronjobs
 systemctl enable --now cronie
@@ -260,23 +261,40 @@ chsh -s $(which zsh) # change shell to zsh for the current user
 # Blacklist PC speaker module
 echo "blacklist pcspkr" | sudo tee /etc/modprobe.d/nobeep.conf
 
-# Configure keyboard and touchpad
-sudo ln -sf $DOTFILES_DIR/config/00-keyboard.conf /etc/X11/xorg.conf.d/00-keyboard.conf
-sudo ln -sf $DOTFILES_DIR/config/30-touchpad.conf /etc/X11/xorg.conf.d/30-touchpad.conf
+# Configure Keyboard
+if [ "$noconfirm" = false ]; then
+  read -p "Do you want to configure your keyboard with BR-ABNT2 layout? (y/N) " -r REPLY
+  if [[ "$REPLY" =~ ^[Nn]$ ]]; then
+    install_keyboard="n"
+  fi
+fi
+if [ "${install_keyboard:-}" == "y" ]; then
+  sudo ln -sf $DOTFILES_DIR/config/00-keyboard.conf /etc/X11/xorg.conf.d/00-keyboard.conf
+fi
+
+# Configure Touchpad
+if [ "$noconfirm" = false ]; then
+  read -p "Do you want to configure your touchpad? (y/N) " -r REPLY
+  if [[ "$REPLY" =~ ^[Nn]$ ]]; then
+    install_touchpad="n"
+  fi
+fi
+if [ "${install_touchpad:-}" == "y" ]; then
+  sudo ln -sf $DOTFILES_DIR/config/30-touchpad.conf /etc/X11/xorg.conf.d/30-touchpad.conf
+fi
 
 # Configure pywal files
 mkdir -p ~/.config/wal/templates/ 
 ln -sf $DOTFILES_DIR/config/wal/templates/* ~/.config/wal/templates/
 wal -i ~/Pictures/wallpapers/dracula.png -e -s -t -q -n -o ~/.local/bin/afterwal
 # Symlink pywal files
-sed -i "s/math/$(whoami)/g" ~/.config/wal/templates/flameshot.ini
+sed "s/math/$(whoami)/g" ~/.config/wal/templates/flameshot.ini > tmp_file && sudo mv tmp_file ~/.config/wal/templates/flameshot.ini
 backup "~/.config/flameshot" && mkdir -p ~/.config/flameshot && ln -sf ~/.cache/wal/flameshot ~/.config/flameshot/flameshot.ini
 backup "~/.config/zathura" && mkdir -p ~/.config/zathura && ln -sf ~/.cache/wal/zathurarc ~/.config/zathura/zathurarc
 backup "~/.config/dunst" && mkdir -p ~/.config/dunst && ln -sf ~/.cache/wal/dunstrc ~/.config/dunst/dunstrc
 backup "~/.Xresources" && ln -sf ~/.cache/wal/Xresources ~/.Xresources
 
 # Configure hp p1102w printer
-install_hp="y"
 if [ "$noconfirm" = false ]; then
   read -p "Do you want to configure HP LaserJet P1102 printer? (y/N) " -r REPLY
   if [[ "$REPLY" =~ ^[Nn]$ ]]; then
@@ -286,3 +304,6 @@ fi
 if [ "${install_hp:-}" == "y" ]; then
   yay "${install_flags[@]}" hplip hplip-plugin
 fi
+
+## add user to groups
+usermod -m -G wheel,video,docker $(whoami)
