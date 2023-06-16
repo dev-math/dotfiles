@@ -103,6 +103,7 @@ return require("lazy").setup({
         "godlygeek/tabular",
       },
     },
+    enabled = false,
   },
 
   {
@@ -287,12 +288,11 @@ return require("lazy").setup({
   -- Java Support
   {
     "mfussenegger/nvim-jdtls",
-    ft = { "java" },
   },
 
   {
     "artur-shaik/jc.nvim",
-    ft = { "java" },
+    enabled = false,
   },
 
   -- Colorschemes

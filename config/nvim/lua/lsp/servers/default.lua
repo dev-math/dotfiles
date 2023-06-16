@@ -30,11 +30,6 @@ M.root_dir = function(fname)
     or util.root_pattern('.eslintrc.js')(fname)
     or util.root_pattern('.eslintrc.json')(fname)
     or util.root_pattern('tsconfig.json')(fname)
-    or util.root_pattern('mvnw')(fname)
-    or util.root_pattern('gradlew')(fname)
-    or util.root_pattern('.gradle')(fname)
-    or util.root_pattern('pom.xml')(fname)
-    or util.root_pattern('build.gradle')(fname)
 end
 
 M.autostart = true

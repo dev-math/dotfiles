@@ -17,8 +17,8 @@ mason_lspconfig.setup {
   automatic_installation = false, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
 }
 
-mason_lspconfig.setup_handlers{
-  function (server_name) -- default handler (optional)
+mason_lspconfig.setup_handlers {
+  function(server_name)  -- default handler (optional)
     if server_name == 'jsonls' then
       config = u.merge(config, require('lsp.servers.jsonls'))
     elseif server_name == 'sumneko_lua' then
@@ -27,6 +27,8 @@ mason_lspconfig.setup_handlers{
       config = u.merge(config, require('lsp.servers.clangd'))
     elseif server_name == 'tsserver' then
       config = u.merge(config, require('lsp.servers.tsserver'))
+    elseif server_name == 'jdtls' then
+      return
     end
 
     local status_ok, coq = pcall(require, "coq")
