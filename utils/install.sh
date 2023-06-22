@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 install_hp="y"
 backup_files="n"
