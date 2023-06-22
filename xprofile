@@ -1,7 +1,0 @@
-wal -R # Load pywal colors and wallpaper
-xrdb -load ~/.Xresources # Load Xresources
-
-/usr/lib/kdeconnectd & # Start KDEconnect
-picom & # Start compositor
-parcellite -n & # clipboard manager
-udiskie & # mount helper

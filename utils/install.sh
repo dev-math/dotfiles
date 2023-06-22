@@ -8,7 +8,7 @@ backup_files="n"
 packages=(
   "wget openssh curl usbutils xclip udisks2 udiskie zip unzip unrar p7zip lzop cpio ntfs-3g dosfstools exfat-utils f2fs-tools fuse fuse-exfat mtpfs sshfs gvfs man-db man-pages texinfo networkmanager maim xorg-xrandr xorg-server xorg-xgamma xorg-xinit cronie parcellite libappindicator-gtk3" # Base
   "cups system-config-printer" # Printer
-  "sway swaybg waybar xorg-xwayland wl-clipboard clipman rofi-lbonn-wayland-git xdg-desktop-portal xdg-desktop-portal-wlr grim" # sway setup
+  "sway swaylock-effects-git swaybg waybar xorg-xwayland wl-clipboard wf-recorder clipmon-git rofi-lbonn-wayland-git xdg-desktop-portal xdg-desktop-portal-wlr grim" # sway setup
   "python-pywal" # generate color-schemes
   "flameshot-git" # screenshots
   "playerctl" # control media player
@@ -17,7 +17,7 @@ packages=(
   "docker docker-compose neovim" # Development
   "firefox brave-bin rclone qbittorrent torbrowser-launcher obs-studio" # Internet apps
   "obsidian" # note taking
-  "discord telegram-desktop" # chat apps | optional: kotatogram-desktop
+  "discord discord-screenaudio telegram-desktop" # chat apps | optional: kotatogram-desktop
   "feh" # Image viewer | optional: eog
   "mpv mpv-mpris" # Video Player | optional: vlc
   "alsa-utils alsa-plugins pavucontrol pipewire wireplumber pipewire-alsa pipewire-pulse pipewire-jack" # Audio apps
@@ -50,14 +50,10 @@ dotfiles=(
   "/home/$(whoami)/.config/alacritty $DOTFILES_DIR/config/alacritty"
   "/home/$(whoami)/.config/nvim $DOTFILES_DIR/config/nvim"
   "/home/$(whoami)/.config/mimeapps.list $DOTFILES_DIR/config/mimeapps.list"
-  "/home/$(whoami)/.config/picom.conf $DOTFILES_DIR/config/picom.conf"
   "/home/$(whoami)/.config/tmux $DOTFILES_DIR/config/tmux"
-  "/home/$(whoami)/.config/autorandr $DOTFILES_DIR/config/autorandr"
   "/home/$(whoami)/.config/gtk-3.0 $DOTFILES_DIR/config/gtk-3.0"
   "/home/$(whoami)/.gtkrc-2.0 $DOTFILES_DIR/gtkrc-2.0"
   "/home/$(whoami)/.config/zsh $DOTFILES_DIR/config/zsh"
-  "/home/$(whoami)/.xinitrc $DOTFILES_DIR/xinitrc"
-  "/home/$(whoami)/.xprofile $DOTFILES_DIR/xprofile"
 )
 
 # Parse arguments
@@ -199,7 +195,7 @@ fi
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 # enable pipewire
-systemctl --user enable --now pipewire-pulse.service
+systemctl --user enable pipewire.service pipewire.socket pipewire-pulse.service wireplumber.service
 
 # Check for the presence of a battery
 if [ -d "/sys/class/power_supply" ]; then

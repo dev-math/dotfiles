@@ -81,7 +81,7 @@ bindsym $altkey+minus scratchpad show
 bindsym $superkey+space exec "rofi -show drun -theme ~/.cache/wal/launcher.rasi | xargs swaymsg exec --"
 
 # emoji picker
-bindsym $superkey+control+space exec rofi -modi emoji -show emoji -kb-custom-1 Ctrl+C
+bindsym $superkey+control+space exec ~/.local/bin/rofi-emoji
 
 # start a terminal
 bindsym $superkey+Return exec $term
@@ -261,11 +261,11 @@ include /etc/sway/config.d/*
 
 # Autostart
 # exec_always ~/.config/sway/import-gsettings
+# exec systemctl --user import-environment
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec "wal -R" # Load pywal colors and wallpaper
 exec "udiskie &" # mount helper
 exec "/usr/lib/kdeconnectd &" # Start KDEconnect
-exec "wl-paste -t text --watch clipman store --max-items=1"
 # exec "discord" # Start discord

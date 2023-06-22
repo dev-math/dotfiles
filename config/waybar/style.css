@@ -1,9 +1,5 @@
 @import url('/home/math/.cache/wal/colors-waybar.css');
 
-/* -----------------------------------------------------------------------------
- * Keyframes
- * -------------------------------------------------------------------------- */
-
 @keyframes blink-warning {
 	70% {
 		color: @foreground;
@@ -25,11 +21,9 @@
 	}
 }
 
-/* COLORS */
 @define-color warning #fabd2f;
 @define-color critical #cc241d;
 
-/* Reset all styles */
 * {
 	border: none;
 	border-radius: 0;
@@ -40,13 +34,11 @@
 	padding: 0;
 }
 
-/* The whole bar */
 #waybar {
 	background: @background;
 	color: @color8;
 }
 
-/* Each module */
 #battery,
 #mode,
 #network,
@@ -82,7 +74,6 @@
   padding-right: 10px;
 }
 
-/* Each module that should blink */
 #memory,
 #temperature,
 #battery {
@@ -91,7 +82,6 @@
 	animation-direction: alternate;
 }
 
-/* Each critical module */
 #memory.critical,
 #cpu.critical,
 #temperature.critical,
@@ -99,7 +89,6 @@
 	color: @critical;
 }
 
-/* Each critical that should blink */
 #memory.critical,
 #temperature.critical,
 #battery.critical.discharging {
@@ -107,7 +96,6 @@
 	animation-duration: 0.5s;
 }
 
-/* Each warning */
 #network.disconnected,
 #memory.warning,
 #cpu.warning,
@@ -116,28 +104,30 @@
 	color: @warning;
 }
 
-/* Each warning that should blink */
 #battery.warning.discharging {
 	animation-name: blink-warning;
 	animation-duration: 3s;
 }
 
-/* And now modules themselves in their respective order */
-
-#mode { /* Shown current Sway mode (resize etc.) */
+#mode {
 	background: @color4;
   color: @foreground;
   margin-left: 10px;
 }
 
-/* Workspaces stuff */
-#workspaces button {
+* button label, #pulseaudio button {
+  font-size: 30px;
+}
+
+#workspaces button, #workspaces button.focused, #workspaces button.focused:hover {
+  box-shadow: none;
 	padding-left: 4px;
 	padding-right: 4px;
 	color: @foreground;
+  background: @background;
 }
 
-#workspaces button.focused {
+#workspaces button.focused, #workspaces button.focused:hover {
 	color: @color4;
 }
 
