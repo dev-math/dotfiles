@@ -43,7 +43,6 @@ set $inactive   $color7
 set $unfocused  $color7
 
 # class                 border      backgr.    text      indicator    child_border
-client.background       $bg
 client.focused          $normal     $normal    $bg       $normal      $normal
 client.focused_inactive $inactive   $inactive  $fg       $inactive    $inactive
 client.unfocused        $unfocused  $unfocused $fg       $unfocused   $unfocused
