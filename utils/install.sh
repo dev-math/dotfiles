@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
-set -e
 
-install_keyboard="y"
-install_touchpad="y"
 install_hp="y"
 backup_files="n"
 
@@ -136,7 +133,7 @@ fi
 
 # Install packages with yay
 echo "Installing packages with yay..."
-yay "${install_flags[@]}" "${packages[@]}"
+yay "${install_flags[@]}" ${packages[@]}
 
 # Prompt the user to backup dotfiles
 if [ "$noconfirm" = false ]; then
@@ -173,10 +170,10 @@ sed -i "s/math/$(whoami)/g" ~/.config/waybar/style.css
 if ! command -v asdf &> /dev/null
 then
   if [[ ! -d $HOME/.asdf ]]; then
-    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.3
-    source "$HOME/.asdf/asdf.sh"
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.12.0
   fi
 fi
+source "$HOME/.asdf/asdf.sh"
 
 # Install Node.js
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
@@ -237,9 +234,9 @@ fi
 
 # Install Video Card
 if [[ ${VIDEO_DRIVER} == intel ]]; then
-  yay "${install_flags[@]}" "xf86-video-${VIDEO_DRIVER} mesa-libgl libvdpau-va-gl libva-intel-driver"
+  yay "${install_flags[@]}" xf86-video-${VIDEO_DRIVER} mesa-libgl libvdpau-va-gl libva-intel-driver
 else
-  yay "${install_flags[@]}" "xf86-video-${VIDEO_DRIVER} mesa-libgl libvdpau-va-gl"
+  yay "${install_flags[@]}" xf86-video-${VIDEO_DRIVER} mesa-libgl libvdpau-va-gl
 fi
 
 # Configure and enable cronjobs
@@ -257,28 +254,6 @@ chsh -s $(which zsh) # change shell to zsh for the current user
 
 # Blacklist PC speaker module
 echo "blacklist pcspkr" | sudo tee /etc/modprobe.d/nobeep.conf
-
-# Configure Keyboard
-if [ "$noconfirm" = false ]; then
-  read -p "Do you want to configure your keyboard with BR-ABNT2 layout? (y/N) " -r REPLY
-  if [[ "$REPLY" =~ ^[Nn]$ ]]; then
-    install_keyboard="n"
-  fi
-fi
-if [ "${install_keyboard:-}" == "y" ]; then
-  sudo ln -sf $DOTFILES_DIR/config/00-keyboard.conf /etc/X11/xorg.conf.d/00-keyboard.conf
-fi
-
-# Configure Touchpad
-if [ "$noconfirm" = false ]; then
-  read -p "Do you want to configure your touchpad? (y/N) " -r REPLY
-  if [[ "$REPLY" =~ ^[Nn]$ ]]; then
-    install_touchpad="n"
-  fi
-fi
-if [ "${install_touchpad:-}" == "y" ]; then
-  sudo ln -sf $DOTFILES_DIR/config/30-touchpad.conf /etc/X11/xorg.conf.d/30-touchpad.conf
-fi
 
 # Configure pywal files
 mkdir -p ~/.config/wal/templates/ 
@@ -303,4 +278,4 @@ if [ "${install_hp:-}" == "y" ]; then
 fi
 
 ## add user to groups
-usermod -m -G wheel,video,docker $(whoami)
+sudo usermod -a -G wheel,video,docker $(whoami)
