@@ -1,20 +1,7 @@
 #!/bin/env bash
 . $HOME/.cache/wal/colors.sh
 
-feh --bg-fill "$wallpaper"
-
-xrdb -merge ~/.Xresources
-
 cp -rf ~/.cache/wal/obsidian.css ~/Notes/.obsidian/snippets/style.css
 
 # generate GTK theme and icon theme
 # wpg --theme ~/.cache/wal/colors.json
-
-# live reload GTK+ theme with xsettingsd
-# timeout 0.5s xsettingsd
-
-# reload AwesomeWM
-# echo 'awesome.restart()' | awesome-client &> /dev/null
-
-# Reload spicetify colors (Reload spotify)
-# spicetify update

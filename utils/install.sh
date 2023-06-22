@@ -10,11 +10,14 @@ backup_files="n"
 packages=(
   "wget openssh curl usbutils xclip udisks2 udiskie zip unzip unrar p7zip lzop cpio ntfs-3g dosfstools exfat-utils f2fs-tools fuse fuse-exfat mtpfs sshfs gvfs man-db man-pages texinfo networkmanager maim xorg-xrandr xorg-server xorg-xgamma xorg-xinit cronie parcellite libappindicator-gtk3" # Base
   "cups system-config-printer" # Printer
-  "i3-gaps polybar picom rofi playerctl python-pywal flameshot-git xdg-desktop-portal xdg-desktop-portal-wlr" # i3gaps setup
+  "sway swaybg waybar xorg-xwayland wl-clipboard clipman rofi-lbonn-wayland-git xdg-desktop-portal xdg-desktop-portal-wlr grim" # sway setup
+  "python-pywal" # generate color-schemes
+  "flameshot-git" # screenshots
+  "playerctl" # control media player
   "dunst" # notifications | optional: xfce4-notifyd
   "alacritty zsh bat exa neofetch tmux fd ripgrep" # terminal config | optional: kitty rxvt-unicode
-  "firefox brave-bin rclone qbittorrent torbrowser-launcher obs-studio" # Internet apps
   "docker docker-compose neovim" # Development
+  "firefox brave-bin rclone qbittorrent torbrowser-launcher obs-studio" # Internet apps
   "obsidian" # note taking
   "discord telegram-desktop" # chat apps | optional: kotatogram-desktop
   "feh" # Image viewer | optional: eog
@@ -24,7 +27,7 @@ packages=(
   "qalculate-gtk" # Calculator
   "zathura zathura-djvu zathura-pdf-mupdf zathura-ps zathura-cb" # PDF viewer
   "papirus-icon-theme-git" # Icon theme
-  "light redshift autorandr arandr" # screen
+  "light gammastep kanshi wdisplays-git wshowkeys-git" # screen
   "kdeconnect"
   "noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra fontconfig" # fonts
   "thunar thunar-archive-plugin thunar-media-tags-plugin" # Thunar file explorer
@@ -44,8 +47,8 @@ install_flags=("-S" "--needed")
 # Define the list of dotfiles to install
 dotfiles=(
   "/home/$(whoami)/.config/cronjobs $DOTFILES_DIR/config/cronjobs"
-  "/home/$(whoami)/.config/i3 $DOTFILES_DIR/config/i3"
-  "/home/$(whoami)/.config/polybar $DOTFILES_DIR/config/polybar"
+  "/home/$(whoami)/.config/sway $DOTFILES_DIR/config/sway"
+  "/home/$(whoami)/.config/waybar $DOTFILES_DIR/config/waybar"
   "/home/$(whoami)/.config/alacritty $DOTFILES_DIR/config/alacritty"
   "/home/$(whoami)/.config/nvim $DOTFILES_DIR/config/nvim"
   "/home/$(whoami)/.config/mimeapps.list $DOTFILES_DIR/config/mimeapps.list"
@@ -163,14 +166,8 @@ mkdir -p ~/.local/share/fonts
 cp -r $DOTFILES_DIR/misc/fonts/* ~/.local/share/fonts/
 fc-cache
 
-# Install i3-lock
-if ! command -v i3lock &>/dev/null; then
-  cd /tmp
-  git clone https://github.com/Raymo111/i3lock-color.git && cd i3lock-color
-  ./install-i3lock-color.sh
-  cd $DOTFILES_DIR
-  rm -Rf /tmp/i3lock-color
-fi
+# Configure waybar
+sed "s/math/$(whoami)/g" ~/.config/waybar/style.css > tmp_file && sudo mv tmp_file ~/.config/waybar/style.css
 
 # Install ASDF
 if ! command -v asdf &> /dev/null
