@@ -51,6 +51,11 @@
 	padding-right: 7px;
 }
 
+#custom-powermenu {
+	padding-left: 1px;
+	padding-right: 7px;
+}
+
 #bluetooth,
 #custom-notification {
   background: @color4;
@@ -115,8 +120,8 @@
   margin-left: 10px;
 }
 
-* button label, #pulseaudio button {
-  font-size: 30px;
+* label {
+  font-size: 18px;
 }
 
 #workspaces button, #workspaces button.focused, #workspaces button.focused:hover {

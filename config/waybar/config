@@ -1,28 +1,30 @@
 {
   "layer": "bottom",
+    // "height": "20",
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["clock"],
-    // "modules-right": ["custom/music#previous", "custom/music", "custom/music#next", "theme notification-toggle beautiful-toggle"],
-    "modules-right": [ "pulseaudio", "network", "battery", "battery#bat2", "tray", "custom/notification", "bluetooth", "custom/powermenu"],
+    // "modules-right": [ "theme notification-toggle beautiful-toggle"],
+    "modules-right": [ "custom/music#previous", "custom/music", "custom/music#next","pulseaudio", "network", "battery", "battery#bat2", "tray", "custom/notification", "bluetooth", "custom/powermenu"],
 
+    // SWAY
     "sway/workspaces": {
       "disable-scroll": true,
       "persistent-workspaces": true,
       "format": "{icon}",
       "format-icons": {
-        "1": "",
-        "2": "",
-        "3": "",
-        "4": " 4",
-        "5": " 5",
-        "6": " 6",
-        "7": " 7",
-        "8": " 8",
-        "9": "",
-        "10": "",
-        "urgent": "",
-        "focused": "",
-        "default": "~",
+        "1": "<span font='30px'></span>",
+        "2": "<span font='30px'></span>",
+        "3": "<span font='30px'></span>",
+        "4": "<span font='30px'></span> <span rise='2000'>4</span>",
+        "5": "<span font='30px'></span> <span rise='2000'>5</span>",
+        "6": "<span font='30px'></span> <span rise='2000'>6</span>",
+        "7": "<span font='30px'></span> <span rise='2000'>7</span>",
+        "8": "<span font='30px'></span> <span rise='2000'>8</span>",
+        "9": "<span font='30px'></span>",
+        "10": "<span font='30px'></span>",
+        "urgent": "<span font='30px'></span>",
+        "focused": "<span font='30px'></span>",
+        "default": "<span font='30px'>~</span>",
       }
     },
     "sway/mode": {
@@ -65,8 +67,8 @@
     },
 
     "pulseaudio": {
-      "format": "<span class='icon'>{icon}</span> {volume}%",
-      "format-muted": "ﱝ",
+      "format": "<span font='30px'>{icon}</span> <span rise='3000'>{volume}%</span>",
+      "format-muted": "<span font='30px'>ﱝ</span>",
       "format-icons": {
         "headphone": "",
         "headset": "",
@@ -82,7 +84,7 @@
 
     "network": {
       "format": "{icon}",
-      "format-wifi": "{icon} {essid}",
+      "format-wifi": "<span font='30px'>{icon}</span> <span rise='3000'>{essid}</span>",
       "format-disconnected": "",
       "format-alt": "{ipaddr}/{cidr} {bandwidthUpBits} {bandwidthDownBits}",
       "format-icons": {
@@ -93,21 +95,21 @@
       "tooltip-format": "{ifname} via {gwaddr} ",
       "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
       "tooltip-format-disconnected": "Disconnected",
-      "max-length": 50
+      "max-length": 25
     },
 
     "battery": {
       "bat": "BAT0",
       "adapter": "AC",
       "full-at": 99,
-      "format": "{icon} {capacity}%",
+      "format": "<span font='30px'>{icon}</span> <span rise='2500'>{capacity}%</span>",
       "format-icons": ["", "", "", "", ""]
     },
     "battery#bat2": {
       "bat": "BAT1",
       "adapter": "AC",
       "full-at": 96,
-      "format": "{icon} {capacity}%",
+      "format": "<span font='30px'>{icon}</span> <span rise='2300'>{capacity}%</span>",
       "format-icons": ["", "", "", "", ""]
     },
 
@@ -119,8 +121,8 @@
     "bluetooth": {
       "format": " {status}",
       "format-off": "",
-      "format-on": "",
-      "format-connected": "",
+      "format-on": "<span font='20px'></span>",
+      "format-connected": "<span font='25px'></span>",
       "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
       "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
       "tooltip-format-connected-battery": " {device_alias} {device_battery_percentage}%",
@@ -129,7 +131,7 @@
     },
 
     "custom/notification": {
-      "format": "{}",
+      "format": "<span font='30px'>{}</span>",
       "interval": "once",
       "on-click": "dunstctl set-paused toggle",
       "exec": "$HOME/.config/waybar/notification.sh",
@@ -138,7 +140,7 @@
     },
 
     "custom/powermenu": {
-      "format": "",
+      "format": "<span font='30px'></span>",
       "on-click": "$HOME/.local/bin/powermenu"
     }
 }

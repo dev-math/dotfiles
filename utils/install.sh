@@ -174,8 +174,8 @@ source "$HOME/.asdf/asdf.sh"
 
 # Install Node.js
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-asdf install nodejs lts
-asdf global nodejs lts
+asdf install nodejs 18.16.1
+asdf global nodejs 18.16.1
 npm i -g vscode-langservers-extracted @fsouza/prettierd
 
 # Install WhiteSur theme
