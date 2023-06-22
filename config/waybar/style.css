@@ -1,0 +1,155 @@
+@import url('/home/math/.cache/wal/colors-waybar.css');
+
+/* -----------------------------------------------------------------------------
+ * Keyframes
+ * -------------------------------------------------------------------------- */
+
+@keyframes blink-warning {
+	70% {
+		color: @foreground;
+	}
+
+	to {
+		color: @foreground;
+		background-color: @warning;
+	}
+}
+
+@keyframes blink-critical {
+	0% {
+		color: @background;
+	}
+
+	100% {
+		color: @color4;
+	}
+}
+
+/* COLORS */
+@define-color warning #fabd2f;
+@define-color critical #cc241d;
+
+/* Reset all styles */
+* {
+	border: none;
+	border-radius: 0;
+  font-family: SF Pro Display, Hack Nerd Font Mono, monospace;
+  font-size: 18px;
+	min-height: 0;
+	margin: 0;
+	padding: 0;
+}
+
+/* The whole bar */
+#waybar {
+	background: @background;
+	color: @color8;
+}
+
+/* Each module */
+#battery,
+#mode,
+#network,
+#pulseaudio,
+#custom-powermenu,
+#sndio {
+  background: @color4;
+  color: @color0;
+	padding-left: 7px;
+	padding-right: 7px;
+}
+
+#bluetooth,
+#custom-notification {
+  background: @color4;
+  color: @color0;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#custom-music, #tray {
+  background: @color4;
+  color: @color0;
+}
+
+#custom-music.previous {
+  padding-left: 10px;
+  padding-right: 5px;
+}
+
+#custom-music.next {
+  padding-left: 5px;
+  padding-right: 10px;
+}
+
+/* Each module that should blink */
+#memory,
+#temperature,
+#battery {
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+/* Each critical module */
+#memory.critical,
+#cpu.critical,
+#temperature.critical,
+#battery.critical {
+	color: @critical;
+}
+
+/* Each critical that should blink */
+#memory.critical,
+#temperature.critical,
+#battery.critical.discharging {
+	animation-name: blink-critical;
+	animation-duration: 0.5s;
+}
+
+/* Each warning */
+#network.disconnected,
+#memory.warning,
+#cpu.warning,
+#temperature.warning,
+#battery.warning {
+	color: @warning;
+}
+
+/* Each warning that should blink */
+#battery.warning.discharging {
+	animation-name: blink-warning;
+	animation-duration: 3s;
+}
+
+/* And now modules themselves in their respective order */
+
+#mode { /* Shown current Sway mode (resize etc.) */
+	background: @color4;
+  color: @foreground;
+  margin-left: 10px;
+}
+
+/* Workspaces stuff */
+#workspaces button {
+	padding-left: 4px;
+	padding-right: 4px;
+	color: @foreground;
+}
+
+#workspaces button.focused {
+	color: @color4;
+}
+
+#window {
+	margin-right: 40px;
+	margin-left: 40px;
+}
+
+#clock {
+  color: @foreground;
+  font-size: 110%;
+	font-weight: 700;
+	padding-left: 10px;
+	padding-right: 10px;
+}

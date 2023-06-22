@@ -25,6 +25,24 @@ color13='{color13}'
 color14='{color14}'
 color15='{color15}'
 
+# Colors
+scolor0='{color0.strip}'
+scolor1='{color1.strip}'
+scolor2='{color2.strip}'
+scolor3='{color3.strip}'
+scolor4='{color4.strip}'
+scolor5='{color5.strip}'
+scolor6='{color6.strip}'
+scolor7='{color7.strip}'
+scolor8='{color8.strip}'
+scolor9='{color9.strip}'
+scolor10='{color10.strip}'
+scolor11='{color11.strip}'
+scolor12='{color12.strip}'
+scolor13='{color13.strip}'
+scolor14='{color14.strip}'
+scolor15='{color15.strip}'
+
 # FZF colors
 export FZF_DEFAULT_OPTS="
     $FZF_DEFAULT_OPTS

@@ -1,0 +1,151 @@
+{
+  "layer": "bottom",
+    // "height": "20",
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["clock"],
+    // "modules-right": ["custom/music#previous", "custom/music", "custom/music#next", "theme notification-toggle beautiful-toggle"],
+    "modules-right": [ "pulseaudio", "network", "battery", "battery#bat2", "tray", "custom/notification", "bluetooth", "custom/powermenu"],
+
+    // SWAY
+    "sway/workspaces": {
+      "disable-scroll": true,
+      "persistent-workspaces": true,
+      "format": "{icon}",
+      "format-icons": {
+        "1": "<span font='30px'></span>",
+        "2": "<span font='30px'></span>",
+        "3": "<span font='30px'></span>",
+        "4": "<span font='30px'></span> <span rise='2000'>4</span>",
+        "5": "<span font='30px'></span> <span rise='2000'>5</span>",
+        "6": "<span font='30px'></span> <span rise='2000'>6</span>",
+        "7": "<span font='30px'></span> <span rise='2000'>7</span>",
+        "8": "<span font='30px'></span> <span rise='2000'>8</span>",
+        "9": "<span font='30px'></span>",
+        "10": "<span font='30px'></span>",
+        "urgent": "<span font='30px'></span>",
+        "focused": "<span font='30px'></span>",
+        "default": "<span font='30px'>~</span>",
+      }
+    },
+    "sway/mode": {
+      "format": " {}",
+      "max-length": 50
+    },
+    "sway/window": {
+      "max-length": 50
+    },
+
+    "clock": {
+      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+      "today-format": "<span color='#ff6699'><b><u>{}</u></b></span>",
+      "format-calendar": "<span color='#ecc6d9'><b>{}</b></span>",
+      "format-calendar-weeks": "<span color='#99ffdd'><b>W{:%V}</b></span>",
+      "format-calendar-weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+      "format": "{:%a, %H:%M}",
+      "format-alt": "{:%Y/%m/%d %X}"
+    },
+
+    "custom/music#previous": {
+      "format": "{}",
+      "return-type": "json",
+      "escape": true,
+      "interval": 1,
+      "exec": "$HOME/.config/waybar/getMusic.sh previous",
+      "on-click": "playerctl previous"
+    },
+    "custom/music": {
+      "format": "{}",
+      "escape": true,
+      "return-type": "json",
+      "max-length": 25,
+      "interval": 1,
+      "on-click": "playerctl play-pause",
+      "exec": "$HOME/.config/waybar/getMusic.sh metadata",
+    },
+    "custom/music#next": {
+      "format": "{}",
+      "return-type": "json",
+      "interval": 1,
+      "escape": true,
+      "exec": "$HOME/.config/waybar/getMusic.sh next",
+      "on-click": "playerctl next"
+    },
+
+    "pulseaudio": {
+      "format": "<span font='25px'>{icon}</span> <span rise='2000'>{volume}%</span>",
+      "format-muted": "<span font='30px'>ﱝ</span>",
+      "format-icons": {
+        "headphone": "",
+        "headset": "",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": ["", "", ""]
+      },
+      "scroll-step": 5,
+      "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+      "on-click-right": "pavucontrol"
+    },
+
+    "network": {
+      "format": "{icon}",
+      "format-wifi": "<span font='30px'>{icon}</span> <span rise='3000'>{essid}</span>",
+      "format-disconnected": "",
+      "format-alt": "{ipaddr}/{cidr} {bandwidthUpBits} {bandwidthDownBits}",
+      "format-icons": {
+        "wifi": [""],
+        "ethernet": [""],
+        "disconnected": [""]
+      },
+      "tooltip-format": "{ifname} via {gwaddr} ",
+      "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+      "tooltip-format-disconnected": "Disconnected",
+      "max-length": 50
+    },
+
+    "battery": {
+      "bat": "BAT0",
+      "adapter": "AC",
+      "full-at": 99,
+      "format": "<span font='30px'>{icon}</span> <span rise='2000'>{capacity}%</span>",
+      "format-icons": ["", "", "", "", ""]
+    },
+    "battery#bat2": {
+      "bat": "BAT1",
+      "adapter": "AC",
+      "full-at": 96,
+      "format": "<span font='30px'>{icon}</span> <span rise='2000'>{capacity}%</span>",
+      "format-icons": ["", "", "", "", ""]
+    },
+
+    "tray": {
+      "icon-size": 21,
+      "spacing": 10
+    },
+
+    "bluetooth": {
+      "format": " {status}",
+      "format-off": "",
+      "format-on": "<span font='20px'></span>",
+      "format-connected": "<span font='30px'></span>",
+      "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+      "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+      "tooltip-format-connected-battery": " {device_alias} {device_battery_percentage}%",
+      "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+      "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+    },
+
+    "custom/notification": {
+      "format": "<span font='30px'>{}</span>",
+      "interval": "once",
+      "on-click": "dunstctl set-paused toggle",
+      "exec": "$HOME/.config/waybar/notification.sh",
+      "exec-on-event": true,
+      "signal": 8
+    },
+
+    "custom/powermenu": {
+      "format": "<span font='30px'></span>",
+      "on-click": "$HOME/.local/bin/powermenu"
+    }
+}
