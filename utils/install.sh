@@ -91,10 +91,10 @@ function backup() {
 }
 
 ## enable multilib rep
-sed "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf > tmp_file && sudo mv tmp_file /etc/pacman.conf
+sudo sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
 
 ## enable sudo
-sed '/%wheel\ ALL=(ALL)\ ALL/s/^#//' /etc/sudoers > tmp_file && sudo mv tmp_file /etc/sudoers
+sudo sed -i '/%wheel\ ALL=(ALL)\ ALL/s/^#//' /etc/sudoers
 
 ## create default dirs
 mkdir -p ~/Projects ~/Downloads ~/Documents/Books ~/Desktop ~/Videos ~/Music
@@ -167,7 +167,7 @@ cp -r $DOTFILES_DIR/misc/fonts/* ~/.local/share/fonts/
 fc-cache
 
 # Configure waybar
-sed "s/math/$(whoami)/g" ~/.config/waybar/style.css > tmp_file && sudo mv tmp_file ~/.config/waybar/style.css
+sed -i "s/math/$(whoami)/g" ~/.config/waybar/style.css
 
 # Install ASDF
 if ! command -v asdf &> /dev/null
@@ -243,7 +243,7 @@ else
 fi
 
 # Configure and enable cronjobs
-sed "s/math/$(whoami)/g" ~/.config/cronjobs > tmp_file && sudo mv tmp_file ~/.config/cronjobs
+sed -i "s/math/$(whoami)/g" ~/.config/cronjobs
 crontab -l >> ~/.config/cronjobs
 crontab ~/.config/cronjobs
 systemctl enable --now cronie
@@ -285,7 +285,7 @@ mkdir -p ~/.config/wal/templates/
 ln -sf $DOTFILES_DIR/config/wal/templates/* ~/.config/wal/templates/
 wal -i ~/Pictures/wallpapers/dracula.png -e -s -t -q -n -o ~/.local/bin/afterwal
 # Symlink pywal files
-sed "s/math/$(whoami)/g" ~/.config/wal/templates/flameshot.ini > tmp_file && sudo mv tmp_file ~/.config/wal/templates/flameshot.ini
+sed -i "s/math/$(whoami)/g" ~/.config/wal/templates/flameshot.ini
 backup "~/.config/flameshot" && mkdir -p ~/.config/flameshot && ln -sf ~/.cache/wal/flameshot ~/.config/flameshot/flameshot.ini
 backup "~/.config/zathura" && mkdir -p ~/.config/zathura && ln -sf ~/.cache/wal/zathurarc ~/.config/zathura/zathurarc
 backup "~/.config/dunst" && mkdir -p ~/.config/dunst && ln -sf ~/.cache/wal/dunstrc ~/.config/dunst/dunstrc
