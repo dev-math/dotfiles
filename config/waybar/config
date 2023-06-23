@@ -1,10 +1,9 @@
 {
   "layer": "bottom",
-    // "height": "20",
+    // "custom/music#previous", "custom/music", "custom/music#next", "theme"
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["clock"],
-    // "modules-right": [ "theme notification-toggle beautiful-toggle"],
-    "modules-right": [ "custom/music#previous", "custom/music", "custom/music#next","pulseaudio", "network", "battery", "battery#bat2", "tray", "custom/notification", "bluetooth", "custom/powermenu"],
+    "modules-right": [ "pulseaudio", "network", "battery", "battery#bat2", "tray", "custom/notification", "bluetooth", "custom/powermenu"],
 
     // SWAY
     "sway/workspaces": {
