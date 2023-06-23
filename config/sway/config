@@ -52,8 +52,8 @@ client.placeholder      $unfocused  $unfocused $fg       $unfocused   $unfocused
 ###--- SETTINGS ---###
 output "*" bg $wallpaper fill
 
-default_border normal pixel 2
-default_floating_border normal pixel 2
+default_border pixel 2
+default_floating_border pixel 2
 gaps inner $innergap
 gaps outer $outergap
 
