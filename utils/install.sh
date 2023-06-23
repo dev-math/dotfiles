@@ -14,7 +14,7 @@ packages=(
   "playerctl" # control media player
   "dunst" # notifications | optional: xfce4-notifyd
   "alacritty zsh bat exa neofetch tmux fd ripgrep" # terminal config | optional: kitty rxvt-unicode
-  "docker docker-compose neovim" # Development
+  "docker docker-compose neovim visual-studio-code-bin" # Development
   "firefox brave-bin rclone qbittorrent torbrowser-launcher obs-studio" # Internet apps
   "obsidian" # note taking
   "discord discord-screenaudio telegram-desktop" # chat apps | optional: kotatogram-desktop
