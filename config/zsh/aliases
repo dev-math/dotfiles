@@ -20,6 +20,7 @@ alias ssh='TERM=xterm-256color ssh'
 alias vim='nvim'
 alias cat='bat --style=auto'
 alias ls='exa --icons'
+alias setWallpaper='rofi -show themes:~/.local/bin/getWallpapers -theme ~/.cache/wal/launcher.rasi'
 
 alias md='mkdir -p'
 alias rd='rmdir'
