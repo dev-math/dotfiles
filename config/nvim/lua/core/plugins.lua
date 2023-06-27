@@ -176,13 +176,6 @@ return require("lazy").setup({
   },
 
   {
-    "mg979/vim-visual-multi",
-    config = function()
-      require("plugins.vim-visual-multi")
-    end,
-  },
-
-  {
     "norcalli/nvim-colorizer.lua",
     config = function()
       require("plugins.colorizer")

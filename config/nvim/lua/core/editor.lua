@@ -1,5 +1,4 @@
 -- ========= Vim Options =========
-
 vim.log.level = "warn"
 -- suppress error messages from lang servers
 vim.notify = function(msg, log_level)
@@ -80,7 +79,7 @@ vim.opt.showmode = false              -- we don't need to see things like -- INS
 vim.opt.numberwidth = 4               -- set number column width
 vim.opt.scrolloff = 8                 -- Minimal number of screen lines to keep above and below the cursor
 vim.opt.sidescrolloff = 8             -- Minimal number of screen columns to keep to the left and to the right of the cursor
-vim.opt.cmdheight = 1                 -- more space in the neovim command line for displaying messages
+vim.opt.cmdheight = 0                 -- more space in the neovim command line for displaying messages
 
 -- DISABLE
 local disabled_built_ins = {

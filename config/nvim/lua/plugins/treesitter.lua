@@ -33,6 +33,7 @@ require 'nvim-treesitter.configs'.setup {
     "svelte",
     "tsx",
     "typescript",
+    "tsx",
     "vim",
     "vimdoc",
   },
