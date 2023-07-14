@@ -107,7 +107,7 @@ bindsym $superkey+minus gaps inner all plus 1; gaps outer all plus 1
 bindsym $superkey+plus gaps inner all minus 1; gaps outer all minus 1
 
 # Screenshots
-bindsym Print exec flameshot gui | xargs swaymsg exec --
+bindsym Print exec grim -g "$(slurp)" - | wl-copy
 
 # Brightness control
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
@@ -239,6 +239,7 @@ for_window [window_role="PictureInPicture"] floating enable, sticky enable
 for_window [window_type="menu"] floating enable
 for_window [title="^YouTube Music.*"] floating disable
 for_window [title="WhatsApp Web"] floating disable
+# for_window [app_id="flameshot"] floating enable, fullscreen disable, move absolute position 0 0, border pixel 0
 
 assign [class="discord"] workspace number $ws10
 assign [title="discord-screenaudio"] workspace number $ws10

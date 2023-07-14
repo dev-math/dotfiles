@@ -117,7 +117,9 @@ return require("lazy").setup({
   {
     "kylechui/nvim-surround",
     config = function()
-      require("nvim-surround").setup()
+      require("nvim-surround").setup({
+        current_line_blame = false,
+      })
     end,
   },
 

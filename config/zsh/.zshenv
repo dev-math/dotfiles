@@ -19,6 +19,15 @@ export XDG_PICTURES_DIR=${XDG_PICTURES_DIR:-$HOME/Pictures}
 export XDG_VIDEOS_DIR=${XDG_VIDEOS_DIR:-$HOME/Videos}
 export XDG_PROJECTS_DIR=${XDG_PROJECTS_DIR:-$HOME/Projects}
 
+# Sway
+export SDL_VIDEODRIVER=wayland
+export _JAVA_AWT_WM_NONREPARENTING=1
+export QT_QPA_PLATFORM=wayland
+export XDG_CURRENT_DESKTOP=sway
+export XDG_SESSION_DESKTOP=sway
+export GDK_BACKEND="wayland,x11"
+export MOZ_ENABLE_WAYLAND=1
+
 # lang
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
