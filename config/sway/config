@@ -14,6 +14,7 @@ tap_button_map lrm
 }
 
 ###--- Variables ---###
+set $lock_script ~/.local/bin/lockscreen
 set $term alacritty
 set $filemanager thunar
 set $innergap 10
@@ -37,25 +38,17 @@ set $ws10 "10"
 
 ###--- COLORS ---###
 include "$HOME/.cache/wal/colors-sway"
-set $urgent     $color3
 set $normal     $color4
-set $inactive   $color7
-set $unfocused  $color7
-
 # class                 border      backgr.    text      indicator    child_border
 client.focused          $normal     $normal    $bg       $normal      $normal
-client.focused_inactive $inactive   $inactive  $fg       $inactive    $inactive
-client.unfocused        $unfocused  $unfocused $fg       $unfocused   $unfocused
-client.urgent           $urgent     $urgent    $fg       $urgent      $urgent
-client.placeholder      $unfocused  $unfocused $fg       $unfocused   $unfocused
 
 ###--- SETTINGS ---###
-output "*" bg $wallpaper fill
-
 default_border pixel 2
 default_floating_border pixel 2
-gaps inner $innergap
-gaps outer $outergap
+gaps inner 0
+gaps outer 0
+
+output "*" bg $wallpaper fill
 
 # Hide borders
 hide_edge_borders none
@@ -64,12 +57,6 @@ focus_follows_mouse no
 
 # Font for window titles
 font pango:SF Pro Display bold 12
-
-for_window [class=".*"] title_format "%title  ⋯  %class"
-title_align center
-
-# Reload Polybar with i3
-exec_always --no-startup-id ~/.local/bin/reloadPolybar
 
 ###--- BINDS ---###
 # Make the currently focused window a scratchpad
@@ -90,7 +77,7 @@ bindsym $superkey+Return exec $term
 bindsym $superkey+e exec $filemanager
 
 # lock screen
-bindsym $superkey+$altkey+l exec ~/.local/bin/lockscreen
+bindsym $superkey+$altkey+l exec $lock_script
 
 # enter fullscreen mode for the focused container
 bindsym $superkey+f fullscreen toggle
@@ -161,9 +148,9 @@ bindsym $superkey+a focus parent
 # focus the child container
 #bindsym $superkey+d focus child
 
-# toggle gaps
-bindsym $superkey+Shift+g gaps inner all set 0; gaps outer all set 0; [class=".*"] border normal
-bindsym $superkey+g gaps inner all set $innergap; gaps outer all set $outergap; [class=".*"] border pixel 2
+# toggle border
+bindsym $superkey+Shift+g [class=".*"] border normal
+bindsym $superkey+g [class=".*"] border pixel 2
 
 # switch to workspace
 bindsym $superkey+1 workspace number $ws1
@@ -251,24 +238,25 @@ assign [title="^YouTube Music"] workspace number $ws9
 
 # Status Bar:
 bar {
-  swaybar_command waybar
+    font pango:SF Pro Display bold 12
+    status_command i3status-rs ~/.config/i3status-rust/config.toml
+    position top
+    colors {
+        separator #666666
+        background $bg
+        statusline #dddddd
+        focused_workspace $color4 $color4 #ffffff
+        active_workspace #333333 #333333 #ffffff
+        inactive_workspace #333333 #333333 #888888
+        urgent_workspace #2f343a #900000 #ffffff
+    }
 }
 
 include /etc/sway/config.d/*
 
-# Idle configuration
-# exec swayidle -w \
-#   timeout 300 '~/.local/bin/lockscreen' \
-#   timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-#   timeout 6 'systemctl suspend' \
-#   before-sleep '~/.local/bin/lockscreen'
-#
-# exec swayidle -w \
-#   timeout 900 'systemctl suspend' \
-#   before-sleep '~/.local/bin/lockscreen'
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
+# Clamshell mode or lock & sleep
+bindswitch --reload --locked lid:toggle exec ~/.local/bin/clamshell
+exec_always ~/.local/bin/clamshell
 
 # Autostart
 exec_always ~/.config/sway/import-gsettings

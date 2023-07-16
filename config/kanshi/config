@@ -1,0 +1,8 @@
+{
+  output eDP-1 position 0,0
+  output "Acer Technologies K243Y TN6AA003853Q" enable position 1920,0
+}
+
+{
+  output eDP-1 enable position 0,0
+}

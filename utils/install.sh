@@ -8,7 +8,7 @@ backup_files="n"
 packages=(
   "wget openssh curl usbutils xclip udisks2 udiskie zip unzip unrar p7zip lzop cpio ntfs-3g dosfstools exfat-utils f2fs-tools fuse fuse-exfat mtpfs sshfs gvfs man-db man-pages texinfo networkmanager maim xorg-xrandr xorg-server xorg-xgamma xorg-xinit cronie parcellite libappindicator-gtk3" # Base
   "cups system-config-printer" # Printer
-  "sway swaylock-effects-git swaybg waybar xorg-xwayland wl-clipboard wf-recorder clipmon-git rofi-lbonn-wayland-git xdg-desktop-portal xdg-desktop-portal-wlr grim" # sway setup
+  "sway swaylock-effects-git swaybg i3status-rust xorg-xwayland wl-clipboard wf-recorder clipmon-git rofi-lbonn-wayland-git xdg-desktop-portal xdg-desktop-portal-wlr grim" # sway setup
   "python-pywal" # generate color-schemes
   "flameshot-git" # screenshots
   "playerctl" # control media player
@@ -27,7 +27,7 @@ packages=(
   "papirus-icon-theme-git" # Icon theme
   "light gammastep kanshi wdisplays-git wshowkeys-git" # screen
   "kdeconnect"
-  "noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra fontconfig" # fonts
+  "noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra fontconfig ttf-hack-nerd" # fonts
   "thunar thunar-archive-plugin thunar-media-tags-plugin" # Thunar file explorer
   "mesa mesa-utils libva-mesa-driver vkd3d lib32-vkd3d"
   "lutris wine lib32-gamemode gamemode steam" # Games | optional: 0ad wesnoth
@@ -45,8 +45,9 @@ install_flags=("-S" "--needed")
 # Define the list of dotfiles to install
 dotfiles=(
   "/home/$(whoami)/.config/cronjobs $DOTFILES_DIR/config/cronjobs"
+  "/home/$(whoami)/.config/kanshi $DOTFILES_DIR/config/kanshi"
   "/home/$(whoami)/.config/sway $DOTFILES_DIR/config/sway"
-  "/home/$(whoami)/.config/waybar $DOTFILES_DIR/config/waybar"
+  "/home/$(whoami)/.config/i3status-rust $DOTFILES_DIR/config/i3status-rust"
   "/home/$(whoami)/.config/alacritty $DOTFILES_DIR/config/alacritty"
   "/home/$(whoami)/.config/nvim $DOTFILES_DIR/config/nvim"
   "/home/$(whoami)/.config/mimeapps.list $DOTFILES_DIR/config/mimeapps.list"
