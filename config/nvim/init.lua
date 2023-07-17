@@ -1,2 +1,3 @@
-require('core')
-require('lsp')
+require("set")
+require("maps")
+require("plugins")

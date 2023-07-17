@@ -38,16 +38,9 @@ end
 
 bufferline.setup {
   options = {
-    tab_size = 20,
     right_mouse_command = "vert sbuffer %d", -- can be a string | function, see "Mouse actions"
     diagnostics = "nvim_lsp",
-    buffer_close_icon = '',
-    modified_icon = '●',
-    close_icon = '',
-    left_trunc_marker = '',
-    right_trunc_marker = '',
     diagnostics_indicator = diagnostics_indicator,
-    -- NOTE: this will be called a lot so don't do any heavy processing here
     custom_filter = custom_filter,
     offsets = {
       {
@@ -80,7 +73,6 @@ bufferline.setup {
         padding = 1,
       },
     },
-    show_close_icon = true,
     separator_style = "thin",
     always_show_bufferline = false,
     sort_by = "id",
@@ -91,8 +83,6 @@ local keymap = vim.keymap.set -- Shorten function name
 local opts = { noremap = true, silent = true }
 keymap('n', '<Tab>', ':BufferLineCycleNext<cr>', opts)
 keymap('n', '<S-Tab>', ':BufferLineCyclePrev<cr>', opts)
-keymap('n', '<C-PageUp>', ':BufferLineCycleNext<cr>', opts)
-keymap('n', '<C-PageDown>', ':BufferLineCyclePrev<cr>', opts)
 keymap('n', '<S-PageUp>', ':BufferLineMovePrev<cr>', opts)
 keymap('n', '<S-PageDown>', ':BufferLineMoveNext<cr>', opts)
 keymap('n', '<leader>bp', ':BufferLinePick<cr>', opts)
