@@ -211,6 +211,7 @@ mode "resize" {
 bindsym $superkey+r mode "resize"
 
 ###--- OTHERS ---###
+for_window [app_id="Alacritty"] opacity 0.8
 for_window [title="alsamixer"] floating enable, border pixel 1
 for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [app_id="pavucontrol"] floating enable
@@ -224,7 +225,7 @@ for_window [window_type="dialog"] floating enable, move absolute position center
 for_window [window_type="DIALOG"] floating enable, move absolute position center
 for_window [window_role="PictureInPicture"] floating enable, sticky enable
 for_window [window_type="menu"] floating enable
-for_window [title="^YouTube Music.*"] floating disable
+for_window [title="^YouTube Music"] floating disable
 for_window [title="WhatsApp Web"] floating disable
 # for_window [app_id="flameshot"] floating enable, fullscreen disable, move absolute position 0 0, border pixel 0
 
