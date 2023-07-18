@@ -1,14 +1,14 @@
 vim.keymap.set("n", "<leader>b", vim.cmd.Ex)
 
 -- Cut line (CTRL+X)
-vim.keymap.set('n', '<C-x>', 'dd')
-vim.keymap.set('i', '<C-x>', '<C-o>dd')
-vim.keymap.set('v', '<C-x>', '"+x')
+vim.keymap.set("n", "<C-x>", "dd")
+vim.keymap.set("i", "<C-x>", "<C-o>dd")
+vim.keymap.set("v", "<C-x>", '"+x')
 
 -- Remove line (dd)
-vim.keymap.set({'n', 'v'}, 'd', '"_d')
+vim.keymap.set({ "n", "v" }, "d", '"_d')
 -- Remove char (x)
-vim.keymap.set({ 'n', 'v' }, 'x', '"_x')
+vim.keymap.set({ "n", "v" }, "x", '"_x')
 
 -- use ESC to turn off search highlighting
 vim.keymap.set("n", "<Esc>", ":noh <cr>")
@@ -23,6 +23,9 @@ vim.keymap.set("n", "J", "mzJ`z")
 -- half page jumping centered
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
+
+-- rename
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- 'Find' centered
 vim.keymap.set("n", "n", "nzzzv")
