@@ -46,11 +46,6 @@ function M.on_attach(client, bufnr)
 	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 end
 
-M.flags = {
-	-- This is the default in Nvim 0.7+
-	debounce_text_changes = 150,
-}
-
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 

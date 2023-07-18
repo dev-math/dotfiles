@@ -47,6 +47,13 @@ local coq_settings = {
 	},
 }
 
+vim.api.nvim_set_var("coq_settings", coq_settings)
+
+local ok, coq_3p = pcall(require, "coq_3p")
+if not ok then
+	return
+end
+
 vim.cmd([[
 ino <silent><expr> <Esc>   pumvisible() ? "\<C-e><Esc>" : "\<Esc>"
 ino <silent><expr> <C-c>   pumvisible() ? "\<C-e><C-c>" : "\<C-c>"
@@ -57,13 +64,6 @@ ino <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<BS>"
 ino <silent><expr> <C-j>   pumvisible() ? "\<C-n>" : "\<Tab>"
 ino <silent><expr> <C-k>   pumvisible() ? "\<C-p>" : "\<BS>"
 ]])
-
-vim.api.nvim_set_var("coq_settings", coq_settings)
-
-local ok, coq_3p = pcall(require, "coq_3p")
-if not ok then
-	return
-end
 
 coq_3p({
 	{ src = "nvimlua", short_name = "[Lua]", weight_adjust = 1.2 },

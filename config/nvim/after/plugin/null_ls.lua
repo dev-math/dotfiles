@@ -1,10 +1,18 @@
-require("mason-null-ls").setup({
+local ok, null_ls = pcall(require, "null-ls")
+if not ok then
+	return
+end
+
+local ok, mason_null_ls = pcall(require, "mason-null-ls")
+if not ok then
+	return
+end
+
+mason_null_ls.setup({
   ensure_installed = nil,
   handlers = {},
   automatic_installation = true,
 })
-
-local null_ls = require("null-ls")
 
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics

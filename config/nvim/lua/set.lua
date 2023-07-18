@@ -9,7 +9,7 @@ vim.opt.tabstop = 2        -- insert 2 spaces for a tab
 vim.opt.softtabstop = 2    -- insert 2 spaces for a tab
 
 -- ui
--- vim.opt.pumheight = 10                -- pop up menu height
+vim.opt.pumheight = 10                -- pop up menu height
 vim.opt.number = true                 -- set numbered lines
 vim.opt.relativenumber = true         -- set numbered lines relative to current line
 vim.opt.cursorline = true             -- highlight the current line
@@ -47,7 +47,11 @@ vim.opt.colorcolumn = "80"
 
 -- misc
 vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
-vim.opt.formatoptions:remove({ 'c', 'r', 'o' })
+vim.cmd [[
+  autocmd BufWinEnter * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+  autocmd BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+  autocmd BufNewFile * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+]]
 vim.opt.hidden = true             -- required to keep multiple buffers and open multiple buffers
 vim.opt.conceallevel = 0          -- so that `` is visible in markdown files
 vim.opt.fileencoding = "utf-8"    -- the encoding written to a file
