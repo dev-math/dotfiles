@@ -36,3 +36,10 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous dia
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+
+
+-- Resize with arrows
+vim.keymap.set('n', '<leader>k>', ':resize -2<CR>')
+vim.keymap.set('n', '<leader>j', ':resize +2<CR>')
+vim.keymap.set('n', '<leader>h', ':vertical resize -2<CR>')
+vim.keymap.set('n', '<leader>l', ':vertical resize +2<CR>')
