@@ -33,8 +33,8 @@ luasnip.config.setup({})
 
 local ok, autopairs = pcall(require, "nvim-autopairs")
 if ok then
-  local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-  cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+	local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+	cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 end
 
 cmp.setup({
@@ -92,10 +92,18 @@ cmp.setup({
 		end, { "i", "s" }),
 	},
 	sources = {
-		{ name = "path" },
 		{ name = "nvim_lsp" },
-		{ name = "nvim_lua", ft = "lua" },
-		{ name = "buffer", keyword_length = 3 },
+		{ name = "nvim_lsp_signature_help" },
 		{ name = "luasnip", keyword_length = 2 },
+		{ name = "buffer", keyword_length = 3},
+		{ name = "path" },
+		-- { name = 'cmp_tabnine' },
+		{ name = "nvim_lua", ft = "lua" },
+		-- { name = "calc" },
+		-- { name = 'emoji' },
+		-- { name = 'treesitter' },
+		-- { name = 'crates' },
+		-- { name = 'tmux' },
+		-- { name = 'cmdline' },
 	},
 })

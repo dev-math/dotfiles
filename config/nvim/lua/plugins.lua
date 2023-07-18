@@ -156,7 +156,6 @@ return require("lazy").setup({
 			"hrsh7th/cmp-path",
 			"andersevenrud/cmp-tmux",
 		},
-		event = "InsertEnter",
 		enabled = true,
 	},
 
