@@ -7,7 +7,7 @@ end
 local java_cmds = vim.api.nvim_create_augroup("java_cmds", { clear = true })
 local cache_vars = {}
 
-local default_config = require('lsp.servers.default')
+local default_config = require("lsp.servers.default")
 
 local root_files = {
 	".git",
@@ -123,8 +123,8 @@ local function enable_debugger(bufnr)
 end
 
 local function jdtls_on_attach(client, bufnr)
-  jdtls.setup.add_commands() -- important to ensure you can update configs when build is updated
-  default_config.on_attach(client, bufnr)
+	jdtls.setup.add_commands() -- important to ensure you can update configs when build is updated
+	default_config.on_attach(client, bufnr)
 
 	if features.debugger then
 		enable_debugger(bufnr)
@@ -151,7 +151,6 @@ local data_dir = path.data_dir .. "/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p
 
 local extendedClientCapabilities = jdtls.extendedClientCapabilities
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
-
 
 -- The command that starts the language server
 -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
@@ -263,17 +262,19 @@ local lsp_settings = {
 }
 
 if root_dir ~= nil then
-	lsp_settings.java.project.referencedLibraries = {
-		root_dir .. "/library/**/*.jar",
-		root_dir .. "/lib/**/*.jar",
-		root_dir .. "/lib-ext/**/*.jar",
-		root_dir .. "/libs/**/*.jar",
+	lsp_settings.java.project = {
+		referencedLibraries = {
+			root_dir .. "/library/**/*.jar",
+			root_dir .. "/lib/**/*.jar",
+			root_dir .. "/lib-ext/**/*.jar",
+			root_dir .. "/libs/**/*.jar",
+		},
 	}
 end
 
 return {
 	cmd = cmd,
-  autostart = default_config.autostart,
+	autostart = default_config.autostart,
 	settings = lsp_settings,
 	on_attach = jdtls_on_attach,
 	capabilities = default_config.capabilities,
