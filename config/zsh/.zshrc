@@ -23,7 +23,7 @@ source $ZDOTDIR/key-bindings.zsh
 source $ZDOTDIR/zinit.zsh # Load zsh addons (zinit plugins, autocomplete, Powerlevel10k, etc.)
 [[ ! -f $ZDOTDIR/p10k ]] || source $ZDOTDIR/p10k # p10k config
 source $HOME/.asdf/asdf.sh
-[[ ! -f ~/.asdf/plugins/java/set-java-home ]] || source ~/.asdf/plugins/java/set-java-home.zsh
+[[ -d ~/.asdf/plugins/java ]] && source ~/.asdf/plugins/java/set-java-home.zsh
 
 # - - - - - - - - - - - - - - - - - - - -
 # End
