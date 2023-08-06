@@ -19,6 +19,5 @@ function! CloseWindowOrKillBuffer(IGNORE_SAVE)
   endif
 endfunction
 
-nnoremap <silent> <C-w> :call CloseWindowOrKillBuffer("false")<CR>
 nnoremap <silent> <S-w> :call CloseWindowOrKillBuffer("true")<CR>
 ]]
