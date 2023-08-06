@@ -94,7 +94,8 @@ bindsym $superkey+minus gaps inner all plus 1; gaps outer all plus 1
 bindsym $superkey+plus gaps inner all minus 1; gaps outer all minus 1
 
 # Screenshots
-bindsym Print exec flameshot gui
+bindsym $superkey+Print exec flameshot gui
+bindsym Print exec grim -g "$(slurp)" - | wl-copy
 
 # Brightness control
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
@@ -211,7 +212,7 @@ mode "resize" {
 bindsym $superkey+r mode "resize"
 
 ###--- OTHERS ---###
-for_window [app_id="Alacritty"] opacity 0.8
+for_window [app_id="Alacritty"] opacity 0.9
 for_window [title="alsamixer"] floating enable, border pixel 1
 for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [app_id="pavucontrol"] floating enable
