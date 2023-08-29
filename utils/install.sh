@@ -6,7 +6,7 @@ backup_files="n"
 
 # Define the list of packages to be installed
 packages=(
-  "wget openssh curl usbutils xclip udisks2 udiskie zip unzip unrar p7zip lzop cpio ntfs-3g dosfstools exfat-utils f2fs-tools fuse fuse-exfat mtpfs sshfs gvfs man-db man-pages texinfo networkmanager maim xorg-xrandr xorg-server xorg-xgamma xorg-xinit cronie parcellite libappindicator-gtk3" # Base
+  "wget openssh curl usbutils fzf udisks2 udiskie zip unzip unrar p7zip lzop cpio ntfs-3g dosfstools exfat-utils f2fs-tools fuse fuse-exfat mtpfs sshfs gvfs man-db man-pages texinfo networkmanager maim xorg-xrandr xorg-server xorg-xgamma xorg-xinit cronie parcellite libappindicator-gtk3" # Base
   "cups system-config-printer" # Printer
   "sway swaylock-effects-git swaybg i3status-rust xorg-xwayland wl-clipboard wf-recorder clipmon-git rofi-lbonn-wayland-git xdg-desktop-portal xdg-desktop-portal-wlr grim" # sway setup
   "python-pywal" # generate color-schemes
