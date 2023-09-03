@@ -2,17 +2,18 @@
   
 set -o errexit -o nounset
 
-sudo dpkg --add-architecture i386
-
 # Enabling contrib and non-free repositories
-sudo sed -i -e 's/main$/main contrib non-free/g' /etc/apt/sources.list
+sudo apt install curl software-properties-common
+sudo apt-add-repository non-free -y
+sudo apt-add-repository contrib -y
+
+sudo dpkg --add-architecture i386
 
 # lutris
 echo "deb [signed-by=/etc/apt/keyrings/lutris.gpg] https://download.opensuse.org/repositories/home:/strycore/Debian_12/ ./" | sudo tee /etc/apt/sources.list.d/lutris.list > /dev/null
 wget -q -O- https://download.opensuse.org/repositories/home:/strycore/Debian_12/Release.key | gpg --dearmor | sudo tee /etc/apt/keyrings/lutris.gpg > /dev/null
 
 # Brave
-sudo apt install curl
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 
