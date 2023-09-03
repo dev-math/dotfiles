@@ -12,4 +12,5 @@ wallpaper.png
 .config/wal
 .config/zathura
 .local/bin
+.ssh
 {{- end }}
