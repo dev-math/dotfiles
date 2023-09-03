@@ -2,6 +2,10 @@
 
 set -o errexit
 
+{{- if ne .chezmoi.hostname "math-t470" }}
+exit 1
+{{- end }}
+
 if hash pacman 2>/dev/null ; then
 
   . {{ .chezmoi.sourceDir }}/scripts/archlinux.sh
