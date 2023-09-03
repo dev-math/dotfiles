@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+laptop_screen='eDP-1'
+
+if grep -q open /proc/acpi/button/lid/LID/state; then
+  swaymsg output $laptop_screen enable
+else
+  if [ $(swaymsg -t get_outputs | grep name | wc -l) == 1 ]; then
+    # We leave a bit of time for locking to happen before putting the system to sleep
+    ~/.local/bin/lockscreen && sleep 3
+    if ! grep -q open /proc/acpi/button/lid/LID/state; then
+      systemctl suspend
+    fi
+  else 
+    notify-send -t 1500 "Clamshell mode" "Laptop screen off"
+    swaymsg output $laptop_screen disable
+  fi
+fi

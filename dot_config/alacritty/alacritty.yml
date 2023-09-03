@@ -1,0 +1,37 @@
+env:
+  TERM: xterm-256color
+
+window:
+  padding:
+    x: 0
+    y: 0
+
+  dynamic_padding: true
+
+  opacity: 1
+
+  decorations: full
+
+  gtk_theme_variant: none
+
+scrolling:
+  # Specifying '0' will disable scrolling.
+  history: 10000
+
+  multiplier: 3
+
+font:
+  normal:
+    family: "MesloLGS NF"
+
+  # Point size
+  size: 15.5
+
+  # Offset is the extra space around each character. `offset.y` can be thought of
+  # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
+  offset:
+   x: 0
+   y: 0
+
+selection:
+  save_to_clipboard: false

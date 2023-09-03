@@ -1,0 +1,1 @@
+0 21 * * * export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus; export DISPLAY=:0; export SSH_AUTH_SOCK=/tmp/ssh-XXXXXXALq4SO/agent.430; bash {{- .chezmoi.homeDir -}}/.local/bin/scd backup >/dev/null 2>&1

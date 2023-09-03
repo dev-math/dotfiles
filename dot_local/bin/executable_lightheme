@@ -1,0 +1,4 @@
+#!/bin/env bash
+. $HOME/.cache/wal/colors.sh
+wal -i "$wallpaper" -o afterwal -l
+

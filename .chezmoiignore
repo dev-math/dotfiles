@@ -1,0 +1,15 @@
+scripts
+fonts
+wallpaper.png
+
+{{- if ne .chezmoi.hostname "math-t470" }}
+.Xresources
+.config/alacritty
+.config/cronjobs
+.config/dunst
+.config/i3status-rust
+.config/sway
+.config/wal
+.config/zathura
+.local/bin
+{{- end }}
