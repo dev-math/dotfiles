@@ -40,6 +40,9 @@ sudo usermod -a -G wheel,video,docker $(whoami)
 # install tmux plugins manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
+# Install bitwarden cli
+npm install -g @bitwarden/cli
+
 # Install custom fonts
 mkdir -p ~/.local/share/fonts && cd ~/.local/share/fonts
 curl -fLO https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf

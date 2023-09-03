@@ -24,6 +24,7 @@ packages=(
   "firefox brave-bin rclone qbittorrent torbrowser-launcher obs-studio" # Internet apps
   "obsidian" # note taking
   "discord discord-screenaudio telegram-desktop"
+  "nodejs npm"
   "feh mpv mpv-mpris" # media
   "alsa-utils alsa-plugins pavucontrol pipewire wireplumber pipewire-alsa pipewire-pulse pipewire-jack"
   "bluez bluez-utils" # bluetooth

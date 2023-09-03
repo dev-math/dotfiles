@@ -3,11 +3,17 @@
 set -o errexit -o nounset
 
 # Enabling contrib and non-free repositories
-sudo apt install curl software-properties-common
+sudo apt install ca-certificates curl gnupg software-properties-common
 sudo apt-add-repository non-free -y
 sudo apt-add-repository contrib -y
 
 sudo dpkg --add-architecture i386
+
+# nodejs
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+NODE_MAJOR=20
+echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
 
 # lutris
 echo "deb [signed-by=/etc/apt/keyrings/lutris.gpg] https://download.opensuse.org/repositories/home:/strycore/Debian_12/ ./" | sudo tee /etc/apt/sources.list.d/lutris.list > /dev/null
@@ -25,6 +31,7 @@ packages=(
   "sway swaylock swaybg swayidle i3status-rust xwayland wl-clipboard wf-recorder clipmon-git rofi-lbonn-wayland-git xdg-desktop-portal xdg-desktop-portal-wlr grim flameshot playerctl dunst python-pywal" # sway setup
   "alacritty zsh bat exa neofetch tmux rust-fd-find fzf ripgrep neovim" # terminal
   "podman" # docker alternative
+  "nodejs"
   "firefox-esr brave-browser rclone qbittorrent torbrowser-launcher obs-studio" # Internet apps
   "telegram-desktop"
   "feh mpv mpv-mpris" # media
