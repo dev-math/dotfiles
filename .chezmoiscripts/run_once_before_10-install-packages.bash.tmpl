@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+set -o errexit
+
+{{- if ne .chezmoi.hostname "math-t470" }}
+exit 1
+{{- end }}
+
+if hash pacman 2>/dev/null ; then
+
+  bash {{ .chezmoi.sourceDir }}/scripts/archlinux.bash
+
+elif hash apt-get 2>/dev/null ; then
+
+  bash {{ .chezmoi.sourceDir }}/scripts/debian.bash
+
+fi
+
+# create default dirs
+mkdir -p ~/Projects ~/Downloads/Notes ~/Documents/Books ~/Desktop ~/Videos ~/Music ~/Pictures/wallpapers ~/Pictures/screenshots
+
+# copy default wallpaper
+cp -r {{ .chezmoi.sourceDir }}/wallpaper.png ~/Pictures/wallpapers/dracula.png
+
+# enable thermald
+sudo systemctl enable --now thermald
+# Activate loading the microcode update
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+# Blacklist PC speaker module
+echo "blacklist pcspkr" | sudo tee /etc/modprobe.d/nobeep.conf
+
+# install tmux plugins manager
+if [[ ! -d ~/.tmux/plugins/tpm ]]; then
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
+
+# Install bitwarden cli
+sudo npm install -g @bitwarden/cli
+
+# Install custom fonts
+mkdir -p ~/.local/share/fonts && cd ~/.local/share/fonts
+[[ -f 'MesloLGS%20NF%20Regular.ttf' ]] && curl -fLO https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
+[[ -f 'MesloLGS%20NF%20Bold.ttf' ]] && curl -fLO https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
+[[ -f 'MesloLGS%20NF%20Italic.ttf' ]] && curl -fLO https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
+[[ -f 'MesloLGS%20NF%20Bold%20Italic.ttf' ]] && curl -fLO https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf

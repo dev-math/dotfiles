@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 set -o errexit -o nounset
 
@@ -18,7 +18,7 @@ fi
 packages=(
   "ffmpeg htop wget openssh curl usbutils udisks2 udiskie zip unzip unrar p7zip man-db man-pages texinfo networkmanager cronie libappindicator-gtk3" # Base
   "cups system-config-printer" # Printer
-  "sway swaylock swaybg i3status-rust xorg-xwayland wl-clipboard wf-recorder clipmon-git rofi-lbonn-wayland-git xdg-desktop-portal xdg-desktop-portal-wlr grim flameshot-git playerctl dunst python-pywal" # sway setup
+  "sway swaylock-effects-git swaybg i3status-rust xorg-xwayland wl-clipboard wf-recorder clipmon-git rofi-lbonn-wayland-git xdg-desktop-portal xdg-desktop-portal-wlr grim flameshot-git playerctl dunst python-pywal" # sway setup
   "alacritty zsh bat exa neofetch tmux fd fzf ripgrep neovim" # terminal
   "podman" # docker alternative
   "firefox brave-bin rclone qbittorrent torbrowser-launcher obs-studio" # Internet apps
@@ -48,6 +48,9 @@ packages=(
 
 # Install packages
 yay -S --noconfirm --needed ${packages[@]}
+
+# add user to groups
+sudo usermod -a -G wheel,video,docker $(whoami)
 
 # enable pipewire
 systemctl --user enable pipewire.service pipewire.socket pipewire-pulse.service wireplumber.service
