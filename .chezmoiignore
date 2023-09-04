@@ -10,7 +10,6 @@ README.md
 .config/dunst
 .config/i3status-rust
 .config/sway
-.config/wal
 .config/zathura
 .local/bin
 .ssh
