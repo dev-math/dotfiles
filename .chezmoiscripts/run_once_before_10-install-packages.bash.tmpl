@@ -36,7 +36,9 @@ if [[ ! -d ~/.tmux/plugins/tpm ]]; then
 fi
 
 # Install bitwarden cli
-sudo npm install -g @bitwarden/cli
+if ! command -v bw &> /dev/null; then
+  sudo npm install -g @bitwarden/cli
+fi
 
 # Install custom fonts
 mkdir -p ~/.local/share/fonts && cd ~/.local/share/fonts
