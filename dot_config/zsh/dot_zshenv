@@ -1,4 +1,4 @@
-export PATH=$HOME/.local/bin:$PATH
+export PATH=$PATH:$HOME/.npm-global/bin:$HOME/.local/bin:$HOME/.cargo/bin
 
 # default programs
 export EDITOR='nvim'
