@@ -1,6 +1,7 @@
 scripts
 fonts
 wallpaper.png
+README.md
 
 {{- if ne .chezmoi.hostname "math-t470" }}
 .Xresources
