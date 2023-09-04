@@ -18,7 +18,11 @@ alias pet="ssh petsi@192.168.0.90"
 alias ssh='TERM=xterm-256color ssh'
 
 alias vim='nvim'
+{{- if eq .chezmoi.osRelease.id "debian" }}
+alias cat='batcat --style=auto'
+{{ else }}
 alias cat='bat --style=auto'
+{{- end }}
 alias ls='exa --icons'
 alias setWallpaper='rofi -show themes:~/.local/bin/getWallpapers -theme ~/.cache/wal/launcher.rasi'
 
