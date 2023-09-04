@@ -11,7 +11,7 @@ backlight = ["", "", "", "", "", "", "", "", "", "
 
 [[block]]
 block = "disk_space"
-path = "/"
+path = "/home"
 info_type = "available"
 format = " $icon $available.eng(w:4) "
 interval = 20

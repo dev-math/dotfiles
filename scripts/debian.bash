@@ -29,7 +29,7 @@ packages=(
   "wayland-protocols libwayland-dev libinput-dev cmake check meson libsystemd-dev pkg-config ninja-build git libdbus-1-dev libinih-dev build-essential ffmpeg htop wget openssh-server usbutils udisks2 udiskie zip unzip unrar p7zip network-manager libappindicator3-1 flatpak" # Base
   "cups system-config-printer" # Printer
   "sway swaybg swayidle xwayland wl-clipboard wf-recorder xdg-desktop-portal xdg-desktop-portal-wlr grim flameshot playerctl dunst" # sway setup
-  "alacritty zsh bat exa neofetch tmux fd-find fzf ripgrep neovim" # terminal
+  "alacritty zsh bat exa neofetch tmux fd-find fzf ripgrep" # terminal
   "podman" # docker alternative
   "nodejs"
   "firefox-esr brave-browser rclone qbittorrent torbrowser-launcher obs-studio" # Internet apps
@@ -113,6 +113,16 @@ if [[ ! -e /usr/lib/clipmon ]]; then
   sudo cp clipmon.service /etc/systemd/system
   systemctl enable --now clipmon
   cd .. && rm -Rf clipmon
+fi
+
+# Install neovim
+if ! command -v nvim &> /dev/null; then
+  sudo apt-get install -y ninja-build gettext cmake unzip curl
+  git clone https://github.com/neovim/neovim.git
+  cd neovim
+  make CMAKE_BUILD_TYPE=RelWithDebInfo
+  sudo make install
+  cd .. && rm -Rf neovim
 fi
 
 systemctl --user --now enable wireplumber.service
