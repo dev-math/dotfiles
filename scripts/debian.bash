@@ -28,13 +28,13 @@ sudo apt update -y && sudo apt upgrade -y
 packages=(
   "wayland-protocols libwayland-dev libinput-dev cmake check meson libsystemd-dev pkg-config ninja-build git libdbus-1-dev libinih-dev build-essential ffmpeg htop wget openssh-server usbutils udisks2 udiskie zip unzip unrar p7zip network-manager libappindicator3-1 flatpak" # Base
   "cups system-config-printer" # Printer
-  "sway swaybg swayidle xwayland wl-clipboard wf-recorder xdg-desktop-portal xdg-desktop-portal-wlr grim flameshot playerctl dunst" # sway setup
+  "sway swaybg swayidle xwayland wl-clipboard wf-recorder xdg-desktop-portal xdg-desktop-portal-wlr grim slurp flameshot playerctl dunst" # sway setup
   "alacritty zsh bat exa neofetch tmux fd-find fzf ripgrep" # terminal
   "podman" # docker alternative
   "nodejs"
   "firefox-esr brave-browser rclone qbittorrent torbrowser-launcher obs-studio" # Internet apps
   "telegram-desktop"
-  "feh mpv mpv-mpris" # media
+  "feh mpv mpv-mpris mopidy ncmpcpp mopidy-mpd yt-dlp" # media
   "libasound2 alsa-utils pavucontrol pipewire-audio pipewire-jack"
   "bluetooth bluez bluez-tools" # bluetooth
   "qalculate-gtk" 
@@ -124,6 +124,8 @@ if ! command -v nvim &> /dev/null; then
   sudo make install
   cd .. && rm -Rf neovim
 fi
+
+sudo python3 -m pip install --upgrade ytmusicapi Mopidy-YTMusic --break-system-packages
 
 systemctl --user --now enable wireplumber.service
 

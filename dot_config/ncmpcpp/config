@@ -1,0 +1,59 @@
+ncmpcpp_directory = ~/.config/ncmpcpp
+lyrics_directory = ~/.local/share/lyrics
+
+mpd_host = localhost
+mpd_port = 6600
+#mpd_connection_timeout = 5
+mpd_music_dir = ~/Music
+
+visualizer_data_source = /tmp/mpd.fifo
+visualizer_output_name = "my_fifo"
+## If you set format to 44100:16:2, make it 'yes'.
+visualizer_in_stereo = no
+## Note: set below to >=10 only if you have synchronization issues with
+## visualization and audio.
+visualizer_sync_interval = 60
+visualizer_type = spectrum
+visualizer_look = "∗▐"
+visualizer_color = "199,200,201,202,166,130,94,58,22"
+
+visualizer_spectrum_smooth_look = yes
+
+volume_change_step = 10
+
+## Available values: database, playlist.
+#default_place_to_search_in = database
+#user_interface = classic
+## Available values: artist, album_artist, date, genre, composer, performer.
+media_library_primary_tag = album_artist
+media_library_albums_split_by_date = no
+#media_library_sort_by_mtime = no
+lyrics_fetchers = musixmatch, azlyrics, genius, sing365, metrolyrics, justsomelyrics, jahlyrics, plyrics, tekstowo, zeneszoveg, internet
+follow_now_playing_lyrics = yes
+fetch_lyrics_for_current_song_in_background = yes
+
+## - "previous" - switch between the current and previous screen.
+## Screens available for use: help, playlist, browser, search_engine,
+## media_library, playlist_editor, tag_editor, outputs, visualizer, clock,
+## lyrics, last_fm.
+screen_switcher_mode = playlist, browser, search_engine, lyrics
+startup_screen = playlist
+#startup_slave_screen = ""
+#startup_slave_screen_focus = no
+
+display_volume_level = yes
+display_bitrate = yes
+display_remaining_time = yes
+
+## - 1 - use mpd built-in searching (no regexes, pattern matching)
+## - 2 - use ncmpcpp searching (pattern matching with support for regexes, but
+##       if your mpd is on a remote machine, downloading big database to process
+##       it can take a while
+## - 3 - match only exact values (this mode uses mpd function for searching in
+##       database and local one for searching in current playlist)
+#search_engine_default_search_mode = 1
+
+external_editor = nvim
+use_console_editor = yes
+
+progressbar_look = ─⭘
