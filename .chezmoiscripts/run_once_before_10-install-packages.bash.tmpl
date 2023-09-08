@@ -17,7 +17,7 @@ elif hash apt-get 2>/dev/null ; then
 fi
 
 # create default dirs
-mkdir -p ~/Projects ~/Downloads/Notes ~/Documents/Books ~/Desktop ~/Videos ~/Music ~/Pictures/wallpapers ~/Pictures/screenshots
+mkdir -p ~/Projects ~/Downloads ~/Documents/Notes ~/Documents/Books ~/Desktop ~/Videos ~/Music ~/Pictures/wallpapers ~/Pictures/screenshots
 
 # copy default wallpaper
 cp -r {{ .chezmoi.sourceDir }}/wallpaper.png ~/Pictures/wallpapers/dracula.png
