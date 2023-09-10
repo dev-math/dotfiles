@@ -11,6 +11,8 @@ README.md
 .config/i3status-rust
 .config/sway
 .config/zathura
+.config/mopidy
+.config/ncmpcpp
 .local/bin
 .ssh
 {{- end }}
