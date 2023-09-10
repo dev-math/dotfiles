@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+{{- if ne .chezmoi.hostname "math-t470" }}
+exit 1
+{{- end }}
+
 # Set default pywal color
 wal -i ~/Pictures/wallpapers/dracula.png -e -s -t -q -n -o ~/.local/bin/afterwal
 
