@@ -30,7 +30,7 @@ packages=(
   "mariadb-clients memcached pgcli php redis ruby rust sqlite3 postgresql-libs" # development
   "helm python-pip python-numpy python-pandas python-pygments terraform terragrunt" # development
   "kubectl-bin kustomize openshift-client-bin skaffold-bin wrk" # development
-  "feh mpv-mpris" # media
+  "feh mpv-mpris ncmpcpp" # media
   "alsa-utils alsa-plugins pavucontrol pipewire wireplumber pipewire-alsa pipewire-pulse pipewire-jack"
   "bluez bluez-utils" # bluetooth
   "zathura zathura-djvu zathura-pdf-mupdf zathura-ps zathura-cb" # PDF viewer
