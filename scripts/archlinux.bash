@@ -50,7 +50,7 @@ packages=(
 yay -S --noconfirm --needed ${packages[@]}
 
 # add user to groups
-sudo usermod -a -G wheel,video,docker $(whoami)
+sudo usermod -a -G wheel,video $(whoami)
 
 # enable pipewire
 systemctl --user enable pipewire.service pipewire.socket pipewire-pulse.service wireplumber.service
