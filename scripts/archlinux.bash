@@ -5,6 +5,11 @@ set -o errexit -o nounset
 # Enable multilib
 (cat /etc/pacman.conf | grep -q '^\[multilib\]') || sudo sed -i \"/\[multilib\]/,/Include/\"'s/^#//' /etc/pacman.conf
 
+# Update mirrorlist
+sudo wget https://raw.githubusercontent.com/greyltc/docker-archlinux/master/get-new-mirrors.sh -O /usr/bin/get-new-mirrors
+sudo chmod +x /usr/bin/get-new-mirrors
+sudo get-new-mirrors
+
 # Install required pkgs
 sudo pacman -Sy --noconfirm --needed archlinux-keyring && sudo pacman -Su --noconfirm --needed
 sudo pacman -S --noconfirm --needed flatpak git base-devel
