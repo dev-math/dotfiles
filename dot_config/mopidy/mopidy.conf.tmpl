@@ -33,6 +33,7 @@ format = %(levelname)-8s %(asctime)s [%(process)d:%(threadName)s] %(name)s\n  %(
 #mixer = software
 #mixer_volume = 
 #output = autoaudiosink
+output = tee name=t t. ! queue ! autoaudiosink t. ! queue ! audioresample ! audioconvert ! audio/x-raw,rate=44100,channels=2,format=S16LE ! wavenc ! filesink location=/tmp/mpd.fifo
 #buffer_time = 
 
 [proxy]
@@ -110,12 +111,12 @@ playlists_dir = $XDG_MUSIC_DIR/Music/Playlists
 enabled = true
 allow_cache = true
 youtube_api_key = {{ (bitwarden "item" "ytapikey").notes }}
-channel_id = "UCg0aDL5l__EzgIDcLceH9Ww"
+channel_id = UCg0aDL5l__EzgIDcLceH9Ww
 api_enabled = true
 musicapi_enabled = true
 autoplay_enabled = true
 max_autoplay_length =
-youtube_dl_package = "yt_dlp"
+youtube_dl_package = yt_dlp
 
 [ytmusic]
 enabled = false
