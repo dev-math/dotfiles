@@ -236,6 +236,7 @@ assign [class="kotatogram-desktop"] workspace number $ws10
 assign [class="KotatogramDesktop"] workspace number $ws10
 assign [app_id="org.telegram.desktop"] workspace number $ws10
 assign [title="WhatsApp Web"] workspace number $ws10
+assign [app_id="com.rtosta.zapzap"] workspace number $ws10
 assign [title="^YouTube Music"] workspace number $ws9
 
 # Status Bar:
