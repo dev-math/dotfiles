@@ -8,6 +8,6 @@ if [[ ! -d ~/.tmux/plugins/tpm ]]; then
 fi
 
 ## # Install bitwarden cli
-## if ! command -v bw &> /dev/null; then
-##   sudo npm install -g @bitwarden/cli
-## fi
+if ! command -v bw &> /dev/null; then
+  sudo npm install -g @bitwarden/cli
+fi
