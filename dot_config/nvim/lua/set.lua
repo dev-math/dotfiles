@@ -2,6 +2,9 @@ vim.g.mapleader = " "
 
 vim.opt.guicursor = ""
 
+vim.g.netrw_liststyle = 3 -- Now it will be a tree view
+vim.g.netrw_bufsettings = "nu nobl"
+
 vim.opt.smartindent = true -- make indenting smarter again
 vim.opt.expandtab = true   -- convert tabs to spaces
 vim.opt.shiftwidth = 2     -- the number of spaces inserted for each indentation
