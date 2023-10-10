@@ -154,8 +154,9 @@ extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
 -- The command that starts the language server
 -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
+local java_home = os.getenv "JAVA_HOME"
 local cmd = {
-	"java",
+  java_home .. '/bin/java',
 	"-Declipse.application=org.eclipse.jdt.ls.core.id1",
 	"-Dosgi.bundles.defaultStartLevel=4",
 	"-Declipse.product=org.eclipse.jdt.ls.core.product",
