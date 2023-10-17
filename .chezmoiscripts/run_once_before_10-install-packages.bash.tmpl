@@ -3,6 +3,7 @@
 set -o errexit
 
 {{- if ne .chezmoi.hostname "math-t470" }}
+bash {{ .chezmoi.sourceDir }}/scripts/install-scripts-deps.bash
 exit 0
 {{- end }}
 
@@ -46,6 +47,7 @@ chsh -s $(which zsh) # change shell to zsh for the current user
 sudo python3 -m pip install --upgrade ytmusicapi Mopidy-YouTube --break-system-packages
 
 {{- if eq .chezmoi.username "mrsantos" }}
+bash {{ .chezmoi.sourceDir }}/scripts/install-scripts-deps.bash
 exit 0
 {{- end }}
 
@@ -75,3 +77,5 @@ echo 'MesloLGS NF Bold: complete'
 echo 'MesloLGS NF Italic: complete'
 [[ ! -f 'MesloLGS%20NF%20Bold%20Italic.ttf' ]] && curl -fLO https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
 echo 'MesloLGS NF Bold Italic: complete'
+
+bash {{ .chezmoi.sourceDir }}/scripts/install-scripts-deps.bash
