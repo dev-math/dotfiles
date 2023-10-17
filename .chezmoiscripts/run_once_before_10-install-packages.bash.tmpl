@@ -8,7 +8,11 @@ exit 0
 
 if hash pacman 2>/dev/null ; then
 
+  {{- if eq .chezmoi.username "mrsantos" }}
+  bash {{ .chezmoi.sourceDir }}/scripts/archwslwork.bash
+  {{- else }}
   bash {{ .chezmoi.sourceDir }}/scripts/archlinux.bash
+  {{- end }}
 
 elif hash apt-get 2>/dev/null ; then
 
@@ -33,12 +37,21 @@ for plugin in ${ASDF_PLUGINS[@]}; do
     asdf plugin-add $plugin
 done
 
+# create default dirs
+mkdir -p ~/Projects ~/Downloads ~/Documents/Notes ~/Documents/Books ~/Desktop ~/Videos ~/Music ~/Pictures/wallpapers ~/Pictures/screenshots
+
+chsh -s $(which zsh) # change shell to zsh for the current user
+
+# Install mopidy with ytmusic
+sudo python3 -m pip install --upgrade ytmusicapi Mopidy-YouTube --break-system-packages
+
+{{- if eq .chezmoi.username "mrsantos" }}
+exit 0
+{{- end }}
+
 # Install apps
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install -y --noninteractive flathub org.mozilla.firefox com.discordapp.Discord org.gimp.GIMP io.github.Qalculate md.obsidian.Obsidian org.flameshot.Flameshot com.brave.Browser org.qbittorrent.qBittorrent org.telegram.desktop io.mpv.Mpv com.valvesoftware.Steam org.winehq.Wine net.lutris.Lutris com.obsproject.Studio com.github.micahflee.torbrowser-launcher com.bitwarden.desktop com.rtosta.zapzap org.zealdocs.Zeal com.stremio.Stremio com.getpostman.Postman rest.insomnia.Insomnia
-
-# create default dirs
-mkdir -p ~/Projects ~/Downloads ~/Documents/Notes ~/Documents/Books ~/Desktop ~/Videos ~/Music ~/Pictures/wallpapers ~/Pictures/screenshots
 
 # copy default wallpaper
 cp -r {{ .chezmoi.sourceDir }}/wallpaper.png ~/Pictures/wallpapers/dracula.png
@@ -51,8 +64,6 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 # Blacklist PC speaker module
 echo "blacklist pcspkr" | sudo tee /etc/modprobe.d/nobeep.conf
 
-chsh -s $(which zsh) # change shell to zsh for the current user
-
 # Install custom fonts
 mkdir -p ~/.local/share/fonts && cd ~/.local/share/fonts
 echo 'Installing Meslo Nerd Fonts'
@@ -64,6 +75,3 @@ echo 'MesloLGS NF Bold: complete'
 echo 'MesloLGS NF Italic: complete'
 [[ ! -f 'MesloLGS%20NF%20Bold%20Italic.ttf' ]] && curl -fLO https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
 echo 'MesloLGS NF Bold Italic: complete'
-
-# Install mopidy with ytmusic
-sudo python3 -m pip install --upgrade ytmusicapi Mopidy-YouTube --break-system-packages
