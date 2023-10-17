@@ -2,11 +2,6 @@
 
 set -o errexit
 
-{{- if ne .chezmoi.hostname "math-t470" }}
-bash {{ .chezmoi.sourceDir }}/scripts/install-scripts-deps.bash
-exit 0
-{{- end }}
-
 if hash pacman 2>/dev/null ; then
 
   {{- if eq .chezmoi.username "mrsantos" }}
