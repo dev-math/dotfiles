@@ -1,0 +1,33 @@
+#!/bin/env bash
+
+# Input for the note title
+read -p "Enter the title of your note: " title
+
+# Format the date and title into the filename
+formatted_date=$(date +'%Y%m%d%H%M%S')
+filename="$formatted_date - $title.md"
+
+# Create the new note file with the template
+cat <<EOL > "$HOME/Documents/notes/$filename"
+# $title
+
+## Introduction
+
+Provide a brief introduction to the topic of your note.
+
+## Conclusion
+
+Summarize the key points or findings of your note.
+
+## References
+
+If you reference any sources, include them here.
+
+## Related Notes
+
+You can link to other related notes using Markdown links.
+
+- [Link to Related Note 1](related-note-1.md)
+
+- [Link to Related Note 2](related-note-2.md)
+EOL
