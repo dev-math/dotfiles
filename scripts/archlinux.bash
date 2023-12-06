@@ -27,7 +27,7 @@ packages=(
   "podman podman-compose podman-docker podman-dnsname" # docker alternative
   "rclone" # google drive mount and backup
   "nodejs node-gyp npm yarn elixir go jdk11-openjdk jdk8-openjdk" # development
-  "mariadb-clients memcached pgcli php redis ruby rust sqlite3 postgresql-libs" # development
+  "mariadb-clients memcached pgcli php redis r ruby rust sqlite3 postgresql-libs" # development
   "helm python-pip python-numpy python-pandas python-pygments terraform terragrunt" # development
   "kubectl-bin kustomize openshift-client-bin skaffold-bin wrk" # development
   "feh mpv-mpris ncmpcpp mopidy mopidy-mpd yt-dlp" # media
