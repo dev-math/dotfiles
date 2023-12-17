@@ -15,7 +15,7 @@ Table of contents:
 - **Editor**: [Neovim](https://github.com/neovim/neovim/)
 - **Terminal font:** Meslo
 - **Launcher**: [rofi](https://github.com/davatorium/rofi/)
-- **Browser**: [Firefox](https://www.mozilla.org/pt-BR/firefox/new/)
+- **Browser**: [Librewolf](https://librewolf.net)
 
 ---
 

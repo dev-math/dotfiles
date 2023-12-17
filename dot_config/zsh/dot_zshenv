@@ -3,7 +3,7 @@ export PATH=$PATH:$HOME/.npm-global/bin:$HOME/.local/bin:$HOME/.cargo/bin
 # default programs
 export EDITOR='nvim'
 export TERMINAL='alacritty'
-export BROWSER='firefox'
+export BROWSER='librewolf'
 
 export ZDOTDIR=${ZDOTDIR:-~/.config/zsh}
 

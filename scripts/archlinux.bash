@@ -21,6 +21,7 @@ fi
 
 packages=(
   "ffmpeg htop wget git git-lfs openssh imagemagick curl usbutils udisks2 udiskie zip unzip unrar p7zip man-db man-pages texinfo networkmanager cronie libappindicator-gtk3 aardvark-dns apparmor cifs-utils fuse-overlayfs strace gst-plugin-pipewire gst-plugins-good mlocate" # Base
+  "librewolf-bin" # browser
   "cups system-config-printer" # Printer
   "sway swaylock-effects-git swaybg i3status-rust xorg-xwayland wl-clipboard wf-recorder clipmon-git rofi-lbonn-wayland-git xdg-desktop-portal xdg-desktop-portal-wlr grim slurp playerctl dunst python-pywal" # sway setup
   "alacritty zsh bat exa dust procs tmux fd fzf fselect-bin ripgrep neovim jq lsof urlview tldr" # terminal
@@ -30,7 +31,7 @@ packages=(
   "mariadb-clients memcached pgcli php redis r ruby rust sqlite3 postgresql-libs" # development
   "helm python-pip python-numpy python-pandas python-pygments terraform terragrunt" # development
   "kubectl-bin kustomize openshift-client-bin skaffold-bin wrk" # development
-  "imv mpv-mpris ncmpcpp mopidy mopidy-mpd yt-dlp" # media
+  "imv mpv mpv-mpris ncmpcpp mopidy mopidy-mpd yt-dlp" # media
   "alsa-utils alsa-plugins pavucontrol pipewire wireplumber pipewire-alsa pipewire-pulse pipewire-jack"
   "bluez bluez-utils" # bluetooth
   "zathura zathura-djvu zathura-pdf-mupdf zathura-ps zathura-cb" # PDF viewer
