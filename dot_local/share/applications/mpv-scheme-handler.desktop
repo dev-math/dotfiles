@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Exec=sh -c 'URL="%u"; URL=${URL#mpv://}; mpv --keep-open --player-operation-mode=pseudo-gui "${URL}" || notify-send -i mpv -w -A Close -A Open=Open "Opening ${URL} failed" | { [ "$(head -n1)" = "Open" ] && xdg-open "${URL}";}'
+Icon=mpv
+StartupNotify=true
+Terminal=false
+MimeType=x-scheme-handler/mpv
+Name=MPV Launcher
+Comment=Launch MPV
+Hidden=false
+
+# copy to ~/.local/share/applications/mpv-scheme-handler.desktop
