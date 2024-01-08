@@ -23,7 +23,7 @@ packages=(
   "ffmpeg htop wget git git-lfs openssh imagemagick curl usbutils udisks2 udiskie zip unzip unrar p7zip man-db man-pages texinfo networkmanager cronie libappindicator-gtk3 aardvark-dns apparmor cifs-utils fuse-overlayfs strace gst-plugin-pipewire gst-plugins-good mlocate" # Base
   "librewolf-bin" # browser
   "cups system-config-printer" # Printer
-  "sway swaylock-effects-git swaybg i3status-rust xorg-xwayland wl-clipboard wf-recorder clipmon-git rofi-lbonn-wayland-git xdg-desktop-portal xdg-desktop-portal-wlr grim slurp playerctl dunst python-pywal" # sway setup
+  "sway swaylock-effects-git swaybg i3status-rust xorg-xwayland wl-clipboard wf-recorder clipmon-git rofi-lbonn-wayland-git xdg-desktop-portal xdg-desktop-portal-wlr-git grim slurp playerctl dunst python-pywal" # sway setup
   "alacritty zsh bat exa dust procs tmux fd fzf fselect-bin ripgrep neovim jq lsof urlview tldr" # terminal
   "podman podman-compose podman-docker podman-dnsname" # docker alternative
   "rclone" # google drive mount and backup
