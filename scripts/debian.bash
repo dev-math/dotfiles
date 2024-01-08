@@ -133,6 +133,4 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 
 flatpak install flathub com.discordapp.Discord
 
-flatpak install flathub md.obsidian.Obsidian
-
 flatpak install flathub com.ktechpit.whatsie
