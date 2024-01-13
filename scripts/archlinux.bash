@@ -23,7 +23,7 @@ packages=(
   "ffmpeg htop wget git git-lfs openssh imagemagick curl usbutils udisks2 udiskie zip unzip unrar p7zip man-db man-pages texinfo networkmanager cronie libappindicator-gtk3 aardvark-dns apparmor cifs-utils fuse-overlayfs strace gst-plugin-pipewire gst-plugins-good mlocate xdg-desktop-portal xdg-desktop-portal-wlr-git dunst playerctl python-pywal" # Base
   "librewolf-bin rclone syncthing zerotier-one" # Internet apps
   "cups system-config-printer" # Printer
-  "xorg-xrandr xorg-server xorg-xgamma xorg-xinit xclip i3-wm i3status-rust picom rofi parcellite" # i3 setup
+  "xorg-xrandr xorg-server xorg-xgamma xorg-xinit xclip i3-wm i3lock-color-git i3status-rust picom rofi parcellite" # i3 setup
   "alacritty zsh bat exa dust procs tmux fd fzf fselect-bin ripgrep neovim jq lsof urlview tldr" # terminal
   "podman podman-compose podman-docker podman-dnsname" # docker alternative
   "nodejs node-gyp npm yarn elixir go jdk11-openjdk jdk8-openjdk" # development
