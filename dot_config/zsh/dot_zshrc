@@ -15,7 +15,7 @@ fi
 # - - - - - - - - - - - - - - - - - - - -
 setopt autocd # change directory without 'cd'
 
-[[ ! -f $ZDOTDIT/pywal ]] || source $ZDOTDIR/pywal
+[[ ! -f $ZDOTDIR/pywal ]] || source $ZDOTDIR/pywal
 source $ZDOTDIR/aliases
 source $ZDOTDIR/completion.zsh
 source $ZDOTDIR/history.zsh
