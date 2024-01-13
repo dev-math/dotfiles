@@ -297,11 +297,10 @@
 #def_key "ctrl-v"
 #  select_range
 #
-#def_key "v"
-#  reverse_selection
-#
-#def_key "V"
-#  remove_selection
+def_key "v"
+ reverse_selection
+def_key "V"
+ remove_selection
 #
 #def_key "B"
 #  select_album
@@ -456,8 +455,6 @@ def_key "m"
   toggle_media_library_columns_mode
 def_key "t"
   show_tag_editor
-def_key "v"
-  show_visualizer
 def_key "G"
   move_end
 def_key "g"

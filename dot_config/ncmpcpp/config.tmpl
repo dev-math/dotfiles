@@ -1,0 +1,56 @@
+ncmpcpp_directory = ~/.config/ncmpcpp
+lyrics_directory = ~/.local/share/lyrics
+
+mpd_host = localhost
+mpd_port = 6600
+mpd_music_dir = /home/{{- .chezmoi.homeDir -}}/Music
+
+visualizer_data_source = /tmp/mpd.fifo
+visualizer_output_name = "mpd_visualizer"
+visualizer_in_stereo = yes
+
+user_interface = alternative
+media_library_primary_tag = album_artist
+media_library_albums_split_by_date = no
+follow_now_playing_lyrics = yes
+fetch_lyrics_for_current_song_in_background = yes
+
+screen_switcher_mode = playlist, browser, search_engine, lyrics, media_library, playlist_editor, tag_editor, outputs
+
+startup_screen = playlist
+
+message_delay_time = 1
+connected_message_on_startup = no
+
+display_volume_level = yes
+display_bitrate = yes
+display_remaining_time = yes
+
+external_editor = nvim
+use_console_editor = yes
+
+colors_enabled = "yes"
+playlist_display_mode = "columns"
+volume_color = "white"
+
+song_window_title_format = "Music"
+titles_visibility = "no"
+
+progressbar_look = "▂▂▂"
+progressbar_color = "black"
+progressbar_elapsed_color = "yellow"
+
+alternative_ui_separator_color = "black"
+
+song_list_format = "  %t $R%a %l  "
+song_columns_list_format = "(45)[white]{tr} (25)[blue]{a} (25)[blue]{b} (5)[white]{lr} (2)[]{}"
+
+#song_library_format = {{%a - %t} (%b)}|{%f}
+
+# Colors #
+main_window_color = "blue"
+current_item_prefix = "$(blue)$r"
+current_item_suffix = "$/r$(end)"
+
+current_item_inactive_column_prefix = red
+current_item_inactive_column_suffix = red
