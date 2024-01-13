@@ -19,10 +19,10 @@ multiplier = 3
 save_to_clipboard = false
 
 [window]
-decorations = "full"
+decorations = "None"
 dynamic_padding = true
 # gtk_theme_variant = "none"
-opacity = 1
+opacity = 0.7
 
 [window.padding]
 x = 0
