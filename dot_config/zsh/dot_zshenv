@@ -28,7 +28,6 @@ export LC_TYPE=en_US.UTF-8
 # Java exports
 export JDTLS_HOME=$HOME/.local/share/nvim/lsp/jdt-language-server/
 export WORKSPACE=$HOME/.local/share/nvim/lsp/jdt-language-server/workspace/
-export JAVA_HOME=/usr/lib/jvm/default
 export PATH=$JAVA_HOME/bin:$PATH
 
 # Other programs
