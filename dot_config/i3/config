@@ -237,11 +237,8 @@ bar {
     }
 }
 
-# Clamshell mode or lock & sleep
-# bindswitch --reload --locked lid:toggle exec ~/.local/bin/clamshell
-# exec_always ~/.local/bin/clamshell
-
 # Autostart
+exec "~/.local/bin/manage-displays.bash &" # Clamshell mode or lock & sleep
 exec "picom &" # compositor
 exec "parcellite -n &" # clipboard manager
 exec "wal -R" # Load pywal colors and wallpaper

@@ -65,3 +65,6 @@ systemctl mask systemd-rfkill.socket
 systemctl enable --now thermald
 
 systemctl enable --now cronie
+
+# disable systemd lid events
+sed -e 's/#HandleLidSwitch=suspend/HandleLidSwitch=ignore/g' -e 's/#HandleLidSwitchExternalPower=suspend/HandleLidSwitchExternalPower=ignore/g' /etc/systemd/logind.conf > tmp_file && sudo mv tmp_file /etc/systemd/logind.conf
