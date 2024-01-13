@@ -216,9 +216,9 @@ assign [class="discord"] → number 10
 assign [title="discord-screenaudio"] → number 10
 assign [class="kotatogram-desktop"] → number 10
 assign [class="KotatogramDesktop"] → number 10
-assign [app_id="org.telegram.desktop"] → number 10
+assign [class="telegram-desktop"] → number 10
 assign [title="WhatsApp Web"] → number 10
-assign [app_id="com.rtosta.zapzap"] → number 10
+assign [class="zapzap"] → number 10
 assign [title="^YouTube Music"] → number 9
 
 # Status Bar:
