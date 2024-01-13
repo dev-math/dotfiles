@@ -12,12 +12,15 @@ playlists_dir = /home/math/Music/Playlists
 [youtube]
 enabled = true
 allow_cache = true
-youtube_api_key = {{ (bitwarden "item" "ytapikey").notes }}
+youtube_api_key = {{ (bitwardenFields "item" "mopidy-youtube").youtubeapikey.value }}
 channel_id = UCg0aDL5l__EzgIDcLceH9Ww
 api_enabled = true
 musicapi_enabled = true
 autoplay_enabled = true
 max_autoplay_length =
 youtube_dl_package = yt_dlp
-musicapi_browser_authentication_file={{- .chezmoi.homeDir -}}/.config/mopidy/auth.json
+#musicapi_browser_authentication_file={{- .chezmoi.homeDir -}}/.config/mopidy/auth.json
 musicapi_cookiefile={{- .chezmoi.homeDir -}}/.config/mopidy/cookies.txt
+
+[ytmusic]
+auth_json = {{- .chezmoi.homeDir -}}/.config/mopidy/ytmusic-auth.json
