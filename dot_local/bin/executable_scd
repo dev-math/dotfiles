@@ -7,6 +7,7 @@ backup_dirs=(
   "/home/$(whoami)/Documents $REMOTE/Documents"
   "/home/$(whoami)/Music $REMOTE/Music"
   "/home/$(whoami)/Pictures $REMOTE/Pictures"
+  "/home/$(whoami)/Documents/obsidian-vault $REMOTE/Documents/obsidian-vault"
   "/home/$(whoami)/Documents/notes $REMOTE/Documents/notes"
   "/home/$(whoami)/Documents/Books $REMOTE/Documents/Books"
 )
