@@ -20,6 +20,8 @@ lazy.setup({
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 	"gpanders/editorconfig.nvim", -- EditorConfig plugin for neovim
 	"mbbill/undotree",
+	"jamespeapen/Nvim-R",
+
 	{ "numToStr/Comment.nvim", opts = {} },
 
 	-- Fuzzy Finder (files, lsp, etc)
@@ -137,5 +139,14 @@ lazy.setup({
 	{
 		"cbochs/grapple.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
+	},
+
+	-- org mode on vim
+	{
+		"nvim-orgmode/orgmode",
+		dependencies = {
+			{ "nvim-treesitter/nvim-treesitter", lazy = true },
+		},
+		event = "VeryLazy",
 	},
 })

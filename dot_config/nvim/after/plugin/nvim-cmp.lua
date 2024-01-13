@@ -52,10 +52,11 @@ cmp.setup({
 	},
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
+		{ name = "orgmode" },
 		{ name = "luasnip" },
 		{ name = "buffer" },
 		{ name = "path" },
 		{ name = "nvim_lua", ft = "lua" },
-		{ name = "cmdline" },
+		-- { name = "cmdline" },
 	}),
 })
