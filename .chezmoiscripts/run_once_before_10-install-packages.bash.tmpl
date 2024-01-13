@@ -6,8 +6,11 @@ if hash pacman 2>/dev/null ; then
 
   {{- if eq .chezmoi.username "mrsantos" }}
   bash {{ .chezmoi.sourceDir }}/scripts/archwslwork.bash
-  {{- else }}
+  {{- else if eq .chezmoi.hostname "math-t470" }}
   bash {{ .chezmoi.sourceDir }}/scripts/archlinux.bash
+  # configure keyboard and touchpad
+  sudo ln -sf {{ .chezmoi.sourceDir }}/00-keyboard.conf /etc/X11/xorg.conf.d/00-keyboard.conf
+  sudo ln -sf {{ .chezmoi.sourceDir }}/30-keyboard.conf /etc/X11/xorg.conf.d/30-keyboard.conf
   {{- end }}
 
 elif hash apt-get 2>/dev/null ; then
