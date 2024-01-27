@@ -19,6 +19,7 @@ end
 lazy.setup({
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 	"gpanders/editorconfig.nvim", -- EditorConfig plugin for neovim
+	"lambdalisue/suda.vim",
 	"mbbill/undotree",
 	"jamespeapen/Nvim-R",
 
@@ -84,9 +85,6 @@ lazy.setup({
 	-- Autocompletion
 	{
 		"hrsh7th/nvim-cmp",
-		config = function()
-			require("cmp")
-		end,
 		dependencies = {
 			"L3MON4D3/LuaSnip", -- Required
 			"rafamadriz/friendly-snippets", -- Set of preconfigured snippets
@@ -146,6 +144,7 @@ lazy.setup({
 		"nvim-orgmode/orgmode",
 		dependencies = {
 			{ "nvim-treesitter/nvim-treesitter", lazy = true },
+			"akinsho/org-bullets.nvim",
 		},
 		event = "VeryLazy",
 	},

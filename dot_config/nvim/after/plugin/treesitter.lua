@@ -17,6 +17,7 @@ require("nvim-treesitter.configs").setup({
 		"json",
 		"jsonc",
 		"markdown",
+		"org",
 		"lua",
 		"php",
 		"python",
@@ -41,7 +42,7 @@ require("nvim-treesitter.configs").setup({
 
 	highlight = {
 		enable = true,
-		additional_vim_regex_highlighting = false,
+		additional_vim_regex_highlighting = { "org" },
 		use_languagetree = true,
 	},
 	autotag = { enable = true },
