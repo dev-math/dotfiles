@@ -13,6 +13,10 @@ help () {
       man "$@"
 }
 
+function gitignore() {
+    curl -o .gitignore "https://raw.githubusercontent.com/github/gitignore/master/$1.gitignore"
+}
+
 alias music='mopidy </dev/null &>/dev/null & ncmpcpp'
 alias pet="ssh petsi@192.168.0.90"
 alias ssh='TERM=xterm-256color ssh'
@@ -93,7 +97,7 @@ alias gsa='git stash apply'
 alias gsh='git show'
 alias gshw='git show'
 alias gshow='git show'
-alias gi='vim .gitignore'
+alias gi='gitignore'
 alias gcm='git ci -m'
 alias gcim='git ci -m'
 alias gci='git ci'
