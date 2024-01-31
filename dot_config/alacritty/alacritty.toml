@@ -22,7 +22,7 @@ save_to_clipboard = false
 decorations = "None"
 dynamic_padding = true
 # gtk_theme_variant = "none"
-opacity = 0.7
+opacity = 0.9
 
 [window.padding]
 x = 0
