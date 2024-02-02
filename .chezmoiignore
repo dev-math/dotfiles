@@ -2,6 +2,8 @@ scripts
 fonts
 wallpaper.png
 README.md
+00-keyboard.conf
+30-touchpad.conf
 
 {{- if ne .chezmoi.hostname "math-t470" }}
 .Xresources
