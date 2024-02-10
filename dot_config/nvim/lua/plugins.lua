@@ -22,6 +22,7 @@ lazy.setup({
 	"lambdalisue/suda.vim",
 	"mbbill/undotree",
 	"jamespeapen/Nvim-R",
+	{ "wakatime/vim-wakatime", lazy = false },
 
 	{
 		"HakonHarnes/img-clip.nvim",
