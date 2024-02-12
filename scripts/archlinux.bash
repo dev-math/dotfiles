@@ -27,7 +27,7 @@ packages=(
   "alacritty zsh bat exa dust procs tmux fd fzf fselect-bin ripgrep neovim jq lsof urlview tldr" # terminal
   "podman podman-compose podman-docker podman-dnsname" # docker alternative
   "nodejs node-gyp npm yarn elixir go jdk11-openjdk jdk8-openjdk" # development
-  "mariadb-clients memcached pgcli php redis r ruby rust sqlite3 postgresql-libs" # development
+  "mariadb-clients memcached pgcli php redis r ruby rust sqlite lib32-sqlite postgresql-libs" # development
   "helm python-pip python-numpy python-pandas python-pygments terraform terragrunt" # development
   "kubectl-bin kustomize openshift-client-bin skaffold-bin wrk" # development
   "imv mpv mpv-mpris ncmpcpp mopidy mopidy-mpd mopidy-ytmusic yt-dlp" # media
@@ -39,8 +39,9 @@ packages=(
   "kdeconnect"
   "noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra fontconfig" # fonts
   "thunar thunar-archive-plugin thunar-media-tags-plugin" # Thunar file explorer
-  "mesa mesa-utils mesa-libgl lib32-mesa libvdpau-va-gl libva-mesa-driver vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader"
-  "xf86-video-intel libva-intel-driver"
+  "mesa mesa-utils mesa-libgl lib32-mesa libvdpau-va-gl libva-mesa-driver vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader intel-media-driver intel-hybrid-codec-driver-git"
+  # Wine dependencies
+  "wine-staging giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error lib32-libgpg-error lib32-alsa-plugins libjpeg-turbo lib32-libjpeg-turbo libxcomposite lib32-libxcomposite libxinerama lib32-libgcrypt libgcrypt lib32-libxinerama ncurses lib32-ncurses ocl-icd lib32-ocl-icd libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs"
   "lib32-gamemode gamemode"
   "tlp" # battery
   "thermald intel-ucode" # Intel CPU
