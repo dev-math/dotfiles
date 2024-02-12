@@ -39,7 +39,7 @@ packages=(
   "kdeconnect"
   "noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra fontconfig" # fonts
   "thunar thunar-archive-plugin thunar-media-tags-plugin" # Thunar file explorer
-  "mesa mesa-utils mesa-libgl libvdpau-va-gl libva-mesa-driver vkd3d lib32-vkd3d"
+  "mesa mesa-utils mesa-libgl lib32-mesa libvdpau-va-gl libva-mesa-driver vkd3d lib32-vkd3d"
   "xf86-video-intel libva-intel-driver"
   "lib32-gamemode gamemode"
   "tlp" # battery
