@@ -41,9 +41,6 @@ mkdir -p ~/Projects ~/Downloads ~/Documents/Notes ~/Documents/notes ~/Documents/
 
 chsh -s $(which zsh) # change shell to zsh for the current user
 
-# Install mopidy with ytmusic
-sudo python3 -m pip install --upgrade ytmusicapi Mopidy-YouTube --break-system-packages
-
 {{- if eq .chezmoi.username "mrsantos" }}
 bash {{ .chezmoi.sourceDir }}/scripts/install-scripts-deps.bash
 exit 0
@@ -51,7 +48,7 @@ exit 0
 
 # Install apps
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flatpak install -y --noninteractive flathub com.discordapp.Discord org.gimp.GIMP io.github.Qalculate org.flameshot.Flameshot com.brave.Browser org.qbittorrent.qBittorrent org.telegram.desktop com.valvesoftware.Steam org.winehq.Wine net.lutris.Lutris com.obsproject.Studio com.github.micahflee.torbrowser-launcher com.bitwarden.desktop com.rtosta.zapzap org.zealdocs.Zeal com.stremio.Stremio
+flatpak install -y --noninteractive flathub org.telegram.desktop com.bitwarden.desktop com.rtosta.zapzap org.zealdocs.Zeal com.stremio.Stremio
 
 # copy default wallpaper
 cp -r {{ .chezmoi.sourceDir }}/wallpaper.png ~/Pictures/wallpapers/dracula.png
