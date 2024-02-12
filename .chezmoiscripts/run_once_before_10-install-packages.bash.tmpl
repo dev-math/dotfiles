@@ -10,7 +10,7 @@ if hash pacman 2>/dev/null ; then
   bash {{ .chezmoi.sourceDir }}/scripts/archlinux.bash
   # configure keyboard and touchpad
   sudo ln -sf {{ .chezmoi.sourceDir }}/00-keyboard.conf /etc/X11/xorg.conf.d/00-keyboard.conf
-  sudo ln -sf {{ .chezmoi.sourceDir }}/30-keyboard.conf /etc/X11/xorg.conf.d/30-keyboard.conf
+  sudo ln -sf {{ .chezmoi.sourceDir }}/30-touchpad.conf /etc/X11/xorg.conf.d/30-touchpad.conf
   {{- end }}
 
 elif hash apt-get 2>/dev/null ; then
