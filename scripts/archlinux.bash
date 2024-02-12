@@ -53,7 +53,7 @@ yay -S --noconfirm --needed ${packages[@]}
 # sudo python3 -m pip install Mopidy-YTMusic --break-system-packages
 
 # add user to groups
-sudo usermod -a -G wheel,video $(whoami)
+sudo usermod -a -G wheel,video,audio,gamemode $(whoami)
 
 # enable pipewire
 systemctl --user enable pipewire.service pipewire.socket pipewire-pulse.service wireplumber.service
