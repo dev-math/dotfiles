@@ -24,7 +24,7 @@ packages=(
   "librewolf-bin torbrowser-launcher telegram-desktop rclone syncthing zerotier-one discord qbittorrent" # Internet apps
   "cups system-config-printer" # Printer
   "xorg-xrandr xorg-server xorg-xgamma xorg-xinit xclip i3-wm i3lock-color-git i3status-rust picom rofi parcellite" # i3 setup
-  "alacritty zsh bat exa dust procs tmux fd fzf fselect-bin ripgrep neovim jq lsof urlview tldr" # terminal
+  "alacritty zsh bat dust procs tmux fd fzf fselect-bin ripgrep neovim jq lsof urlview tldr" # terminal
   "podman podman-compose podman-docker podman-dnsname" # docker alternative
   "nodejs node-gyp npm yarn elixir go jdk11-openjdk jdk8-openjdk" # development
   "mariadb-clients memcached pgcli php redis r ruby rust sqlite lib32-sqlite postgresql-libs" # development
