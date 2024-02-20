@@ -1,76 +1,90 @@
 #!/usr/bin/env bash
 
-set -o errexit
+set -o errexit -o nounset
 
-if hash pacman 2>/dev/null ; then
+install_asdf() {
+    # Install ASDF
+    if ! command -v asdf &> /dev/null
+    then
+        if [[ ! -d $HOME/.asdf ]]; then
+            git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
+        fi
+    fi
 
-  {{- if eq .chezmoi.username "mrsantos" }}
-  bash {{ .chezmoi.sourceDir }}/scripts/archwslwork.bash
-  {{- else if eq .chezmoi.hostname "math-t470" }}
-  bash {{ .chezmoi.sourceDir }}/scripts/archlinux.bash
-  # configure keyboard and touchpad
-  sudo ln -sf {{ .chezmoi.sourceDir }}/00-keyboard.conf /etc/X11/xorg.conf.d/00-keyboard.conf
-  sudo ln -sf {{ .chezmoi.sourceDir }}/30-touchpad.conf /etc/X11/xorg.conf.d/30-touchpad.conf
-  {{- end }}
+    source "$HOME/.asdf/asdf.sh"
 
-elif hash apt-get 2>/dev/null ; then
+    ASDF_PLUGINS=(
+        "crystal"
+        "dotnet-core"
+        "elixir"
+        "erlang"
+        "golang"
+        "haskell"
+        "java"
+        "julia"
+        "kotlin"
+        "lua"
+        "nim"
+        "nodejs"
+        "php"
+        "python"
+        "ruby"
+        "rust"
+        "scala"
+        "zig"
+    )
 
-  bash {{ .chezmoi.sourceDir }}/scripts/debian.bash
+    for plugin in ${ASDF_PLUGINS[@]}; do
+        asdf plugin-add $plugin
+    done
+}
 
-fi
+install_nerd_font() {
+    font_filename="$1.zip"
+    version="v3.1.1"
+    curl -fL "https://github.com/ryanoasis/nerd-fonts/releases/download/$version/$font_filename" -o "/tmp/$font_filename"
+    mkdir -p ~/.local/share/fonts
+    unzip "/tmp/$font_filename" -d ~/.local/share/fonts
+    rm -Rf ~/.local/share/fonts/{README,LICENSE}.md
+}
 
-# Install ASDF
-if ! command -v asdf &> /dev/null
-then
-  if [[ ! -d $HOME/.asdf ]]; then
-    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.13.1
-  fi
-fi
-source "$HOME/.asdf/asdf.sh"
+install_bitwarden_cli() {
+    curl -fL "https://vault.bitwarden.com/download/?app=cli&platform=linux" -o "/tmp/bw.zip"
+    unzip /tmp/bw.zip -d ~/.local/bin
+    chmod +x ~/.local/bin/bw
+}
 
-ASDF_PLUGINS=("crystal" "dotnet-core" "elixir" "erlang" "golang" "haskell"
-    "java" "julia" "kotlin" "lua" "nim" "nodejs" "php" "python" "ruby" "rust"
-    "scala" "zig")
+install_base_packages() {
+    {{- if eq .chezmoi.os "linux" }}
+    {{-   if eq .chezmoi.osRelease.id "arch" }}
+    bash {{ .chezmoi.sourceDir }}/scripts/archlinux.bash
+    {{-   end }}
+    {{- end }}
 
-for plugin in ${ASDF_PLUGINS[@]}; do
-    asdf plugin-add $plugin
-done
+    {{- if eq .chezmoi.os "linux" }}
+    {{-   if not (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    flatpak install -y --noninteractive flathub org.telegram.desktop com.rtosta.zapzap org.zealdocs.Zeal com.stremio.Stremio org.qbittorrent.qBittorrent 
+    {{-   end }}
+    {{- end }}
+}
 
-# create default dirs
-mkdir -p ~/Projects ~/Downloads ~/Documents/Notes ~/Documents/notes ~/Documents/Books ~/Desktop ~/Videos ~/Music ~/Pictures/wallpapers ~/Pictures/screenshots
+main() {
+    install_asdf
 
-chsh -s $(which zsh) # change shell to zsh for the current user
+    # create default dirs
+    mkdir -p ~/{Projects,Downloads,Documents/{Notes,notes,Books},Desktop,Videos,Music,Pictures/{wallpapers,screenshots}}
 
-{{- if eq .chezmoi.username "mrsantos" }}
-bash {{ .chezmoi.sourceDir }}/scripts/install-scripts-deps.bash
-exit 0
-{{- end }}
+    install_nerd_font "Hack"
+    
+    # install tmux plugins manager
+    if [[ ! -d ~/.tmux/plugins/tpm ]]; then
+        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    fi
 
-# Install apps
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flatpak install -y --noninteractive flathub org.telegram.desktop com.bitwarden.desktop com.rtosta.zapzap org.zealdocs.Zeal com.stremio.Stremio
+    install_bitwarden_cli
 
-# copy default wallpaper
-cp -r {{ .chezmoi.sourceDir }}/wallpaper.png ~/Pictures/wallpapers/dracula.png
+    install_base_packages
+}
 
-# enable thermald
-sudo systemctl enable --now thermald
-# Activate loading the microcode update
-sudo grub-mkconfig -o /boot/grub/grub.cfg
-
-# Blacklist PC speaker module
-echo "blacklist pcspkr" | sudo tee /etc/modprobe.d/nobeep.conf
-
-# Install custom fonts
-mkdir -p ~/.local/share/fonts && cd ~/.local/share/fonts
-echo 'Installing Meslo Nerd Fonts'
-[[ ! -f 'MesloLGS%20NF%20Regular.ttf' ]] && curl -fLO https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
-echo 'MesloLGS NF Regular: complete'
-[[ ! -f 'MesloLGS%20NF%20Bold.ttf' ]] && curl -fLO https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
-echo 'MesloLGS NF Bold: complete'
-[[ ! -f 'MesloLGS%20NF%20Italic.ttf' ]] && curl -fLO https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
-echo 'MesloLGS NF Italic: complete'
-[[ ! -f 'MesloLGS%20NF%20Bold%20Italic.ttf' ]] && curl -fLO https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
-echo 'MesloLGS NF Bold Italic: complete'
-
-bash {{ .chezmoi.sourceDir }}/scripts/install-scripts-deps.bash
+main "$@"
