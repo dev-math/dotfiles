@@ -35,6 +35,7 @@ packages=(
   "xdg-desktop-portal-hyprland xdg-desktop-portal-termfilechooser-git"
   "wshowkeys-git python-pywal dunst wlr-randr-git rofi-lbonn-wayland-git"
   "qt5-wayland qt6-wayland hyprpicker-git grimblast-git"
+  "wl-clipboard wl-clip-persist-git"
   # development
   "podman podman-compose podman-docker"
   "nodejs node-gyp npm yarn elixir go jdk11-openjdk jdk8-openjdk pgcli php ruby"
