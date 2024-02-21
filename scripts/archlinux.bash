@@ -32,9 +32,9 @@ packages=(
   "tlp thermald intel-ucode"
   # rice 
   "hyprland-git waybar hyprpaper light gammastep kanshi nwg-displays"
-  "xdg-desktop-portal-hyprland-git xdg-desktop-portal-termfilechooser-git"
+  "xdg-desktop-portal-hyprland xdg-desktop-portal-termfilechooser-git"
   "wshowkeys-git python-pywal dunst wlr-randr-git rofi-lbonn-wayland-git"
-  "qt5-wayland qt6-wayland"
+  "qt5-wayland qt6-wayland hyprpicker-git grimblast-git"
   # development
   "podman podman-compose podman-docker"
   "nodejs node-gyp npm yarn elixir go jdk11-openjdk jdk8-openjdk pgcli php ruby"
