@@ -31,7 +31,7 @@ packages=(
   "intel-media-driver intel-hybrid-codec-driver-git"
   "tlp thermald intel-ucode"
   # rice 
-  "hyprland-git waybar hyprpaper light gammastep kanshi nwg-displays"
+  "hyprland-git waybar swaybg light gammastep kanshi nwg-displays"
   "xdg-desktop-portal-hyprland xdg-desktop-portal-termfilechooser-git"
   "wshowkeys-git python-pywal dunst wlr-randr-git rofi-lbonn-wayland-git"
   "qt5-wayland qt6-wayland hyprpicker-git grimblast-git"

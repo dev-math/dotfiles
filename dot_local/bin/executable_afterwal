@@ -1,5 +1,18 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 . $HOME/.cache/wal/colors.sh
+
+# Kill already running process
+_ps=(waybar swaybg)
+for _prs in "${_ps[@]}"; do
+	if [[ `pidof ${_prs}` ]]; then
+		killall -9 ${_prs}
+	fi
+done
 
 # generate GTK theme and icon theme
 # wpg --theme ~/.cache/wal/colors.json
+
+waybar </dev/null &>/dev/null &
+swaybg --output '*' --mode fill --image "$wallpaper" &
+swaync-client -rs
+import-gsettings
