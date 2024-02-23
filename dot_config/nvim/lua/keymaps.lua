@@ -1,5 +1,9 @@
 vim.g.mapleader = " "
 
+-- Vmap for maintain Visual Mode after shifting > and <
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
+
 -- use ESC to turn off search highlighting
 vim.keymap.set("n", "<Esc>", ":noh <cr>")
 
