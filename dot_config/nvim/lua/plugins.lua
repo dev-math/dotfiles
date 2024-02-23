@@ -19,6 +19,7 @@ end
 lazy.setup({
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 	"gpanders/editorconfig.nvim", -- EditorConfig plugin for neovim
+	"sunaku/tmux-navigate",
 	"lambdalisue/suda.vim",
 	"mbbill/undotree",
 	"jamespeapen/Nvim-R",
