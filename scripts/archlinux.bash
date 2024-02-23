@@ -24,7 +24,7 @@ packages=(
   "ffmpeg imagemagick usbutils udisks2 udiskie zip unzip unrar p7zip man-db"
   "man-pages texinfo networkmanager cronie libappindicator-gtk3 aardvark-dns"
   "apparmor cifs-utils fuse-overlayfs strace gst-plugin-pipewire"
-  "gst-plugins-good mlocate"
+  "gst-plugins-good mlocate electron electron29-bin"
   # drivers
   "mesa mesa-utils mesa-libgl lib32-mesa libvdpau-va-gl libva-mesa-driver"
   "vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader"
@@ -33,7 +33,7 @@ packages=(
   # rice 
   "hyprland-git waybar swaybg light gammastep kanshi nwg-displays"
   "xdg-desktop-portal-hyprland xdg-desktop-portal-termfilechooser-git"
-  "wshowkeys-git python-pywal dunst wlr-randr-git rofi-lbonn-wayland-git"
+  "wshowkeys-git python-pywal dunst swaync-git wlr-randr-git rofi-lbonn-wayland-git"
   "qt5-wayland qt6-wayland hyprpicker-git grimblast-git"
   "wl-clipboard wl-clip-persist-git"
   # development
@@ -46,7 +46,7 @@ packages=(
   "foot fselect-bin ripgrep neovim jq lsof urlview tldr nnn-nerd"
   # internet
   "librewolf-bin torbrowser-launcher telegram-desktop rclone syncthing kdeconnect"
-  "zerotier-one discord"
+  "zerotier-one discord webcord-git"
   # Printer
   "cups system-config-printer"
   # bluetooth
