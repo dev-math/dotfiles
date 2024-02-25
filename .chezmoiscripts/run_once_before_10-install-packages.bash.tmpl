@@ -52,6 +52,7 @@ install_bitwarden_cli() {
     curl -fL "https://vault.bitwarden.com/download/?app=cli&platform=linux" -o "/tmp/bw.zip"
     unzip /tmp/bw.zip -d ~/.local/bin
     chmod +x ~/.local/bin/bw
+    export PATH=$PATH:~/.local/bin
 }
 
 install_base_packages() {
