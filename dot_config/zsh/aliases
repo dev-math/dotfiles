@@ -23,11 +23,7 @@ alias ssh='TERM=xterm-256color ssh'
 
 alias vim='nvim'
 alias docker='podman'
-{{- if eq .chezmoi.osRelease.id "debian" }}
-alias cat='batcat --style=auto'
-{{ else }}
 alias cat='bat --style=auto'
-{{- end }}
 alias setWallpaper='rofi -show themes:~/.local/bin/getWallpapers -theme ~/.cache/wal/launcher.rasi'
 
 alias md='mkdir -p'
