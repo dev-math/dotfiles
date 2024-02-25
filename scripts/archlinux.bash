@@ -31,7 +31,9 @@ packages=(
   # hardware libs
   "dmidecode dmraid hdparm hwdetect lsscsi mtools sg3_utils sof-firmware"
   # power
-  "upower cpupower power-profiles-daemon"
+  "upower cpupower"
+  "tlp"
+  # "power-profiles-daemon"
   # audio
   "alsa-firmware alsa-utils alsa-plugins pavucontrol pipewire wireplumber"
   "pipewire-alsa pipewire-pulse pipewire-jack rtkit"
@@ -43,7 +45,7 @@ packages=(
   # "mesa mesa-utils mesa-libgl lib32-mesa libvdpau-va-gl libva-mesa-driver"
   # "vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader"
   # "intel-media-driver intel-ucode"
-  "tlp thermald"
+  "thermald"
   # fonts
   "noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra fontconfig"
   # Printer
@@ -81,7 +83,7 @@ packages=(
 )
 
 # Install packages
-yay -S --noconfirm --needed ${packages[@]}
+yay -S --noconfirm --needed --ask 4 ${packages[@]}
 
 # add user to groups
 sudo usermod -a -G video,audio,gamemode $(whoami)
