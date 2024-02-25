@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+laptop_screen='eDP-1'
+
+if grep -q open /proc/acpi/button/lid/LID/state; then
+    hyprctl keyword monitor "eDP-1,preferred,auto,1"
+else
+  if [ $(hyprctl monitors | grep Monitor | wc -l) == 1 ]; then
+
+    # We leave a bit of time for locking to happen before putting 
+    # the system to sleep
+    ~/.local/bin/lockscreen && sleep 3
+    if ! grep -q open /proc/acpi/button/lid/LID/state; then
+      # mute the system before sleeping
+      pactl set-sink-volume @DEFAULT_SINK@ 0
+      pactl set-sink-mute @DEFAULT_SINK@ true
+      systemctl suspend
+    fi
+  else 
+    notify-send -t 1500 "Clamshell mode" "Laptop screen off"
+    hyprctl keyword monitor "eDP-1,disable"
+  fi
+fi
