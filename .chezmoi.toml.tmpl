@@ -1,7 +1,6 @@
-{{- $name      := promptStringOnce . "user.git.name" "Name used in GitHub" -}}
-{{- $email     := promptStringOnce . "user.git.email" "Email used in GitHub" -}}
-[data.user.git]
+{{- $name      := promptStringOnce . "name" "Name used in GitHub" -}}
+{{- $email     := promptStringOnce . "email" "Email used in GitHub" -}}
+[data]
+font = "Hack Nerd Font Mono"
 name = {{ $name | quote }}
 email = {{ $email | quote }}
-[data.style]
-font = "Hack Nerd Font Mono"
