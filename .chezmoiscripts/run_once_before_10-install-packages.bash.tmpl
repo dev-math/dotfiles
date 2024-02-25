@@ -56,7 +56,7 @@ install_bitwarden_cli() {
 
 install_base_packages() {
     {{- if eq .chezmoi.os "linux" }}
-    {{-   if eq .chezmoi.osRelease.id "arch" }}
+    {{-   if (or (eq .chezmoi.osRelease.id "arch") (eq .chezmoi.osRelease.idLike "arch")) }}
     bash {{ .chezmoi.sourceDir }}/scripts/archlinux.bash
     {{-   end }}
     {{- end }}
