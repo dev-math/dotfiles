@@ -15,6 +15,10 @@ return {
     local cmp = require("cmp")
     local luasnip = require("luasnip")
 
+    vim.keymap.set({"i"}, "<leader>se", function() luasnip.expand() end, {silent = true})
+    vim.keymap.set({"i", "s"}, "<leader>sn", function() luasnip.jump( 1) end, {silent = true})
+    vim.keymap.set({"i", "s"}, "<leader>sp", function() luasnip.jump(-1) end, {silent = true})
+
     luasnip.config.set_config({
       history = true,
       -- Update more often, :h events for more info.
@@ -41,11 +45,6 @@ return {
     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
     cmp.setup({
-      snippet = {
-        expand = function(args)
-          require("luasnip").lsp_expand(args.body)
-        end,
-      },
       mapping = {
         ["<C-p>"] = cmp.mapping.select_prev_item(),
         ["<C-n>"] = cmp.mapping.select_next_item(),
