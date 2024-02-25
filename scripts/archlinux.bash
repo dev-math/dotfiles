@@ -66,7 +66,7 @@ packages=(
   "python-pip python-numpy python-pandas python-pygments wrk"
   # terminal
   "wget ripgrep git git-lfs openssh curl htop zsh exa bat dust procs tmux fd fzf"
-  "foot fselect-bin ripgrep neovim jq lsof urlview tldr nnn-nerd"
+  "foot fselect-bin ripgrep neovim jq lsof urlview tealdeer nnn-nerd"
   # internet
   "librewolf-bin torbrowser-launcher telegram-desktop rclone syncthing kdeconnect"
   "zerotier-one discord webcord-git"
