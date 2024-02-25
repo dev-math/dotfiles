@@ -1,0 +1,18 @@
+" vim filetype=vim
+
+sanitize tridactyllocal tridactylsync
+
+set newtab about:blank
+
+" But also support Tridactyl search too.
+bind / fillcmdline find
+bind n findnext 1
+bind N findnext -1
+" Remove search highlighting.
+bind <esc> nohlsearch
+
+set smoothscroll true
+
+" The default jump of 10 is a bit much.
+bind j scrollline 5
+bind k scrollline -5

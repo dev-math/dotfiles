@@ -1,0 +1,37 @@
+#!/bin/env bash
+. $HOME/.cache/wal/colors.sh
+
+bg="${scolor0}66"
+border="${scolor0}00"
+textcolor="${scolor4}"
+F="{{ .style.font }}" # font
+
+swaylock \
+    --screenshots \
+    --clock \
+    --indicator \
+    --indicator-radius 120 \
+    --indicator-thickness 0 \
+    --effect-blur 7x5 \
+    --effect-vignette 0.5:0.5 \
+    --inside-color "$bg" \
+    --inside-ver-color "$bg" \
+    --inside-clear-color "$bg" \
+    --inside-wrong-color "$bg" \
+    --ring-color bb00cc \
+    --line-color "$border" \
+    --line-clear-color "$border" \
+    --line-ver-color "$border" \
+    --line-wrong-color "$border" \
+    --key-hl-color 880033 \
+    --separator-color 00000000 \
+    --fade-in 0.2 \
+    --text-color "$textcolor" \
+    --text-wrong-color "$textcolor" \
+    --text-caps-lock-color "$textcolor" \
+    --text-clear-color "$textcolor" \
+    --text-ver-color "$textcolor" \
+    --font "$F" \
+    --font-size 25 \
+    --timestr "%H:%M"          \
+    --datestr "%A, %m %Y"

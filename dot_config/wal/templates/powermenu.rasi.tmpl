@@ -1,0 +1,62 @@
+* {{
+    background: #{background.strip}A0;
+    foreground: {foreground};
+    border-color: @background;
+    text-color: {foreground};
+}}
+
+window {{
+  background-color: @background;
+  fullscreen: true;
+}}
+
+prompt {{
+  enabled: true;
+  padding: 1% 1% 1% 0;
+  background-color: @background;
+  text-color: @foreground;
+}}
+
+listview {{
+  background-color: #00000000;
+  margin: 0% 0% 0% 0%;
+  spacing: 3%;
+  cycle: true;
+  dynamic: true;
+  layout: horizontal;
+}}
+
+mainbox {{
+  background-color: @background;
+  children: [ listview ];
+  spacing: 5%;
+  padding: 32.50% 0% 0% 13.25%;
+}}
+
+element {{
+  background-color: #00000000;
+  text-color: @foreground;
+  orientation: horizontal;
+}}
+
+element-text {{
+  background-color: #00000000;
+  text-color: inherit;
+	font: "{{ .style.font }} 32";
+  expand: true;
+  horizontal-align: 0.5;
+  vertical-align: 0.5;
+  margin: 6.5% 4% 6.5% 4%;
+}}
+
+element selected {{
+    background-color: {color3};
+    text-color: {background};
+    border-radius: 25;
+    border-color: @border-color;
+}}
+
+element selected.active {{
+  background-color: @background;
+  color: @foreground;
+}}

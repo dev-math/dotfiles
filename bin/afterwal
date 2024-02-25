@@ -1,7 +1,0 @@
-#!/bin/env bash
-. $HOME/.cache/wal/colors.sh
-
-cp -rf ~/.cache/wal/obsidian.css ~/Notes/.obsidian/snippets/style.css
-
-# generate GTK theme and icon theme
-# wpg --theme ~/.cache/wal/colors.json

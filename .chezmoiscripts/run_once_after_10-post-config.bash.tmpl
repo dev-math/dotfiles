@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+# copy default wallpaper
+cp -r {{ .chezmoi.sourceDir }}/wallpaper.png ~/Pictures/wallpapers/dracula.png
+
+# Set default pywal color
+wal -i ~/Pictures/wallpapers/dracula.png -e -s -t -q -n -o ~/.local/bin/afterwal
+
+# Blacklist PC speaker module
+echo "blacklist pcspkr" | sudo tee /etc/modprobe.d/nobeep.conf
+
+{{- if eq .chezmoi.hostname "math-t470" }}
+echo "INTEL_GPU_MIN_FREQ_ON_AC=500\nINTEL_GPU_MAX_FREQ_ON_AC=1000" | sudo tee /etc/tlp.conf
+{{- end }}
+
+# enable services
+systemctl --user enable pipewire.service pipewire.socket pipewire-pulse.service wireplumber.service
+systemctl enable --now tlp.service
+systemctl mask systemd-rfkill.service
+systemctl mask systemd-rfkill.socket
+systemctl enable --now thermald
+systemctl enable --now cronie
+
+# Configure and enable cronjobs
+crontab ~/.config/cronjobs
+
+# Activate loading the microcode update
+sudo grub-mkconfig -o /boot/grub/grub.cfg

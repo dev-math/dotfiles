@@ -1,0 +1,103 @@
+@import url('{{- .chezmoi.homeDir -}}/.cache/wal/colors-waybar.css');
+
+@define-color warning #fabd2f;
+@define-color critical #cc241d;
+
+* {
+	font-family: {{ .style.font }};
+	font-size: 16px;
+}
+
+window#waybar {
+    background-color: @background;
+    color: @foreground;
+}
+
+
+button {
+    border: none;
+    border-radius: 0;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+    background: inherit;
+}
+
+#workspaces button, #workspaces button:hover {
+	box-shadow: none;
+	padding-left: 4px;
+	padding-right: 4px;
+	color: @foreground;
+	background: #333333;
+}
+
+#workspaces button.urgent {
+	background: #900000;
+}
+
+#workspaces button.active {
+	background: @color4;
+	color: #ffffff;
+}
+
+#custom-separator {
+	color: #666666;
+	margin: 0 5px;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#mpd {
+    padding: 0 5px;
+}
+
+#window,
+#workspaces {
+    margin: 0 4px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+#battery.critical:not(.charging) {
+    background-color: #900000;
+    color: @foreground;
+}
+
+#network.disconnected {
+    background-color: #900000;
+}
+
+#pulseaudio.muted {
+    color: @color6;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #eb4d4b;
+}

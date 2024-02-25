@@ -1,0 +1,21 @@
+scripts
+fonts
+wallpaper.png
+README.md
+00-keyboard.conf
+30-touchpad.conf
+
+{{- if ne .chezmoi.hostname "math-t470" }}
+.Xresources
+.config/alacritty
+.config/cronjobs
+.config/dunst
+.config/i3status-rust
+.config/sway
+.config/zathura
+.config/mopidy
+.config/ncmpcpp
+.local/bin
+.config/wal
+.ssh
+{{- end }}

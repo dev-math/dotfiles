@@ -1,0 +1,28 @@
+[logging]
+color = true
+console_format = %(levelname)-8s %(message)s
+format = %(levelname)-8s %(asctime)s [%(process)d:%(threadName)s] %(name)s\n  %(message)s
+
+[mpd]
+hostname = 0.0.0.0
+
+[audio]
+output = autoaudiosink
+
+[youtube]
+enabled = true
+allow_cache = true
+youtube_api_key = {{ (bitwardenFields "item" "mopidy-youtube").youtubeapikey.value }}
+channel_id = UCg0aDL5l__EzgIDcLceH9Ww
+api_enabled = true
+musicapi_enabled = true
+autoplay_enabled = true
+max_degrees_of_separation = 3
+max_autoplay_length =
+youtube_dl_package = yt_dlp
+musicapi_browser_authentication_file=/mopidy/config/ytmusic-auth.json
+musicapi_cookiefile=/mopidy/config/cookies.txt
+
+[ytmusic]
+enabled = false
+auth_json = /mopidy/config/ytmusic-auth.json
