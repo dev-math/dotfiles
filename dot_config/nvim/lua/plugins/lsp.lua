@@ -3,9 +3,21 @@ return {
   dependencies = {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
   },
   config = function()
     require("mason").setup()
+
+    require("mason-tool-installer").setup({
+      ensure_installed = {
+        "prettierd",
+        "stylua",
+        "isort",
+        "black",
+        "pylint",
+        "eslint_d",
+      },
+    })
 
     local mason_lspconfig = require("mason-lspconfig")
     mason_lspconfig.setup({
