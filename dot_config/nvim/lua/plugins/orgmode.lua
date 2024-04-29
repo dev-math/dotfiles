@@ -4,7 +4,7 @@ return {
     { "nvim-treesitter/nvim-treesitter", lazy = true },
     "akinsho/org-bullets.nvim",
   },
-  event = "VeryLazy",
+
   config = function()
     -- Load treesitter grammar for org
     require("orgmode").setup_ts_grammar()
