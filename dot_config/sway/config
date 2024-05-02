@@ -1,0 +1,273 @@
+### --- Input config ---###
+input "type:keyboard" {
+xkb_layout br
+xkb_model abnt2
+xkb_variant abnt2
+}
+input type:touchpad {
+dwt disabled
+middle_emulation enabled
+natural_scroll disabled
+scroll_method two_finger
+tap enabled
+tap_button_map lrm
+}
+
+###--- Variables ---###
+set $lock_script ~/.local/bin/lockscreen
+set $term alacritty
+set $filemanager thunar
+set $innergap 10
+set $outergap 10
+
+# Mod1=<Alt>, Mod4=<Super>
+set $superkey Mod4
+set $altkey Mod1
+
+# Define names for default workspaces for which we configure key bindings later on.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+###--- COLORS ---###
+include "$HOME/.cache/wal/colors-sway"
+set $normal     $color4
+# class                 border      backgr.    text      indicator    child_border
+client.focused          $normal     $normal    $bg       $normal      $normal
+
+###--- SETTINGS ---###
+default_border pixel 2
+default_floating_border pixel 2
+gaps inner 0
+gaps outer 0
+
+output "*" bg $wallpaper fill
+
+# Hide borders
+hide_edge_borders none
+
+focus_follows_mouse no
+
+# Font for window titles
+font pango:SF Pro Display bold 12
+
+###--- BINDS ---###
+# Make the currently focused window a scratchpad
+bindsym $altkey+Shift+minus move scratchpad
+# Show the first scratchpad window
+bindsym $altkey+minus scratchpad show
+
+# start program launcher
+bindsym $superkey+space exec "rofi -show drun -theme ~/.cache/wal/launcher.rasi | xargs swaymsg exec --"
+
+# emoji picker
+bindsym $superkey+control+space exec ~/.local/bin/rofi-emoji
+
+# start a terminal
+bindsym $superkey+Return exec $term
+
+# start file manager
+bindsym $superkey+e exec $filemanager
+
+# lock screen
+bindsym $superkey+$altkey+l exec $lock_script
+
+# enter fullscreen mode for the focused container
+bindsym $superkey+f fullscreen toggle
+
+# kill focused window
+bindsym $superkey+Shift+q kill
+bindsym $altkey+F4 kill
+
+# Use Mouse+$mod to drag floating windows
+floating_modifier $superkey
+
+# Gaps binds
+bindsym $superkey+minus gaps inner all plus 1; gaps outer all plus 1
+bindsym $superkey+plus gaps inner all minus 1; gaps outer all minus 1
+
+# Screenshots
+bindsym $superkey+Print exec flameshot gui
+bindsym Print exec grim -g "$(slurp)" - | wl-copy
+
+# Brightness control
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# split in horizontal orientation
+bindsym $superkey+$altkey+h split h
+
+# split in vertical orientation
+bindsym $superkey+$altkey+v split v
+
+# change focus
+bindsym $superkey+h focus left
+bindsym $superkey+j focus down
+bindsym $superkey+k focus up
+bindsym $superkey+l focus right
+
+# move focused window
+bindsym $superkey+Shift+h move left
+bindsym $superkey+Shift+j move down
+bindsym $superkey+Shift+k move up
+bindsym $superkey+Shift+l move right
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $superkey+s layout stacking
+bindsym $superkey+w layout tabbed
+bindsym $superkey+q layout toggle split
+
+# toggle tiling / floating
+bindsym $superkey+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $superkey+t focus mode_toggle
+
+# focus the parent container
+bindsym $superkey+a focus parent
+
+# focus the child container
+#bindsym $superkey+d focus child
+
+# toggle border
+bindsym $superkey+Shift+g [class=".*"] border normal
+bindsym $superkey+g [class=".*"] border pixel 2
+
+# switch to workspace
+bindsym $superkey+1 workspace number $ws1
+bindsym $superkey+2 workspace number $ws2
+bindsym $superkey+3 workspace number $ws3
+bindsym $superkey+4 workspace number $ws4
+bindsym $superkey+5 workspace number $ws5
+bindsym $superkey+6 workspace number $ws6
+bindsym $superkey+7 workspace number $ws7
+bindsym $superkey+8 workspace number $ws8
+bindsym $superkey+9 workspace number $ws9
+bindsym $superkey+0 workspace number $ws10
+
+# move workspace to output
+bindsym $superkey+p exec "swaymsg -t get_outputs |jq '[.[] | select(.active == true)] | .[(map(.focused) | index(true) + 1) % length].name' |xargs swaymsg move workspace to"
+
+# move focused container to workspace
+bindsym $superkey+Shift+1 move container to workspace number $ws1
+bindsym $superkey+Shift+2 move container to workspace number $ws2
+bindsym $superkey+Shift+3 move container to workspace number $ws3
+bindsym $superkey+Shift+4 move container to workspace number $ws4
+bindsym $superkey+Shift+5 move container to workspace number $ws5
+bindsym $superkey+Shift+6 move container to workspace number $ws6
+bindsym $superkey+Shift+7 move container to workspace number $ws7
+bindsym $superkey+Shift+8 move container to workspace number $ws8
+bindsym $superkey+Shift+9 move container to workspace number $ws9
+bindsym $superkey+Shift+0 move container to workspace number $ws10
+
+# reload the configuration file
+bindsym $superkey+Shift+r reload
+# exit sway
+bindsym $superkey+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $superkey+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $superkey+r mode "default"
+}
+bindsym $superkey+r mode "resize"
+
+###--- OTHERS ---###
+for_window [app_id="Alacritty"] opacity 0.9
+for_window [title="alsamixer"] floating enable, border pixel 1
+for_window [title="i3_help"] floating enable sticky enable border normal
+for_window [app_id="pavucontrol"] floating enable
+for_window [app_id="pavucontrol"] resize set 800 600
+for_window [floating] move absolute position center
+for_window [window_role="pop-up"] floating enable, move absolute position center, sticky enable
+for_window [window_role="bubble"] floating enable, move absolute position center
+for_window [window_role="task_dialog"] floating enable, move absolute position center
+for_window [window_role="Preferences"] floating enable, move absolute position center
+for_window [window_type="dialog"] floating enable, move absolute position center
+for_window [window_type="DIALOG"] floating enable, move absolute position center
+for_window [window_role="PictureInPicture"] floating enable, sticky enable
+for_window [window_type="menu"] floating enable
+for_window [title="^YouTube Music"] floating disable
+for_window [title="WhatsApp Web"] floating disable
+# for_window [app_id="flameshot"] floating enable, fullscreen disable, move absolute position 0 0, border pixel 0
+
+assign [class="discord"] workspace number $ws10
+assign [title="discord-screenaudio"] workspace number $ws10
+assign [class="kotatogram-desktop"] workspace number $ws10
+assign [class="KotatogramDesktop"] workspace number $ws10
+assign [app_id="org.telegram.desktop"] workspace number $ws10
+assign [title="WhatsApp Web"] workspace number $ws10
+assign [title="^YouTube Music"] workspace number $ws9
+
+# Status Bar:
+bar {
+    font pango:SF Pro Display bold 12
+    status_command i3status-rs ~/.config/i3status-rust/config.toml
+    position top
+    colors {
+        separator #666666
+        background $bg
+        statusline #dddddd
+        focused_workspace $color4 $color4 #ffffff
+        active_workspace #333333 #333333 #ffffff
+        inactive_workspace #333333 #333333 #888888
+        urgent_workspace #2f343a #900000 #ffffff
+    }
+}
+
+include /etc/sway/config.d/*
+
+# Clamshell mode or lock & sleep
+bindswitch --reload --locked lid:toggle exec ~/.local/bin/clamshell
+exec_always ~/.local/bin/clamshell
+
+# Autostart
+exec_always ~/.config/sway/import-gsettings
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec "wal -R" # Load pywal colors and wallpaper
+exec "udiskie &" # mount helper
+exec "/usr/lib/kdeconnectd &" # Start KDEconnect
+exec "wl-clip-persist --clipboard both"
+exec "swaync"
+exec "~/.local/bin/afterwal"

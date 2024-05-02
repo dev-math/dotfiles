@@ -12,7 +12,6 @@ done
 # generate GTK theme and icon theme
 # wpg --theme ~/.cache/wal/colors.json
 
-waybar </dev/null &>/dev/null &
 swaybg --output '*' --mode fill --image "$wallpaper" &
 swaync-client -rs
 import-gsettings

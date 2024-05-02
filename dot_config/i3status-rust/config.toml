@@ -1,0 +1,52 @@
+[theme]
+theme = "semi-native"
+
+[theme.overrides]
+good_fg = "#93a1a1"
+
+[icons]
+icons = "material-nf"
+[icons.overrides]
+backlight = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+
+[[block]]
+block = "disk_space"
+path = "/"
+info_type = "available"
+format = " $icon $available.eng(w:4) "
+interval = 20
+warning = 20.0
+alert = 10.0
+
+[[block]]
+block = "net"
+interval = 5
+format = " $icon {$signal_strength $ssid $frequency|Wired connection} via $device "
+
+[[block]]
+block = "kdeconnect"
+
+[[block]]
+block = "sound"
+headphones_indicator = true
+[[block.click]]
+button = "left"
+cmd = "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+[[block.click]]
+button = "right"
+cmd = "pavucontrol"
+
+[[block]]
+block = "battery"
+device = "DisplayDevice"
+driver = "upower"
+
+[[block]]
+block = "notify"
+driver = "swaync"
+
+[[block]]
+block = "time"
+interval = 1
+[block.format]
+full = " $icon  $timestamp.datetime(f:'%Y/%m/%d %X') "
