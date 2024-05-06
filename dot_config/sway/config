@@ -15,7 +15,7 @@ tap_button_map lrm
 
 ###--- Variables ---###
 set $lock_script ~/.local/bin/lockscreen
-set $term alacritty
+set $term foot
 set $filemanager thunar
 set $innergap 10
 set $outergap 10
@@ -213,6 +213,7 @@ bindsym $superkey+r mode "resize"
 
 ###--- OTHERS ---###
 for_window [app_id="Alacritty"] opacity 0.9
+for_window [app_id="foot"] opacity 0.9
 for_window [title="alsamixer"] floating enable, border pixel 1
 for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [app_id="pavucontrol"] floating enable
