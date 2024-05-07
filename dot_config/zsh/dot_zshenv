@@ -1,5 +1,28 @@
 export PATH=$PATH:$HOME/.npm-global/bin:$HOME/.local/bin:$HOME/.cargo/bin
 
+# Wayland Fix
+export XCURSOR_SIZE=24
+export XDG_CURRENT_DESKTOP=sway
+export XDG_SESSION_DESKTOP=sway
+export XDG_SESSION_TYPE=wayland
+export XDG_CURRENT_SESION_TYPE=wayland
+
+export GDK_BACKEND="wayland,x11"
+export GTK_USE_PORTAL=1
+export QT_QPA_PLATFORM=wayland
+export QT_QPA_PLATFORMTHEME=qt6ct
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+
+export SDL_VIDEODRIVER=wayland 
+export _JAVA_AWT_WM_NONREPARENTING=1
+export WLR_NO_HARDWARE_CURSORS=1 
+export MOZ_DISABLE_RDD_SANDBOX=1
+export MOZ_ENABLE_WAYLAND=1 
+
+export OZONE_PLATFORM=wayland
+
 # default programs
 export EDITOR='nvim'
 export TERMINAL='alacritty'
@@ -29,6 +52,11 @@ export LC_TYPE=en_US.UTF-8
 export JDTLS_HOME=$HOME/.local/share/nvim/lsp/jdt-language-server/
 export WORKSPACE=$HOME/.local/share/nvim/lsp/jdt-language-server/workspace/
 export PATH=$JAVA_HOME/bin:$PATH
+
+if [ "$XDG_SESSION_DESKTOP" = "sway" ] ; then
+    # https://github.com/swaywm/sway/issues/595
+    export _JAVA_AWT_WM_NONREPARENTING=1
+fi
 
 # Other programs
 export PRETTIERD_DEFAULT_CONFIG=$HOME/.dotfiles/prettierrc
