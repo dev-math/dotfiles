@@ -54,10 +54,10 @@ packages=(
   "gutenprint splix system-config-printer"
   "hplip python-pyqt5 python-reportlab xsane"
   # rice 
-  "hyprland-git waybar swaybg swaylock-effects-git light wlsunset kanshi nwg-displays"
+  "sway waybar swaybg swaylock-effects-git light wlsunset kanshi nwg-displays"
   "xdg-desktop-portal-hyprland xdg-desktop-portal-termfilechooser-git"
   "wshowkeys-git python-pywal dunst swaync-git wlr-randr-git rofi-lbonn-wayland-git"
-  "qt5-wayland qt6-wayland hyprpicker-git grimblast-git"
+  "qt5-wayland qt6-wayland grimshot"
   "wl-clipboard wl-clip-persist-git"
   # development
   "podman podman-compose podman-docker"
