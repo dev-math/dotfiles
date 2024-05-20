@@ -20,6 +20,7 @@ return {
 				lua = { "stylua" },
 				python = { "isort", "black" },
 				java = { "clang-format" },
+				kotlin = { "ktlint" },
 			},
 			format_on_save = {
 				lsp_fallback = true,
