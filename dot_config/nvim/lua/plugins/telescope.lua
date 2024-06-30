@@ -28,9 +28,15 @@ return {
 			})
 		end
 
+		local function live_grep()
+			builtin.live_grep({
+				additional_args = { "--iglob", "!.git", "--hidden" },
+			})
+		end
+
 		vim.keymap.set("n", "<leader>pf", find_files, {})
 		vim.keymap.set("n", "<C-p>", builtin.git_files, {})
-		vim.keymap.set("n", "<leader>ps", builtin.live_grep)
+		vim.keymap.set("n", "<leader>ps", live_grep, {})
 		vim.keymap.set("n", "<leader>vh", builtin.help_tags, {})
 		vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 	end,
