@@ -1,6 +1,6 @@
 vim.diagnostic.config({ virtual_text = true })
 
-vim.opt.showmode = false
+vim.opt.showmode = true
 vim.opt.guicursor = ""
 vim.opt.termguicolors = true
 
@@ -25,9 +25,9 @@ vim.opt.shortmess = vim.opt.shortmess + { c = true }
 
 vim.opt.smartindent = true
 vim.opt.expandtab = true   -- convert tabs to spaces
-vim.opt.shiftwidth = 2     -- the number of spaces inserted for each indentation
-vim.opt.tabstop = 2        -- insert 4 spaces for a tab
-vim.opt.softtabstop = 2    -- insert 4 spaces for a tab
+vim.opt.shiftwidth = 4     -- the number of spaces inserted for each indentation
+vim.opt.tabstop = 4        -- insert 4 spaces for a tab
+vim.opt.softtabstop = 4    -- insert 4 spaces for a tab
 
 vim.opt.swapfile = false
 vim.opt.backup = false
@@ -36,8 +36,9 @@ vim.opt.undodir = vim.fn.stdpath "cache" .. "/undo"
 vim.opt.directory = '~/.config/nvim/swap//,/tmp//'
 vim.opt.formatoptions:remove({ 'c', 'r', 'o' }) -- dont take effect. using autocmd...
 vim.opt.whichwrap:remove({ 'h', 'l' })
-vim.opt.foldmethod = "manual"                   -- folding set to "expr" for treesitter based folding
-vim.opt.foldexpr = ""                           -- set to "nvim_treesitter#foldexpr()" for treesitter based folding
+vim.opt.foldmethod = "expr"			-- treesitter based folding
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- treesitter based folding
+vim.o.foldenable = false
 vim.opt.spell = false
 vim.opt.spelllang = "en"
 
@@ -56,4 +57,6 @@ vim.opt.conceallevel = 0 -- so that ``` is visible in MD files
 
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
+vim.g.netrw_liststyle = 3
+vim.g.netrw_showhide = 1
 vim.g.netrw_winsize = 25
