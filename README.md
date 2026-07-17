@@ -5,6 +5,7 @@ Table of contents:
 - [Workflow](#workflow)
 - [Screenshots](#screenshots)
 - [Setup](#setup)
+- [Container](#container)
 - [Tips](#tips)
 - [Credits](#credits)
 
@@ -37,6 +38,24 @@ Table of contents:
 chezmoi init https://github.com/dev-math/dotfiles
 chezmoi update
 ```
+
+## Container
+
+`flake.nix` builds a terminal-only container image from these dotfiles
+(zsh + zinit + p10k, tmux + tpm, neovim configured from
+[dev-math/nvim](https://github.com/dev-math/nvim), ripgrep, fd, fzf, bat,
+eza, jq, tealdeer, dust, procs). Requires [Nix](https://nixos.org/download)
+with flakes enabled.
+
+```bash
+nix build .#dockerImage
+docker load -i result   # or: podman load -i result
+docker run -it --hostname devcontainer localhost/terminal-devenv:latest
+```
+
+Pre-built images publish to `ghcr.io/dev-math/terminal-devenv` on push to
+`main` (see `.github/workflows/container-cd.yml`). Test with
+`bash tests/container-run.sh` or `nix flake check`.
 
 ## Tips
 

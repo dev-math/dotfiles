@@ -1,0 +1,26 @@
+name: Container CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: cachix/install-nix-action@v27
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+
+      - name: nix flake check (build-time smoke test)
+        run: nix flake check -L
+
+      - name: build image
+        run: nix build .#dockerImage -L
+
+      - name: runtime smoke test
+        run: bash tests/container-run.sh

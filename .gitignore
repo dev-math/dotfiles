@@ -1,3 +1,8 @@
 lazy-lock.json
 dot_config/tmux/plugins
 dot_zcompdump
+
+# Nix container build artifacts
+result
+result-*
+image.tar.gz
