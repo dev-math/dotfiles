@@ -1,4 +1,5 @@
 export PATH=$PATH:$HOME/.npm-global/bin:$HOME/.local/bin:$HOME/.cargo/bin
+export PATH=$PATH:$(go env GOPATH)/bin
 
 # Wayland Fix
 export XCURSOR_SIZE=24
@@ -26,7 +27,7 @@ export OZONE_PLATFORM=wayland
 # default programs
 export EDITOR='nvim'
 export TERMINAL='alacritty'
-export BROWSER='cachy-browser'
+export BROWSER='firefox'
 
 export ZDOTDIR=${ZDOTDIR:-~/.config/zsh}
 
@@ -62,3 +63,7 @@ fi
 export PRETTIERD_DEFAULT_CONFIG=$HOME/.dotfiles/prettierrc
 export LESS_TERMCAP_md="$ORANGE" # Highlight section titles in manual pages
 export MANPAGER="less -X" # Don’t clear the screen after quitting a manual page
+
+export ASDF_DATA_DIR=$HOME/.asdf
+export PATH="$ASDF_DATA_DIR/shims:$PATH"
+export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock
