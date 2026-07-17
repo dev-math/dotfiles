@@ -1,0 +1,139 @@
+env:
+  TERM: alacritty
+
+window:
+  padding:
+    x: 0
+    y: 0
+
+  dynamic_padding: true
+
+  opacity: 0.8
+
+  decorations: full
+
+  # Window title
+  # title: Alacritty
+
+  # Window class (Linux/BSD only):
+  # class:
+    # Application instance name
+    # instance: Alacritty
+    # General application class
+    # general: Alacritty
+
+  gtk_theme_variant: none
+
+scrolling:
+  # Maximum number of lines in the scrollback buffer.
+  # Specifying '0' will disable scrolling.
+  history: 10000
+
+  # Scrolling distance multiplier.
+  multiplier: 3
+
+font:
+  normal:
+    family: Hack Nerd Font Mono 
+    style: Regular
+
+  bold:
+    family: Hack Nerd Font Mono
+    style: Bold
+
+  italic:
+    family: Hack Nerd Font Mono
+    style: Italic
+
+  bold_italic:
+    family: Hack Nerd Font Mono
+    style: Bold Italic
+
+  # Point size
+  size: 15.5
+
+  # Offset is the extra space around each character. `offset.y` can be thought of
+  # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
+  offset:
+   x: 0
+   y: 0
+
+selection:
+  save_to_clipboard: false
+
+draw_bold_text_with_bright_colors: true
+
+colors:
+  primary:
+    background: '#000000'
+    foreground: '#ffffff'
+
+    dim_foreground: '#ffffff'
+    bright_foreground: '#ffffff'
+
+  cursor:
+    text: CellBackground
+    cursor: CellForeground
+
+  vi_mode_cursor:
+    text: CellBackground
+    cursor: CellForeground
+
+  search:
+    matches:
+      foreground: '#ffffff'
+      background: '#1a66ff'
+    focused_match:
+      foreground: '#ffffff'
+      background: '#1a66ff'
+
+    bar:
+      background: '#ffffff'
+      foreground: '#000000'
+
+  hints:
+    start:
+      foreground: '#ffffff'
+      background: '#1a66ff'
+
+    end:
+      foreground: '#1a66ff'
+      background: '#ffffff'
+
+  line_indicator:
+    foreground: None
+    background: None
+
+  selection:
+    text: CellBackground
+    background: CellForeground
+
+  normal:
+    black:   '#000000'
+    red:     '#ff7c4d'
+    green:   '#22ff00'
+    yellow:  '#ffcc00'
+    blue:    '#1a66ff'
+    magenta: '#ff61df'
+    cyan:    '#00ffff'
+    white:   '#888888'
+
+  bright:
+    black:   '#000000'
+    red:     '#ff7c4d'
+    green:   '#22ff00'
+    yellow:  '#ffcc00'
+    blue:    '#1a66ff'
+    magenta: '#ff61df'
+    cyan:    '#00ffff'
+    white:   '#ffffff'
+
+  dim:
+    black:   '#000000'
+    red:     '#ff7c4d'
+    green:   '#22ff00'
+    yellow:  '#ffcc00'
+    blue:    '#1a66ff'
+    magenta: '#ff61df'
+    cyan:    '#00ffff'
+    white:   '#888888'

@@ -1,0 +1,46 @@
+general.import = [
+ "light-theme.toml",
+ # "dark-theme.toml"
+]
+
+[env]
+TERM = "alacritty"
+
+[font]
+size = 15.5
+
+[font.bold]
+family = "Hack Nerd Font Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "Hack Nerd Font Mono"
+style = "Bold Italic"
+
+[font.italic]
+family = "Hack Nerd Font Mono"
+style = "Italic"
+
+[font.normal]
+family = "Hack Nerd Font Mono"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 0
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[selection]
+save_to_clipboard = false
+
+[window]
+decorations = "full"
+dynamic_padding = true
+opacity = 0.8
+
+[window.padding]
+x = 0
+y = 0

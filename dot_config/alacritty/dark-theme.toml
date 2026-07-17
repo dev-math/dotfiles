@@ -1,0 +1,72 @@
+# Colors (Contrasty Darkness)
+# https://www.markusweimar.de/static/contrasty-darkness-alacritty.txt
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+black = "#000000"
+blue = "#1a66ff"
+cyan = "#00ffff"
+green = "#22ff00"
+magenta = "#ff61df"
+red = "#ff7c4d"
+white = "#ffffff"
+yellow = "#ffcc00"
+
+[colors.cursor]
+cursor = "CellForeground"
+text = "CellBackground"
+
+[colors.dim]
+black = "#000000"
+blue = "#1a66ff"
+cyan = "#00ffff"
+green = "#22ff00"
+magenta = "#ff61df"
+red = "#ff7c4d"
+white = "#888888"
+yellow = "#ffcc00"
+
+[colors.hints.end]
+background = "#ffffff"
+foreground = "#1a66ff"
+
+[colors.hints.start]
+background = "#1a66ff"
+foreground = "#ffffff"
+
+[colors.line_indicator]
+background = "None"
+foreground = "None"
+
+[colors.normal]
+black = "#000000"
+blue = "#1a66ff"
+cyan = "#00ffff"
+green = "#22ff00"
+magenta = "#ff61df"
+red = "#ff7c4d"
+white = "#888888"
+yellow = "#ffcc00"
+
+[colors.primary]
+background = "#000000"
+bright_foreground = "#ffffff"
+dim_foreground = "#ffffff"
+foreground = "#ffffff"
+
+[colors.search.focused_match]
+background = "#1a66ff"
+foreground = "#ffffff"
+
+[colors.search.matches]
+background = "#1a66ff"
+foreground = "#ffffff"
+
+[colors.selection]
+background = "CellForeground"
+text = "CellBackground"
+
+[colors.vi_mode_cursor]
+cursor = "CellForeground"
+text = "CellBackground"
