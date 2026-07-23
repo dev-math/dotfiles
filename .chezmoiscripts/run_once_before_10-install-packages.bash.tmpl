@@ -56,25 +56,29 @@ install_bitwarden_cli() {
 }
 
 install_base_packages() {
+	source /etc/os-release
+	case "$PRETTY_NAME" in
+		*"Debian"*)
+			echo "debian os detected"
+			sudo apt install unzip zip sway pip git tlp upower linux-cpupower thermald curl wget flameshot grimshot swaybg light pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber pavucontrol firmware-intel-graphics zsh wl-clipboard imagemagick libssl-dev lm-sensors libsensors5 libsensors-dev pandoc
+	esac
     {{- if eq .chezmoi.os "linux" }}
-    {{-   if (or (eq .chezmoi.osRelease.id "arch") (eq .chezmoi.osRelease.idLike "arch")) }}
+    {{-   if eq .chezmoi.osRelease.id "arch" }}
     bash {{ .chezmoi.sourceDir }}/scripts/archlinux.bash
     {{-   end }}
     {{- end }}
 
     {{- if eq .chezmoi.os "linux" }}
     {{-   if not (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
-    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    flatpak install -y --noninteractive flathub org.telegram.desktop com.rtosta.zapzap org.zealdocs.Zeal com.stremio.Stremio org.qbittorrent.qBittorrent 
+	echo "not wsl"
+    # flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    # flatpak install -y --noninteractive flathub org.telegram.desktop com.rtosta.zapzap org.zealdocs.Zeal com.stremio.Stremio org.qbittorrent.qBittorrent 
     {{-   end }}
     {{- end }}
 }
 
 main() {
     install_asdf
-
-    # create default dirs
-    mkdir -p ~/{Projects,Downloads,Documents/{Notes,notes,Books},Desktop,Videos,Music,Pictures/{wallpapers,screenshots}}
 
     install_nerd_font "Hack"
     

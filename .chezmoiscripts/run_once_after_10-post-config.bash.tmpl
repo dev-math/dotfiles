@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 
-# copy default wallpaper
-cp -r {{ .chezmoi.sourceDir }}/wallpaper.png ~/Pictures/wallpapers/dracula.png
-
 # Set default pywal color
-wal -i ~/Pictures/wallpapers/dracula.png -e -s -t -q -n -o ~/.local/bin/afterwal
+wal -i {{ .chezmoi.sourceDir }}/wallpaper.png -e -s -t -q -n -o ~/.local/bin/afterwal
 
 # Blacklist PC speaker module
 echo "blacklist pcspkr" | sudo tee /etc/modprobe.d/nobeep.conf
@@ -19,9 +16,9 @@ systemctl enable --now tlp.service
 systemctl mask systemd-rfkill.service
 systemctl mask systemd-rfkill.socket
 systemctl enable --now thermald
-systemctl enable --now cronie
 
 # Configure and enable cronjobs
-crontab ~/.config/cronjobs
+# systemctl enable --now cronie
+# crontab ~/.config/cronjobs
 
 chsh -s $(which zsh)
